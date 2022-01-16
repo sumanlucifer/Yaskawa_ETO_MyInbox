@@ -1,0 +1,125 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:core="sap.ui.core">
+	<smartTable:SmartTable class="sapUiResponsiveContentPadding" enableAutoColumnWidth="true" id="idListServiceTable" editable="false"
+		placeToolbarInTable="true" enableAutoBinding="true" beforeRebindTable="onBeforeRebindSaleTable" entitySet="ETOItemDetailsSet"
+		showFullScreenButton="true" showRowCount="true" tableType="ResponsiveTable" demandPopin="false" useExportToExcel="true"
+		useTablePersonalisation="true" useVariantManagement="true" initialNoDataText="{i18n>NoData}">
+		<!-- <smartTable:layoutData><FlexItemData growFactor="1" /></smartTable:layoutData> -->
+		<Table id="idListServiceTab" mode="MultiSelect" selectionChange="onSelectionChange" sticky="ColumnHeaders,HeaderToolbar"
+			alternateRowColors="true" updateFinished="onListTableUpdateFinished">
+			<columns>
+				<!--<Column>-->
+				<!--	<customData>-->
+				<!--		<core:CustomData key="p13nData" value='\{"columnKey": "Action", "columnIndex": 0}'/>-->
+				<!--	</customData>-->
+				<!--	<Text text="{i18n>Select}"/>-->
+				<!--</Column>-->
+				<Column >
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey": "SONumber", "leadingProperty": "SONumber", "columnIndex": 0 ,"sortProperty": "SONumber","filterProperty": "SONumber"}'/>
+					</customData>
+					<Text text="{i18n>SONumber}"/>
+				</Column>
+				<!--<Column >-->
+				<!--	<customData>-->
+				<!--		<core:CustomData key="p13nData"-->
+				<!--			value='\{"columnKey": "SOItem", "leadingProperty": "SOItem", "columnIndex": 2 ,"sortProperty": "SOItem","filterProperty": "SOItem"}'/>-->
+				<!--	</customData>-->
+				<!--	<Text text="{i18n>SOItem}"/>-->
+				<!--</Column>-->
+				<Column>
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey": "SOValue", "leadingProperty": "SOValue", "columnIndex": 1 ,"sortProperty": "SOValue","filterProperty": "SOValue"}'/>
+					</customData>
+					<Text text="{i18n>SOValue}"/>
+				</Column>
+				<!--<Column demandPopin="true" minScreenWidth="Desktop">-->
+				<!--	<customData>-->
+				<!--		<core:CustomData key="p13nData"-->
+				<!--			value='\{"columnKey": "OrderType", "leadingProperty": "OrderType", "columnIndex": 4 ,"sortProperty": "OrderType","filterProperty": "Qty"}'/>-->
+				<!--	</customData>-->
+				<!--	<Text text="{i18n>OrderType}"/>-->
+				<!--</Column>-->
+				<Column demandPopin="true" minScreenWidth="Tablet">
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey": "CustName", "leadingProperty": "CustName", "columnIndex": 2, "sortProperty": "CustName"}'/>
+					</customData>
+					<Text text="{i18n>CustName}"/>
+				</Column>
+				<Column>
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey": "CustNumber", "leadingProperty": "CustNumber", "columnIndex": 3 ,"sortProperty": "CustNumber","filterProperty": "CustNumber"}'/>
+					</customData>
+					<Text text="{i18n>CustNumber}"/>
+				</Column>
+				<Column>
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey": "StatusDate", "leadingProperty": "StatusDate", "columnIndex": 4 ,"sortProperty": "StatusDate","filterProperty": "StatusDate"}'/>
+					</customData>
+					<Text text="{i18n>StatusDate}"/>
+				</Column>
+				<Column>
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey": "OrderDate", "leadingProperty": "OrderDate", "columnIndex": 5 ,"sortProperty": "OrderDate","filterProperty": "OrderDate"}'/>
+					</customData>
+					<Text text="{i18n>OrderDate}"/>
+				</Column>
+				<Column>
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey": "ShipDate", "leadingProperty": "ShipDate", "columnIndex": 6 ,"sortProperty": "ShipDate","filterProperty": "ShipDate"}'/>
+					</customData>
+					<Text text="{i18n>ShipDate}"/>
+				</Column>
+				<!--<Column>-->
+				<!--	<customData>-->
+				<!--		<core:CustomData key="p13nData"-->
+				<!--			value='\{"columnKey": "Vtweg", "leadingProperty": "Vtweg", "columnIndex": 9 ,"sortProperty": "Vtweg","filterProperty": "Vtweg"}'/>-->
+				<!--	</customData>-->
+				<!--	<Text text="{i18n>Vtweg}"/>-->
+				<!--</Column>-->
+				<Column>
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey": "OrderStatus", "leadingProperty": "OrderStatus", "columnIndex": 7 ,"sortProperty": "OrderStatus","filterProperty": "OrderStatus"}'/>
+					</customData>
+					<Text text="{i18n>OrderStatus}"/>
+				</Column>
+				<Column>
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey": "UserAssignment", "leadingProperty": "UserAssignment", "columnIndex": 8 ,"sortProperty": "UserAssignment","filterProperty": "UserAssignment"}'/>
+					</customData>
+					<Text text="{i18n>UserAssignment}"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem type="Navigation" press="onListTablePress">
+					<cells>
+						<!--<CheckBox select="onSelect"/>-->
+						<ObjectIdentifier title="{SONumber}"/>
+						<!--<Text text="{SOItem}"/>-->
+						<Text text="{SOValue}"/>
+						<!--<Text text="{OrderType}"/>-->
+						<Text text="{CustName}"/>
+						<Text text="{CustNumber}"/>
+						<Text text="{StatusDate}"/>
+						<Text text="{OrderDate}"/>
+						<Text text="{ShipDate}"/>
+						<!--<Text text="{path:'StatusDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM dd, yyyy' } }"/>-->
+						<!--<Text text="{path:'OrderDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM dd, yyyy' } }"/>-->
+						<!--<Text text="{path:'ShipDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM dd, yyyy' } }"/>-->
+						<!--<Text text="{Vtweg}"/>-->
+						<Text text="{OrderStatus}"/>
+						<Text text="{UserAssignment}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</smartTable:SmartTable>
+</core:FragmentDefinition>

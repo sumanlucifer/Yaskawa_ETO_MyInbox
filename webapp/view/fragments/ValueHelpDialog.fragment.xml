@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog resizable="false" contentWidth="30%" id="selectDialog" title="Customer Name" growing="true" growingThreshold="15"
+		items="{/DebiaSet}" search=".onValueHelpSearch" confirm=".onValueHelpClose" cancel=".onValueHelpClose">
+		<StandardListItem title="{Kunnr}" description="{Mcod1}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

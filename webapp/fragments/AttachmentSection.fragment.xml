@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout"
+	xmlns:t="sap.ui.table" onAfterclose="requoteClose">
+	<Dialog title="Attach File">
+		<content>
+			<VBox class="sapUiTinyMargin" renderType="Bare">
+			<MessageStrip
+				class="sapUiTinyMarginBottom"
+				visible="{=!${device>/browser/mobile}}"
+				showIcon="true"
+				type="Information"
+				text="To add files, you can also use drag &amp; drop on your desktop or tablet." />
+			<!--<Label text="Notes" />-->
+			<!--<TextArea id="TextArea" cols="200" height="100px" />-->
+		</VBox>
+		<UploadCollection
+			id="idAppEngUploadCollection"
+			maximumFilenameLength="55"
+			maximumFileSize="10"
+			multiple="true"
+			sameFilenameAllowed="true"
+			instantUpload="false"
+			noDataDescription="Drop files or use the &quot;Add&quot; button to keep files ready for upload"
+			change="onChange"
+			fileDeleted="onFileDeleted"
+			filenameLengthExceed="onFilenameLengthExceed"
+			fileSizeExceed="onFileSizeExceed"
+			typeMissmatch="onTypeMissmatch"
+			uploadComplete="onUploadComplete"
+			beforeUploadStarts="onBeforeUploadStarts" />
+		<!--<Button id="Button" text="Upload Now" press="onStartUpload" />-->
+		</content>
+		<beginButton>
+			<Button text="Add" press="onAttachmentAddToTable"/>
+		</beginButton>
+		<endButton>
+			<Button text="Cancel" press="onAttachmentCancel"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

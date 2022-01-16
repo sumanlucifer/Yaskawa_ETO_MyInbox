@@ -1,0 +1,84 @@
+/*.sapUxAPObjectPageLayout-Std-Desktop .sapUxAPObjectPageHeaderContent:only-child {*/
+/*    padding: 1rem 1rem 0px !important;*/
+/*}*/
+/*.sapMIBar-CTX .sapMTitle {*/
+/*    color: #32363a;*/
+/*    text-shadow: none;*/
+/*    font-size: larger;*/
+/*    font-family: sans-serif;*/
+/*}*/
+.custHeaderTabsClass{
+	margin-top: -23px;
+}
+/*html .sapUxAPObjectPageLayout-Std-Desktop .sapUxAPAnchorBar.sapMTB {*/
+/*    padding-left: 2rem;*/
+/*    margin-top: -17px;*/
+/*    margin-left: -24px;*/
+/*}*/
+.custButtonClass{
+	margin-top: -20px;
+}
+/*.sapMCbBg {*/
+/*    left: 0.6876rem;*/
+/*    top: 0.6875rem;*/
+/*    height: 1.375rem;*/
+/*    width: 1.375rem;*/
+/*    line-height: 1.125rem;*/
+/*    border-width: 0.0625rem;*/
+/*    box-sizing: border-box;*/
+/*}*/
+/*added by Suman Dey*/
+/*.sapMListTblNavCol, .sapMListTblCell {*/
+/*    vertical-align: middle !important;*/
+/*}*/
+/*.sapUiRespGrid.sapUiRespGridHSpace1 {*/
+/*    padding: 0px !important;*/
+/*}*/
+/*.sapUxAPObjectPageLayout-Std-Phone .sapUxAPObjectPageSubSectionPromoted .sapUxAPBlockContainer {*/
+/*    padding-top: 0px !important;*/
+/*}*/
+/*.sapUxAPObjectPageContainerNoBar>.sapUxAPObjectPageSection:first-child:not(.sapUxAPObjectPageSectionNoTitle) {*/
+/*    margin-top: 0px !important;*/
+/*}*/
+/*.sapMDialog.sapUiContentPadding>section>.sapMDialogScroll>.sapMDialogScrollCont {*/
+/*    padding: 7px !important;*/
+/*}*/
+/*.sapUiSizeCompact .sapUxAPObjectPageLayout-Std-Desktop .sapUxAPBlockContainer, .sapUiSizeCompact .sapUxAPObjectPageLayout-Std-Tablet .sapUxAPBlockContainer, .sapUiSizeCompact .sapUxAPObjectPageLayout-Std-Phone .sapUxAPBlockContainer {*/
+/*    padding-bottom: 1rem;*/
+/*    padding-left: -6px;*/
+/*    margin-left: -42px;*/
+/*}*/
+.vboxAlignment{
+margin-left: 28px;
+}
+.vboxAlignment2{
+	margin-left: 12px;
+	margin-top: 15px;
+}
+/*.sapUxAPAnchorBar.sapMTB {*/
+/*    padding-left: 0;*/
+/*    padding-top: -107px;*/
+/*    margin-top: -42px;*/
+/*    box-shadow: inset 0 -0.125rem #d9d9d9;*/
+/*}*/
+.chkBoxMarginClass{
+	margin-left: -7px;
+}
+.chkBoxMarginClass2{
+	margin-left: -2px;
+}
+.zradButtonAlign{
+	margin-left: 500%;
+}
+.zhdrclass{
+	margin-bottom: -25px;
+}
+.zhdrTlbar{
+	margin-top: -10px;
+    margin-bottom: -21px;
+
+}
+.zclrifyOrder{
+	    font-size: medium;
+    margin-left: 16px;
+}

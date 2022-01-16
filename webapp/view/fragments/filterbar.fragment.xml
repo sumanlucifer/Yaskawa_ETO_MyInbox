@@ -1,0 +1,102 @@
+<core:FragmentDefinition xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<l:Grid containerQuery="true" defaultSpan="XL5 L4" class="sapUiSizeCompact">
+			<HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+				<Label text="Order Status" textAlign="Left" design="Bold"/>
+				<Text text=":" class="sapUiTinyMarginBeginEnd"></Text>
+				<VBox width="100%">
+					<ComboBox id="idOrderStatus" width="100%" valueState="None" placeholder="Select Order Status"
+						selectedKey="{HeaderDetailsModel>/distributionChannelKey}" items="{HeaderDetailsModel>/ETOOrderStatusSet}">
+						<core:Item key="{HeaderDetailsModel>DomValue}" text="{HeaderDetailsModel>Ddtext}"/>
+					</ComboBox>
+				</VBox>
+			</HBox>
+			<HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+				<Label text="Order Type" textAlign="Left" design="Bold"/>
+				<Text text=":" class="sapUiTinyMarginBeginEnd"></Text>
+				<VBox width="100%">
+					<ComboBox id="idOrderType" width="100%" valueState="None" placeholder="Select Order Type"
+						selectedKey="{HeaderDetailsModel>/orderTypeSetKey}" items="{HeaderDetailsModel>/ETOOrderTypeSet}">
+						<core:Item key="{HeaderDetailsModel>Auart}" text="{HeaderDetailsModel>Auart}"/>
+					</ComboBox>
+				</VBox>
+			</HBox>
+			<HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+				<Label text="Order Date" textAlign="Left" design="Bold"/>
+				<Text text=":" class="sapUiTinyMarginBeginEnd"></Text>
+				<VBox width="100%">
+					<DatePicker width="100%" id="DP1" placeholder="Enter Date" change="handleChange"/>
+				</VBox>
+			</HBox>
+			<HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+				<Label text="Ship Date" textAlign="Left" design="Bold"/>
+				<Text text=":" class="sapUiTinyMarginBeginEnd"></Text>
+				<VBox width="100%">
+					<DatePicker width="100%" id="DP2" placeholder="Enter Date" change="handleChange"/>
+				</VBox>
+			</HBox>
+			<HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+				<Label text="Application Type" textAlign="Left" design="Bold"/>
+				<Text text=":" class="sapUiTinyMarginBeginEnd"></Text>
+				<VBox width="100%">
+					<ComboBox id="idAppType" width="100%" placeholder="Select Application Type" valueState="None"
+						selectedKey="{HeaderDetailsModel>/typoofApplicationKey}" items="{HeaderDetailsModel>/ETOTypeOfApplSet}">
+						<core:Item key="{HeaderDetailsModel>DomValue}" text="{HeaderDetailsModel>Ddtext}"/>
+					</ComboBox>
+				</VBox>
+			</HBox>
+			<HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+				<Label text="Assigned To" textAlign="Left" design="Bold"/>
+				<Text text=":" class="sapUiTinyMarginBeginEnd"></Text>
+				<VBox width="100%">
+					<ComboBox id="idAssignTo" width="100%" valueState="None" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange"
+						placeholder="">
+						<core:ListItem key="" text="M. Koehler"/>
+					</ComboBox>
+				</VBox>
+			</HBox>
+			<HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+				<Label text="Distribution Channel" textAlign="Left" design="Bold"/>
+				<Text text=":" class="sapUiTinyMarginBeginEnd"></Text>
+				<VBox width="100%">
+					<ComboBox id="idDistChannel" placeholder="Select Distribution Channel" valueState="None" width="100%"
+						selectedKey="{HeaderDetailsModel>/distributionChannelKey}" items="{HeaderDetailsModel>/ETODistributionChannelSet}">
+						<core:Item key="{HeaderDetailsModel>Vtweg}" text="{HeaderDetailsModel>Vtweg}"/>
+					</ComboBox>
+				</VBox>
+			</HBox>
+			<HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+				<Label text="Customer Name" textAlign="Left" design="Bold"/>
+				<Text text=":" class="sapUiTinyMarginBeginEnd"></Text>
+				<VBox width="100%">
+					<!--<ComboBox id="idCustName" width="100%" placeholder="Select Customer Name" valueState="None"-->
+					<!--	selectedKey="{HeaderDetailsModel>/distributionChannelKey}" items="{HeaderDetailsModel>/ETOCustomerNameSet}">-->
+					<!--	<core:Item key="{HeaderDetailsModel>CustomerName}" text="{HeaderDetailsModel>CustomerName}"/>-->
+					<!--</ComboBox>-->
+					<Input id="idCustName" required="true" width="100%" placeholder="Select Customer Name" valueHelpOnly="true" showValueHelp="true"
+						valueHelpRequest="onValueHelpRequest" value="{HeaderDetailsModel>/CustomerName}"/>
+				</VBox>
+			</HBox>
+			<HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+				<Label text="Customer Number" textAlign="Left" design="Bold"/>
+				<Text text=":" class="sapUiTinyMarginBeginEnd"></Text>
+				<VBox width="100%">
+					<ComboBox id="idCustNo" width="100%" placeholder="Select Customer Number" valueState="None"
+						selectedKey="{HeaderDetailsModel>/distributionChannelKey}" items="{HeaderDetailsModel>/ETOCustomerSet}">
+						<core:Item key="{HeaderDetailsModel>CustomerNo}" text="{HeaderDetailsModel>CustomerNo}"/>
+					</ComboBox>
+				</VBox>
+			</HBox>
+			<HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+				<Label text="Groups" textAlign="Left" design="Bold"/>
+				<Text text=":" class="sapUiTinyMarginBeginEnd"></Text>
+				<VBox width="100%">
+					<ComboBox id="idGRP" width="100%" placeholder="Select Groups" valueState="None" selectedKey="{HeaderDetailsModel>/userGroupsSetKey}"
+						items="{HeaderDetailsModel>/userGroupsSet}">
+						<core:Item key="{HeaderDetailsModel>DomValue}" text="{HeaderDetailsModel>Ddtext}"/>
+					</ComboBox>
+				</VBox>
+			</HBox>
+		</l:Grid>
+	</VBox>
+</core:FragmentDefinition>

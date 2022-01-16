@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout"
+	xmlns:t="sap.ui.table">
+	<Dialog title="Select option for reassign">
+		<content>
+			<VBox class="sapUiTinyMargin" renderType="Bare">
+				<VBox>
+					<Text text="User Assignment"/>
+					<ComboBox width="100%" valueState="None" placeholder="" selectedKey="{globalModel>/userAssignKey}" items="{globalModel>/userDetailssSet}">
+						<core:Item key="{globalModel>UserName}" text="{globalModel>UserName}"/>
+					</ComboBox>
+				</VBox>
+				<VBox>
+					<Text text="Group Assignment"/>
+					<ComboBox width="100%" valueState="None" placeholder="" selectedKey="{globalModel>/groupAssignKey}" items="{globalModel>/userGroupsSet}">
+						<core:Item key="{globalModel>DomValue}" text="{globalModel>Ddtext}"/>
+					</ComboBox>
+				</VBox>
+			</VBox>
+		</content>
+		<beginButton>
+			<Button text="Ok" press="onAttachmentOk"/>
+		</beginButton>
+		<endButton>
+			<Button text="Cancel" press="onAttachmentCancel"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

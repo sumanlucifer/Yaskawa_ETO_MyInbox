@@ -1,0 +1,34 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZTESTPOHEADER_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="POHeader" sap:content-version="1">
+				<Key><PropertyRef Name="PONumber"/></Key><Property Name="PONumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Purchasing Doc."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CompanyCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Company Code"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DocCategory" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Doc. Category"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DocType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Document Type"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Vendor" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Vendor" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="SalesOrg" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Purchasing Org."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="SalesGroup" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Purch. Group"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="NavtoItem" Relationship="ZTESTPOHEADER_SRV.HeaderToItem" FromRole="FromRole_HeaderToItem"
+					ToRole="ToRole_HeaderToItem"/></EntityType>
+			<EntityType Name="POItems" sap:content-version="1">
+				<Key><PropertyRef Name="PONumber"/><PropertyRef Name="POItem"/></Key><Property Name="PONumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="PO Number" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="POItem" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Item No" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Material" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Material" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Description" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Description" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<Association Name="HeaderToItem" sap:content-version="1"><End Type="ZTESTPOHEADER_SRV.POHeader" Multiplicity="*" Role="FromRole_HeaderToItem"/><End Type="ZTESTPOHEADER_SRV.POItems" Multiplicity="*" Role="ToRole_HeaderToItem"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_HeaderToItem"><PropertyRef Name="PONumber"/></Principal>
+					<Dependent Role="ToRole_HeaderToItem"><PropertyRef Name="PONumber"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZTESTPOHEADER_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="POItemsSet" EntityType="ZTESTPOHEADER_SRV.POItems" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="POHeaderSet" EntityType="ZTESTPOHEADER_SRV.POHeader" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="HeaderToItemSet" Association="ZTESTPOHEADER_SRV.HeaderToItem" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="POHeaderSet" Role="FromRole_HeaderToItem"/><End EntitySet="POItemsSet" Role="ToRole_HeaderToItem"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZTESTPOHEADER_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZTESTPOHEADER_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

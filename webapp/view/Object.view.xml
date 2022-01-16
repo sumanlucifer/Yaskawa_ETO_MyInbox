@@ -1,0 +1,421 @@
+<mvc:View controllerName="com.yaskawa.ETOMyInbox.controller.Object" xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns="sap.uxap"
+	xmlns:layout="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:blockcolor="wel.create.po.CreatePO.blocks" xmlns:semantic="sap.f.semantic"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<m:Page title="Application Engineering Section" busy="{objectViewModel>/busy}" showNavButton="false" navButtonPress="onBack">
+		<m:content>
+			<ObjectPageLayout id="ObjectPageLayout" selectedSection="firstSection" subSectionLayout="{ConfigModel>/subSectionLayout}"
+				useIconTabBar="true" flexEnabled="true" upperCaseAnchorBar="false">
+				<headerContent>
+					<m:VBox width="100%">
+						<l:Grid containerQuery="true" defaultSpan="XL5 L4" class="sapUiSizeCompact">
+							<m:HBox alignItems="Center">
+								<m:Label text="Application Engineer" width="150px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>
+								<m:VBox width="100%">
+									<m:Input id="idAppEng" value="{HeaderDetailsModel>/ETOItemHeaderSet/AppEngineer}" width="100%" editable="false"/>
+								</m:VBox>
+							</m:HBox>
+							<m:HBox>
+								<m:Label required="false" text="Customer Location" width="150px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>
+								<m:VBox width="100%">
+									<m:Input id="idCustLoc" value="{HeaderDetailsModel>/ETOItemHeaderSet/CustLocation}" width="100%" editable="false"/>
+								</m:VBox>
+							</m:HBox>
+							<m:HBox alignItems="Center">
+								<m:Label text="SO Number" width="150px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>
+								<m:VBox width="100%">
+									<m:Input id="idSONo" value="{HeaderDetailsModel>/ETOItemHeaderSet/SONumber}" width="100%" editable="false"/>
+								</m:VBox>
+							</m:HBox>
+							<m:HBox alignItems="Center">
+								<m:Label text="Job Name" width="150px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>
+								<m:VBox width="100%">
+									<m:Input id="idJobName" value="{HeaderDetailsModel>/ETOItemHeaderSet/JobName}" width="100%" editable="false"/>
+								</m:VBox>
+							</m:HBox>
+							<m:HBox alignItems="Center">
+								<m:Label id="idOsLbl" text="Order Status" width="150px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>
+								<m:VBox width="100%">
+									<m:Input id="idOrderStatus" value="{HeaderDetailsModel>/ETOItemHeaderSet/OrderStatus}" width="100%" editable="false"/>
+								</m:VBox>
+							</m:HBox>
+							<m:HBox alignItems="Center">
+								<m:Label id="idCfsLbl" text="Clarification Status" width="150px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>
+								<m:VBox width="100%">
+									<m:Input id="idCfStatus" value="{HeaderDetailsModel>/ETOItemHeaderSet/ClarifyStatus}" width="100%" editable="false"/>
+								</m:VBox>
+							</m:HBox>
+							<m:HBox alignItems="Center">
+								<m:Label id="idCPSLbl" text="Assigned To" width="150px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>
+								<m:VBox width="100%">
+									<m:Input id="idAsignTo" value="{HeaderDetailsModel>/ETOItemHeaderSet/AssignedTo}" width="100%" editable="false"/>
+								</m:VBox>
+							</m:HBox>
+						</l:Grid>
+					</m:VBox>
+				</headerContent>
+				<sections>
+					<ObjectPageSection>
+						<subSections>
+							<ObjectPageSubSection id="HeaderDetailsSection" title="Header Details" visible="true" titleUppercase="false" class="tabAlignLeft">
+								<m:VBox>
+									<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">
+										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+											<m:Label width="10rem" text="Requested By"/>
+											<m:Text id="idreqstdBy" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+											<m:VBox width="100%">
+												<m:Input editable="false" id="idShssrtTrxt" width="100%" value="{HeaderDetailsModel>/ReqestedBy}" maxLength="40"/>
+											</m:VBox>
+										</m:HBox>
+										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+											<m:Label width="10rem" text="Order Date"/>
+											<m:Text id="idOrdrDate" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+											<m:VBox width="100%">
+												<!--<m:Input id="idOrdDate" value="{HeaderDetailsModel>/OrderDate}" width="100%" editable="true"/>-->
+												<m:DatePicker editable="false" displayFormat="MM/dd/YYYY" valueFormat="yyyyMMdd"
+													value="{path:'HeaderDetailsModel>/OrderDate', type: 'sap.ui.model.type.DateTime',formatOptions: { pattern: 'MM-dd-yyyy' } }"/>
+											</m:VBox>
+										</m:HBox>
+										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+											<m:Label width="10rem" text="Ship Date"/>
+											<m:Text id="idShipDate" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+											<m:VBox width="100%">
+												<m:DatePicker displayFormat="MM/dd/YYYY" valueFormat="yyyyMMdd"
+													value="{path:'HeaderDetailsModel>/ShipDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MM-dd-yyyy' } }"/>
+												<!--<m:Input id="idShpDate" value="{HeaderDetailsModel>/ShipDate}" width="100%" editable="true"/>-->
+											</m:VBox>
+										</m:HBox>
+										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+											<m:Label width="10rem" text="Customer Representative"/>
+											<m:Text id="idItemTxt" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+											<m:VBox width="100%">
+												<m:Input id="idItem" value="{HeaderDetailsModel>/CustReprsntv}" width="100%" editable="false"/>
+											</m:VBox>
+										</m:HBox>
+										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+											<m:Label text="Customer Name" width="10rem"/>
+											<m:Text id="idAccAGnmntTxt" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+											<m:VBox width="100%">
+												<m:Input id="idItem2" value="{HeaderDetailsModel>/CustName}" width="100%" editable="false"/>
+											</m:VBox>
+										</m:HBox>
+										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+											<m:Label text="Customer Number" width="10rem"/>
+											<m:Text id="idShrtTxtTxt" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+											<m:VBox width="100%">
+												<m:Input id="idShrtTxt" editable="false" width="100%" value="{HeaderDetailsModel>/CustNumber}" maxLength="40"/>
+											</m:VBox>
+										</m:HBox>
+										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+											<m:Label text="Customer PO#" width="10rem"/>
+											<m:Text id="idPoQtyTxt" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+											<m:VBox width="100%">
+												<m:Input id="idPoQty" editable="false" value="{HeaderDetailsModel>/CustPo}" width="100%"/>
+											</m:VBox>
+										</m:HBox>
+										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+											<m:Label text="Distribution Channel" width="10rem"/>
+											<m:Text id="idOunTxt" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+											<m:VBox width="100%">
+												<m:ComboBox width="100%" editable="false" selectedKey="{HeaderDetailsModel>/distributionChannelKey}"
+													items="{HeaderDetailsModel>/distributionChannelDD}">
+													<core:Item key="{HeaderDetailsModel>Vtweg}" text="{HeaderDetailsModel>Vtweg}"/>
+												</m:ComboBox>
+											</m:VBox>
+										</m:HBox>
+										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+											<m:Label text="Quotation Number" width="10rem"/>
+											<m:Text id="idNetPriceTxt" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+											<m:VBox width="100%">
+												<m:Input id="idShrtTrxt" editable="false" width="100%" value="{HeaderDetailsModel>/QuotationNo}" maxLength="40"/>
+											</m:VBox>
+										</m:HBox>
+										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+											<m:Label text="Total Net $" width="10rem"/>
+											<m:Text id="idDelvDtTxt" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+											<m:VBox width="100%">
+												<m:Input id="idItem3" value="{HeaderDetailsModel>/TotalNetValue}" width="100%" editable="false"/>
+											</m:VBox>
+										</m:HBox>
+										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+											<m:Label text="Customer No" width="10rem"/>
+											<m:Text id="idRetPo" text=":" class="sapUiTinyMarginBegin"></m:Text>
+											<m:VBox width="100%">
+												<m:Input id="idGlAcc2" editable="false" placeholder="" value="{HeaderDetailsModel>/CustNumber}" class="sapUiTinyMarginBegin" width="100%"/>
+											</m:VBox>
+										</m:HBox>
+										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+											<m:Label text="Order Status" width="10rem"/>
+											<m:Text id="idGlAccTxt" text=":" class="sapUiTinyMarginBegin"></m:Text>
+											<m:VBox width="100%">
+												<m:Input enabled="false" id="idwGlAcc2" placeholder="" value="{HeaderDetailsModel>/orderStatusSetKey}" class="sapUiTinyMarginBegin"
+													width="100%"/>
+											</m:VBox>
+										</m:HBox>
+									</l:Grid>
+									<l:Grid containerQuery="true" defaultSpan="XL4 L4 M4 S4" class="sapUiSizeCompact sapUiMediumMarginTop">
+										<m:VBox class="sapUiSmallMarginBegin" width="100%">
+											<m:Label design="Bold" text="Types Of Applications" required="true"/>
+											<m:VBox width="100%">
+												<m:ComboBox editable="false" width="100%" selectedKey="{HeaderDetailsModel>/typoofApplicationKey}"
+													items="{HeaderDetailsModel>/typoofApplicationDD}">
+													<core:Item key="{HeaderDetailsModel>DomValue}" text="{HeaderDetailsModel>Ddtext}"/>
+												</m:ComboBox>
+											</m:VBox>
+										</m:VBox>
+										<m:VBox class="sapUiSmallMarginBegin" width="100%">
+											<m:Label design="Bold" text="Type Of Order" required="true"/>
+											<m:VBox width="100%">
+												<m:ComboBox width="100%" editable="false" selectedKey="{HeaderDetailsModel>/typoofOrderKey}" items="{HeaderDetailsModel>/typoofOrderDD}">
+													<core:Item key="{HeaderDetailsModel>DomValue}" text="{HeaderDetailsModel>Ddtext}"/>
+												</m:ComboBox>
+											</m:VBox>
+										</m:VBox>
+										<m:VBox class="sapUiSmallMarginBegin" width="100%">
+											<m:Label design="Bold" text="Check List" required="true"/>
+											<m:VBox>
+												<m:CheckBox text="Customer P.O. Scanned and Attached" selected="true"/>
+												<m:CheckBox text="Prel. Order Confirmation Sent and Attached"/>
+												<m:CheckBox text="Sales Order Confirmation"/>
+											</m:VBox>
+										</m:VBox>
+									</l:Grid>
+								</m:VBox>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					<ObjectPageSection>
+						<subSections>
+							<ObjectPageSubSection id="idItemSubSection" title="Order Details" visible="true" titleUppercase="false" class="tabAlignLeft">
+								<m:VBox id="idFirstVBox" class="vboxAlignment">
+									<m:Table mode="MultiSelect" id="idItemsTable" inset="false" items="{OrderDetailsModel>/ETOItemListSet}" selectionChange="onItemSelect"
+										class="sapUiSizeCompact">
+										<m:headerToolbar>
+											<m:OverflowToolbar class="custButtonClass">
+												<m:content>
+													<!--<m:Text text="rder"/>-->
+													<m:ToolbarSpacer/>
+													<m:Button type="Ghost" text="Sync" press="onPressSynch"/>
+													<m:Button type="Ghost" text="Reject" press="onReject"/>
+													<!--<m:Button type="Ghost" text="Refresh Item" press="onDeleteItem"/>-->
+												</m:content>
+											</m:OverflowToolbar>
+										</m:headerToolbar>
+										<m:columns>
+											<!--<m:Column >-->
+											<!--	<m:Text text="{i18n>Select}"/>-->
+											<!--</m:Column>-->
+											<m:Column>
+												<m:Label text="Item #" design="Bold"/>
+											</m:Column>
+											<m:Column>
+												<m:Label text="Mat #" design="Bold" wrapping="true"/>
+											</m:Column>
+											<m:Column>
+												<m:Label text="Panel" design="Bold" wrapping="true"/>
+											</m:Column>
+											<m:Column>
+												<m:Label text="Item Notes" design="Bold" wrapping="true"/>
+											</m:Column>
+											<m:Column>
+												<m:Label text="Group Name" design="Bold" wrapping="true"/>
+											</m:Column>
+											<m:Column>
+												<m:Label text="User ID" design="Bold" wrapping="true"/>
+											</m:Column>
+											<m:Column>
+												<m:Label text="Delete Entry" design="Bold" wrapping="true"/>
+											</m:Column>
+											<m:Column>
+												<m:Label text="Workflow Status" design="Bold" wrapping="true"/>
+											</m:Column>
+										</m:columns>
+										<m:items>
+											<m:ColumnListItem type="Navigation" press="itemTableSelection">
+												<m:cells>
+													<!--<m:CheckBox select="onSelect" textAlign="Center"/>-->
+													<m:Text text="{OrderDetailsModel>SOItem}"/>
+													<m:Text text="{OrderDetailsModel>MaterialNo}"/>
+													<m:Text text="{OrderDetailsModel>SONumber}"/>
+													<m:Text text="{OrderDetailsModel>Notes}"/>
+													<m:Text text="{OrderDetailsModel>GroupName}"/>
+													<m:Text text="{OrderDetailsModel>UserId}"/>
+													<m:Text text="{OrderDetailsModel>DeleteInd}"/>
+													<m:Text text="{OrderDetailsModel>WorkflowStatus}"/>
+												</m:cells>
+											</m:ColumnListItem>
+										</m:items>
+									</m:Table>
+									<m:Panel>
+										<m:FlexBox alignItems="Start" justifyContent="End" class="zhdrTlbar">
+											<m:items>
+												<m:Button text="Re Quote" id="idRequoteButton" visible="false" type="Ghost" press="onRequotePress" class="sapUiTinyMarginEnd"/>
+												<!--<m:Button text="Clarify Order" id="idClarifyButton" type="Ghost" visible="false" press="onClarifyPress" class="sapUiTinyMarginEnd"/>-->
+											</m:items>
+										</m:FlexBox>
+									</m:Panel>
+									<m:VBox id="idcreatefgmat" class="sapUiSmallMarginTop" visible="false">
+										<m:Label text="Create FG materials" class="zclrifyOrder"/>
+									</m:VBox>
+								</m:VBox>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					<ObjectPageSection>
+						<subSections>
+							<ObjectPageSubSection id="idAddNewItem" title="Add New Item" visible="false" titleUppercase="false">
+								<blocks>
+									<m:VBox id="idFirstVBox2" class="vboxAlignment">
+										<m:HBox width="100%" alignItems="Center">
+											<m:Label design="Bold" width="5rem" text="Item#"/>
+											<m:Text id="idItemTxt2" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+											<m:VBox width="100%">
+												<m:Input id="idItemNumber" value="{newItemModelName>/results/0/itemNo}" width="100%" liveChange="itemFieldValidation" type="Number"
+													editable="true"/>
+											</m:VBox>
+										</m:HBox>
+										<m:HBox width="100%" alignItems="Center">
+											<m:Label design="Bold" required="false" text="Mat#" width="5rem"/>
+											<m:Text id="idAccAGnmntTxt2" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+											<m:VBox width="100%">
+												<m:Input id="idMaterialNumber" value="{newItemModelName>/results/0/matNo}" width="100%" liveChange="itemFieldValidation" type="Number"
+													editable="true"/>
+											</m:VBox>
+										</m:HBox>
+										<m:HBox width="100%" alignItems="Center">
+											<m:Label design="Bold" required="false" text="Panel" width="5rem"/>
+											<m:Text id="idShrtTxtTxt2" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+											<m:VBox width="100%">
+												<m:Input id="idPanel" width="100%" liveChange="shrtTxtLiveChnge" value="{newItemModelName>/results/0/panel}" maxLength="40"/>
+											</m:VBox>
+										</m:HBox>
+										<m:HBox width="100%" alignItems="Center">
+											<m:Label design="Bold" required="false" text="Item Notes" width="5rem"/>
+											<m:Text id="idPoQtyTxt2" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+											<m:VBox width="100%">
+												<m:TextArea id="idItemNotes" value="{newItemModelName>/results/0/itemNotes}" width="100%"/>
+											</m:VBox>
+										</m:HBox>
+										<!--</m:VBox>-->
+										<!--		</l:content>-->
+										<!--		</l:Grid>-->
+										<!--	</f:content>-->
+										<!--</f:SimpleForm>-->
+										<m:Panel>
+											<m:FlexBox alignItems="Start" justifyContent="Center">
+												<m:items>
+													<m:Button id="idAddItem" text="{i18n>Add}" visible="true" type="Ghost" press="onAddNewItemToTable" class="sapUiTinyMarginEnd"/>
+													<!--<m:Button id="idUpdateItem" text="Update" visible="true" type="Ghost" press="onUpdateItem" class="sapUiTinyMarginEnd"/>-->
+													<m:Button text="{i18n>Cancel}" type="Ghost" press="onAddItemCancel"/>
+												</m:items>
+											</m:FlexBox>
+										</m:Panel>
+									</m:VBox>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					<ObjectPageSection selectedSubSection="tesr">
+						<subSections>
+							<ObjectPageSubSection title="Attachments" mode="Expanded">
+								<blocks>
+									<m:VBox class="sapUiTinyMargin" renderType="Bare">
+										<m:Table id="idAttachmentsTable" items="{AttachmentsModel>/ETOAttachmentSet}">
+											<m:headerToolbar class="zhdrTlbar">
+												<m:OverflowToolbar>
+													<m:content>
+														<!--<m:Text text="Document Details"/>-->
+														<m:ToolbarSpacer/>
+														<m:HBox>
+															<u:FileUploader buttonOnly="true" icon="sap-icon://attachment" id="__FILEUPLOAD" visible="true" sameFilenameAllowed="false"
+																buttonText="Add Attachment" fileType="XLS,CSV,PDF,PNG,DOCX,JPG" change="onUploadPress" filenameLengthExceed="onFileNameLengthExceed"
+																fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onComplete" typeMissmatch="handleMissmatch"
+																placeholder="Choose a file" style="Emphasized"/>
+														</m:HBox>
+														<!--<m:Button type="Ghost" text="Add Notes" icon="sap-icon://notes" press="onNotesPress"/>-->
+													</m:content>
+												</m:OverflowToolbar>
+											</m:headerToolbar>
+											<m:columns>
+												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Source"/></m:Column>
+												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="File Name"/></m:Column>
+												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="From"/></m:Column>
+												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="TimeStamp"/></m:Column>
+											</m:columns>
+											<m:items>
+												<m:ColumnListItem>
+													<m:cells>
+														<m:Text text="{AttachmentsModel>Source}"/>
+														<m:Link text="{AttachmentsModel>Filename}" href="{AttachmentsModel>Url}" press="onViewDoc" target="_blank"/>
+														<m:Text text="{AttachmentsModel>User}"/>
+														<m:Text text="{path:'AttachmentsModel>Date', type: 'sap.ui.model.type.Date'}"/>
+													</m:cells>
+												</m:ColumnListItem>
+											</m:items>
+										</m:Table>
+									</m:VBox>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					<ObjectPageSection>
+						<subSections>
+							<ObjectPageSubSection title="Notes" mode="Expanded">
+								<blocks>
+									<m:VBox class="sapUiTinyMargin" renderType="Bare">
+										<!--<m:MessageStrip class="sapUiTinyMarginBottom" visible="{=!${device>/browser/mobile}}" showIcon="true" type="Information"-->
+										<!--	text="To add files, you can also use drag &amp; drop on your desktop or tablet."/>-->
+										<!--<m:Label text="Write notes here"/>-->
+										<m:TextArea id="TextArea2" cols="200" height="100px"/>
+									</m:VBox>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					<ObjectPageSection>
+						<subSections>
+							<ObjectPageSubSection title="Log Details" mode="Expanded">
+								<blocks>
+									<m:Table id="LogTable" items="{ilogTableModelName>/results}">
+										<m:columns>
+											<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Changed By"/></m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Date"/></m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Time"/></m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Action Performed"/></m:Column>
+											<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Comments"/></m:Column>
+										</m:columns>
+										<m:items>
+											<m:ColumnListItem>
+												<m:cells>
+													<m:Text text="{ilogTableModelName>changedBy}"/>
+													<m:Text text="{ilogTableModelName>Date}"/>
+													<m:Text text="{ilogTableModelName>Time}"/>
+													<m:Text text="{ilogTableModelName>Actionperfomed}"/>
+													<m:Text text="{ilogTableModelName>comments}"/>
+												</m:cells>
+											</m:ColumnListItem>
+										</m:items>
+									</m:Table>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+				</sections>
+			</ObjectPageLayout>
+		</m:content>
+		<m:footer>
+			<m:OverflowToolbar>
+				<m:content>
+					<m:Button id="idSubmit2" enabled="true" text="Back" type="Emphasized" press="handleSubmitPress2"/>
+					<m:ToolbarSpacer/>
+					<!--<m:Button text="Accept" type="Emphasized" id="btn-01" press="onPressAccptButton"/>-->
+					<m:Button text="Reassign" type="Emphasized" id="btn-02" press="onReassignButtonPress"/>
+					<m:Button id="idRequotteButtonn" type="Emphasized" enabled="true" press="onRequotePress" text="ReQuote"/>
+					<m:Button id="idClarifyButtonn" type="Emphasized" enabled="true" press="onClarifyPress" text="Clarify"/>
+					<!--<m:Button id="idCreateFGMatrl" type="Ghost" enabled="true" press="onFGMatPress" text="Create FG Material"/>-->
+					<m:Button id="idSubmit" enabled="true" text="Submit" type="Emphasized" press="handleSubmitPress"/>
+					<!--<m:Button icon="sap-icon://sys-cancel" type="Ghost" press="onCancelPress" text="{i18n>cncl}"/>-->
+				</m:content>
+			</m:OverflowToolbar>
+		</m:footer>
+	</m:Page>
+</mvc:View>
