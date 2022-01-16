@@ -251,10 +251,7 @@ sap.ui.define([
 			this.byId("idCustNo").setSelectedKey(null);
 
 		},
-		onPressAcceptButton: function (oeve) {
-			var Status = "01";
-			this.userActionServiceCall(Status);
-		},
+
 		userActionServiceCall: function (Status, userName, groupName) {
 			var SONo = this.SONumber;
 			if (!SONo) {
@@ -275,23 +272,14 @@ sap.ui.define([
 					};
 				}
 			);
-			if (Status === "01") {
-				var oPayload = {
-					"Vbeln": "",
-					"Status": Status,
-					"User_group": "",
-					"User_name": "",
-					"HeadItem": HeadeItem
-				};
-			} else {
-				var oPayload = {
-					"Vbeln": "",
-					"Status": Status,
-					"User_group": groupName,
-					"User_name": userName,
-					"HeadItem": HeadeItem
-				};
-			}
+
+			var oPayload = {
+				"Vbeln": "",
+				"Status": Status,
+				"User_group": groupName,
+				"User_name": userName,
+				"HeadItem": HeadeItem
+			};
 
 			this.getOwnerComponent().getModel("UserAction").create("/HeaderSet", oPayload, {
 
@@ -351,7 +339,31 @@ sap.ui.define([
 				objectId: selItemNumber
 			});
 		},
+		onPressAcceptButton: function (oeve) {
+			this.getModel("globalModel").setProperty("/userAssignKey", null);
+			this.getModel("globalModel").setProperty("/groupAssignKey", null);
+			var SONo = this.SONumber;
+			this.button = "ACCEPT";
+			if (!SONo) {
+				sap.m.MessageBox.error("Please select at least one Sales Order!");
+				return false;
+			}
+			if (SONo.length === 0) {
+				sap.m.MessageBox.error("Please select at least one Sales Order!");
+				return false;
+			}
+			if (!this._oDialogAcceptSection) {
+				this._oDialogAcceptSection = sap.ui.xmlfragment("com.yaskawa.ETOMyInbox.view.fragments.ReassignSection", this);
+				this.getView().addDependent(this._oDialogAcceptSection);
+
+			}
+			this._oDialogAcceptSection.open();
+
+		},
 		onReassignButtonPress: function () {
+			this.button = "REJECT";
+			this.getModel("globalModel").setProperty("/userAssignKey", null);
+			this.getModel("globalModel").setProperty("/groupAssignKey", null);
 			var SONo = this.SONumber;
 			if (!SONo) {
 				sap.m.MessageBox.error("Please select at least one Sales Order!");
@@ -370,15 +382,31 @@ sap.ui.define([
 
 		},
 		onAttachmentOk: function () {
+			var sBtn = this.button;
+			if (sBtn === "ACCEPT") {
+				var Status = "01";
+				this._oDialogAcceptSection.close();
+			} else {
+				this._oDialogReassignSection.close();
+				var Status = "02";
 
-			this._oDialogReassignSection.close();
-			var Status = "02",
-				userName = this.getModel("globalModel").getProperty("/userAssignKey"),
+			}
+
+			var userName = this.getModel("globalModel").getProperty("/userAssignKey"),
 				groupName = this.getModel("globalModel").getProperty("/groupAssignKey");
 			this.userActionServiceCall(Status, userName, groupName);
 		},
 		onAttachmentCancel: function () {
-			this._oDialogReassignSection.close();
+			this.getModel("globalModel").setProperty("/userAssignKey", null);
+			this.getModel("globalModel").setProperty("/groupAssignKey", null);
+			var sBtn = this.button;
+			if (sBtn === "ACCEPT") {
+
+				this._oDialogAcceptSection.close();
+			} else {
+				this._oDialogReassignSection.close();
+
+			}
 		}
 
 	});

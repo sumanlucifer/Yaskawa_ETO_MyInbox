@@ -1,7 +1,7 @@
 {
 	"_version": "1.12.0",
 	"sap.app": {
-		"id": "com.yaskawa.ETOMyInbox",
+		"id": "com.yaskawa.ZETOMYINBOX",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"title": "{{appTitle}}",
@@ -164,7 +164,7 @@
 		}
 	},
 	"sap.platform.abap": {
-		"uri": "/sap/bc/ui5_ui5/sap/zeto_myinbox/webapp",
+		"uri": "/sap/bc/ui5_ui5/sap/zmyinboxeto/webapp",
 		"_version": "1.1.0"
 	}
 }

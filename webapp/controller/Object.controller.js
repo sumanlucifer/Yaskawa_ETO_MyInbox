@@ -633,6 +633,8 @@ sap.ui.define([
 
 		},
 		onReassignButtonPress: function () {
+			this.getModel("globalModel").setProperty("/userAssignKey", null);
+			this.getModel("globalModel").setProperty("/groupAssignKey", null);
 			var POSNo = this.POSNO;
 			if (!POSNo) {
 				sap.m.MessageBox.error("Please select at least one item!");
@@ -658,6 +660,8 @@ sap.ui.define([
 			this._oDialogReassignSection1.close();
 		},
 		onAttachmentCancel: function () {
+			this.getModel("globalModel").setProperty("/userAssignKey", null);
+			this.getModel("globalModel").setProperty("/groupAssignKey", null);
 			this._oDialogReassignSection1.close();
 			this.byId("idItemsTable").removeSelections();
 		},

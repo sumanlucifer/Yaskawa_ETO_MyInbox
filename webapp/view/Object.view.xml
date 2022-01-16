@@ -98,13 +98,13 @@
 												<m:Input id="idItem2" value="{HeaderDetailsModel>/CustName}" width="100%" editable="false"/>
 											</m:VBox>
 										</m:HBox>
-										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
-											<m:Label text="Customer Number" width="10rem"/>
-											<m:Text id="idShrtTxtTxt" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
-											<m:VBox width="100%">
-												<m:Input id="idShrtTxt" editable="false" width="100%" value="{HeaderDetailsModel>/CustNumber}" maxLength="40"/>
-											</m:VBox>
-										</m:HBox>
+										<!--<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">-->
+										<!--	<m:Label text="Customer Number" width="10rem"/>-->
+										<!--	<m:Text id="idShrtTxtTxt" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
+										<!--	<m:VBox width="100%">-->
+										<!--		<m:Input id="idShrtTxt" editable="false" width="100%" value="{HeaderDetailsModel>/CustNumber}" maxLength="40"/>-->
+										<!--	</m:VBox>-->
+										<!--</m:HBox>-->
 										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 											<m:Label text="Customer PO#" width="10rem"/>
 											<m:Text id="idPoQtyTxt" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
@@ -137,7 +137,7 @@
 											</m:VBox>
 										</m:HBox>
 										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
-											<m:Label text="Customer No" width="10rem"/>
+											<m:Label text="Customer Number" width="10rem"/>
 											<m:Text id="idRetPo" text=":" class="sapUiTinyMarginBegin"></m:Text>
 											<m:VBox width="100%">
 												<m:Input id="idGlAcc2" editable="false" placeholder="" value="{HeaderDetailsModel>/CustNumber}" class="sapUiTinyMarginBegin" width="100%"/>
