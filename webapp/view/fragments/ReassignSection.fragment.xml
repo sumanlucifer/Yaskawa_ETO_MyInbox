@@ -3,13 +3,13 @@
 	<Dialog title="Select option for reassign">
 		<content>
 			<VBox class="sapUiTinyMargin" renderType="Bare">
-				<VBox>
+				<VBox visible="{globalModel>/userAssnVisible}">
 					<Text text="User Assignment"/>
 					<ComboBox width="100%" valueState="None" placeholder="" selectedKey="{globalModel>/userAssignKey}" items="{globalModel>/userDetailssSet}">
 						<core:Item key="{globalModel>UserName}" text="{globalModel>UserName}"/>
 					</ComboBox>
 				</VBox>
-				<VBox>
+				<VBox >
 					<Text text="Group Assignment"/>
 					<ComboBox width="100%" valueState="None" placeholder="" selectedKey="{globalModel>/groupAssignKey}" items="{globalModel>/userGroupsSet}">
 						<core:Item key="{globalModel>DomValue}" text="{globalModel>Ddtext}"/>

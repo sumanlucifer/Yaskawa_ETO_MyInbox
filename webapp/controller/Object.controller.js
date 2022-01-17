@@ -172,58 +172,6 @@ sap.ui.define([
 			this.byId("ObjectPageLayout").setSelectedSection(this.byId("HeaderDetailsSection"));
 			this.onGetSODetails();
 
-			var newItemToAdd = {
-				results: [{
-					"itemNo": "",
-					"matNo": "",
-					"panel": "",
-					"itemNotes": ""
-				}]
-			};
-			var newItemModel = new JSONModel(newItemToAdd);
-			this.setModel(newItemModel, "newItemModelName");
-
-			var hpsTableData = {
-				results: [{
-					"lineNo": "10",
-					"field": "NB15842427A",
-					"dataType": "Z1D",
-					"example": "z1D1B011PNG(2R) Schematic start NB15676557-21 Layout NB15676557A"
-				}, {
-					"lineNo": "10",
-					"field": "NB15842427A",
-					"dataType": "Z1D",
-					"example": "z1D1B011PNG(2R) Schematic start NB15676557-21 Layout NB15676557A"
-				}, {
-					"lineNo": "10",
-					"field": "NB15842427A",
-					"dataType": "Z1D",
-					"example": "z1D1B011PNG(2R) Schematic start NB15676557-21 Layout NB15676557A"
-				}, {
-					"lineNo": "10",
-					"field": "NB15842427A",
-					"dataType": "Z1D",
-					"example": "z1D1B011PNG(2R) Schematic start NB15676557-21 Layout NB15676557A"
-				}, {
-					"lineNo": "10",
-					"field": "NB15842427A",
-					"dataType": "Z1D",
-					"example": "z1D1B011PNG(2R) Schematic start NB15676557-21 Layout NB15676557A"
-				}, {
-					"lineNo": "10",
-					"field": "NB15842427A",
-					"dataType": "Z1D",
-					"example": "z1D1B011PNG(2R) Schematic start NB15676557-21 Layout NB15676557A"
-				}, {
-					"lineNo": "10",
-					"field": "NB15842427A",
-					"dataType": "Z1D",
-					"example": "z1D1B011PNG(2R) Schematic start NB15676557-21 Layout NB15676557A"
-				}]
-			};
-			var hpsTableDataModel = new JSONModel(hpsTableData);
-			this.setModel(hpsTableDataModel, "hpsTableDataModelName");
-
 			var logDetailsData = {
 				results: [{
 					"changedBy": "G. Reichelt",

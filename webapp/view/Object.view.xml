@@ -153,17 +153,16 @@
 										<m:VBox class="sapUiSmallMarginBegin" width="100%">
 											<m:Label design="Bold" text="Types Of Applications" required="true"/>
 											<m:VBox width="100%">
-												<m:ComboBox editable="false" width="100%" selectedKey="{HeaderDetailsModel>/typoofApplicationKey}"
-													items="{HeaderDetailsModel>/typoofApplicationDD}">
-													<core:Item key="{HeaderDetailsModel>DomValue}" text="{HeaderDetailsModel>Ddtext}"/>
+												<m:ComboBox editable="false" width="100%" selectedKey="{HeaderDetailsModel>/TypeApp}" items="{globalModel>/ETOTypeOfApplSet}">
+													<core:Item key="{globalModel>DomValue}" text="{globalModel>Ddtext}"/>
 												</m:ComboBox>
 											</m:VBox>
 										</m:VBox>
 										<m:VBox class="sapUiSmallMarginBegin" width="100%">
 											<m:Label design="Bold" text="Type Of Order" required="true"/>
 											<m:VBox width="100%">
-												<m:ComboBox width="100%" editable="false" selectedKey="{HeaderDetailsModel>/typoofOrderKey}" items="{HeaderDetailsModel>/typoofOrderDD}">
-													<core:Item key="{HeaderDetailsModel>DomValue}" text="{HeaderDetailsModel>Ddtext}"/>
+												<m:ComboBox width="100%" editable="false" selectedKey="{HeaderDetailsModel>/TypeOrder}" items="{globalModel>/ETOOrderTypeSet}">
+													<core:Item key="{globalModel>DomValue}" text="{globalModel>Ddtext}"/>
 												</m:ComboBox>
 											</m:VBox>
 										</m:VBox>

@@ -112,9 +112,11 @@ sap.ui.define([
 			var aETODistributionChannelSet = values[5].value.results;
 			var userDetailssSet = values[6].value.results;
 			var userGroupsSet = values[7].value.results;
-
+			this.getComponentModel("globalModel").setSizeLimit(1000);
 			this.getComponentModel("globalModel").setProperty("/userDetailssSet", userDetailssSet);
 			this.getComponentModel("globalModel").setProperty("/userGroupsSet", userGroupsSet);
+			this.getComponentModel("globalModel").setProperty("/ETOOrderTypeSet", aETOOrderTypeSet);
+			this.getComponentModel("globalModel").setProperty("/ETOTypeOfApplSet", aETOTypeOfApplSet);
 
 			this.getModel("HeaderDetailsModel").setSizeLimit(1000);
 			this.getModel("HeaderDetailsModel").setProperty("/ETOCustomerSet", aETOCustomerSet);
@@ -284,6 +286,7 @@ sap.ui.define([
 			this.getOwnerComponent().getModel("UserAction").create("/HeaderSet", oPayload, {
 
 				success: function (oData, oResponse) {
+					this.onRefresh();
 					this.SONumber = [];
 					this.getModel("objectViewModel").setProperty("/busy", false);
 					this.byId("idListServiceTab").removeSelections();
@@ -296,7 +299,9 @@ sap.ui.define([
 				}.bind(this),
 				error: function (oError) {
 					this.SONumber = [];
+					this.byId("idListServiceTab").removeSelections();
 					this.getModel("objectViewModel").setProperty("/busy", false);
+					sap.m.MessageBox.error("HTTP Request Failed");
 
 				}.bind(this),
 			});
@@ -340,8 +345,9 @@ sap.ui.define([
 			});
 		},
 		onPressAcceptButton: function (oeve) {
-			this.getModel("globalModel").setProperty("/userAssignKey", null);
-			this.getModel("globalModel").setProperty("/groupAssignKey", null);
+			this.getModel("globalModel").setProperty("/userAssignKey", "");
+			this.getModel("globalModel").setProperty("/groupAssignKey", "null");
+			this.getModel("globalModel").setProperty("/userAssnVisible", false);
 			var SONo = this.SONumber;
 			this.button = "ACCEPT";
 			if (!SONo) {
@@ -362,8 +368,8 @@ sap.ui.define([
 		},
 		onReassignButtonPress: function () {
 			this.button = "REJECT";
-			this.getModel("globalModel").setProperty("/userAssignKey", null);
-			this.getModel("globalModel").setProperty("/groupAssignKey", null);
+			this.getModel("globalModel").setProperty("/userAssignKey", "");
+			this.getModel("globalModel").setProperty("/groupAssignKey", "");
 			var SONo = this.SONumber;
 			if (!SONo) {
 				sap.m.MessageBox.error("Please select at least one Sales Order!");
@@ -386,6 +392,7 @@ sap.ui.define([
 			if (sBtn === "ACCEPT") {
 				var Status = "01";
 				this._oDialogAcceptSection.close();
+				this.getModel("globalModel").setProperty("/userAssnVisible", true);
 			} else {
 				this._oDialogReassignSection.close();
 				var Status = "02";
@@ -397,11 +404,11 @@ sap.ui.define([
 			this.userActionServiceCall(Status, userName, groupName);
 		},
 		onAttachmentCancel: function () {
-			this.getModel("globalModel").setProperty("/userAssignKey", null);
-			this.getModel("globalModel").setProperty("/groupAssignKey", null);
+			this.getModel("globalModel").setProperty("/userAssignKey", "");
+			this.getModel("globalModel").setProperty("/groupAssignKey", "");
 			var sBtn = this.button;
 			if (sBtn === "ACCEPT") {
-
+				this.getModel("globalModel").setProperty("/userAssnVisible", true);
 				this._oDialogAcceptSection.close();
 			} else {
 				this._oDialogReassignSection.close();
