@@ -116,10 +116,7 @@
 											<m:Label text="Distribution Channel" width="10rem"/>
 											<m:Text id="idOunTxt" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 											<m:VBox width="100%">
-												<m:ComboBox width="100%" editable="false" selectedKey="{HeaderDetailsModel>/distributionChannelKey}"
-													items="{HeaderDetailsModel>/distributionChannelDD}">
-													<core:Item key="{HeaderDetailsModel>Vtweg}" text="{HeaderDetailsModel>Vtweg}"/>
-												</m:ComboBox>
+												<m:Input id="idDistChnlrxt" editable="false" width="100%" value="{HeaderDetailsModel>/distributionChannelKey}" maxLength="40"/>
 											</m:VBox>
 										</m:HBox>
 										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
@@ -194,6 +191,7 @@
 												<m:content>
 													<!--<m:Text text="rder"/>-->
 													<m:ToolbarSpacer/>
+													<m:Button text="Reassign" type="Emphasized" id="btn-02" press="onReassignButtonPress"/>
 													<m:Button type="Ghost" text="Sync" press="onPressSynch"/>
 													<m:Button type="Ghost" text="Reject" press="onReject"/>
 													<!--<m:Button type="Ghost" text="Refresh Item" press="onDeleteItem"/>-->
@@ -361,11 +359,39 @@
 						<subSections>
 							<ObjectPageSubSection title="Notes" mode="Expanded">
 								<blocks>
+									<!--<m:VBox class="sapUiTinyMargin" renderType="Bare">-->
+									<!--<m:MessageStrip class="sapUiTinyMarginBottom" visible="{=!${device>/browser/mobile}}" showIcon="true" type="Information"-->
+									<!--	text="To add files, you can also use drag &amp; drop on your desktop or tablet."/>-->
+									<!--<m:Label text="Write notes here"/>-->
+									<!--	<m:TextArea id="TextArea2" cols="200" height="100px"/>-->
+									<!--</m:VBox>-->
 									<m:VBox class="sapUiTinyMargin" renderType="Bare">
-										<!--<m:MessageStrip class="sapUiTinyMarginBottom" visible="{=!${device>/browser/mobile}}" showIcon="true" type="Information"-->
-										<!--	text="To add files, you can also use drag &amp; drop on your desktop or tablet."/>-->
-										<!--<m:Label text="Write notes here"/>-->
-										<m:TextArea id="TextArea2" cols="200" height="100px"/>
+										<m:Table id="idNotesTable">
+											<m:headerToolbar class="zhdrTlbar">
+												<m:OverflowToolbar>
+													<m:content>
+														<!--<m:Text text="Document Details"/>-->
+														<m:ToolbarSpacer/>
+														<m:Button id="idAddNotes" type="Emphasized" icon="sap-icon://attachment" enabled="true" press="onRequotePress" text="Add Notes"/>
+														<m:Button id="idRequotteButtonn" type="Emphasized" enabled="true" press="onRequotePress" text="ReQuote"/>
+														<m:Button id="idClarifyButtonn" type="Emphasized" enabled="true" press="onClarifyPress" text="Clarify"/>
+														<!--<m:Button type="Ghost" text="Add Notes" icon="sap-icon://notes" press="onNotesPress"/>-->
+													</m:content>
+												</m:OverflowToolbar>
+											</m:headerToolbar>
+											<m:columns>
+												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Notes"/></m:Column>
+												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Time stamp"/></m:Column>
+											</m:columns>
+											<m:items>
+												<m:ColumnListItem>
+													<m:cells>
+														<m:Text text="{AttachmentsModel>Source}"/>
+														<m:Text text="{path:'AttachmentsModel>Date', type: 'sap.ui.model.type.Date'}"/>
+													</m:cells>
+												</m:ColumnListItem>
+											</m:items>
+										</m:Table>
 									</m:VBox>
 								</blocks>
 							</ObjectPageSubSection>
@@ -408,9 +434,6 @@
 					<m:Button id="idSubmit2" enabled="true" text="Back" type="Emphasized" press="handleSubmitPress2"/>
 					<m:ToolbarSpacer/>
 					<!--<m:Button text="Accept" type="Emphasized" id="btn-01" press="onPressAccptButton"/>-->
-					<m:Button text="Reassign" type="Emphasized" id="btn-02" press="onReassignButtonPress"/>
-					<m:Button id="idRequotteButtonn" type="Emphasized" enabled="true" press="onRequotePress" text="ReQuote"/>
-					<m:Button id="idClarifyButtonn" type="Emphasized" enabled="true" press="onClarifyPress" text="Clarify"/>
 					<!--<m:Button id="idCreateFGMatrl" type="Ghost" enabled="true" press="onFGMatPress" text="Create FG Material"/>-->
 					<m:Button id="idSubmit" enabled="true" text="Submit" type="Emphasized" press="handleSubmitPress"/>
 					<!--<m:Button icon="sap-icon://sys-cancel" type="Ghost" press="onCancelPress" text="{i18n>cncl}"/>-->
