@@ -437,7 +437,55 @@ sap.ui.define([
 				}.bind(this),
 			});
 		},
+		onSelectUserAssignment: function (oEvent) {
 
+			var sUser = oEvent.getSource().getSelectedKey();
+
+			this.getModel("objectViewModel").setProperty("/busy", true);
+			var sUserFilter = new sap.ui.model.Filter({
+				path: "Name",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: sUser
+			});
+			var filter = [];
+			filter.push(sUserFilter);
+			this.getOwnerComponent().getModel().read("/ETOGroupSet", {
+				filters: [filter],
+				success: function (oData, oResponse) {
+					this.getComponentModel("globalModel").setProperty("/userGroupsSet", oData.results);
+					this.getModel("objectViewModel").setProperty("/busy", false);
+
+				}.bind(this),
+				error: function (oError) {
+					this.getModel("objectViewModel").setProperty("/busy", false);
+
+				}.bind(this),
+			});
+		},
+		onSelectGroupAssignment: function (oEvent) {
+			var sUser = oEvent.getSource().getSelectedKey();
+
+			this.getModel("objectViewModel").setProperty("/busy", true);
+			var sUserFilter = new sap.ui.model.Filter({
+				path: "Group",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: sUser
+			});
+			var filter = [];
+			filter.push(sUserFilter);
+			this.getOwnerComponent().getModel().read("/ETOUsersSet", {
+				filters: [filter],
+				success: function (oData, oResponse) {
+					this.getComponentModel("globalModel").setProperty("/userDetailssSet", oData.results);
+					this.getModel("objectViewModel").setProperty("/busy", false);
+
+				}.bind(this),
+				error: function (oError) {
+					this.getModel("objectViewModel").setProperty("/busy", false);
+
+				}.bind(this),
+			});
+		},
 		itemTableSelection: function (oEvent) {
 			var sObjectPath = oEvent.getSource().getBindingContext("OrderDetailsModel").getObject().SONumber,
 				sObjectPath1 = oEvent.getSource().getBindingContext("OrderDetailsModel").getObject().SOItem;
@@ -587,8 +635,8 @@ sap.ui.define([
 
 		},
 		onReassignButtonPress: function () {
-			this.getModel("globalModel").setProperty("/userAssignKey", null);
-			this.getModel("globalModel").setProperty("/groupAssignKey", null);
+			this.getModel("globalModel").setProperty("/userAssignKey", "");
+			this.getModel("globalModel").setProperty("/groupAssignKey", "");
 			var POSNo = this.POSNO;
 			if (!POSNo) {
 				sap.m.MessageBox.error("Please select at least one item!");
@@ -614,8 +662,9 @@ sap.ui.define([
 			this._oDialogReassignSection1.close();
 		},
 		onAttachmentCancel: function () {
-			this.getModel("globalModel").setProperty("/userAssignKey", null);
-			this.getModel("globalModel").setProperty("/groupAssignKey", null);
+			this.getModel("globalModel").setProperty("/userAssignKey", "");
+			this.getModel("globalModel").setProperty("/groupAssignKey", "");
+			this.POSNO = [];
 			this._oDialogReassignSection1.close();
 			this.byId("idItemsTable").removeSelections();
 		},

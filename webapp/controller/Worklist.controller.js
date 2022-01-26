@@ -131,7 +131,31 @@ sap.ui.define([
 		},
 
 		onSelectUserAssignment: function (oEvent) {
-			debugger;
+
+			var sUser = oEvent.getSource().getSelectedKey();
+
+			this.getModel("objectViewModel").setProperty("/busy", true);
+			var sUserFilter = new sap.ui.model.Filter({
+				path: "Name",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: sUser
+			});
+			var filter = [];
+			filter.push(sUserFilter);
+			this.getOwnerComponent().getModel().read("/ETOGroupSet", {
+				filters: [filter],
+				success: function (oData, oResponse) {
+					this.getComponentModel("globalModel").setProperty("/userGroupsSet", oData.results);
+					this.getModel("objectViewModel").setProperty("/busy", false);
+
+				}.bind(this),
+				error: function (oError) {
+					this.getModel("objectViewModel").setProperty("/busy", false);
+
+				}.bind(this),
+			});
+		},
+		onSelectGroupAssignment: function (oEvent) {
 			var sUser = oEvent.getSource().getSelectedKey();
 
 			this.getModel("objectViewModel").setProperty("/busy", true);
@@ -145,7 +169,7 @@ sap.ui.define([
 			this.getOwnerComponent().getModel().read("/ETOUsersSet", {
 				filters: [filter],
 				success: function (oData, oResponse) {
-					this.getComponentModel("globalModel").setProperty("/userGroupsSet", oData.results);
+					this.getComponentModel("globalModel").setProperty("/userDetailssSet", oData.results);
 					this.getModel("objectViewModel").setProperty("/busy", false);
 
 				}.bind(this),
@@ -430,6 +454,8 @@ sap.ui.define([
 			this.userActionServiceCall(Status, userName, groupName);
 		},
 		onAttachmentCancel: function () {
+			this.byId("idListServiceTab").removeSelections();
+			this.SONumber = [];
 			this.getModel("globalModel").setProperty("/userAssignKey", "");
 			this.getModel("globalModel").setProperty("/groupAssignKey", "");
 			var sBtn = this.button;
