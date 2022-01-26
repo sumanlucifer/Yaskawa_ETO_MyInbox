@@ -69,10 +69,7 @@
 								<!--	<m:Input id="d" width="100%" type="Text" value="Some User" editable="false"></m:Input>-->
 								<!--</m:VBox>-->
 								<m:VBox width="100%">
-									<m:ComboBox id="idGRP" width="100%" placeholder="Select Workflow" valueState="None"
-										selectedKey="{HeaderDetailsModel>/distributionChannelKey}" items="{HeaderDetailsModel>/ETOWorkflowSet}">
-										<core:Item key="{HeaderDetailsModel>ETOWorkflowKey}" text="{HeaderDetailsModel>ETOWorkflowValue}"/>
-									</m:ComboBox>
+									<m:Input width="100%" id="idWorkFlowStatus" type="Text" editable="false"></m:Input>
 								</m:VBox>
 							</m:HBox>
 						</l:Grid>

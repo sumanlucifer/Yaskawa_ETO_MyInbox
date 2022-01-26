@@ -439,8 +439,14 @@ sap.ui.define([
 		},
 
 		itemTableSelection: function (oEvent) {
+			var sObjectPath = oEvent.getSource().getBindingContext("OrderDetailsModel").getObject().SONumber,
+				sObjectPath1 = oEvent.getSource().getBindingContext("OrderDetailsModel").getObject().SOItem;
+			this.getRouter().navTo("itemView", {
+				objectId: sObjectPath,
+				objectId1: sObjectPath1
+			});
 
-			this.getRouter().navTo("itemView");
+			// 			this.getRouter().navTo("itemView");
 
 		},
 		onItemSelect: function (oEvent) {

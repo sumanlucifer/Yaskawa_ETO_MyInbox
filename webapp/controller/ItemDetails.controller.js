@@ -81,7 +81,7 @@ sap.ui.define([
 			var childItemsEnableDisableModel4 = new JSONModel(childItemsEnableDisable4);
 			this.setModel(childItemsEnableDisableModel4, "childItemsEnableDisableModelName4");
 
-			this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
+			this.getRouter().getRoute("itemView").attachPatternMatched(this._onObjectMatched, this);
 
 			// Store original busy indicator delay, so it can be restored later on
 			iOriginalBusyDelay = this.getView().getBusyIndicatorDelay();
@@ -163,9 +163,11 @@ sap.ui.define([
 		 * @private
 		 */
 		_onObjectMatched: function (oEvent) {
-			var sObjectId = oEvent.getParameter("arguments").objectId;
+			this.byId("idWorkFlowStatus").setValue("");
+			this.Vbeln = oEvent.getParameter("arguments").objectId;
+			this.Posnr = oEvent.getParameter("arguments").objectId1;
 			this.byId("ObjectPageLayout").setSelectedSection(this.byId("idItemSubSection"));
-			this.getView().byId("idZbStdPoNonStock2").setValue(sObjectId);
+			//this.getView().byId("idZbStdPoNonStock2").setValue(sObjectId);
 			var itemData = {
 				results: [{
 					"itemNo": "10",
@@ -354,13 +356,24 @@ sap.ui.define([
 			oEvent.getSource().destroy();
 		},
 		handleSubmitPress: function (oEvent) {
-			var _self = this;
-			MessageBox.success("Successfully Submitted", {
-				actions: [MessageBox.Action.OK],
 
-				onClose: function (sAction) {
-					_self.getRouter().navTo("worklist");
-				}
+			var oSubmit = {
+				Vbeln: this.Vbeln,
+				Posnr: this.Posnr,
+				Message: ""
+
+			};
+
+			this.getOwnerComponent().getModel().create("/SubmitDataSet", oSubmit, {
+
+				success: function (oData, oResponse) {
+					sap.m.MessageBox.success(oData.Message);
+					this.byId("idWorkFlowStatus").setValue(oData.workflowstatus);
+
+				}.bind(this),
+				error: function (oError) {
+
+				}.bind(this),
 			});
 
 		},
