@@ -25,8 +25,7 @@
 				<Label text="Order Date" textAlign="Left" design="Bold"/>
 				<Text text=":" class="sapUiTinyMarginBeginEnd"></Text>
 				<VBox width="100%">
-					<DatePicker id="idOrderDate" placeholder="Enter Order Date" displayFormat="MM/dd/YYYY" valueFormat="yyyyMMdd"
-						value="{path:'HeaderDetailsModel>/OrderDate', type: 'sap.ui.model.type.DateTime',formatOptions: { pattern: 'MM-dd-yyyy' } }"/>
+					<DatePicker id="idOrderDate" placeholder="Enter Order Date" value="" valueFormat="yyyy-MM-dd" displayFormat="MM/dd/YYYY"/>
 				</VBox>
 			</HBox>
 			<HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
