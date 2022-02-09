@@ -372,8 +372,6 @@
 														<!--<m:Text text="Document Details"/>-->
 														<m:ToolbarSpacer/>
 														<m:Button id="idAddNotes" type="Emphasized" icon="sap-icon://attachment" enabled="true" press="onRequotePress" text="Add Notes"/>
-														<m:Button id="idRequotteButtonn" type="Emphasized" enabled="true" press="onRequotePress" text="ReQuote"/>
-														<m:Button id="idClarifyButtonn" type="Emphasized" enabled="true" press="onClarifyPress" text="Clarify"/>
 														<!--<m:Button type="Ghost" text="Add Notes" icon="sap-icon://notes" press="onNotesPress"/>-->
 													</m:content>
 												</m:OverflowToolbar>

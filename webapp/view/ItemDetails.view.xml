@@ -24,33 +24,6 @@
 									<m:Input id="idZbStdPoNonStock22" width="100%" value="1" editable="false"></m:Input>
 								</m:VBox>
 							</m:HBox>
-							<!--<m:HBox alignItems="Center">-->
-							<!--	<m:Label text="Panel Type" width="160px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>-->
-							<!--	<m:VBox width="100%">-->
-							<!--		<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange"-->
-							<!--			placeholder="Set Order Status">-->
-							<!--			<core:ListItem key="" text="Z1D"/>-->
-							<!--		</m:ComboBox>-->
-							<!--	</m:VBox>-->
-							<!--</m:HBox>-->
-							<!--<m:HBox alignItems="Center">-->
-							<!--	<m:Label text="Panel SCCR" width="160px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>-->
-							<!--	<m:VBox width="100%">-->
-							<!--		<m:Input width="100%" id="idApproverName" type="Text" value="100KA" editable="false"></m:Input>-->
-							<!--	</m:VBox>-->
-							<!--</m:HBox>-->
-							<!--<m:HBox alignItems="Center">-->
-							<!--	<m:Label text="Similar Model#" width="160px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>-->
-							<!--	<m:VBox width="100%">-->
-							<!--		<m:Input width="100%" id="idApproverName2" type="Text" value="1B011PNG" editable="false"></m:Input>-->
-							<!--	</m:VBox>-->
-							<!--</m:HBox>-->
-							<!--<m:HBox alignItems="Center">-->
-							<!--	<m:Label text="Planning Material" width="160px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>-->
-							<!--	<m:VBox width="100%">-->
-							<!--		<m:Input width="100%" id="idApproverName3" type="Text" value="PM-Z1D1B0011PN-E" editable="false"></m:Input>-->
-							<!--	</m:VBox>-->
-							<!--</m:HBox>-->
 							<m:HBox alignItems="Center">
 								<m:Label text="Net $ each" width="160px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>
 								<m:VBox width="100%">
@@ -91,24 +64,6 @@
 												</m:ComboBox>
 											</m:VBox>
 										</m:HBox>
-										<!--<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">-->
-										<!--	<m:Label width="10rem" text="Options Type2"/>-->
-										<!--	<m:Text id="idOrdrDate" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
-										<!--	<m:VBox width="100%">-->
-										<!--			<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">-->
-										<!--			<core:ListItem key="" text=""/>-->
-										<!--		</m:ComboBox>-->
-										<!--	</m:VBox>-->
-										<!--</m:HBox>-->
-										<!--<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">-->
-										<!--	<m:Label width="10rem" text="Options Type3"/>-->
-										<!--	<m:Text id="idShipDate" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
-										<!--	<m:VBox width="100%">-->
-										<!--		<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">-->
-										<!--			<core:ListItem key="" text=""/>-->
-										<!--		</m:ComboBox>-->
-										<!--	</m:VBox>-->
-										<!--</m:HBox>-->
 									</l:Grid>
 									<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">
 										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
@@ -121,24 +76,6 @@
 												</m:ComboBox>
 											</m:VBox>
 										</m:HBox>
-										<!--<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">-->
-										<!--	<m:Label width="10rem" text="Options"/>-->
-										<!--	<m:Text id="idOrdrDate2" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
-										<!--	<m:VBox width="100%">-->
-										<!--		<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">-->
-										<!--			<core:ListItem key="" text=""/>-->
-										<!--		</m:ComboBox>-->
-										<!--	</m:VBox>-->
-										<!--</m:HBox>-->
-										<!--<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">-->
-										<!--	<m:Label width="10rem" text="Options"/>-->
-										<!--	<m:Text id="idShipDate2" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
-										<!--	<m:VBox width="100%">-->
-										<!--		<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">-->
-										<!--			<core:ListItem key="" text=""/>-->
-										<!--		</m:ComboBox>-->
-										<!--	</m:VBox>-->
-										<!--</m:HBox>-->
 									</l:Grid>
 								</m:VBox>
 							</ObjectPageSubSection>
@@ -148,17 +85,6 @@
 						<subSections>
 							<ObjectPageSubSection title="Application Data" mode="Expanded">
 								<blocks>
-									<!--<t:Table rows="" selectionMode="MultiToggle" visibleRowCount="7" paste="onPaste" ariaLabelledBy="title">-->
-									<!--	<t:columns>-->
-									<!--		<t:Column width="11rem">-->
-									<!--			<m:Label text="Application Data"/>-->
-									<!--			<t:template>-->
-									<!--				<m:Text text="{Name}" wrapping="false"/>-->
-									<!--			</t:template>-->
-									<!--		</t:Column>-->
-									<!--	</t:columns>-->
-									<!--</t:Table>-->
-									<!--<m:VBox class="sapUiSmallMargin">-->
 									<f:SimpleForm id="SimpleFormDisplay354" editable="false" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
 										labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
 										singleContainerFullSize="false">
@@ -262,18 +188,6 @@
 											<m:TextArea cols="200" height="100px"/>
 										</m:VBox>
 									</m:VBox>
-									<!--<m:VBox class="sapUiTinyMargin" renderType="Bare">-->
-									<!--							<m:MessageStrip class="sapUiTinyMarginBottom" visible="{=!${device>/browser/mobile}}" showIcon="true" type="Information"-->
-									<!--								text="To add files, you can also use drag &amp; drop on your desktop or tablet."/>-->
-									<!--							<m:Label text="Notes"/>-->
-									<!--							<m:TextArea id="TextArea2" cols="200" height="100px"/>-->
-									<!--						</m:VBox>-->
-									<!--						<m:VBox class="sapUiTinyMargin" renderType="Bare">-->
-									<!--							<m:MessageStrip class="sapUiTinyMarginBottom" visible="{=!${device>/browser/mobile}}" showIcon="true" type="Information"-->
-									<!--								text="To add files, you can also use drag &amp; drop on your desktop or tablet."/>-->
-									<!--							<m:Label text="Item Notes"/>-->
-									<!--							<m:TextArea cols="200" height="100px"/>-->
-									<!--						</m:VBox>-->
 								</blocks>
 							</ObjectPageSubSection>
 						</subSections>
@@ -542,26 +456,6 @@
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
-										<!--<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">-->
-										<!--	<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">-->
-										<!--		<m:Label width="10rem" text="Strategy Group"/>-->
-										<!--		<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
-										<!--		<m:VBox width="100%">-->
-										<!--			<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">-->
-										<!--				<core:ListItem key="" text=""/>-->
-										<!--			</m:ComboBox>-->
-										<!--		</m:VBox>-->
-										<!--	</m:HBox>-->
-										<!--	<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">-->
-										<!--		<m:Label width="10rem" text="Serial Nbr Profile"/>-->
-										<!--		<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
-										<!--		<m:VBox width="100%">-->
-										<!--			<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">-->
-										<!--				<core:ListItem key="" text=""/>-->
-										<!--			</m:ComboBox>-->
-										<!--		</m:VBox>-->
-										<!--	</m:HBox>-->
-										<!--</l:Grid>-->
 									</m:VBox>
 								</blocks>
 							</ObjectPageSubSection>
@@ -655,57 +549,9 @@
 							</ObjectPageSubSection>
 						</subSections>
 					</ObjectPageSection>
-					<!--	<ObjectPageSection>-->
-					<!--		<subSections>-->
-					<!--			<ObjectPageSubSection id="idAddNewPreOrderItem" title="Add Item" visible="false" titleUppercase="false">-->
-					<!--				<blocks>-->
-					<!--					<m:VBox id="idFirstVBox222" class="vboxAlignment">-->
-					<!--						<m:HBox width="100%" alignItems="Center">-->
-					<!--							<m:Label design="Bold" width="10rem" text="Quality"/>-->
-					<!--							<m:Text id="idItemTxt211" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
-					<!--							<m:VBox width="100%">-->
-					<!--								<m:Input id="idRecordType11" value="" width="100%" liveChange="itemFieldValidation" editable="true"/>-->
-					<!--							</m:VBox>-->
-					<!--						</m:HBox>-->
-					<!--						<m:HBox width="100%" alignItems="Center">-->
-					<!--							<m:Label design="Bold" required="false" text="Manufaturer" width="10rem"/>-->
-					<!--							<m:Text id="idAccAGnmntTxt244" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
-					<!--							<m:VBox width="100%">-->
-					<!--								<m:Input id="idRecordTitle55" value="" width="100%" liveChange="itemFieldValidation" editable="true"/>-->
-					<!--							</m:VBox>-->
-					<!--						</m:HBox>-->
-					<!--						<m:HBox width="100%" alignItems="Center">-->
-					<!--							<m:Label design="Bold" required="false" text="Part Number" width="10rem"/>-->
-					<!--							<m:Text id="idAccAGnmntTxt211" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
-					<!--							<m:VBox width="100%">-->
-					<!--								<m:Input id="idRecordTitle2" value="" width="100%" liveChange="itemFieldValidation" editable="true"/>-->
-					<!--							</m:VBox>-->
-					<!--						</m:HBox>-->
-					<!--						<m:HBox width="100%" alignItems="Center">-->
-					<!--							<m:Label design="Bold" required="false" text="Description" width="10rem"/>-->
-					<!--							<m:Text id="idAccAGnmntTxt233" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
-					<!--							<m:VBox width="100%">-->
-					<!--								<m:Input id="idRecordTitle22" value="" width="100%" liveChange="itemFieldValidation" editable="true"/>-->
-					<!--							</m:VBox>-->
-					<!--						</m:HBox>-->
-					<!--						<m:Panel>-->
-					<!--							<m:FlexBox alignItems="Start" justifyContent="Center">-->
-					<!--								<m:items>-->
-					<!--									<m:Button id="idAddItem" text="{i18n>Add}" visible="true" type="Ghost" press="onAddPreOrderItem" class="sapUiTinyMarginEnd"/>-->
-					<!--									<m:Button id="idUpdateItem" text="Update" visible="true" type="Ghost" press="onUpdateItem" class="sapUiTinyMarginEnd"/>-->
-					<!--									<m:Button text="{i18n>Cancel}" type="Ghost" press="onAddPreorderItemCancel"/>-->
-					<!--								</m:items>-->
-					<!--							</m:FlexBox>-->
-					<!--						</m:Panel>-->
-					<!--					</m:VBox>-->
-					<!--				</m:VBox>-->
-					<!--			</blocks>-->
-					<!--		</ObjectPageSubSection>-->
-					<!--	</subSections>-->
-					<!--</ObjectPageSection>-->
 					<ObjectPageSection>
 						<subSections>
-							<ObjectPageSubSection id="idHPS" title="HPS" visible="true" titleUppercase="false" class="tabAlignLeft">
+							<ObjectPageSubSection id="idHPS" title="App Engineering-HPS" visible="true" titleUppercase="false" class="tabAlignLeft">
 								<m:VBox class="vboxAlignment">
 									<f:SimpleForm id="SimpleFormDisplay3543" editable="false" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
 										labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
@@ -741,27 +587,6 @@
 										<m:Text text="Item Notes"/>
 										<m:TextArea width="100%"/>
 									</m:VBox>
-									<!--<m:HBox alignItems="Center">-->
-									<!--	<m:VBox class="sapUiSmallMarginTop">-->
-									<!--		<m:Label text="Check List" width="150px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>-->
-									<!--<m:RadioButtonGroup id="GroupA">-->
-									<!--		<m:CheckBox text="Drawing Required for Applications" selected="true"/>-->
-									<!--		<m:CheckBox text="Quotation Placed in File"/>-->
-									<!--		<m:CheckBox text="Preorder filled in"/>-->
-									<!--</m:RadioButtonGroup>-->
-									<!--	</m:VBox>-->
-									<!--</m:HBox>-->
-									<!--<m:Panel>-->
-									<!--	<m:FlexBox alignItems="Start" justifyContent="End" class="zhdrTlbar">-->
-									<!--		<m:items>-->
-									<!--			<m:Button text="Re Quote" id="idRequoteButton" visible="false" type="Ghost" press="onRequotePress" class="sapUiTinyMarginEnd"/>-->
-									<!--<m:Button text="Clarify Order" id="idClarifyButton" type="Ghost" visible="false" press="onClarifyPress" class="sapUiTinyMarginEnd"/>-->
-									<!--		</m:items>-->
-									<!--	</m:FlexBox>-->
-									<!--</m:Panel>-->
-									<!--<m:VBox id="idcreatefgmat" class="sapUiSmallMarginTop" visible="false">-->
-									<!--	<m:Label text="Create FG materials" class="zclrifyOrder"/>-->
-									<!--</m:VBox>-->
 								</m:VBox>
 							</ObjectPageSubSection>
 						</subSections>
@@ -880,6 +705,69 @@
 					</ObjectPageSection>
 					<ObjectPageSection>
 						<subSections>
+							<ObjectPageSubSection id="idOrderEng" title="Order Engineering-HPS" mode="Expanded">
+								<blocks>
+									<m:VBox width="100%">
+										<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">
+											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+												<m:Label width="10rem" text="Priority"/>
+												<m:Text id="k" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+												<m:VBox width="100%">
+													<m:Input/>
+												</m:VBox>
+											</m:HBox>
+											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+												<m:Label width="10rem" text="Development Level"/>
+												<m:Text id="y" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+												<m:VBox width="100%">
+													<m:Input/>
+												</m:VBox>
+											</m:HBox>
+										</l:Grid>
+										<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">
+											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+												<m:Label width="10rem" text="Scheduled ENG Hours"/>
+												<m:Text id="idShipDa" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+												<m:VBox width="100%">
+													<m:Input/>
+												</m:VBox>
+											</m:HBox>
+											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+												<m:Label width="10rem" text="Actual ENG Hours"/>
+												<m:Text id="nj" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+												<m:VBox width="100%">
+													<m:Input/>
+												</m:VBox>
+											</m:HBox>
+										</l:Grid>
+										<m:VBox class="sapUiSmallMarginBegin">
+											<m:Label design="Bold" text="Check List"/>
+											<m:VBox>
+												<!--<m:RadioButtonGroup id="GroupA">-->
+												<m:CheckBox text="ME Design" selected="true"/>
+												<m:CheckBox text="EE Design"/>
+												<m:CheckBox text="System Analysis"/>
+												<m:CheckBox text="Approved Drawings Complete"/>
+												<m:CheckBox text="XXEngineering Approval Rcvd"/>
+												<m:CheckBox text="ZZKickoff Meeting"/>
+												<m:CheckBox text="Pre-Order SAP BOMs Created"/>
+												<m:CheckBox text="Shipping Split BOMs Created"/>
+												<m:CheckBox text="Lineup BOM Created"/>
+												<m:CheckBox text="BOM Review Complete"/>
+												<m:CheckBox text="Final SAP BOMs Loaded"/>
+												<m:CheckBox text="Routings Created"/>
+												<m:CheckBox text="Z7 Status Removed"/>
+												<m:CheckBox text="ZZProduction Kickoff Meeting"/>
+												<!--</m:RadioButtonGroup>-->
+											</m:VBox>
+										</m:VBox>
+									</m:VBox>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					<ObjectPageSection>
+						<subSections>
 							<ObjectPageSubSection id="idAddNewRecord" title="Add New Record" visible="false" titleUppercase="false">
 								<blocks>
 									<m:VBox id="idFirstVBox2" class="vboxAlignment">
@@ -934,43 +822,6 @@
 							</ObjectPageSubSection>
 						</subSections>
 					</ObjectPageSection>
-					<!--<ObjectPageSection>-->
-					<!--	<subSections>-->
-					<!--		<ObjectPageSubSection title="Attachments" mode="Expanded">-->
-					<!--			<blocks>-->
-					<!--				<m:VBox>-->
-					<!--					<m:VBox class="sapUiTinyMargin" renderType="Bare">-->
-					<!--						<m:MessageStrip class="sapUiTinyMarginBottom" visible="{=!${device>/browser/mobile}}" showIcon="true" type="Information"-->
-					<!--							text="To add files, you can also use drag &amp; drop on your desktop or tablet."/>-->
-					<!--<m:Label text="Notes"/>-->
-					<!--<m:TextArea id="TextArea" cols="200" height="100px"/>-->
-					<!--					</m:VBox>-->
-					<!--					<m:VBox>-->
-					<!--						<m:UploadCollection id="UploadCollection" maximumFilenameLength="55" maximumFileSize="10" multiple="true" sameFilenameAllowed="true"-->
-					<!--							instantUpload="false" noDataDescription="Drop files or use the &quot;Add&quot; button to keep files ready for upload" change="onChange"-->
-					<!--							fileDeleted="onFileDeleted" filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"-->
-					<!--							uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts"/>-->
-					<!--<m:Button id="Button" text="Upload Now" press="onStartUpload" />-->
-					<!--					</m:VBox>-->
-					<!--				</m:VBox>-->
-					<!--			</blocks>-->
-					<!--		</ObjectPageSubSection>-->
-					<!--	</subSections>-->
-					<!--</ObjectPageSection>-->
-					<!--<ObjectPageSection>-->
-					<!--	<subSections>-->
-					<!--		<ObjectPageSubSection title="Notes" mode="Expanded">-->
-					<!--			<blocks>-->
-					<!--				<m:VBox class="sapUiTinyMargin" renderType="Bare">-->
-					<!--<m:MessageStrip class="sapUiTinyMarginBottom" visible="{=!${device>/browser/mobile}}" showIcon="true" type="Information"-->
-					<!--	text="To add files, you can also use drag &amp; drop on your desktop or tablet."/>-->
-					<!--					<m:Label text="Write notes here"/>-->
-					<!--					<m:TextArea id="TextArea2" cols="200" height="100px"/>-->
-					<!--				</m:VBox>-->
-					<!--			</blocks>-->
-					<!--		</ObjectPageSubSection>-->
-					<!--	</subSections>-->
-					<!--</ObjectPageSection>-->
 				</sections>
 			</ObjectPageLayout>
 		</m:content>
@@ -979,6 +830,9 @@
 				<m:content>
 					<m:Button id="idBack" enabled="true" text="Back to Order Page" type="Emphasized" press="handleBackPress"/>
 					<m:ToolbarSpacer/>
+					<m:Button id="idRequotteButtonn" type="Emphasized" enabled="true" press="onRequotePress" text="ReQuote"/>
+					<m:Button id="idClarifyButtonn" type="Emphasized" enabled="true" press="onClarifyPress" text="Clarify"/>
+					<m:Button id="idSaveAsDrftButtonn" type="Emphasized" enabled="true" press="onSADPress" text="Save as Draft"/>
 					<m:Button id="idSubmit" enabled="true" text="Submit" type="Emphasized" press="handleSubmitPress"/>
 				</m:content>
 			</m:OverflowToolbar>

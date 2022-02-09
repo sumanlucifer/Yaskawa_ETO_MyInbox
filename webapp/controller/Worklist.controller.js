@@ -81,6 +81,7 @@ sap.ui.define([
 				this.readChecklistEntity("/ETODistributionChannelSet"),
 				this.readChecklistEntity("/ETOUsersSet"),
 				this.readChecklistEntity("/ETOGroupSet"),
+				this.readChecklistEntity("/ETOAssignedUserSet"),
 			]).then(this.buildChecklist.bind(this)).catch(function (error) {}.bind(this));
 
 		},
@@ -112,6 +113,7 @@ sap.ui.define([
 			var aETODistributionChannelSet = values[5].value.results;
 			var userDetailssSet = values[6].value.results;
 			var userGroupsSet = values[7].value.results;
+			var userAssignedSet = values[8].value.results;
 			this.getComponentModel("globalModel").setSizeLimit(1000);
 			this.getComponentModel("globalModel").setProperty("/userDetailssSet", userDetailssSet);
 			this.getComponentModel("globalModel").setProperty("/userGroupsSet", userGroupsSet);
@@ -127,12 +129,13 @@ sap.ui.define([
 			this.getModel("HeaderDetailsModel").setProperty("/ETODistributionChannelSet", aETODistributionChannelSet);
 			this.getModel("HeaderDetailsModel").setProperty("/userDetailssSet", userDetailssSet);
 			this.getModel("HeaderDetailsModel").setProperty("/userGroupsSet", userGroupsSet);
+			this.getModel("HeaderDetailsModel").setProperty("/userAssignedSet", userAssignedSet);
 
 		},
 
 		onSelectUserAssignment: function (oEvent) {
 
-			var sUser = oEvent.getSource().getSelectedKey();
+			var sUser = oEvent.getSource().getValue();
 
 			this.getModel("objectViewModel").setProperty("/busy", true);
 			var sUserFilter = new sap.ui.model.Filter({
@@ -243,6 +246,10 @@ sap.ui.define([
 			var appType = this.byId("idAppType").getSelectedKey();
 			var customerName = this.byId("idCustName").getValue();
 			var customerNo = this.byId("idCustNo").getSelectedKey();
+			var group = this.byId("idGRP").getSelectedKey();
+			var User = this.byId("idAssignTo").getSelectedKey();
+			var OrderDate = this.byId("idOrderDate").getValue();
+			var ShipDate = this.byId("idShipDate").getValue();
 
 			this.getView().byId("idListServiceTable").mProperties.enableAutoBinding = true;
 			this.byId("idListServiceTable").rebindTable();
@@ -253,6 +260,12 @@ sap.ui.define([
 			andFilters.push(new Filter("TypeApp", FilterOperator.EQ, appType));
 			andFilters.push(new Filter("CustName", FilterOperator.EQ, customerName));
 			andFilters.push(new Filter("CustNumber", FilterOperator.EQ, customerNo));
+			andFilters.push(new Filter("Group", FilterOperator.EQ, group));
+			andFilters.push(new Filter("User", FilterOperator.EQ, User));
+
+			// 			yet to bind
+			andFilters.push(new Filter("OrderDate", FilterOperator.EQ, ""));
+			andFilters.push(new Filter("ShipDate", FilterOperator.EQ, ""));
 
 			var idTableBinding = this.getView().byId("idListServiceTable").getTable().getBinding("items");
 			if (andFilters.length > 0) {
