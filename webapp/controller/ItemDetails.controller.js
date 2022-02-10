@@ -20,116 +20,24 @@ sap.ui.define([
 		 * @public
 		 */
 		onInit: function () {
-			this._createHeaderDetailsModel();
-			var oData = {
-				results: [
-
-					{
-						"type": "Option Type 1",
-						"ex1": "ex1",
-						"ex2": "ex2",
-						"item": 20
-					}, {
-						"type": "Option Type 2",
-						"ex1": "ex1",
-						"ex2": "ex2",
-						"item": 30
-					}, {
-						"type": "Option Type 3",
-						"ex1": "ex1",
-						"ex2": "ex2",
-						"item": 40
-					}
-				]
-			};
-			var jsonModel1 = new sap.ui.model.json.JSONModel();
-			jsonModel1.setData(oData);
-			this.getView().byId("optionTypeId").setModel(jsonModel1);
-			this.getView().byId("idZbStdPoNonStock").setModel(jsonModel1);
-			this.getView().byId("optionId").setModel(jsonModel1);
-
-			// Model used to manipulate control states. The chosen values make sure,
-			// detail page is busy indication immediately so there is no break in
-			// between the busy indication for loading the view's meta data
-			var iOriginalBusyDelay,
-				oViewModel = new JSONModel({
-					busy: true,
-					delay: 0
-				});
-
-			var childItemsEnableDisable = {
-				"enabled": false
-			};
-			var childItemsEnableDisableModel = new JSONModel(childItemsEnableDisable);
-			this.setModel(childItemsEnableDisableModel, "childItemsEnableDisableModelName");
-
-			var childItemsEnableDisable2 = {
-				"enabled": false
-			};
-			var childItemsEnableDisableModel2 = new JSONModel(childItemsEnableDisable2);
-			this.setModel(childItemsEnableDisableModel2, "childItemsEnableDisableModelName2");
-
-			var childItemsEnableDisable3 = {
-				"enabled": false
-			};
-			var childItemsEnableDisableModel3 = new JSONModel(childItemsEnableDisable3);
-			this.setModel(childItemsEnableDisableModel3, "childItemsEnableDisableModelName3");
-
-			var childItemsEnableDisable4 = {
-				"enabled": false
-			};
-			var childItemsEnableDisableModel4 = new JSONModel(childItemsEnableDisable4);
-			this.setModel(childItemsEnableDisableModel4, "childItemsEnableDisableModelName4");
-
+			this._createTabDetailsModel();
+			this.createInitialModel();
 			this.getRouter().getRoute("itemView").attachPatternMatched(this._onObjectMatched, this);
 
-			// Store original busy indicator delay, so it can be restored later on
-			iOriginalBusyDelay = this.getView().getBusyIndicatorDelay();
-			this.setModel(oViewModel, "objectView");
-			this.getOwnerComponent().getModel().metadataLoaded().then(function () {
-				// Restore original busy indicator delay for the object view
-				oViewModel.setProperty("/delay", iOriginalBusyDelay);
-			});
 		},
-		_createHeaderDetailsModel: function () {
+		createInitialModel: function () {
+			var oViewModel = new JSONModel({
+				busy: true,
+				delay: 0
+			});
+			this.setModel(oViewModel, "objectViewModel");
+		},
+		_createTabDetailsModel: function () {
 			var oModel = new JSONModel({
-				distributionChannelDD: [],
-				distributionChannelKey: "",
-				orderTypeSetDD: [],
-				typoofApplicationDD: [],
-				typoofApplicationKey: "",
-				typoofOrderDD: [],
-				typoofOrderKey: "",
-				ReqestedBy: "",
-				QuotationNo: "",
-				OrderDate: null,
-				ShipDate: null,
-				CustReprsntv: null,
-				CustName: null,
-				CustNumber: null,
-				OrderStatus: null,
-				OrderType: null,
-				TypeApp: null,
-				TypeOrder: null,
-				TotalNetValue: null,
-				NoSalesOrder: null,
-				CustPo: null,
-				ETOWorkflowSet: [{
-					"ETOWorkflowKey": "HVAC",
-					"ETOWorkflowValue": "Scheduling"
-				}, {
-					"ETOWorkflowKey": "Industrial",
-					"ETOWorkflowValue": "Supply Planning"
-				}, {
-					"ETOWorkflowKey": "Scheduler",
-					"ETOWorkflowValue": "Mat'l Load"
-				}, {
-					"ETOWorkflowKey": "LV",
-					"ETOWorkflowValue": "Order ENG"
-				}]
+				TabData: [],
 
 			});
-			this.setModel(oModel, "HeaderDetailsModel");
+			this.setModel(oModel, "TabDetailsModel");
 		},
 
 		/* =========================================================== */
@@ -163,7 +71,7 @@ sap.ui.define([
 		 * @private
 		 */
 		_onObjectMatched: function (oEvent) {
-			this.byId("idWorkFlowStatus").setValue("");
+
 			this.Vbeln = oEvent.getParameter("arguments").objectId;
 			this.Posnr = oEvent.getParameter("arguments").objectId1;
 			this.AppType = oEvent.getParameter("arguments").objectId2;
@@ -189,35 +97,8 @@ sap.ui.define([
 				this.getView().byId("idOrderEng").setVisible(true);
 			}
 
-			this.byId("ObjectPageLayout").setSelectedSection(this.byId("idItemSubSection"));
 			this.getTabDetials(this.Vbeln, this.Posnr);
 			//this.getView().byId("idZbStdPoNonStock2").setValue(sObjectId);
-			var itemData = {
-				results: [{
-					"itemNo": "10",
-					"matNo": "KC13842427N",
-					"panel": "LKY",
-					"itemNotes": "MJGTYBHJG(2R) Schematic start NB15676557-21 Layout Text"
-				}, {
-					"itemNo": "20",
-					"matNo": "NB15842427A",
-					"panel": "BIY",
-					"itemNotes": "FHYFGi987(2R) Schematic start NB15676557-21 Layout Notes"
-				}, {
-					"itemNo": "30",
-					"matNo": "HN55842467T",
-					"panel": "Z1D",
-					"itemNotes": "OJMFSWKN86(2R) Schematic start NB15676557-21 Layout Schemes"
-				}]
-			};
-			var itemModel = new JSONModel(itemData);
-			this.setModel(itemModel, "itemModelName");
-
-			var childItemsEnableDisable = {
-				"enabled": false
-			};
-			var childItemsEnableDisableModel = new JSONModel(childItemsEnableDisable);
-			this.setModel(childItemsEnableDisableModel, "childItemsEnableDisableModelName");
 
 			// this.getModel().metadataLoaded().then( function() {
 			// 	var sObjectPath = this.getModel().createKey("POHeaderSet", {
@@ -229,7 +110,7 @@ sap.ui.define([
 
 		getTabDetials: function (SalesOrder, ItemNo) {
 
-			//	this.getModel("objectViewModel").setProperty("/busy", true);
+			this.getModel("objectViewModel").setProperty("/busy", true);
 			var sSalesOrderFilter = new sap.ui.model.Filter({
 				path: "SalesOrder",
 				operator: sap.ui.model.FilterOperator.EQ,
@@ -249,11 +130,12 @@ sap.ui.define([
 
 				success: function (oData, oResponse) {
 
-					//		this.getModel("objectViewModel").setProperty("/busy", false);
+					this.getModel("objectViewModel").setProperty("/busy", false);
+					this.getModel("TabDetailsModel").setProperty("/TabData", oData);
 
 				}.bind(this),
 				error: function (oError) {
-					//	this.getModel("objectViewModel").setProperty("/busy", false);
+					this.getModel("objectViewModel").setProperty("/busy", false);
 
 				}.bind(this),
 			});

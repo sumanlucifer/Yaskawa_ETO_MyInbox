@@ -1,7 +1,7 @@
 <mvc:View controllerName="com.yaskawa.ETOMyInbox.controller.ItemDetails" xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns="sap.uxap"
 	xmlns:layout="sap.ui.layout" xmlns:blockcolor="wel.create.po.CreatePO.blocks" xmlns:semantic="sap.f.semantic" xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:t="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml">
-	<m:Page title="Item Details" showNavButton="false" navButtonPress="onBack">
+	<m:Page title="Item Details" busy="{objectViewModel>/busy}" showNavButton="false" navButtonPress="onBack">
 		<m:content>
 			<ObjectPageLayout id="ObjectPageLayout" subSectionLayout="{ConfigModel>/subSectionLayout}" useIconTabBar="true" flexEnabled="true"
 				upperCaseAnchorBar="false">
@@ -11,29 +11,30 @@
 							<m:HBox alignItems="Center">
 								<m:Label text="Item#" width="160px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>
 								<m:VBox width="100%">
-									<m:ComboBox id="idZbStdPoNonStock" valueState="None" width="100%" items="{ path: '/results'}" loadItems="handleLoadItems" selectedKey="1"
-										selectionChange="AccAssgnmntSelectionChange">
-										<core:ListItem key="{item}" text="{item}"/>
-									</m:ComboBox>
+									<m:Input id="ss" width="100%" value="{TabDetailsModel>/TabData/ItemNo}" editable="false"></m:Input>
+									<!--<m:ComboBox id="idZbStdPoNonStock" valueState="None" width="100%" items="{ path: '/results'}" loadItems="handleLoadItems" selectedKey="1"-->
+									<!--	selectionChange="AccAssgnmntSelectionChange">-->
+									<!--	<core:ListItem key="{item}" text="{item}"/>-->
+									<!--</m:ComboBox>-->
 									<!--<m:Input id="idZbStdPoNonStock" width="100%" value="10" editable="false"></m:Input>-->
 								</m:VBox>
 							</m:HBox>
 							<m:HBox>
 								<m:Label required="false" text="Quantity" width="160px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>
 								<m:VBox width="100%">
-									<m:Input id="idZbStdPoNonStock22" width="100%" value="1" editable="false"></m:Input>
+									<m:Input id="idZbStdPoNonStock22" width="100%" value="{TabDetailsModel>/TabData/Quantity}" editable="false"></m:Input>
 								</m:VBox>
 							</m:HBox>
 							<m:HBox alignItems="Center">
 								<m:Label text="Net $ each" width="160px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>
 								<m:VBox width="100%">
-									<m:Input width="100%" id="idApproverName4" type="Text" value="4900" editable="false"></m:Input>
+									<m:Input width="100%" id="idApproverName4" type="Text" value="{TabDetailsModel>/TabData/NetAmount}" editable="false"></m:Input>
 								</m:VBox>
 							</m:HBox>
 							<m:HBox alignItems="Center">
 								<m:Label text="Order Number" width="160px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>
 								<m:VBox width="100%">
-									<m:Input width="100%" id="idApproverName42" type="Text" value="15842427" editable="false"></m:Input>
+									<m:Input width="100%" id="idApproverName42" type="Text" value="{TabDetailsModel>/TabData/SalesOrder}" editable="false"></m:Input>
 								</m:VBox>
 							</m:HBox>
 							<m:HBox alignItems="Center">
@@ -42,7 +43,7 @@
 								<!--	<m:Input id="d" width="100%" type="Text" value="Some User" editable="false"></m:Input>-->
 								<!--</m:VBox>-->
 								<m:VBox width="100%">
-									<m:Input width="100%" id="idWorkFlowStatus" type="Text" editable="false"></m:Input>
+									<m:Input width="100%" value="{TabDetailsModel>/TabData/WfStatus}" type="Text" editable="false"></m:Input>
 								</m:VBox>
 							</m:HBox>
 						</l:Grid>
@@ -90,19 +91,19 @@
 										singleContainerFullSize="false">
 										<f:content>
 											<m:Label text="Motor Full Load Amps"/>
-											<m:Input id="nameText"/>
+											<m:Input value="{TabDetailsModel>/TabData/AppMotorFull}" id="nameText"/>
 											<m:Label text="Panel SCCR"/>
-											<m:Input id="nameText2"/>
+											<m:Input value="{TabDetailsModel>/TabData/AppPanelSscr}" id="nameText2"/>
 											<m:Label text="Ambient temperature"/>
-											<m:Input id="nameText3"/>
+											<m:Input value="{TabDetailsModel>/TabData/AppAmbTemp}" id="nameText3"/>
 											<m:Label text="Enclosure size restriction"/>
-											<m:Input id="nameText4"/>
+											<m:Input value="{TabDetailsModel>/TabData/AppEnclosure}" id="nameText4"/>
 											<m:Label text="Cable entry locations"/>
-											<m:Input id="nameText5"/>
+											<m:Input value="{TabDetailsModel>/TabData/AppCableEntry}" id="nameText5"/>
 											<m:Label text="Ventilation location restrictions"/>
-											<m:Input id="nameText6"/>
+											<m:Input value="{TabDetailsModel>/TabData/AppVenitilation}" id="nameText6"/>
 											<m:Label text="Altitude"/>
-											<m:Input id="nameText7"/>
+											<m:Input value="{TabDetailsModel>/TabData/AppAltitude}" id="nameText7"/>
 										</f:content>
 									</f:SimpleForm>
 									<!--</m:VBox>-->
@@ -211,14 +212,14 @@
 												<m:Label width="10rem" text="Material Number"/>
 												<m:Text id="idOrdrDate222" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input editable="false"/>
+													<m:Input value="{TabDetailsModel>/TabData/ProdMaterial}" editable="false"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 												<m:Label width="10rem" text="Description"/>
 												<m:Text id="idShipDate222" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input editable="false"/>
+													<m:Input value="{TabDetailsModel>/TabData/ProdDesc}" editable="false"/>
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
@@ -353,7 +354,7 @@
 												<m:Label width="10rem" text="Production Supervisor"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input editable="false"/>
+													<m:Input value="{TabDetailsModel>/TabData/MaterialProdSupervisor}" editable="false"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
@@ -382,7 +383,7 @@
 													<!--<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">-->
 													<!--	<core:ListItem key="" text=""/>-->
 													<!--</m:ComboBox>-->
-													<m:Input value=""/>
+													<m:Input value="{TabDetailsModel>/TabData/MaterialDelLead}"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
@@ -403,7 +404,7 @@
 													<!--<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">-->
 													<!--	<core:ListItem key="" text=""/>-->
 													<!--</m:ComboBox>-->
-													<m:Input value=""/>
+													<m:Input value="{TabDetailsModel>/TabData/MaterialGrTime}"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
@@ -413,7 +414,7 @@
 													<!--<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">-->
 													<!--	<core:ListItem key="" text=""/>-->
 													<!--</m:ComboBox>-->
-													<m:Input value=""/>
+													<m:Input value="{TabDetailsModel>/TabData/MaterialTimeFence}"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
@@ -443,7 +444,7 @@
 													<!--<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">-->
 													<!--	<core:ListItem key="" text=""/>-->
 													<!--</m:ComboBox>-->
-													<m:Input value=""/>
+													<m:Input value="{TabDetailsModel>/TabData/MaterialLotSize}"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">

@@ -29,7 +29,7 @@
 							<m:HBox alignItems="Center">
 								<m:Label text="Job Name" width="150px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>
 								<m:VBox width="100%">
-									<m:Input id="idJobName" value="{HeaderDetailsModel>/ETOItemHeaderSet/JobName}" width="100%" editable="false"/>
+									<m:Input id="idJobName" value="{HeaderDetailsModel>/ETOItemHeaderSet/JobName}" width="100%"/>
 								</m:VBox>
 							</m:HBox>
 							<m:HBox alignItems="Center">
