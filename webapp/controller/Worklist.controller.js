@@ -76,7 +76,7 @@ sap.ui.define([
 			Promise.allSettled([this.readChecklistEntity("/ETOCustomerSet"),
 				this.readChecklistEntity("/ETOCustomerNameSet"),
 				this.readChecklistEntity("/ETOOrderStatusSet"),
-				this.readChecklistEntity("/ETOOrderTypeSet"),
+				this.readChecklistEntity("/ETOTypeOfOrderSet"),
 				this.readChecklistEntity("/ETOTypeOfApplSet"),
 				this.readChecklistEntity("/ETODistributionChannelSet"),
 				this.readChecklistEntity("/ETOUsersSet"),

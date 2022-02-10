@@ -1,20 +1,20 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout"
 	xmlns:t="sap.ui.table">
-	<Dialog title="Select option for reassign">
+	<Dialog title="Select option">
 		<content>
 			<VBox class="sapUiTinyMargin" renderType="Bare">
 				<VBox visible="{globalModel>/userAssnVisible}">
 					<Text text="User Assignment"/>
 					<ComboBox width="100%" change="onSelectUserAssignment" valueState="None" placeholder="" selectedKey="{globalModel>/userAssignKey}"
 						items="{globalModel>/userDetailssSet}">
-						<core:Item key="{globalModel>Group}" text="{globalModel>UserName}"/>
+						<core:Item key="{globalModel>UserName}" text="{globalModel>UserName}"/>
 					</ComboBox>
 				</VBox>
 				<VBox >
 					<Text text="Group Assignment"/>
-					<ComboBox width="100%"  change="onSelectGroupAssignment" valueState="None" placeholder="" selectedKey="{globalModel>/groupAssignKey}"
+					<ComboBox width="100%" change="onSelectGroupAssignment" valueState="None" placeholder="" selectedKey="{globalModel>/groupAssignKey}"
 						items="{globalModel>/userGroupsSet}">
-						<core:Item key="{globalModel>DomValue}" text="{globalModel>Ddtext}"/>
+						<core:Item key="{globalModel>Ddtext}" text="{globalModel>Ddtext}"/>
 					</ComboBox>
 				</VBox>
 			</VBox>
