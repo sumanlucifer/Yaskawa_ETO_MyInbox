@@ -52,7 +52,7 @@
 				<sections>
 					<ObjectPageSection>
 						<subSections>
-							<ObjectPageSubSection id="idApptypeTab" title="Options" visible="true" titleUppercase="false" class="tabAlignLeft">
+							<ObjectPageSubSection id="idOptionTab" title="Options" visible="true" titleUppercase="false" class="tabAlignLeft">
 								<m:VBox>
 									<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">
 										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
@@ -84,7 +84,7 @@
 					</ObjectPageSection>
 					<ObjectPageSection>
 						<subSections>
-							<ObjectPageSubSection title="Application Data" mode="Expanded">
+							<ObjectPageSubSection id="idApplicationTab" title="Application Data" mode="Expanded">
 								<blocks>
 									<f:SimpleForm id="SimpleFormDisplay354" editable="false" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
 										labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
@@ -706,7 +706,7 @@
 					</ObjectPageSection>
 					<ObjectPageSection>
 						<subSections>
-							<ObjectPageSubSection id="idOrderEng" title="Order Engineering-HPS" mode="Expanded">
+							<ObjectPageSubSection id="idOrderEng" title="Order Engineering" mode="Expanded">
 								<blocks>
 									<m:VBox width="100%">
 										<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">

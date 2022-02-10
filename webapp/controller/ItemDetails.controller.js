@@ -60,16 +60,6 @@ sap.ui.define([
 			}
 		},
 
-		/* =========================================================== */
-		/* internal methods                                            */
-		/* =========================================================== */
-
-		/**
-		 * Binds the view to the object path.
-		 * @function
-		 * @param {sap.ui.base.Event} oEvent pattern match event in route 'object'
-		 * @private
-		 */
 		_onObjectMatched: function (oEvent) {
 
 			this.Vbeln = oEvent.getParameter("arguments").objectId;
@@ -77,22 +67,24 @@ sap.ui.define([
 			this.AppType = oEvent.getParameter("arguments").objectId2;
 
 			if (this.AppType === "04") {
-				this.getView().byId("idApptypeTab").setVisible(true);
+				this.getView().byId("idOptionTab").setVisible(false);
+				this.getView().byId("idApplicationTab").setVisible(false);
 				this.getView().byId("idEnclosureTab").setVisible(false);
 				this.getView().byId("idProductTab").setVisible(true);
 				this.getView().byId("idMaterialDetailsTab").setVisible(true);
 				this.getView().byId("idPreOrderItem").setVisible(true);
-				this.getView().byId("idHPS").setVisible(false);
+				this.getView().byId("idHPS").setVisible(true);
 				this.getView().byId("idPaSubmittal").setVisible(true);
 				this.getView().byId("idOrderEng").setVisible(true);
 
 			} else {
-				this.getView().byId("idApptypeTab").setVisible(true);
+				this.getView().byId("idOptionTab").setVisible(true);
+				this.getView().byId("idApplicationTab").setVisible(true);
 				this.getView().byId("idEnclosureTab").setVisible(true);
 				this.getView().byId("idProductTab").setVisible(true);
 				this.getView().byId("idMaterialDetailsTab").setVisible(true);
 				this.getView().byId("idPreOrderItem").setVisible(true);
-				this.getView().byId("idHPS").setVisible(true);
+				this.getView().byId("idHPS").setVisible(false);
 				this.getView().byId("idPaSubmittal").setVisible(true);
 				this.getView().byId("idOrderEng").setVisible(true);
 			}

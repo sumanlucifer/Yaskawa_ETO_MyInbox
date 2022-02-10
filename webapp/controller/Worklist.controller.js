@@ -49,7 +49,7 @@ sap.ui.define([
 				orderTypeSetDD: [],
 				orderTypeSetKey: "",
 				typoofApplicationDD: [],
-				typoofApplicationKey: "02",
+				typoofApplicationKey: "",
 				typoofOrderDD: [],
 				typoofOrderKey: "01",
 				ReqestedBy: "",
@@ -263,8 +263,8 @@ sap.ui.define([
 			andFilters.push(new Filter("User", FilterOperator.EQ, User));
 
 			// 			yet to bind
-			andFilters.push(new Filter("OrderDate", FilterOperator.EQ, ""));
-			andFilters.push(new Filter("ShipDate", FilterOperator.EQ, ""));
+			andFilters.push(new Filter("OrderDate", FilterOperator.EQ, OrderDate));
+			andFilters.push(new Filter("ShipDate", FilterOperator.EQ, ShipDate));
 
 			var idTableBinding = this.getView().byId("idListServiceTable").getTable().getBinding("items");
 			if (andFilters.length > 0) {
