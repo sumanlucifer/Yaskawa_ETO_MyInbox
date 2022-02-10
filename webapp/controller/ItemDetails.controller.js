@@ -244,8 +244,9 @@ sap.ui.define([
 			});
 			var filter = [];
 			filter.push(sSalesOrderFilter, sItemNoFilter);
-			this.getOwnerComponent().getModel("UserAction").read("/ZWF_DETAILSSet", {
-				filters: [filter],
+
+			this.getOwnerComponent().getModel("UserAction").read(`/ZWF_DETAILSSet(SalesOrder='${SalesOrder}',ItemNo='${ItemNo}')`, {
+
 				success: function (oData, oResponse) {
 
 					//		this.getModel("objectViewModel").setProperty("/busy", false);

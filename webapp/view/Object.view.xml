@@ -398,7 +398,7 @@
 						<subSections>
 							<ObjectPageSubSection title="Log Details" mode="Expanded">
 								<blocks>
-									<m:Table id="LogTable" items="{ilogTableModelName>/results}">
+									<m:Table id="LogTable" items="{logDetailsModel>/ETOLogDetailsSet}">
 										<m:columns>
 											<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Changed By"/></m:Column>
 											<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Date"/></m:Column>
@@ -409,11 +409,11 @@
 										<m:items>
 											<m:ColumnListItem>
 												<m:cells>
-													<m:Text text="{ilogTableModelName>changedBy}"/>
-													<m:Text text="{ilogTableModelName>Date}"/>
-													<m:Text text="{ilogTableModelName>Time}"/>
-													<m:Text text="{ilogTableModelName>Actionperfomed}"/>
-													<m:Text text="{ilogTableModelName>comments}"/>
+													<m:Text text="{logDetailsModel>ChangedBy}"/>
+													<m:Text text="{logDetailsModel>Date}"/>
+													<m:Text text="{logDetailsModel>Time}"/>
+													<m:Text text="{logDetailsModel>Action}"/>
+													<m:Text text="{logDetailsModel>Comments}"/>
 												</m:cells>
 											</m:ColumnListItem>
 										</m:items>

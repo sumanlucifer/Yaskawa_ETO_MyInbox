@@ -27,6 +27,7 @@ sap.ui.define([
 			this._createHeaderDetailsModel();
 			this._orderDetailsModel();
 			this._attachmentsModel();
+			this.logDetailsModel();
 			this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
 
 		},
@@ -91,6 +92,13 @@ sap.ui.define([
 
 			});
 			this.setModel(oModel, "AttachmentsModel");
+		},
+		logDetailsModel: function () {
+			var oModel = new JSONModel({
+				ETOAttachmentSet: []
+
+			});
+			this.setModel(oModel, "logDetailsModel");
 		},
 		onUploadPress: function (oEvent) {
 			var that = this;
@@ -172,47 +180,6 @@ sap.ui.define([
 			this.byId("ObjectPageLayout").setSelectedSection(this.byId("HeaderDetailsSection"));
 			this.onGetSODetails();
 
-			var logDetailsData = {
-				results: [{
-					"changedBy": "G. Reichelt",
-					"Date": "21.05.2021",
-					"Time": "10:00 a.m",
-					"Actionperfomed": "Created",
-					"fileName": "xyz.pdf",
-					"comments": "This has been approved"
-				}, {
-					"changedBy": "M. Koehler",
-					"Date": "22.05.2021",
-					"Time": "11:00 a.m",
-					"Actionperfomed": "Requote Pending",
-					"fileName": "xyz1.pdf",
-					"comments": "Please Requote"
-				}, {
-					"changedBy": "C. Cerfus",
-					"Date": "23.05.2021",
-					"Time": "11:30 a.m",
-					"Actionperfomed": "Requote Pending",
-					"fileName": "xyz2.pdf",
-					"comments": "Please clarify"
-				}, {
-					"changedBy": "M. Sevilla",
-					"Date": "24.05.2021",
-					"Time": "12:00 a.m",
-					"Actionperfomed": "Scheduling",
-					"fileName": "xyz3.xls",
-					"comments": "Scheduling Completed."
-				}, {
-					"changedBy": "J. Midday",
-					"Date": "25.05.2021",
-					"Time": "12:30 p.m",
-					"Actionperfomed": "ENG Complete",
-					"fileName": "xyz.xls",
-					"comments": "Completed"
-				}]
-			};
-			var ilogTableModel = new JSONModel(logDetailsData);
-			this.setModel(ilogTableModel, "ilogTableModelName");
-
 		},
 
 		_bindView: function (sObjectPath) {
@@ -271,7 +238,8 @@ sap.ui.define([
 			Promise.allSettled([this.readChecklistEntity("/ETOHeaderDetailSet", Filter.SOfilterHDS),
 				this.readChecklistEntity("/ETO_ITEM_HEADERSet", Filter.SOfilter),
 				this.readChecklistEntity("/ETOItemListSet", Filter.SOfilter),
-				this.readChecklistEntity("/ETOAttachmentSet", Filter.attachFilter)
+				this.readChecklistEntity("/ETOAttachmentSet", Filter.attachFilter),
+				this.readChecklistEntity("/ETOLogDetailsSet", Filter.logFilter)
 
 			]).then(this.buildChecklist.bind(this)).catch(function (error) {}.bind(this));
 
@@ -301,10 +269,20 @@ sap.ui.define([
 			var attachFilter = [];
 			attachFilter.push(sattachFilter);
 
+			var sLogFilter = new sap.ui.model.Filter({
+				path: "Vbeln",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: sSaleOrderNo
+					// value1: "0000097046"
+			});
+			var logFilter = [];
+			logFilter.push(sLogFilter);
+
 			var filerValue = {
 				SOfilter: SOfilter,
 				SOfilterHDS: SOfilterHDS,
-				attachFilter: attachFilter
+				attachFilter: attachFilter,
+				logFilter: logFilter
 			};
 
 			return filerValue;
@@ -332,11 +310,13 @@ sap.ui.define([
 			var aETOItemHeaderSet = values[1].status === "rejected" ? null : values[1].value.results;
 			var aETOItemListSet = values[2].status === "rejected" ? null : values[2].value.results;
 			var aETOAttachmentSet = values[3].status === "rejected" ? null : values[3].value.results;
+			var aETOLogDetailsSet = values[4].status === "rejected" ? null : values[4].value.results;
 			this.getModel("HeaderDetailsModel").setSizeLimit(1000);
 			this.databuilding(aETOHeaderSet[0]);
 			this.getModel("HeaderDetailsModel").setProperty("/ETOItemHeaderSet", aETOItemHeaderSet[0]);
 			this.getModel("OrderDetailsModel").setProperty("/ETOItemListSet", aETOItemListSet);
 			this.getModel("AttachmentsModel").setProperty("/ETOAttachmentSet", aETOAttachmentSet);
+			this.getModel("logDetailsModel").setProperty("/ETOLogDetailsSet", aETOLogDetailsSet);
 
 		},
 		databuilding: function (data) {
