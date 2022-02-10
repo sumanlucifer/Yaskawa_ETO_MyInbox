@@ -51,7 +51,7 @@
 				<sections>
 					<ObjectPageSection>
 						<subSections>
-							<ObjectPageSubSection id="idItemSubSection" title="Options" visible="true" titleUppercase="false" class="tabAlignLeft">
+							<ObjectPageSubSection id="idApptypeTab" title="Options" visible="true" titleUppercase="false" class="tabAlignLeft">
 								<m:VBox>
 									<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">
 										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
@@ -112,7 +112,7 @@
 					</ObjectPageSection>
 					<ObjectPageSection>
 						<subSections>
-							<ObjectPageSubSection title="Enclosure Type" mode="Expanded">
+							<ObjectPageSubSection id="idEnclosureTab" title="Enclosure Type" mode="Expanded">
 								<blocks>
 									<m:VBox class="sapUiSmallMarginBegin" width="100%">
 										<l:Grid containerQuery="true" defaultSpan="XL4 L5" class="sapUiSizeCompact">
@@ -194,7 +194,7 @@
 					</ObjectPageSection>
 					<ObjectPageSection>
 						<subSections>
-							<ObjectPageSubSection title="Product Type" mode="Expanded">
+							<ObjectPageSubSection id="idProductTab" title="Product Type" mode="Expanded">
 								<blocks>
 									<m:VBox>
 										<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">
@@ -336,7 +336,7 @@
 					</ObjectPageSection>
 					<ObjectPageSection>
 						<subSections>
-							<ObjectPageSubSection title="Material Details" mode="Expanded">
+							<ObjectPageSubSection id="idMaterialDetailsTab" title="Material Details" mode="Expanded">
 								<blocks>
 									<m:VBox>
 										<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">

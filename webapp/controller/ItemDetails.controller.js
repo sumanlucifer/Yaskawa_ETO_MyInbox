@@ -166,7 +166,31 @@ sap.ui.define([
 			this.byId("idWorkFlowStatus").setValue("");
 			this.Vbeln = oEvent.getParameter("arguments").objectId;
 			this.Posnr = oEvent.getParameter("arguments").objectId1;
+			this.AppType = oEvent.getParameter("arguments").objectId2;
+
+			if (this.AppType === "04") {
+				this.getView().byId("idApptypeTab").setVisible(true);
+				this.getView().byId("idEnclosureTab").setVisible(false);
+				this.getView().byId("idProductTab").setVisible(true);
+				this.getView().byId("idMaterialDetailsTab").setVisible(true);
+				this.getView().byId("idPreOrderItem").setVisible(true);
+				this.getView().byId("idHPS").setVisible(false);
+				this.getView().byId("idPaSubmittal").setVisible(true);
+				this.getView().byId("idOrderEng").setVisible(true);
+
+			} else {
+				this.getView().byId("idApptypeTab").setVisible(true);
+				this.getView().byId("idEnclosureTab").setVisible(true);
+				this.getView().byId("idProductTab").setVisible(true);
+				this.getView().byId("idMaterialDetailsTab").setVisible(true);
+				this.getView().byId("idPreOrderItem").setVisible(true);
+				this.getView().byId("idHPS").setVisible(true);
+				this.getView().byId("idPaSubmittal").setVisible(true);
+				this.getView().byId("idOrderEng").setVisible(true);
+			}
+
 			this.byId("ObjectPageLayout").setSelectedSection(this.byId("idItemSubSection"));
+			this.getTabDetials(this.Vbeln, this.Posnr);
 			//this.getView().byId("idZbStdPoNonStock2").setValue(sObjectId);
 			var itemData = {
 				results: [{
@@ -188,14 +212,6 @@ sap.ui.define([
 			};
 			var itemModel = new JSONModel(itemData);
 			this.setModel(itemModel, "itemModelName");
-			// this.getView().byId("idClarifyOrder").setVisible(false);
-			this.getView().byId("idItemsTable2").setVisible(false);
-			this.getView().byId("idRequoteOrder").setVisible(false);
-			this.getView().byId("idClarifyButton").setVisible(false);
-			this.getView().byId("idRequoteButton").setVisible(false);
-			this.getView().byId("idcreatefgmat").setVisible(false);
-			this.getView().byId("idOrdStatus").setVisible(true);
-			this.getView().byId("idAccAGnmnt22").setVisible(true);
 
 			var childItemsEnableDisable = {
 				"enabled": false
@@ -211,12 +227,36 @@ sap.ui.define([
 			// }.bind(this));
 		},
 
-		/**
-		 * Binds the view to the object path.
-		 * @function
-		 * @param {string} sObjectPath path to the object to be bound
-		 * @private
-		 */
+		getTabDetials: function (SalesOrder, ItemNo) {
+
+			//	this.getModel("objectViewModel").setProperty("/busy", true);
+			var sSalesOrderFilter = new sap.ui.model.Filter({
+				path: "SalesOrder",
+				operator: sap.ui.model.FilterOperator.EQ,
+				//	value1: SalesOrder
+				value1: "0000097046"
+			});
+			var sItemNoFilter = new sap.ui.model.Filter({
+				path: "ItemNo",
+				operator: sap.ui.model.FilterOperator.EQ,
+				//	value1: ItemNo
+				value1: "000010"
+			});
+			var filter = [];
+			filter.push(sSalesOrderFilter, sItemNoFilter);
+			this.getOwnerComponent().getModel("UserAction").read("/ZWF_DETAILSSet", {
+				filters: [filter],
+				success: function (oData, oResponse) {
+
+					//		this.getModel("objectViewModel").setProperty("/busy", false);
+
+				}.bind(this),
+				error: function (oError) {
+					//	this.getModel("objectViewModel").setProperty("/busy", false);
+
+				}.bind(this),
+			});
+		},
 		_bindView: function (sObjectPath) {
 			var oViewModel = this.getModel("objectView"),
 				oDataModel = this.getModel();

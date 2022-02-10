@@ -83,7 +83,7 @@
 				<Text text=":" class="sapUiTinyMarginBeginEnd"></Text>
 				<VBox width="100%">
 					<ComboBox id="idCustNo" width="100%" placeholder="Select Customer Number" valueState="None"
-						selectedKey="{HeaderDetailsModel>/distributionChannelKey}" items="{HeaderDetailsModel>/ETOCustomerSet}">
+						selectedKey="{HeaderDetailsModel>/customerNumberKey}" items="{HeaderDetailsModel>/ETOCustomerSet}">
 						<core:Item key="{HeaderDetailsModel>CustomerNo}" text="{HeaderDetailsModel>CustomerNo}"/>
 					</ComboBox>
 				</VBox>

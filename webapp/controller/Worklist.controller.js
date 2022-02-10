@@ -93,7 +93,6 @@ sap.ui.define([
 					this.getOwnerComponent().getModel().read(path, {
 						success: function (oData) {
 							resolve(oData);
-
 						},
 						error: function (oResult) {
 							reject(oResult);

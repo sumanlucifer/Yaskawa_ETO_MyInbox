@@ -126,7 +126,7 @@
 					]
 				},
 				{
-					"pattern": "itemView/{objectId}/{objectId1}",
+					"pattern": "itemView/{objectId}/{objectId1}/{objectId2}",
 					"name": "itemView",
 					"target": [
 						"itemView"

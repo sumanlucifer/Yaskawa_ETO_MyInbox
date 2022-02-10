@@ -488,10 +488,12 @@ sap.ui.define([
 		},
 		itemTableSelection: function (oEvent) {
 			var sObjectPath = oEvent.getSource().getBindingContext("OrderDetailsModel").getObject().SONumber,
-				sObjectPath1 = oEvent.getSource().getBindingContext("OrderDetailsModel").getObject().SOItem;
+				sObjectPath1 = oEvent.getSource().getBindingContext("OrderDetailsModel").getObject().SOItem,
+				sObjectPath2 = oEvent.getSource().getBindingContext("OrderDetailsModel").getObject().TypeApp;
 			this.getRouter().navTo("itemView", {
 				objectId: sObjectPath,
-				objectId1: sObjectPath1
+				objectId1: sObjectPath1,
+				objectId2: sObjectPath2
 			});
 
 			// 			this.getRouter().navTo("itemView");
