@@ -248,7 +248,7 @@ sap.ui.define([
 				this.readChecklistEntity("/ETOItemListSet", Filter.SOfilter),
 				this.readChecklistEntity("/ETOAttachmentSet", Filter.attachFilter),
 				this.readChecklistEntity("/ETOLogDetailsSet", Filter.logFilter),
-				this.readChecklistEntity("/ETONOTESSET_GET_ENTITY", Filter.notesFilter)
+				this.readChecklistEntity("/ETONotesSet", Filter.notesFilter)
 
 			]).then(this.buildChecklist.bind(this)).catch(function (error) {}.bind(this));
 

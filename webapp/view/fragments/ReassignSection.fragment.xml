@@ -14,7 +14,7 @@
 					<Text text="Group Assignment"/>
 					<ComboBox width="100%" change="onSelectGroupAssignment" valueState="None" placeholder="" selectedKey="{globalModel>/groupAssignKey}"
 						items="{globalModel>/userGroupsSet}">
-						<core:Item key="{globalModel>Ddtext}" text="{globalModel>Ddtext}"/>
+						<core:Item key="{globalModel>DomValue}" text="{globalModel>Ddtext}"/>
 					</ComboBox>
 				</VBox>
 			</VBox>
