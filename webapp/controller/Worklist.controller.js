@@ -132,7 +132,7 @@ sap.ui.define([
 
 		},
 
-		onSelectUserAssignment: function (oEvent) {
+		onSelectUserAssignment1: function (oEvent) {
 
 			var sUser = oEvent.getSource().getValue();
 
@@ -157,7 +157,7 @@ sap.ui.define([
 				}.bind(this),
 			});
 		},
-		onSelectGroupAssignment: function (oEvent) {
+		onSelectGroupAssignment1: function (oEvent) {
 			var sUser = oEvent.getSource().getSelectedKey();
 
 			this.getModel("objectViewModel").setProperty("/busy", true);

@@ -28,6 +28,7 @@ sap.ui.define([
 			this._orderDetailsModel();
 			this._attachmentsModel();
 			this.logDetailsModel();
+			this.notesDetailsModel();
 			this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
 
 		},
@@ -99,6 +100,13 @@ sap.ui.define([
 
 			});
 			this.setModel(oModel, "logDetailsModel");
+		},
+		notesDetailsModel: function () {
+			var oModel = new JSONModel({
+				ETOAttachmentSet: []
+
+			});
+			this.setModel(oModel, "notesDetailsModel");
 		},
 		onUploadPress: function (oEvent) {
 			var that = this;
@@ -239,7 +247,8 @@ sap.ui.define([
 				this.readChecklistEntity("/ETO_ITEM_HEADERSet", Filter.SOfilter),
 				this.readChecklistEntity("/ETOItemListSet", Filter.SOfilter),
 				this.readChecklistEntity("/ETOAttachmentSet", Filter.attachFilter),
-				this.readChecklistEntity("/ETOLogDetailsSet", Filter.logFilter)
+				this.readChecklistEntity("/ETOLogDetailsSet", Filter.logFilter),
+				this.readChecklistEntity("/ETONOTESSET_GET_ENTITY", Filter.notesFilter)
 
 			]).then(this.buildChecklist.bind(this)).catch(function (error) {}.bind(this));
 
@@ -278,11 +287,21 @@ sap.ui.define([
 			var logFilter = [];
 			logFilter.push(sLogFilter);
 
+			var sNotesFilter = new sap.ui.model.Filter({
+				path: "Vbeln",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: sSaleOrderNo
+					// value1: "0000097046"
+			});
+			var notesFilter = [];
+			notesFilter.push(sNotesFilter);
+
 			var filerValue = {
 				SOfilter: SOfilter,
 				SOfilterHDS: SOfilterHDS,
 				attachFilter: attachFilter,
-				logFilter: logFilter
+				logFilter: logFilter,
+				notesFilter: notesFilter
 			};
 
 			return filerValue;
@@ -311,12 +330,14 @@ sap.ui.define([
 			var aETOItemListSet = values[2].status === "rejected" ? null : values[2].value.results;
 			var aETOAttachmentSet = values[3].status === "rejected" ? null : values[3].value.results;
 			var aETOLogDetailsSet = values[4].status === "rejected" ? null : values[4].value.results;
+			var aETONotesDetailsSet = values[5].status === "rejected" ? null : values[5].value.results;
 			this.getModel("HeaderDetailsModel").setSizeLimit(1000);
 			this.databuilding(aETOHeaderSet[0]);
 			this.getModel("HeaderDetailsModel").setProperty("/ETOItemHeaderSet", aETOItemHeaderSet[0]);
 			this.getModel("OrderDetailsModel").setProperty("/ETOItemListSet", aETOItemListSet);
 			this.getModel("AttachmentsModel").setProperty("/ETOAttachmentSet", aETOAttachmentSet);
 			this.getModel("logDetailsModel").setProperty("/ETOLogDetailsSet", aETOLogDetailsSet);
+			this.getModel("notesDetailsModel").setProperty("/ETONotesDetailsSet", aETONotesDetailsSet);
 
 		},
 		databuilding: function (data) {
@@ -518,6 +539,50 @@ sap.ui.define([
 			this._getRequoteSelectionDialog().close();
 		},
 
+		onNotesPress: function (oeve) {
+			if (!this._oDialogNotesSection) {
+				this._oDialogNotesSection = sap.ui.xmlfragment("com.yaskawa.ETOMyInbox.view.fragments.Notes", this);
+				this.getView().addDependent(this._oDialogNotesSection);
+
+			}
+			this._oDialogNotesSection.open();
+		},
+		onPressOk: function () {
+			this.getModel("objectViewModel").setProperty("/busy", true);
+			var Note = sap.ui.getCore().byId("TextArea2").getValue();
+			var oPayload = {
+
+				"Vbeln": this.sSaleOrderNo,
+				"Posnr": "",
+				"Note": Note,
+				"Message": "Success"
+
+			};
+			this.getOwnerComponent().getModel().create("/ETONotesSet", oPayload, {
+
+				success: function (oData, oResponse) {
+
+					this.onGetSODetails();
+					this._oDialogNotesSection.close();
+
+					this.getModel("objectViewModel").setProperty("/busy", false);
+					sap.ui.getCore().byId("TextArea2").setValue("");
+					sap.m.MessageBox.success("Notes Updates Successfully!");
+				}.bind(this),
+				error: function (oError) {
+					this._oDialogNotesSection.close();
+					sap.ui.getCore().byId("TextArea2").setValue("");
+					this.getModel("objectViewModel").setProperty("/busy", false);
+					sap.m.MessageBox.error("HTTP Request Failed");
+
+				}.bind(this),
+			});
+		},
+		onPressCancel: function () {
+			this.byId("TextArea2").setValue("");
+
+			this._oDialogNotesSection.close();
+		},
 		reQuoteSelectionYesNo: function (oEvent) {
 			var oView = this.getView();
 			if (oEvent.getSource().getProperty("text") === "Yes") {

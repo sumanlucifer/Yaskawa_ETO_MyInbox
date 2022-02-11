@@ -344,7 +344,8 @@
 														<m:Text text="{AttachmentsModel>Source}"/>
 														<m:Link text="{AttachmentsModel>Filename}" href="{AttachmentsModel>Url}" press="onViewDoc" target="_blank"/>
 														<m:Text text="{AttachmentsModel>User}"/>
-														<m:Text text="{path:'AttachmentsModel>Date', type: 'sap.ui.model.type.Date'}"/>
+														<m:Text text="{path:'AttachmentsModel>Date', type: 'sap.ui.model.type.DateTime'}"/>
+														<!--<m:Text text="{path: 'AttachmentsModel>User', type: 'sap.ui.model.type.DateTime', formatOptions: {UTC:true} }"/>-->
 													</m:cells>
 												</m:ColumnListItem>
 											</m:items>
@@ -365,13 +366,13 @@
 									<!--	<m:TextArea id="TextArea2" cols="200" height="100px"/>-->
 									<!--</m:VBox>-->
 									<m:VBox class="sapUiTinyMargin" renderType="Bare">
-										<m:Table id="idNotesTable">
+										<m:Table id="idNotesTable" items="{notesDetailsModel>/ETONotesDetailsSet}">
 											<m:headerToolbar class="zhdrTlbar">
 												<m:OverflowToolbar>
 													<m:content>
 														<!--<m:Text text="Document Details"/>-->
 														<m:ToolbarSpacer/>
-														<m:Button id="idAddNotes" type="Emphasized" icon="sap-icon://attachment" enabled="true" press="onRequotePress" text="Add Notes"/>
+														<m:Button id="idAddNotes" type="Emphasized" icon="sap-icon://attachment" enabled="true" press="onNotesPress" text="Add Notes"/>
 														<!--<m:Button type="Ghost" text="Add Notes" icon="sap-icon://notes" press="onNotesPress"/>-->
 													</m:content>
 												</m:OverflowToolbar>
@@ -383,8 +384,8 @@
 											<m:items>
 												<m:ColumnListItem>
 													<m:cells>
-														<m:Text text="{AttachmentsModel>Source}"/>
-														<m:Text text="{path:'AttachmentsModel>Date', type: 'sap.ui.model.type.Date'}"/>
+														<m:Text text="{notesDetailsModel>Note}"/>
+														<m:Text text="{path:'notesDetailsModel>Date', type: 'sap.ui.model.type.Date'}"/>
 													</m:cells>
 												</m:ColumnListItem>
 											</m:items>
