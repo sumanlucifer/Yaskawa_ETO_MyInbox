@@ -344,7 +344,7 @@
 														<m:Text text="{AttachmentsModel>Source}"/>
 														<m:Link text="{AttachmentsModel>Filename}" href="{AttachmentsModel>Url}" press="onViewDoc" target="_blank"/>
 														<m:Text text="{AttachmentsModel>User}"/>
-														<m:Text text="{path:'AttachmentsModel>Date', type: 'sap.ui.model.type.DateTime'}"/>
+														<m:Text text="{path:'AttachmentsModel>Date'}"/>
 														<!--<m:Text text="{path: 'AttachmentsModel>User', type: 'sap.ui.model.type.DateTime', formatOptions: {UTC:true} }"/>-->
 													</m:cells>
 												</m:ColumnListItem>

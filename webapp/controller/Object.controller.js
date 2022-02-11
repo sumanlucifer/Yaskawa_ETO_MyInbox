@@ -130,7 +130,7 @@ sap.ui.define([
 		},
 		onComplete: function (oEvent) {
 
-			if (oEvent.getParameter("status") === 500) {
+			if (oEvent.getParameter("status") === 500 || oEvent.getParameter("status") === 201) {
 				this.getModel("objectViewModel").setProperty("/busy", false);
 				sap.m.MessageBox.success("The File has been uploaded successfully!");
 				this.getView().getModel().refresh();
