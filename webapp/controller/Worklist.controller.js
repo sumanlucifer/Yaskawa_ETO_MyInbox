@@ -74,7 +74,7 @@ sap.ui.define([
 		callDropDownService: function () {
 			this.getModel("objectViewModel").setProperty("/busy", true);
 			Promise.allSettled([this.readChecklistEntity("/ETOCustomerSet"),
-				this.readChecklistEntity("/ETOCustomerNameSet"),
+				// this.readChecklistEntity("/ETOCustomerNameSet"),
 				this.readChecklistEntity("/ETOOrderStatusSet"),
 				this.readChecklistEntity("/ETOTypeOfOrderSet"),
 				this.readChecklistEntity("/ETOTypeOfApplSet"),
@@ -82,6 +82,7 @@ sap.ui.define([
 				this.readChecklistEntity("/ETOUsersSet"),
 				this.readChecklistEntity("/ETOGroupSet"),
 				this.readChecklistEntity("/ETOAssignedUserSet"),
+				this.readChecklistEntity("/ETOSalesOrderSet")
 			]).then(this.buildChecklist.bind(this)).catch(function (error) {}.bind(this));
 
 		},
@@ -105,14 +106,15 @@ sap.ui.define([
 		buildChecklist: function (values) {
 			this.getModel("objectViewModel").setProperty("/busy", false);
 			var aETOCustomerSet = values[0].value.results;
-			var aETOCustomerNameSet = values[1].value.results;
-			var aETOOrderStatusSet = values[2].value.results;
-			var aETOOrderTypeSet = values[3].value.results;
-			var aETOTypeOfApplSet = values[4].value.results;
-			var aETODistributionChannelSet = values[5].value.results;
-			var userDetailssSet = values[6].value.results;
-			var userGroupsSet = values[7].value.results;
-			var userAssignedSet = values[8].value.results;
+			// 			var aETOCustomerNameSet = values[1].value.results;
+			var aETOOrderStatusSet = values[1].value.results;
+			var aETOOrderTypeSet = values[2].value.results;
+			var aETOTypeOfApplSet = values[3].value.results;
+			var aETODistributionChannelSet = values[4].value.results;
+			var userDetailssSet = values[5].value.results;
+			var userGroupsSet = values[6].value.results;
+			var userAssignedSet = values[7].value.results;
+			var saleOrderNoSet = values[8].value.results;
 			this.getComponentModel("globalModel").setSizeLimit(1000);
 			this.getComponentModel("globalModel").setProperty("/userDetailssSet", userDetailssSet);
 			this.getComponentModel("globalModel").setProperty("/userGroupsSet", userGroupsSet);
@@ -121,7 +123,7 @@ sap.ui.define([
 
 			this.getModel("HeaderDetailsModel").setSizeLimit(1000);
 			this.getModel("HeaderDetailsModel").setProperty("/ETOCustomerSet", aETOCustomerSet);
-			this.getModel("HeaderDetailsModel").setProperty("/ETOCustomerNameSet", aETOCustomerNameSet);
+			// 			this.getModel("HeaderDetailsModel").setProperty("/ETOCustomerNameSet", aETOCustomerNameSet);
 			this.getModel("HeaderDetailsModel").setProperty("/ETOOrderStatusSet", aETOOrderStatusSet);
 			this.getModel("HeaderDetailsModel").setProperty("/ETOOrderTypeSet", aETOOrderTypeSet);
 			this.getModel("HeaderDetailsModel").setProperty("/ETOTypeOfApplSet", aETOTypeOfApplSet);
@@ -129,6 +131,9 @@ sap.ui.define([
 			this.getModel("HeaderDetailsModel").setProperty("/userDetailssSet", userDetailssSet);
 			this.getModel("HeaderDetailsModel").setProperty("/userGroupsSet", userGroupsSet);
 			this.getModel("HeaderDetailsModel").setProperty("/userAssignedSet", userAssignedSet);
+			this.getModel("HeaderDetailsModel").setProperty("/saleOrderNoSet", saleOrderNoSet);
+			var sLoginID = new sap.ushell.services.UserInfo().getId();
+			this.byId("idAssignTo").setSelectedKey(sLoginID);
 
 		},
 
@@ -238,7 +243,7 @@ sap.ui.define([
 
 		},
 
-		onSearch: function (sGoodsReciepientValue) {
+		onSearch: function () {
 			var OrderStatus = this.byId("idOrderStatus").getSelectedKey();
 			var OrderType = this.byId("idOrderType").getSelectedKey();
 			var distChannel = this.byId("idDistChannel").getSelectedKey();
@@ -249,6 +254,7 @@ sap.ui.define([
 			var User = this.byId("idAssignTo").getSelectedKey();
 			var OrderDate = this.byId("idOrderDate").getValue();
 			var ShipDate = this.byId("idShipDate").getValue();
+			var saleOrderNo = this.byId("idSaleOrderNo").getValue();
 
 			this.getView().byId("idListServiceTable").mProperties.enableAutoBinding = true;
 			this.byId("idListServiceTable").rebindTable();
@@ -261,6 +267,7 @@ sap.ui.define([
 			andFilters.push(new Filter("CustNumber", FilterOperator.EQ, customerNo));
 			andFilters.push(new Filter("Group", FilterOperator.EQ, group));
 			andFilters.push(new Filter("User", FilterOperator.EQ, User));
+			andFilters.push(new Filter("SONumber", FilterOperator.EQ, saleOrderNo));
 
 			// 			yet to bind
 			andFilters.push(new Filter("OrderDate", FilterOperator.EQ, OrderDate));

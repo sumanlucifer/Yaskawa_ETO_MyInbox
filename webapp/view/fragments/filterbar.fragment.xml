@@ -17,7 +17,7 @@
 				<VBox width="100%">
 					<ComboBox id="idOrderType" width="100%" valueState="None" placeholder="Select Order Type"
 						selectedKey="{HeaderDetailsModel>/orderTypeSetKey}" items="{HeaderDetailsModel>/ETOOrderTypeSet}">
-						<core:Item key="{HeaderDetailsModel>Auart}" text="{HeaderDetailsModel>Auart}"/>
+						<core:Item key="{HeaderDetailsModel>DomValue}" text="{HeaderDetailsModel>Ddtext}"/>
 					</ComboBox>
 				</VBox>
 			</HBox>
@@ -74,8 +74,18 @@
 					<!--	selectedKey="{HeaderDetailsModel>/distributionChannelKey}" items="{HeaderDetailsModel>/ETOCustomerNameSet}">-->
 					<!--	<core:Item key="{HeaderDetailsModel>CustomerName}" text="{HeaderDetailsModel>CustomerName}"/>-->
 					<!--</ComboBox>-->
-					<Input id="idCustName" required="true" width="100%" placeholder="Select Customer Name" valueHelpOnly="true" showValueHelp="true"
+					<Input id="idCustName" required="true" width="100%" placeholder="Select Customer Name" valueHelpOnly="false" showValueHelp="true"
 						valueHelpRequest="onValueHelpRequest" value="{HeaderDetailsModel>/CustomerName}"/>
+				</VBox>
+			</HBox>
+			<HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+				<Label text="Sale Order Number" textAlign="Left" design="Bold"/>
+				<Text text=":" class="sapUiTinyMarginBeginEnd"></Text>
+				<VBox width="100%">
+					<ComboBox id="idSaleOrderNo" width="100%" placeholder="Select Sale Order Number" valueState="None"
+						selectedKey="{HeaderDetailsModel>/SaleOrdNoKey}" items="{HeaderDetailsModel>/saleOrderNoSet}">
+						<core:Item key="{HeaderDetailsModel>SONumber}" text="{HeaderDetailsModel>SONumber}"/>
+					</ComboBox>
 				</VBox>
 			</HBox>
 			<HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">

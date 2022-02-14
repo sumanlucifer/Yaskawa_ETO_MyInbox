@@ -6,7 +6,7 @@
         "type": "service",
         "name": "sapui5",
         "entryPath": "/resources",
-        "version": "1.71.37"
+        "version": "1.78.7"
       },
       "description": "SAPUI5 Resources"
     },
@@ -16,7 +16,7 @@
         "type": "service",
         "name": "sapui5",
         "entryPath": "/test-resources",
-        "version": "1.71.37"
+        "version": "1.78.7"
       },
       "description": "SAPUI5 Test Resources"
     },
@@ -26,7 +26,7 @@
         "type": "service",
         "name": "sapui5",
         "entryPath": "/resources",
-        "version": "1.71.37"
+        "version": "1.78.7"
       },
       "description": "SAPUI5 Resources"
     },
@@ -36,11 +36,11 @@
         "type": "service",
         "name": "sapui5",
         "entryPath": "/test-resources",
-        "version": "1.71.37"
+        "version": "1.78.7"
       },
       "description": "SAPUI5 Test Resources"
     },
-   {
+    {
       "path": "/sap/opu/odata",
       "target": {
         "type": "destination",

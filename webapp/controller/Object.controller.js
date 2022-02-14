@@ -13,14 +13,6 @@ sap.ui.define([
 
 		formatter: formatter,
 
-		/* =========================================================== */
-		/* lifecycle methods                                           */
-		/* =========================================================== */
-
-		/**
-		 * Called when the worklist controller is instantiated.
-		 * @public
-		 */
 		onInit: function () {
 
 			this.createInitialModel();
@@ -518,27 +510,6 @@ sap.ui.define([
 			//	this.setSaveButtonEnabledDisable();
 		},
 
-		onRequotePress: function (oEvent) {
-			var oView = this.getView();
-			this._getRequoteSelectionDialog().open();
-			// oView.byId("idRequoteArea").setVisible(true);
-			oView.byId("idOrderStatus").setValue("Requote Pending");
-			oView.byId("idCfStatus").setValue("Complete");
-			// oView.byId("idClarifyArea").setVisible(false);
-			// oView.byId("idClarifyButtonn").setVisible(false);
-			// oView.byId("idCreateFGMatrl").setVisible(false);
-
-		},
-		onRequoteSubmit: function (oEvent) {
-			var selSoNumber = this.getView().byId("idZbStdPoNonStock2").getValue();
-			MessageBox.success("SO Number" + " " + selSoNumber + " " + "successfully requoted.");
-			this._getRequoteSelectionDialog().close();
-		},
-
-		onRequoteCancel: function (oEvent) {
-			this._getRequoteSelectionDialog().close();
-		},
-
 		onNotesPress: function (oeve) {
 			if (!this._oDialogNotesSection) {
 				this._oDialogNotesSection = sap.ui.xmlfragment("com.yaskawa.ETOMyInbox.view.fragments.Notes", this);
@@ -567,7 +538,7 @@ sap.ui.define([
 
 					this.getModel("objectViewModel").setProperty("/busy", false);
 					sap.ui.getCore().byId("TextArea2").setValue("");
-					sap.m.MessageBox.success("Notes Updates Successfully!");
+					sap.m.MessageBox.success("Notes Updated Successfully!");
 				}.bind(this),
 				error: function (oError) {
 					this._oDialogNotesSection.close();
@@ -579,84 +550,10 @@ sap.ui.define([
 			});
 		},
 		onPressCancel: function () {
-			this.byId("TextArea2").setValue("");
-
+			sap.ui.getCore().byId("TextArea2").setValue("");
 			this._oDialogNotesSection.close();
 		},
-		reQuoteSelectionYesNo: function (oEvent) {
-			var oView = this.getView();
-			if (oEvent.getSource().getProperty("text") === "Yes") {
-				oView.byId("idRequoteOrder").setVisible(true);
-				oView.byId("idClarifyButton").setVisible(false);
-				// oView.byId("idOrdStatus").setVisible(true);
-				// oView.byId("idAccAGnmnt22").setVisible(true);
-			} else {
-				oView.byId("idRequoteOrder").setVisible(false);
-				oView.byId("idClarifyButton").setVisible(true);
 
-			}
-			// var id = sap.ui.getCore().byId("id_addNewRecordDialog");
-			// id.destroy();
-			this._getRequoteSelectionDialog().close();
-		},
-		_getClarifySelectionDialog: function () {
-			var _self = this;
-			if (!_self._oDialogClarify) {
-				_self._oDialogClarify = sap.ui.xmlfragment("com.yaskawa.ETOWorkFlow.fragments.ClarifyOptionSelection",
-					_self);
-				_self.getView().addDependent(_self._oDialogClarify);
-			}
-			return this._oDialogClarify;
-		},
-		onClarifyPress: function (oEvent) {
-			this._getClarifySelectionDialog().open();
-			var oView = this.getView();
-			oView.byId("idOsLbl").setVisible(false);
-			oView.byId("idOrderStatus").setVisible(false);
-			oView.byId("idCfStatus").setValue("Clarify");
-
-		},
-		onClarifySubmit: function (oEvent) {
-			var selSoNumber = this.getView().byId("idZbStdPoNonStock2").getValue();
-			MessageBox.success("SO Number" + " " + selSoNumber + " " + "has been clarified successfully.");
-			this._getClarifySelectionDialog().close();
-		},
-		onClarifyCancel: function (oEvent) {
-			this._getClarifySelectionDialog().close();
-		},
-		onFGMatPress: function (oEvent) {
-			var oView = this.getView();
-			oView.byId("idClarifyArea").setVisible(true);
-			oView.byId("idRequoteArea").setVisible(false);
-			oView.byId("idRequotteButtonn").setVisible(false);
-			oView.byId("idClarifyButtonn").setVisible(false);
-			oView.byId("idCfsLbl").setVisible(true);
-			oView.byId("idCfOs").setVisible(true);
-			oView.byId("idCfOs").setValue("Scheduling");
-			oView.byId("idCfCs").setValue("Complete");
-		},
-
-		clarifySelectionYesNo: function (oEvent) {
-			var oView = this.getView();
-			if (oEvent.getSource().getProperty("text") === "Yes") {
-				oView.byId("idClarifyOrder").setVisible(true);
-				oView.byId("idOrdStatus").setVisible(false);
-				oView.byId("idAccAGnmnt22").setVisible(false);
-				oView.byId("idcreatefgmat").setVisible(false);
-			} else {
-				oView.byId("idClarifyOrder").setVisible(true);
-				oView.byId("idcreatefgmat").setVisible(true);
-			}
-			// var id = sap.ui.getCore().byId("id_addNewRecordDialog");
-			// id.destroy();
-			this._getClarifySelectionDialog().close();
-		},
-		requoteClose: function (oEvent) {
-			oEvent.getSource().destroy();
-		},
-		clrifyClose: function (oEvent) {
-			oEvent.getSource().destroy();
-		},
 		handleSubmitPress: function (oEvent) {
 			var _self = this;
 			var selSoNumber = this.getView().byId("idZbStdPoNonStock2").getValue();
@@ -716,40 +613,6 @@ sap.ui.define([
 			this.byId("idItemsTable").removeSelections();
 		},
 
-		_getAttachmentDialog: function () {
-			var _self = this;
-			if (!_self._oDialogAttachment) {
-				_self._oDialogAttachment = sap.ui.xmlfragment("com.yaskawa.ETOWorkFlow.fragments.AttachmentSection",
-					_self);
-				_self.getView().addDependent(_self._oDialogAttachment);
-			}
-			return this._oDialogAttachment;
-		},
-		onAttchmentPress: function () {
-			this._getAttachmentDialog().open();
-			sap.ui.getCore().byId("idAppEngUploadCollection").removeAllItems();
-		},
-		onAttachmentAddToTable: function () {
-			var uploadedFileName = sap.ui.getCore().byId("idAppEngUploadCollection").getAggregation("items")[0].getProperty("fileName");
-			var attachmentsDetailsDataAfterUpload = {
-				results: [{
-					"source": "AppEng",
-					"fileNmae": uploadedFileName,
-					"from": "G. Reichelt",
-					"timeStamp": "27-May-2021 08:08:05 AM"
-				}]
-			};
-			// var attachtsTableModel = new JSONModel(attachmentsDetailsDataAfterUpload);
-			// this.setModel(attachtsTableModel, "attachtsTableModelName");
-			var attachmentTableModel = this.getView().byId("idAttachmentsTable").getModel("attachtsTableModelName");
-			attachmentTableModel.getData().results.push(attachmentsDetailsDataAfterUpload.results[0]);
-			attachmentTableModel.refresh();
-			this._getAttachmentDialog().close();
-		},
-
-		// onNotesPress: function(){
-		// 	this.getView().byId("TextArea2").setEditable(true);
-		// },
 		onAttachmentTableItemDelete: function (oEvent) {
 			var deletedItemTableIndexPath = oEvent.getSource().getBindingContext("attachtsTableModelName").getPath();
 			var deletedItemTableIndex = deletedItemTableIndexPath.split("/")[2];
@@ -767,56 +630,6 @@ sap.ui.define([
 				}
 			});
 
-		},
-		onAddNewItemPress: function (oEvent) {
-			var newItemToAdd = {
-				results: [{
-					"itemNo": "",
-					"matNo": "",
-					"panel": "",
-					"itemNotes": ""
-				}]
-			};
-			var newItemModel = new JSONModel(newItemToAdd);
-			this.setModel(newItemModel, "newItemModelName");
-			var oView = this.getView();
-			oView.byId("idItemSubSection").setVisible(false);
-			oView.byId("idAddNewItem").setVisible(true);
-		},
-		onAddNewItemToTable: function (oEvent) {
-			var oView = this.getView();
-			var itemTable = oView.byId("idItemsTable");
-			// var itemNumber = idItemNumber
-			// var materialNumber = 
-			// var panel=
-			// var itemNotes=
-			// var newItemToAdd = {results:[{
-			// 	"itemNo": "",
-			// 		"matNo": "",
-			// 		"panel": "",
-			// 		"itemNotes": ""
-			// }]};
-			// var newItemModel = new JSONModel(newItemToAdd);
-			// this.setModel(newItemModel, "newItemModelName");
-			if (itemTable.getItems().length) {
-				var newItemTableData = oView.getModel("newItemModelName").getData().results;
-				oView.getModel("itemModelName").getData().results.push(newItemTableData[0]);
-				oView.getModel("itemModelName").refresh();
-			} else {
-				var newItemModel = new JSONModel(oView.getModel("newItemModelName"));
-				this.setModel(newItemModel, "newItemModelName");
-			}
-
-			oView.byId("idItemSubSection").setVisible(true);
-			oView.byId("idAddNewItem").setVisible(false);
-		},
-		onAddItemCancel: function () {
-			var oView = this.getView();
-			oView.byId("idItemSubSection").setVisible(true);
-			oView.byId("idAddNewItem").setVisible(false);
-		},
-		tesr: function () {
-			debugge
 		}
 
 	});

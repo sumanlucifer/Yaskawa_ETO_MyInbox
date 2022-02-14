@@ -220,7 +220,7 @@
 												<m:Label text="User ID" design="Bold" wrapping="true"/>
 											</m:Column>
 											<m:Column>
-												<m:Label text="Delete Entry" design="Bold" wrapping="true"/>
+												<m:Label text="Delete Indicator" design="Bold" wrapping="true"/>
 											</m:Column>
 											<m:Column>
 												<m:Label text="Workflow Status" design="Bold" wrapping="true"/>
@@ -359,12 +359,6 @@
 						<subSections>
 							<ObjectPageSubSection title="Notes" mode="Expanded">
 								<blocks>
-									<!--<m:VBox class="sapUiTinyMargin" renderType="Bare">-->
-									<!--<m:MessageStrip class="sapUiTinyMarginBottom" visible="{=!${device>/browser/mobile}}" showIcon="true" type="Information"-->
-									<!--	text="To add files, you can also use drag &amp; drop on your desktop or tablet."/>-->
-									<!--<m:Label text="Write notes here"/>-->
-									<!--	<m:TextArea id="TextArea2" cols="200" height="100px"/>-->
-									<!--</m:VBox>-->
 									<m:VBox class="sapUiTinyMargin" renderType="Bare">
 										<m:Table id="idNotesTable" items="{notesDetailsModel>/ETONotesDetailsSet}">
 											<m:headerToolbar class="zhdrTlbar">
@@ -373,7 +367,6 @@
 														<!--<m:Text text="Document Details"/>-->
 														<m:ToolbarSpacer/>
 														<m:Button id="idAddNotes" type="Emphasized" icon="sap-icon://attachment" enabled="true" press="onNotesPress" text="Add Notes"/>
-														<!--<m:Button type="Ghost" text="Add Notes" icon="sap-icon://notes" press="onNotesPress"/>-->
 													</m:content>
 												</m:OverflowToolbar>
 											</m:headerToolbar>

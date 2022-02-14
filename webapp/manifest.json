@@ -59,9 +59,9 @@
 		"dependencies": {
 			"minUI5Version": "1.66.0",
 			"libs": {
-				"sap.ui.core": {},
+				"sap.f": {},
 				"sap.m": {},
-				"sap.f": {}
+				"sap.ui.core": {}
 			}
 		},
 		"contentDensities": {
@@ -164,7 +164,7 @@
 		}
 	},
 	"sap.platform.abap": {
-		"uri": "/sap/bc/ui5_ui5/sap/zmyinboxeto/webapp",
+		"uri": "/sap/bc/ui5_ui5/sap/zeto_myinbox/webapp",
 		"_version": "1.1.0"
 	}
 }
