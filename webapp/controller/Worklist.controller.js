@@ -239,7 +239,7 @@ sap.ui.define([
 			var obj = oSelectedItem.getBindingContext().getObject();
 
 			//  debugger;
-			oViewModel.setProperty("/CustomerName", obj["Mcod1"]);
+			oViewModel.setProperty("/CustomerName", obj["CustomerName"]);
 
 		},
 
