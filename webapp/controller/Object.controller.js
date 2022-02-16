@@ -581,6 +581,7 @@ sap.ui.define([
 		onReassignButtonPress: function () {
 			this.getModel("globalModel").setProperty("/userAssignKey", "");
 			this.getModel("globalModel").setProperty("/groupAssignKey", "");
+			this.getModel("globalModel").setProperty("/userGroupVisible", false);
 			var POSNo = this.POSNO;
 			if (!POSNo) {
 				sap.m.MessageBox.error("Please select at least one item!");

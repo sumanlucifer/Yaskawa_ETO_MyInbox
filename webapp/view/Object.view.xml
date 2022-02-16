@@ -344,7 +344,7 @@
 														<m:Text text="{AttachmentsModel>Source}"/>
 														<m:Link text="{AttachmentsModel>Filename}" href="{AttachmentsModel>Url}" press="onViewDoc" target="_blank"/>
 														<m:Text text="{AttachmentsModel>User}"/>
-														<m:Text text="{path:'AttachmentsModel>Date'}"/>
+														<m:Text text="{AttachmentsModel>Date}-{AttachmentsModel>Time}"/>
 														<!--<m:Text text="{path: 'AttachmentsModel>User', type: 'sap.ui.model.type.DateTime', formatOptions: {UTC:true} }"/>-->
 													</m:cells>
 												</m:ColumnListItem>
@@ -373,12 +373,14 @@
 											<m:columns>
 												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Notes"/></m:Column>
 												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Time stamp"/></m:Column>
+												<!--<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Time"/></m:Column>-->
 											</m:columns>
 											<m:items>
 												<m:ColumnListItem>
 													<m:cells>
 														<m:Text text="{notesDetailsModel>Note}"/>
-														<m:Text text="{path:'notesDetailsModel>Date', type: 'sap.ui.model.type.Date'}"/>
+														<m:Text text="{notesDetailsModel>Date}-{notesDetailsModel>Time}"/>
+														<!--<m:Text text="{notesDetailsModel>Time}"/>-->
 													</m:cells>
 												</m:ColumnListItem>
 											</m:items>

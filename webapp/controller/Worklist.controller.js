@@ -417,6 +417,7 @@ sap.ui.define([
 			this.getModel("globalModel").setProperty("/userAssignKey", "");
 			this.getModel("globalModel").setProperty("/groupAssignKey", "null");
 			this.getModel("globalModel").setProperty("/userAssnVisible", false);
+			this.getModel("globalModel").setProperty("/userGroupVisible", true);
 			var SONo = this.SONumber;
 			this.button = "ACCEPT";
 			if (!SONo) {
@@ -437,6 +438,8 @@ sap.ui.define([
 		},
 		onReassignButtonPress: function () {
 			this.button = "REJECT";
+			this.getModel("globalModel").setProperty("/userAssnVisible", true);
+			this.getModel("globalModel").setProperty("/userGroupVisible", true);
 			this.getModel("globalModel").setProperty("/userAssignKey", "");
 			this.getModel("globalModel").setProperty("/groupAssignKey", "");
 			var SONo = this.SONumber;

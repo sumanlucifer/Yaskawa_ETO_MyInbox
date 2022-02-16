@@ -10,7 +10,7 @@
 						<core:Item key="{globalModel>UserName}" text="{globalModel>UserName}"/>
 					</ComboBox>
 				</VBox>
-				<VBox >
+				<VBox visible="{globalModel>/userGroupVisible}">
 					<Text text="Group Assignment"/>
 					<ComboBox width="100%" change="onSelectGroupAssignment" valueState="None" placeholder="" selectedKey="{globalModel>/groupAssignKey}"
 						items="{globalModel>/userGroupsSet}">
