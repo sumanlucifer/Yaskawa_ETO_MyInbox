@@ -349,6 +349,7 @@ sap.ui.define([
 				this.getModel("HeaderDetailsModel").setProperty("/CustPo", data.CustPo);
 				this.getModel("HeaderDetailsModel").setProperty("/distributionChannelKey", data.Vtweg);
 				this.getModel("HeaderDetailsModel").setProperty("/orderStatusSetKey", data.OrderStatus);
+				this.getModel("HeaderDetailsModel").setProperty("/QuotationNo", data.QuotationNo);
 			}
 
 		},
@@ -483,11 +484,18 @@ sap.ui.define([
 			var sObjectPath = oEvent.getSource().getBindingContext("OrderDetailsModel").getObject().SONumber,
 				sObjectPath1 = oEvent.getSource().getBindingContext("OrderDetailsModel").getObject().SOItem,
 				sObjectPath2 = oEvent.getSource().getBindingContext("OrderDetailsModel").getObject().TypeApp;
+			// 			this.getRouter().navTo("itemView", {
+			// 				objectId: sObjectPath,
+			// 				objectId1: sObjectPath1,
+			// 				objectId2: sObjectPath2
+			// 			});
 			this.getRouter().navTo("itemView", {
-				objectId: sObjectPath,
-				objectId1: sObjectPath1,
-				objectId2: sObjectPath2
-			});
+					objectId: sObjectPath,
+					objectId1: sObjectPath1,
+					objectId2: sObjectPath2
+				},
+				false
+			);
 
 			// 			this.getRouter().navTo("itemView");
 

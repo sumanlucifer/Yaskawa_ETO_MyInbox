@@ -40,16 +40,6 @@ sap.ui.define([
 			this.setModel(oModel, "TabDetailsModel");
 		},
 
-		/* =========================================================== */
-		/* event handlers                                              */
-		/* =========================================================== */
-
-		/**
-		 * Event handler  for navigating back.
-		 * It there is a history entry we go one step back in the browser history
-		 * If not, it will replace the current entry of the browser history with the worklist route.
-		 * @public
-		 */
 		onNavBack: function () {
 			var sPreviousHash = History.getInstance().getPreviousHash();
 
