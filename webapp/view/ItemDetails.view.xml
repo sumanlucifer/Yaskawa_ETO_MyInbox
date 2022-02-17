@@ -1,7 +1,7 @@
 <mvc:View controllerName="com.yaskawa.ETOMyInbox.controller.ItemDetails" xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns="sap.uxap"
 	xmlns:layout="sap.ui.layout" xmlns:blockcolor="wel.create.po.CreatePO.blocks" xmlns:semantic="sap.f.semantic" xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:t="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml">
-	<m:Page title="Item Details" busy="{objectViewModel>/busy}" showNavButton="false" navButtonPress="onBack">
+	<m:Page title="Item Detail" busy="{objectViewModel>/busy}" showNavButton="false" navButtonPress="onBack">
 		<m:content>
 			<ObjectPageLayout id="ObjectPageLayout" subSectionLayout="{ConfigModel>/subSectionLayout}" useIconTabBar="true" flexEnabled="true"
 				upperCaseAnchorBar="false">

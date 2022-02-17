@@ -52,9 +52,13 @@ sap.ui.define([
 
 		_onObjectMatched: function (oEvent) {
 
-			this.Vbeln = oEvent.getParameter("arguments").objectId;
-			this.Posnr = oEvent.getParameter("arguments").objectId1;
-			this.AppType = oEvent.getParameter("arguments").objectId2;
+			this.Vbeln = this.getModel("globalModel").getProperty("/objectId");
+			this.Posnr = this.getModel("globalModel").getProperty("/objectId1");
+			this.AppType = this.getModel("globalModel").getProperty("/objectId2");
+
+			// 			this.Vbeln = oEvent.getParameter("arguments").objectId;
+			// 			this.Posnr = oEvent.getParameter("arguments").objectId1;
+			// 			this.AppType = oEvent.getParameter("arguments").objectId2;
 
 			if (this.AppType === "04") {
 				this.getView().byId("idOptionTab").setVisible(false);

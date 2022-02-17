@@ -102,6 +102,7 @@
 				"viewType": "XML",
 				"viewPath": "com.yaskawa.ETOMyInbox.view",
 				"controlId": "app",
+				"clearControlAggregation": false,
 				"controlAggregation": "pages",
 				"bypassed": {
 					"target": [
@@ -126,9 +127,10 @@
 					]
 				},
 				{
-					"pattern": "itemView/{objectId}/{objectId1}/{objectId2}",
+					"pattern": "itemView",
 					"name": "itemView",
 					"target": [
+						"object",
 						"itemView"
 					]
 				}
@@ -148,9 +150,10 @@
 				},
 				"itemView": {
 					"viewName": "ItemDetails",
-					"viewId": "ItemDetails",
-					"viewLevel": 3,
-					"title": "Item Details"
+					"clearControlAggregation": false,
+					"transition": "slide",
+					"viewId": "itemView",
+					"viewLevel": 3
 				},
 				"objectNotFound": {
 					"viewName": "ObjectNotFound",

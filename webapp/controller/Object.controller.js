@@ -489,13 +489,12 @@ sap.ui.define([
 			// 				objectId1: sObjectPath1,
 			// 				objectId2: sObjectPath2
 			// 			});
-			this.getRouter().navTo("itemView", {
-					objectId: sObjectPath,
-					objectId1: sObjectPath1,
-					objectId2: sObjectPath2
-				},
-				false
+			this.getRouter().navTo("itemView", {},
+				true
 			);
+			this.getModel("globalModel").setProperty("/objectId", sObjectPath);
+			this.getModel("globalModel").setProperty("/objectId1", sObjectPath1);
+			this.getModel("globalModel").setProperty("/objectId2", sObjectPath2);
 
 			// 			this.getRouter().navTo("itemView");
 
