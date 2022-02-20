@@ -400,8 +400,9 @@
 												<m:Label width="10rem" text="Prod Sche Profile"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">
-														<core:ListItem key="" text=""/>
+													<m:ComboBox id="idProdSchePrfl" width="100%" valueState="None" placeholder="Select Profile" selectedKey="{TabDetailsModel>/CO_PRODPRF}"
+														items="{TabDetailsModel>/ProductScheProfileSet}">
+														<core:Item key="{TabDetailsModel>CO_PRODPRF}" text="{TabDetailsModel>CO_PRODPRF}"/>
 													</m:ComboBox>
 												</m:VBox>
 											</m:HBox>
@@ -443,8 +444,9 @@
 												<m:Label width="10rem" text="Requirements Grp"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">
-														<core:ListItem key="" text=""/>
+													<m:ComboBox id="idReqGrp" width="100%" valueState="None" placeholder="Select Req Group" selectedKey="{TabDetailsModel>/DOMVALUE_L}"
+														items="{TabDetailsModel>/RequirementsGroupSet}">
+														<core:Item key="{TabDetailsModel>DOMVALUE_L}" text="{TabDetailsModel>DDTEXT}"/>
 													</m:ComboBox>
 												</m:VBox>
 											</m:HBox>
