@@ -357,8 +357,9 @@
 												<m:Label width="10rem" text="Material Group"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">
-														<core:ListItem key="" text=""/>
+													<m:ComboBox id="idMatGrp" width="100%" valueState="None" placeholder="Select Material Group" selectedKey="{TabDetailsModel>/MATKL}"
+														items="{TabDetailsModel>/MaterialGroupSet}">
+														<core:Item key="{TabDetailsModel>MATKL}" text="{TabDetailsModel>MATKL}"/>
 													</m:ComboBox>
 												</m:VBox>
 											</m:HBox>
@@ -382,9 +383,6 @@
 												<m:Label width="10rem" text="Total Repl. lead time"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<!--<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">-->
-													<!--	<core:ListItem key="" text=""/>-->
-													<!--</m:ComboBox>-->
 													<m:Input value=""/>
 												</m:VBox>
 											</m:HBox>
@@ -433,8 +431,9 @@
 												<m:Label width="10rem" text="MRP Controller"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">
-														<core:ListItem key="" text=""/>
+													<m:ComboBox id="idMatCntrl" width="100%" valueState="None" placeholder="Select MRP Controller" selectedKey="{TabDetailsModel>/DISPO}"
+														items="{TabDetailsModel>/MRPControllerSet}">
+														<core:Item key="{TabDetailsModel>DISPO}" text="{TabDetailsModel>DISPO}"/>
 													</m:ComboBox>
 												</m:VBox>
 											</m:HBox>
