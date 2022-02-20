@@ -122,7 +122,7 @@ sap.ui.define([
 
 		buildChecklist: function (values) {
 			this.getModel("objectViewModel").setProperty("/busy", false);
-			// 			product type data model binding
+			// 			product type response
 			var MRPTypeSet = values[0].value.results;
 			var MaterialGroup1Set = values[1].value.results;
 			var MaterialPriceSet = values[2].value.results;
@@ -136,23 +136,35 @@ sap.ui.define([
 			var UnitSet = values[10].value.results;
 			var ValuationClassSet = values[11].value.results;
 
-			// 			Material details  data model binding
+			// 			Material details  response
 			var MRPControllerSet = values[12].value.results;
 			var MaterialGroupSet = values[13].value.results;
 			var ProductScheProfileSet = values[14].value.results;
 			var RequirementsGroupSet = values[15].value.results;
-			this.getComponentModel("globalModel").setSizeLimit(1000);
-			this.getModel("HeaderDetailsModel").setSizeLimit(1000);
-			this.getModel("HeaderDetailsModel").setProperty("/ETOCustomerSet", aETOCustomerSet);
+			this.getModel("TabDetailsModel").setSizeLimit(1000);
 
-			this.getModel("HeaderDetailsModel").setProperty("/ETOOrderStatusSet", aETOOrderStatusSet);
-			this.getModel("HeaderDetailsModel").setProperty("/ETOOrderTypeSet", aETOOrderTypeSet);
-			this.getModel("HeaderDetailsModel").setProperty("/ETOTypeOfApplSet", aETOTypeOfApplSet);
-			this.getModel("HeaderDetailsModel").setProperty("/ETODistributionChannelSet", aETODistributionChannelSet);
-			this.getModel("HeaderDetailsModel").setProperty("/userDetailssSet", userDetailssSet);
-			this.getModel("HeaderDetailsModel").setProperty("/userGroupsSet", userGroupsSet);
-			this.getModel("HeaderDetailsModel").setProperty("/userAssignedSet", userAssignedSet);
-			this.getModel("HeaderDetailsModel").setProperty("/saleOrderNoSet", saleOrderNoSet);
+			// Product type data model binding
+
+			this.getModel("TabDetailsModel").setProperty("/MRPTypeSet", MRPTypeSet);
+			this.getModel("TabDetailsModel").setProperty("/MaterialGroup1Set", MaterialGroup1Set);
+			this.getModel("TabDetailsModel").setProperty("/MaterialPriceSet", MaterialPriceSet);
+			this.getModel("TabDetailsModel").setProperty("/OverheadGroupSet", OverheadGroupSet);
+			this.getModel("TabDetailsModel").setProperty("/PlantSet", PlantSet);
+			this.getModel("TabDetailsModel").setProperty("/ProcurementTypeSet", ProcurementTypeSet);
+			this.getModel("TabDetailsModel").setProperty("/ProductHierarchySet", ProductHierarchySet);
+			this.getModel("TabDetailsModel").setProperty("/ProductTypeSet", ProductTypeSet);
+			this.getModel("TabDetailsModel").setProperty("/SerialNbrSet", SerialNbrSet);
+			this.getModel("TabDetailsModel").setProperty("/StrategyGroupSet", StrategyGroupSet);
+			this.getModel("TabDetailsModel").setProperty("/UnitSet", UnitSet);
+			this.getModel("TabDetailsModel").setProperty("/ValuationClassSet", ValuationClassSet);
+
+			// Materials details data model binding
+
+			this.getModel("TabDetailsModel").setProperty("/MRPControllerSet", MRPControllerSet);
+			this.getModel("TabDetailsModel").setProperty("/MaterialGroupSet", MaterialGroupSet);
+			this.getModel("TabDetailsModel").setProperty("/ProductScheProfileSet", ProductScheProfileSet);
+			this.getModel("TabDetailsModel").setProperty("/RequirementsGroupSet", RequirementsGroupSet);
+
 			var sLoginID = new sap.ushell.services.UserInfo().getId();
 			this.byId("idAssignTo").setSelectedKey(sLoginID);
 

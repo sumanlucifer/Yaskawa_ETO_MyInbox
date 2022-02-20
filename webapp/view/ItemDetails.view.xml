@@ -203,8 +203,9 @@
 												<m:Label width="10rem" text="Product Type"/>
 												<m:Text id="idreqstdBy22" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">
-														<core:ListItem key="" text=""/>
+													<m:ComboBox id="idProductType" width="100%" valueState="None" placeholder="Select Product Type" selectedKey="{HeaderDetailsModel>/DDTEXT}"
+														items="{TabDetailsModel>/ProductTypeSet}">
+														<core:Item key="{TabDetailsModel>DDTEXT}" text="{TabDetailsModel>DDTEXT}"/>
 													</m:ComboBox>
 												</m:VBox>
 											</m:HBox>
@@ -228,8 +229,9 @@
 												<m:Label width="10rem" text="Primary Plant"/>
 												<m:Text id="idreqstdBy21" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">
-														<core:ListItem key="" text=""/>
+													<m:ComboBox id="idPrimaryPlant" width="100%" valueState="None" placeholder="Select Primary Plant" selectedKey="{TabDetailsModel>/Werks}"
+														items="{TabDetailsModel>/PlantSet}">
+														<core:Item key="{TabDetailsModel>Werks}" text="{TabDetailsModel>Werks}"/>
 													</m:ComboBox>
 												</m:VBox>
 											</m:HBox>
@@ -237,8 +239,9 @@
 												<m:Label width="10rem" text="Product Hierarchy"/>
 												<m:Text id="idOrdrDate211" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">
-														<core:ListItem key="" text=""/>
+													<m:ComboBox id="idProdHrchy" width="100%" valueState="None" placeholder="Select Material Pricing" selectedKey="{TabDetailsModel>/PRODH}"
+														items="{TabDetailsModel>/ProductHierarchySet}">
+														<core:Item key="{TabDetailsModel>PRODH}" text="{TabDetailsModel>PRODH}"/>
 													</m:ComboBox>
 												</m:VBox>
 											</m:HBox>
@@ -246,8 +249,9 @@
 												<m:Label width="10rem" text="Material Pricing Group"/>
 												<m:Text id="idShipDate2111" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">
-														<core:ListItem key="" text=""/>
+													<m:ComboBox id="idMatrlPricing" width="100%" valueState="None" placeholder="Select Material Pricing" selectedKey="{TabDetailsModel>/KONDM}"
+														items="{TabDetailsModel>/MaterialPriceSet}">
+														<core:Item key="{TabDetailsModel>KONDM}" text="{TabDetailsModel>KONDM}"/>
 													</m:ComboBox>
 												</m:VBox>
 											</m:HBox>
@@ -257,8 +261,9 @@
 												<m:Label width="10rem" text="Base UOM"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">
-														<core:ListItem key="" text=""/>
+													<m:ComboBox id="idBaseUOM" width="100%" valueState="None" placeholder="Select Base UOM" selectedKey="{TabDetailsModel>/Meins}"
+														items="{TabDetailsModel>/UnitSet}">
+														<core:Item key="{TabDetailsModel>Meins}" text="{TabDetailsModel>Meins}"/>
 													</m:ComboBox>
 												</m:VBox>
 											</m:HBox>
@@ -266,8 +271,9 @@
 												<m:Label width="10rem" text="Procurement Type"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">
-														<core:ListItem key="" text=""/>
+													<m:ComboBox id="idprocurementType" width="100%" valueState="None" placeholder="Select Procurement"
+														selectedKey="{TabDetailsModel>/DOMVALUE_L}" items="{TabDetailsModel>/ProcurementTypeSet}">
+														<core:Item key="{TabDetailsModel>DOMVALUE_L}" text="{TabDetailsModel>DDTEXT}"/>
 													</m:ComboBox>
 												</m:VBox>
 											</m:HBox>
@@ -275,8 +281,9 @@
 												<m:Label width="10rem" text="Material Group1"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">
-														<core:ListItem key="" text=""/>
+													<m:ComboBox id="idMatGrp1" width="100%" valueState="None" placeholder="Select Material Group1 Type" selectedKey="{TabDetailsModel>/MVGR1}"
+														items="{TabDetailsModel>/MaterialGroup1Set}">
+														<core:Item key="{TabDetailsModel>MVGR1}" text="{TabDetailsModel>MVGR1}"/>
 													</m:ComboBox>
 												</m:VBox>
 											</m:HBox>
@@ -286,8 +293,9 @@
 												<m:Label width="10rem" text="Overhead Group"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">
-														<core:ListItem key="" text=""/>
+													<m:ComboBox id="idOvrHdGrp" width="100%" valueState="None" placeholder="Select OverHead" selectedKey="{TabDetailsModel>/KOSGR}"
+														items="{TabDetailsModel>/OverheadGroupSet}">
+														<core:Item key="{TabDetailsModel>KOSGR}" text="{TabDetailsModel>KOSGR}"/>
 													</m:ComboBox>
 												</m:VBox>
 											</m:HBox>
@@ -295,8 +303,9 @@
 												<m:Label width="10rem" text="Valuation Class"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">
-														<core:ListItem key="" text=""/>
+													<m:ComboBox id="idValClass" width="100%" valueState="None" placeholder="Select Valuation" selectedKey="{TabDetailsModel>/BKLAS}"
+														items="{TabDetailsModel>/ValuationClassSet}">
+														<core:Item key="{TabDetailsModel>BKLAS}" text="{TabDetailsModel>BKLAS}"/>
 													</m:ComboBox>
 												</m:VBox>
 											</m:HBox>
@@ -304,8 +313,9 @@
 												<m:Label width="10rem" text="MRP Type"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">
-														<core:ListItem key="" text=""/>
+													<m:ComboBox id="idMRPType" width="100%" valueState="None" placeholder="Select MRP" selectedKey="{TabDetailsModel>/DISMM}"
+														items="{TabDetailsModel>/MRPTypeSet}">
+														<core:Item key="{TabDetailsModel>DISMM}" text="{TabDetailsModel>DISMM}"/>
 													</m:ComboBox>
 												</m:VBox>
 											</m:HBox>
@@ -315,8 +325,9 @@
 												<m:Label width="10rem" text="Strategy Group"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">
-														<core:ListItem key="" text=""/>
+													<m:ComboBox id="idStrategyGrp" width="100%" valueState="None" placeholder="Select Strategy" selectedKey="{TabDetailsModel>/STRGR}"
+														items="{TabDetailsModel>/StrategyGroupSet}">
+														<core:Item key="{TabDetailsModel>STRGR}" text="{TabDetailsModel>STRGR}"/>
 													</m:ComboBox>
 												</m:VBox>
 											</m:HBox>
@@ -324,8 +335,9 @@
 												<m:Label width="10rem" text="Serial Nbr Profile"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">
-														<core:ListItem key="" text=""/>
+													<m:ComboBox id="idSerialNBR" width="100%" valueState="None" placeholder="Select Serial NBR" selectedKey="{TabDetailsModel>/SERNP}"
+														items="{TabDetailsModel>/SerialNbrSet}">
+														<core:Item key="{TabDetailsModel>SERNP}" text="{TabDetailsModel>SERNP}"/>
 													</m:ComboBox>
 												</m:VBox>
 											</m:HBox>
