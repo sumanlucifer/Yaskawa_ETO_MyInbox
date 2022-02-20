@@ -170,8 +170,8 @@
 											<m:Label design="Bold" text="Check List" required="true"/>
 											<m:VBox>
 												<m:CheckBox text="Customer P.O. Scanned and Attached" selected="true"/>
-												<m:CheckBox text="Prel. Order Confirmation Sent and Attached"/>
-												<m:CheckBox text="Sales Order Confirmation"/>
+												<m:CheckBox text="Prel. Order Confirmation Sent and Attached" selected="true"/>
+												<m:CheckBox text="Sales Order Confirmation" selected="true"/>
 											</m:VBox>
 										</m:VBox>
 									</l:Grid>

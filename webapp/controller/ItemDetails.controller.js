@@ -11,14 +11,6 @@ sap.ui.define([
 
 		formatter: formatter,
 
-		/* =========================================================== */
-		/* lifecycle methods                                           */
-		/* =========================================================== */
-
-		/**
-		 * Called when the worklist controller is instantiated.
-		 * @public
-		 */
 		onInit: function () {
 			this._createTabDetailsModel();
 			this.createInitialModel();
@@ -55,10 +47,7 @@ sap.ui.define([
 			this.Vbeln = this.getModel("globalModel").getProperty("/objectId");
 			this.Posnr = this.getModel("globalModel").getProperty("/objectId1");
 			this.AppType = this.getModel("globalModel").getProperty("/objectId2");
-
-			// 			this.Vbeln = oEvent.getParameter("arguments").objectId;
-			// 			this.Posnr = oEvent.getParameter("arguments").objectId1;
-			// 			this.AppType = oEvent.getParameter("arguments").objectId2;
+			this.callItemDetailDropDownService();
 
 			if (this.AppType === "04") {
 				this.getView().byId("idOptionTab").setVisible(false);
@@ -84,14 +73,89 @@ sap.ui.define([
 			}
 
 			this.getTabDetials(this.Vbeln, this.Posnr);
-			//this.getView().byId("idZbStdPoNonStock2").setValue(sObjectId);
 
-			// this.getModel().metadataLoaded().then( function() {
-			// 	var sObjectPath = this.getModel().createKey("POHeaderSet", {
-			// 		PONumber :  sObjectId
-			// 	});
-			// 	this._bindView("/" + sObjectPath);
-			// }.bind(this));
+		},
+		callItemDetailDropDownService: function () {
+			this.getModel("objectViewModel").setProperty("/busy", true);
+			Promise.allSettled([
+
+				//   Product type drop down data
+
+				this.readChecklistEntity("/MRPTypeSet"),
+				this.readChecklistEntity("/MaterialGroup1Set"),
+				this.readChecklistEntity("/MaterialPriceSet"),
+				this.readChecklistEntity("/OverheadGroupSet"),
+				this.readChecklistEntity("/PlantSet"),
+				this.readChecklistEntity("/ProcurementTypeSet"),
+				this.readChecklistEntity("/ProductHierarchySet"),
+				this.readChecklistEntity("/ProductTypeSet"),
+				this.readChecklistEntity("/SerialNbrSet"),
+				this.readChecklistEntity("/StrategyGroupSet"),
+				this.readChecklistEntity("/UnitSet"),
+				this.readChecklistEntity("/ValuationClassSet"),
+
+				//   Material Details type drop down data
+				this.readChecklistEntity("/MRPControllerSet"),
+				this.readChecklistEntity("/MaterialGroupSet"),
+				this.readChecklistEntity("/ProductScheProfileSet"),
+				this.readChecklistEntity("/RequirementsGroupSet")
+
+			]).then(this.buildChecklist.bind(this)).catch(function (error) {}.bind(this));
+
+		},
+
+		readChecklistEntity: function (path) {
+
+			return new Promise(
+				function (resolve, reject) {
+					this.getOwnerComponent().getModel("UserAction").read(path, {
+						success: function (oData) {
+							resolve(oData);
+						},
+						error: function (oResult) {
+							reject(oResult);
+
+						}
+					});
+				}.bind(this));
+		},
+
+		buildChecklist: function (values) {
+			this.getModel("objectViewModel").setProperty("/busy", false);
+			// 			product type data model binding
+			var MRPTypeSet = values[0].value.results;
+			var MaterialGroup1Set = values[1].value.results;
+			var MaterialPriceSet = values[2].value.results;
+			var OverheadGroupSet = values[3].value.results;
+			var PlantSet = values[4].value.results;
+			var ProcurementTypeSet = values[5].value.results;
+			var ProductHierarchySet = values[6].value.results;
+			var ProductTypeSet = values[7].value.results;
+			var SerialNbrSet = values[8].value.results;
+			var StrategyGroupSet = values[9].value.results;
+			var UnitSet = values[10].value.results;
+			var ValuationClassSet = values[11].value.results;
+
+			// 			Material details  data model binding
+			var MRPControllerSet = values[12].value.results;
+			var MaterialGroupSet = values[13].value.results;
+			var ProductScheProfileSet = values[14].value.results;
+			var RequirementsGroupSet = values[15].value.results;
+			this.getComponentModel("globalModel").setSizeLimit(1000);
+			this.getModel("HeaderDetailsModel").setSizeLimit(1000);
+			this.getModel("HeaderDetailsModel").setProperty("/ETOCustomerSet", aETOCustomerSet);
+
+			this.getModel("HeaderDetailsModel").setProperty("/ETOOrderStatusSet", aETOOrderStatusSet);
+			this.getModel("HeaderDetailsModel").setProperty("/ETOOrderTypeSet", aETOOrderTypeSet);
+			this.getModel("HeaderDetailsModel").setProperty("/ETOTypeOfApplSet", aETOTypeOfApplSet);
+			this.getModel("HeaderDetailsModel").setProperty("/ETODistributionChannelSet", aETODistributionChannelSet);
+			this.getModel("HeaderDetailsModel").setProperty("/userDetailssSet", userDetailssSet);
+			this.getModel("HeaderDetailsModel").setProperty("/userGroupsSet", userGroupsSet);
+			this.getModel("HeaderDetailsModel").setProperty("/userAssignedSet", userAssignedSet);
+			this.getModel("HeaderDetailsModel").setProperty("/saleOrderNoSet", saleOrderNoSet);
+			var sLoginID = new sap.ushell.services.UserInfo().getId();
+			this.byId("idAssignTo").setSelectedKey(sLoginID);
+
 		},
 
 		getTabDetials: function (SalesOrder, ItemNo) {
