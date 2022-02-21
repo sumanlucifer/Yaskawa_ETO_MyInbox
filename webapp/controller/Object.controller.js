@@ -154,7 +154,7 @@ sap.ui.define([
 			var sUrl = this.getModel().sServiceUrl + "/ETOAttachmentSet";
 			oFileUploader.setUploadUrl(sUrl);
 			oFileUploader.setSendXHR(true);
-			oFileUploader.setUseMultipart(false);
+			oFileUploader.setUseMultipart(true);
 			oFileUploader.upload();
 		},
 		onFileNameLengthExceed: function () {
@@ -588,7 +588,7 @@ sap.ui.define([
 		onReassignButtonPress: function () {
 			this.getModel("globalModel").setProperty("/userAssignKey", "");
 			this.getModel("globalModel").setProperty("/groupAssignKey", "");
-			this.getModel("globalModel").setProperty("/userGroupVisible", false);
+			//this.getModel("globalModel").setProperty("/userGroupVisible", false);
 			var POSNo = this.POSNO;
 			if (!POSNo) {
 				sap.m.MessageBox.error("Please select at least one item!");
