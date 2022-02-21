@@ -46,6 +46,8 @@ sap.ui.define([
 
 			this.Vbeln = this.getModel("globalModel").getProperty("/objectId");
 			this.Posnr = this.getModel("globalModel").getProperty("/objectId1");
+			this.Vbeln = "0000097665";
+			this.Posnr = "000010";
 			this.AppType = this.getModel("globalModel").getProperty("/objectId2");
 			this.callItemDetailDropDownService();
 
@@ -77,6 +79,7 @@ sap.ui.define([
 		},
 		callItemDetailDropDownService: function () {
 			this.getModel("objectViewModel").setProperty("/busy", true);
+			var Filter = this.getFilters(this.Vbeln, this.Posnr);
 			Promise.allSettled([
 
 				//   Product type drop down data
@@ -98,17 +101,25 @@ sap.ui.define([
 				this.readChecklistEntity("/MRPControllerSet"),
 				this.readChecklistEntity("/MaterialGroupSet"),
 				this.readChecklistEntity("/ProductScheProfileSet"),
-				this.readChecklistEntity("/RequirementsGroupSet")
+				this.readChecklistEntity("/RequirementsGroupSet"),
+
+				// option type Drop down
+				this.readChecklistEntity("/OptionTypeSet"),
+
+				// Pre Order Item Tab
+
+				this.readChecklistEntity("/ZPRE_ORD_ITEMSet", Filter)
 
 			]).then(this.buildChecklist.bind(this)).catch(function (error) {}.bind(this));
 
 		},
 
-		readChecklistEntity: function (path) {
+		readChecklistEntity: function (path, filter) {
 
 			return new Promise(
 				function (resolve, reject) {
 					this.getOwnerComponent().getModel("UserAction").read(path, {
+						filters: [filter],
 						success: function (oData) {
 							resolve(oData);
 						},
@@ -141,6 +152,13 @@ sap.ui.define([
 			var MaterialGroupSet = values[13].value.results;
 			var ProductScheProfileSet = values[14].value.results;
 			var RequirementsGroupSet = values[15].value.results;
+
+			// option type response
+			var OptionTypeSet = values[16].value.results;
+
+			// pre-order data item response
+			var ZPRE_ORD_ITEMSet = values[17].value.results;
+
 			this.getModel("TabDetailsModel").setSizeLimit(1000);
 
 			// Product type data model binding
@@ -165,11 +183,33 @@ sap.ui.define([
 			this.getModel("TabDetailsModel").setProperty("/ProductScheProfileSet", ProductScheProfileSet);
 			this.getModel("TabDetailsModel").setProperty("/RequirementsGroupSet", RequirementsGroupSet);
 
+			// option type data model binding
+			this.getModel("TabDetailsModel").setProperty("/OptionTypeSet", OptionTypeSet);
+
+			// pre-order item tab data model binding
+			this.getModel("TabDetailsModel").setProperty("/ZPRE_ORD_ITEMSet", ZPRE_ORD_ITEMSet);
+
 			var sLoginID = new sap.ushell.services.UserInfo().getId();
 			this.byId("idAssignTo").setSelectedKey(sLoginID);
 
 		},
 
+		getFilters: function (sSaleOrderNo, sPosnumbr) {
+			var sSaleOrderNoFilter = new sap.ui.model.Filter({
+				path: "Vbeln",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: sSaleOrderNo
+			});
+
+			var sPOSNR = new sap.ui.model.Filter({
+				path: "Posnr",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: sPosnumbr
+			});
+			var filter = [];
+			filter.push(sSaleOrderNoFilter, sPOSNR);
+			return filter;
+		},
 		getTabDetials: function (SalesOrder, ItemNo) {
 
 			this.getModel("objectViewModel").setProperty("/busy", true);

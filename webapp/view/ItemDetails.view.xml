@@ -59,9 +59,9 @@
 											<m:Label width="10rem" text="Options Type"/>
 											<m:Text id="idreqstdBy" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 											<m:VBox width="100%">
-												<m:ComboBox id="optionTypeId" valueState="None" width="100%" items="{ path: '/results', sorter: { path: 'type', group: true} }"
-													loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">
-													<core:ListItem key="{ex2}" text="{ex1}"/>
+												<m:ComboBox id="idOptionType" width="100%" valueState="None" placeholder="Select Option Type" selectedKey="{TabDetailsModel>/OptionKey}"
+													items="{TabDetailsModel>/OptionTypeSet}">
+													<core:Item key="{TabDetailsModel>OptionKey}" text="{TabDetailsModel>OptiontypeValue}"/>
 												</m:ComboBox>
 											</m:VBox>
 										</m:HBox>
@@ -479,14 +479,14 @@
 						<subSections>
 							<ObjectPageSubSection id="idPreOrderItem" title="Pre-Order Items" mode="Expanded">
 								<blocks>
-									<m:Table id="idItemsTable2" inset="false" items="{preOredrmModelName>/results}" mode="MultiSelect"
+									<m:Table id="idItemsTable2" inset="false" items="{TabDetailsModel>/ZPRE_ORD_ITEMSet}" mode="MultiSelect"
 										selectionChange="itemTableSelectionChange" class="sapUiSizeCompact" visible="true">
 										<m:headerToolbar class="zhdrTlbar">
 											<m:OverflowToolbar>
 												<m:content>
 													<m:Text text="PRE-ORDER ITEMS"/>
 													<m:ToolbarSpacer/>
-													<m:Button text="Add Item" type="Ghost" press="addPreOrderItemButtonPress"/>
+													<m:Button text="Add Item" type="Ghost" press="addPreOrderItemButtonPress1"/>
 												</m:content>
 											</m:OverflowToolbar>
 										</m:headerToolbar>
@@ -495,7 +495,7 @@
 											<!--	<m:Label text="Item #" design="Bold"/>-->
 											<!--</m:Column>-->
 											<m:Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" popinDisplay="Inline">
-												<m:Label text="Quality" design="Bold" wrapping="true"/>
+												<m:Label text="Quantity" design="Bold" wrapping="true"/>
 											</m:Column>
 											<m:Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" popinDisplay="Inline">
 												<m:Label text="Manufacturer" design="Bold" wrapping="true"/>
@@ -511,10 +511,10 @@
 											<m:ColumnListItem>
 												<m:cells>
 													<!--<m:Text text="{preOrderItemModelName>ItemNo}"/>-->
-													<m:Text text="{preOredrmModelName>quality}"/>
-													<m:Text text="{preOredrmModelName>manufacturer}"/>
-													<m:Text text="{preOredrmModelName>partNumber}"/>
-													<m:Text text="{preOredrmModelName>description}"/>
+													<m:Text text="{TabDetailsModel>Quantity}"/>
+													<m:Text text="{TabDetailsModel>Manufaturer}"/>
+													<m:Text text="{TabDetailsModel>PartNumber}"/>
+													<m:Text text="{TabDetailsModel>Description}"/>
 												</m:cells>
 											</m:ColumnListItem>
 										</m:items>
