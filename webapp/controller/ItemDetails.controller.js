@@ -46,8 +46,6 @@ sap.ui.define([
 
 			this.Vbeln = this.getModel("globalModel").getProperty("/objectId");
 			this.Posnr = this.getModel("globalModel").getProperty("/objectId1");
-			this.Vbeln = "0000097665";
-			this.Posnr = "000010";
 			this.AppType = this.getModel("globalModel").getProperty("/objectId2");
 			this.callItemDetailDropDownService();
 
