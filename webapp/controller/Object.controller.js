@@ -431,7 +431,7 @@ sap.ui.define([
 				}.bind(this),
 			});
 		},
-		onSelectUserAssignment: function (oEvent) {
+		onSelectUserAssignment1: function (oEvent) {
 
 			var sUser = oEvent.getSource().getSelectedKey();
 

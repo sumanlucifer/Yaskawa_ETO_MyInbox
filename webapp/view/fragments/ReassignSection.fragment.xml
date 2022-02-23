@@ -3,18 +3,18 @@
 	<Dialog title="Select option">
 		<content>
 			<VBox class="sapUiTinyMargin" renderType="Bare">
-				<VBox visible="{globalModel>/userAssnVisible}">
-					<Text text="User Assignment"/>
-					<ComboBox width="100%" change="onSelectUserAssignment" valueState="None" placeholder="" selectedKey="{globalModel>/userAssignKey}"
-						items="{globalModel>/userDetailssSet}">
-						<core:Item key="{globalModel>UserName}" text="{globalModel>UserName}"/>
-					</ComboBox>
-				</VBox>
 				<VBox visible="{globalModel>/userGroupVisible}">
 					<Text text="Group Assignment"/>
 					<ComboBox width="100%" change="onSelectGroupAssignment" valueState="None" placeholder="" selectedKey="{globalModel>/groupAssignKey}"
 						items="{globalModel>/userGroupsSet}">
 						<core:Item key="{globalModel>DomValue}" text="{globalModel>Ddtext}"/>
+					</ComboBox>
+				</VBox>
+				<VBox visible="{globalModel>/userAssnVisible}">
+					<Text text="User Assignment"/>
+					<ComboBox width="100%" change="onSelectUserAssignment" valueState="None" placeholder="" selectedKey="{globalModel>/userAssignKey}"
+						items="{globalModel>/userDetailssSet}">
+						<core:Item key="{globalModel>UserName}" text="{globalModel>UserName}"/>
 					</ComboBox>
 				</VBox>
 			</VBox>

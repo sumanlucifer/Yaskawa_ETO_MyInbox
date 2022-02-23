@@ -162,7 +162,7 @@ sap.ui.define([
 				}.bind(this),
 			});
 		},
-		onSelectGroupAssignment1: function (oEvent) {
+		onSelectGroupAssignment: function (oEvent) {
 			var sUser = oEvent.getSource().getSelectedKey();
 
 			this.getModel("objectViewModel").setProperty("/busy", true);
