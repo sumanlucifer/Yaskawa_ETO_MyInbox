@@ -560,7 +560,48 @@ sap.ui.define([
 			sap.ui.getCore().byId("TextArea2").setValue("");
 			this._oDialogNotesSection.close();
 		},
+		onPressDeleteAttchmnt: function (oEvent) {
+			var object = oEvent.getSource().getBindingContext("AttachmentsModel").getObject();
+			sap.m.MessageBox.warning("Are you sure to delete this attachment?", {
+				actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
+				styleClass: "messageBoxError",
+				onClose: function (oAction) {
+					if (oAction === sap.m.MessageBox.Action.YES) {
+						this.deleteServiceCall(object);
 
+					}
+
+				}.bind(this),
+			});
+		},
+		deleteServiceCall: function (object) {
+			this.getModel("objectViewModel").setProperty("/busy", true);
+
+			var oPayload = {
+
+				"SONumber": this.sSaleOrderNo,
+				"Item": object.ItemNr,
+				"Index": object.Index,
+				"Message": ""
+
+			};
+			this.getOwnerComponent().getModel().create("/DeleteAttachmentSet", oPayload, {
+
+				success: function (oData, oResponse) {
+
+					this.getModel("objectViewModel").setProperty("/busy", false);
+					this.onGetSODetails();
+
+					sap.m.MessageBox.success(oData.Message);
+				}.bind(this),
+				error: function (oError) {
+
+					this.getModel("objectViewModel").setProperty("/busy", false);
+					sap.m.MessageBox.error("HTTP Request Failed");
+
+				}.bind(this),
+			});
+		},
 		handleSubmitPress: function (oEvent) {
 			var _self = this;
 			var selSoNumber = this.getView().byId("idZbStdPoNonStock2").getValue();

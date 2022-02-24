@@ -337,6 +337,7 @@
 												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="File Name"/></m:Column>
 												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="From"/></m:Column>
 												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="TimeStamp"/></m:Column>
+												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text=""/></m:Column>
 											</m:columns>
 											<m:items>
 												<m:ColumnListItem>
@@ -345,6 +346,7 @@
 														<m:Link text="{AttachmentsModel>Filename}" href="{AttachmentsModel>Url}" press="onViewDoc" target="_blank"/>
 														<m:Text text="{AttachmentsModel>User}"/>
 														<m:Text text="{AttachmentsModel>Date}-{AttachmentsModel>Time}"/>
+														<m:Button type="Reject" text="Delete" press="onPressDeleteAttchmnt"/>
 														<!--<m:Text text="{path: 'AttachmentsModel>User', type: 'sap.ui.model.type.DateTime', formatOptions: {UTC:true} }"/>-->
 													</m:cells>
 												</m:ColumnListItem>
