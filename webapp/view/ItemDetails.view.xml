@@ -261,9 +261,9 @@
 												<m:Label width="10rem" text="Base UOM"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox id="idBaseUOM" width="100%" valueState="None" placeholder="Select Base UOM" selectedKey="{TabDetailsModel>/Meins}"
+													<m:ComboBox id="idBaseUOM" width="100%" valueState="None" placeholder="Select Base UOM" selectedKey="{TabDetailsModel>/MSEHI}"
 														items="{TabDetailsModel>/UnitSet}">
-														<core:Item key="{TabDetailsModel>Meins}" text="{TabDetailsModel>Meins}"/>
+														<core:Item key="{TabDetailsModel>MSEHI}" text="{TabDetailsModel>MSEHI}"/>
 													</m:ComboBox>
 												</m:VBox>
 											</m:HBox>
@@ -335,9 +335,9 @@
 												<m:Label width="10rem" text="Serial Nbr Profile"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox id="idSerialNBR" width="100%" valueState="None" placeholder="Select Serial NBR" selectedKey="{TabDetailsModel>/SERNP}"
+													<m:ComboBox id="idSerialNBR" width="100%" valueState="None" placeholder="Select Serial NBR" selectedKey="{TabDetailsModel>/SERAIL}"
 														items="{TabDetailsModel>/SerialNbrSet}">
-														<core:Item key="{TabDetailsModel>SERNP}" text="{TabDetailsModel>SERNP}"/>
+														<core:Item key="{TabDetailsModel>SERAIL}" text="{TabDetailsModel>SERAIL}"/>
 													</m:ComboBox>
 												</m:VBox>
 											</m:HBox>
