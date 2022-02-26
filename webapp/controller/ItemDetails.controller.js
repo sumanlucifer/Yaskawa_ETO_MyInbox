@@ -27,6 +27,7 @@ sap.ui.define([
 		_createTabDetailsModel: function () {
 			var oModel = new JSONModel({
 				TabData: [],
+				PreOrderItemTableData: []
 
 			});
 			this.setModel(oModel, "TabDetailsModel");
@@ -287,23 +288,35 @@ sap.ui.define([
 			oViewModel.setProperty("/shareSendEmailMessage",
 				oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
 		},
-		itemTableSelectionChange: function (oEvent) {
-			this.getView().byId("idItemsTable2").setVisible(true);
-			this.getView().byId("idClarifyOrder").setVisible(true);
-			this.getView().byId("idRequoteButton").setVisible(true);
-			this.getView().byId("idClarifyButton").setVisible(true);
-			this.getView().byId("idcreatefgmat").setVisible(true);
-			var preOrderItemsData = {
-				results: [{
-					"ItemNo": "10",
-					"Quality": "",
-					"Manufacturer": "",
-					"PartNo": "",
-					"Description": "item 10-UUAN1493 item 20-UUAN1495 item 10/20-UECN1123 item 30-UUAN1498, UECN1112 item 40/50-UUAN1500, UECN1112 ",
-				}]
-			};
-			var preOrderItemModel = new JSONModel(preOrderItemsData);
-			this.setModel(preOrderItemModel, "preOrderItemModelName");
+		addPreOrderItemPress: function () {
+			var oModel = this.getModel("TabDetailsModel").getProperty("/PreOrderItemTableData");
+			var oItems = oModel.map(function (oItem) {
+				return Object.assign({}, oItem);
+			});
+			oItems.push({
+				"Vbeln": "",
+				"Posnr": "",
+				"SeqNo": "",
+				"Quantity": "",
+				"Manufaturer": "",
+				"PartNumber": "",
+				"Description": "",
+				"EditMode": true
+
+			});
+			this.getModel("TabDetailsModel").setProperty("/PreOrderItemTableData", oItems);
+		},
+		onEditPreOrderItem: function (oEvent) {
+			var iRowNumberToEdit = parseInt(oEvent.getSource().getBindingContext("TabDetailsModel").getPath().slice("/".length).slice(22, 23));
+			var aTableData = this.getModel("TabDetailsModel").getProperty("/PreOrderItemTableData");
+			this.getModel("TabDetailsModel").setProperty(`/PreOrderItemTableData/${iRowNumberToEdit}/EditMode/`, true);
+
+		},
+		onDeletePreOrderItem: function (oEvent) {
+			var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext("TabDetailsModel").getPath().slice("/".length).slice(22, 23));
+			var aTableData = this.getModel("TabDetailsModel").getProperty("/PreOrderItemTableData");
+			aTableData.splice(iRowNumberToDelete, 1);
+			this.getView().getModel("TabDetailsModel").refresh();
 		},
 		_getRequoteSelectionDialog: function () {
 			var _self = this;
