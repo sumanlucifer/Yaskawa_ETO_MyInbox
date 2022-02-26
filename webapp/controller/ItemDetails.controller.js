@@ -186,7 +186,7 @@ sap.ui.define([
 			this.getModel("TabDetailsModel").setProperty("/OptionTypeSet", OptionTypeSet);
 
 			// pre-order item tab data model binding
-			this.getModel("TabDetailsModel").setProperty("/ZPRE_ORD_ITEMSet", ZPRE_ORD_ITEMSet);
+			this.getModel("TabDetailsModel").setProperty("/PreOrderItemTableData", ZPRE_ORD_ITEMSet);
 
 			var sLoginID = new sap.ushell.services.UserInfo().getId();
 			this.byId("idAssignTo").setSelectedKey(sLoginID);

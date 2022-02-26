@@ -512,16 +512,16 @@
 													<!--<m:Text text="{preOrderItemModelName>ItemNo}"/>-->
 													<m:Input maxLength="30"
 														value="{ path: 'TabDetailsModel>Quantity', type: 'sap.ui.model.type.String', constraints: { minLength: 1, maxLength: 30 } }"
-														enabled="{= ${TabDetailsModel>EditMode} ? true : false}"/>
+														editable="{= ${TabDetailsModel>EditMode} ? true : false}"/>
 													<m:Input maxLength="30"
 														value="{ path: 'TabDetailsModel>Manufaturer', type: 'sap.ui.model.type.String', constraints: { minLength: 1, maxLength: 30 } }"
-														enabled="{= ${TabDetailsModel>EditMode} ? true : false}"/>
+														editable="{= ${TabDetailsModel>EditMode} ? true : false}"/>
 													<m:Input maxLength="30"
 														value="{ path: 'TabDetailsModel>PartNumber', type: 'sap.ui.model.type.String', constraints: { minLength: 1, maxLength: 30 } }"
-														enabled="{= ${TabDetailsModel>EditMode} ? true : false}"/>
+														editable="{= ${TabDetailsModel>EditMode} ? true : false}"/>
 													<m:Input maxLength="30"
 														value="{ path: 'TabDetailsModel>Description', type: 'sap.ui.model.type.String', constraints: { minLength: 1, maxLength: 30 } }"
-														enabled="{= ${TabDetailsModel>EditMode} ? true : false}"/>
+														editable="{= ${TabDetailsModel>EditMode} ? true : false}"/>
 													<m:HBox>
 														<m:Button class="sapUiTinyMarginBeginEnd" text="Edit" type="Emphasized" press="onEditPreOrderItem"/>
 														<m:Button class="sapUiTinyMarginBeginEnd" text="Delete" type="Reject" press="onDeletePreOrderItem"/>
