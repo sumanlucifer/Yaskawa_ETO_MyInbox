@@ -1,6 +1,6 @@
 <mvc:View controllerName="com.yaskawa.ETOMyInbox.controller.ItemDetails" xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns="sap.uxap"
 	xmlns:layout="sap.ui.layout" xmlns:blockcolor="wel.create.po.CreatePO.blocks" xmlns:semantic="sap.f.semantic" xmlns:f="sap.ui.layout.form"
-	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:t="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml">
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:t="sap.ui.table" xmlns:u="sap.ui.unified" xmlns:html="http://www.w3.org/1999/xhtml">
 	<m:Page title="Item Detail" busy="{objectViewModel>/busy}" showNavButton="false" navButtonPress="onBack">
 		<m:content>
 			<ObjectPageLayout id="ObjectPageLayout" subSectionLayout="{ConfigModel>/subSectionLayout}" useIconTabBar="true" flexEnabled="true"
@@ -71,10 +71,7 @@
 											<m:Label width="10rem" text="Options"/>
 											<m:Text id="idreqstdBy2" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 											<m:VBox width="100%">
-												<m:ComboBox id="optionId" valueState="None" width="100%" items="{ path: '/results', sorter: { path: 'type', group: true} }"
-													loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">
-													<core:ListItem key="{ex2}" text="{ex1}"/>
-												</m:ComboBox>
+												<m:Input value="" id="nameT4"/>
 											</m:VBox>
 										</m:HBox>
 									</l:Grid>
@@ -672,36 +669,33 @@
 											<m:headerToolbar class="zhdrTlbar">
 												<m:OverflowToolbar>
 													<m:content>
-														<m:Text text="Document Details"/>
+														<!--<m:Text text="Document Details"/>-->
 														<m:ToolbarSpacer/>
-														<m:Button type="Ghost" text="Add Record" press="onAddRecordPress"/>
+														<m:HBox>
+															<u:FileUploader buttonOnly="true" multiple="true" icon="sap-icon://attachment" id="__FILEUPLOAD" visible="true" sameFilenameAllowed="false"
+																buttonText="Add Attachment" fileType="XLS,CSV,PDF,PNG,DOCX,JPG,JPEG" change="onUploadPress" filenameLengthExceed="onFileNameLengthExceed"
+																fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onComplete" typeMissmatch="handleMissmatch"
+																placeholder="Choose a file" style="Emphasized"/>
+														</m:HBox>
+														<!--<m:Button type="Ghost" text="Add Notes" icon="sap-icon://notes" press="onNotesPress"/>-->
 													</m:content>
 												</m:OverflowToolbar>
 											</m:headerToolbar>
 											<m:columns>
-												<m:Column minScreenWidth="Desktop" hAlign="Center" demandPopin="true" popinDisplay="Inline">
-													<m:Label text="Type" design="Bold"/>
-												</m:Column>
-												<m:Column minScreenWidth="Desktop" hAlign="Center" demandPopin="true" popinDisplay="Inline">
-													<m:Label text="Title" design="Bold" wrapping="true"/>
-												</m:Column>
-												<m:Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" popinDisplay="Inline">
-													<m:Label text="Attachment" design="Bold" wrapping="true"/>
-												</m:Column>
-												<m:Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" popinDisplay="Inline">
-													<m:Label text="" design="Bold" wrapping="true"/>
-												</m:Column>
-												<!--<m:Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center" popinDisplay="Inline">-->
-												<!--	<m:Label text="Description" design="Bold" wrapping="true"/>-->
-												<!--</m:Column>-->
+												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Source"/></m:Column>
+												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="File Name"/></m:Column>
+												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="From"/></m:Column>
+												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="TimeStamp"/></m:Column>
+												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text=""/></m:Column>
 											</m:columns>
 											<m:items>
 												<m:ColumnListItem>
 													<m:cells>
-														<m:Text text="{itemRecordModelName>type}"/>
-														<m:Text text="{itemRecordModelName>title}"/>
-														<m:Link text="{itemRecordModelName>attachments}"/>
-														<core:Icon src="sap-icon://sys-cancel" class="size1" color="xe1c7" press="onAttachmentTableItemDelete">
+														<m:Text text="{AttachmentsModel>Source}"/>
+														<m:Link text="{AttachmentsModel>Filename}" href="{AttachmentsModel>Url}" press="onViewDoc" target="_blank"/>
+														<m:Text text="{AttachmentsModel>User}"/>
+														<m:Text text="{AttachmentsModel>Date}-{AttachmentsModel>Time}"/>
+														<core:Icon src="sap-icon://sys-cancel" class="size1" color="xe1c7" press="onAttachmentItemDelete">
 															<core:layoutData>
 																<m:FlexItemData growFactor="1"/>
 															</core:layoutData>
@@ -780,62 +774,62 @@
 							</ObjectPageSubSection>
 						</subSections>
 					</ObjectPageSection>
-					<ObjectPageSection>
-						<subSections>
-							<ObjectPageSubSection id="idAddNewRecord" title="Add New Record" visible="false" titleUppercase="false">
-								<blocks>
-									<m:VBox id="idFirstVBox2" class="vboxAlignment">
-										<!--<f:SimpleForm id="idAddNewItemForm" editable="true" maxContainerCols="2" layout="ResponsiveGridLayout" labelSpanL="3" emptySpanL="0"-->
-										<!--	emptySpanM="0" columnsL="2" columnsM="2" adjustLabelSpan="true">-->
-										<!--	<f:content>-->
-										<!--		<l:Grid defaultSpan="L12 M12 S12" width="auto">-->
-										<!--			<l:content>-->
-										<!--<m:VBox width="100%" visible="true">-->
-										<m:HBox width="100%" alignItems="Center">
-											<m:Label design="Bold" width="5rem" text="Type"/>
-											<m:Text id="idItemTxt2" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
-											<m:VBox width="100%">
-												<m:Input id="idRecordType" value="" width="100%" liveChange="itemFieldValidation" editable="true"/>
-											</m:VBox>
-										</m:HBox>
-										<m:HBox width="100%" alignItems="Center">
-											<m:Label design="Bold" required="false" text="Title" width="5rem"/>
-											<m:Text id="idAccAGnmntTxt2" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
-											<m:VBox width="100%">
-												<m:Input id="idRecordTitle" value="" width="100%" liveChange="itemFieldValidation" editable="true"/>
-											</m:VBox>
-										</m:HBox>
-										<m:Panel>
-											<m:FlexBox alignItems="Start" justifyContent="Center">
-												<m:items>
-													<!--<m:Button id="idAddItem" text="{i18n>Add}" visible="true" type="Ghost" press="onAddNewRecordToTable" class="sapUiTinyMarginEnd"/>-->
-													<!--<m:Button id="idUpdateItem" text="Update" visible="true" type="Ghost" press="onUpdateItem" class="sapUiTinyMarginEnd"/>-->
-													<!--<m:Button text="{i18n>Cancel}" type="Ghost" press="onAddItemCancel"/>-->
-												</m:items>
-											</m:FlexBox>
-										</m:Panel>
-										<m:VBox>
-											<m:MessageStrip class="sapUiTinyMarginBottom" visible="{=!${device>/browser/mobile}}" showIcon="true" type="Information"
-												text="To add files, you can also use drag &amp; drop on your desktop or tablet."/>
-											<m:UploadCollection id="UploadCollection" maximumFilenameLength="55" maximumFileSize="10" multiple="true" sameFilenameAllowed="true"
-												instantUpload="false" noDataDescription="Drop files or use the &quot;Add&quot; button to keep files ready for upload" change="onChange"
-												fileDeleted="onFileDeleted" filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"
-												uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts"/>
-											<m:Panel>
-												<m:FlexBox alignItems="Start" justifyContent="Center">
-													<m:items>
-														<m:Button id="idAddItem22" text="{i18n>Add}" visible="true" type="Ghost" press="onAddNewRecordToTable" class="sapUiTinyMarginEnd"/>
-														<!--<m:Button id="idUpdateItem" text="Update" visible="true" type="Ghost" press="onUpdateItem" class="sapUiTinyMarginEnd"/>-->
-														<m:Button text="{i18n>Cancel}" type="Ghost" press="onAddItemCancel"/>
-													</m:items>
-												</m:FlexBox>
-											</m:Panel>
-										</m:VBox>
-									</m:VBox>
-								</blocks>
-							</ObjectPageSubSection>
-						</subSections>
-					</ObjectPageSection>
+					<!--<ObjectPageSection>-->
+					<!--	<subSections>-->
+					<!--		<ObjectPageSubSection id="idAddNewRecord" title="Add New Record" visible="false" titleUppercase="false">-->
+					<!--			<blocks>-->
+					<!--				<m:VBox id="idFirstVBox2" class="vboxAlignment">-->
+					<!--<f:SimpleForm id="idAddNewItemForm" editable="true" maxContainerCols="2" layout="ResponsiveGridLayout" labelSpanL="3" emptySpanL="0"-->
+					<!--	emptySpanM="0" columnsL="2" columnsM="2" adjustLabelSpan="true">-->
+					<!--	<f:content>-->
+					<!--		<l:Grid defaultSpan="L12 M12 S12" width="auto">-->
+					<!--			<l:content>-->
+					<!--<m:VBox width="100%" visible="true">-->
+					<!--					<m:HBox width="100%" alignItems="Center">-->
+					<!--						<m:Label design="Bold" width="5rem" text="Type"/>-->
+					<!--						<m:Text id="idItemTxt2" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
+					<!--						<m:VBox width="100%">-->
+					<!--							<m:Input id="idRecordType" value="" width="100%" liveChange="itemFieldValidation" editable="true"/>-->
+					<!--						</m:VBox>-->
+					<!--					</m:HBox>-->
+					<!--					<m:HBox width="100%" alignItems="Center">-->
+					<!--						<m:Label design="Bold" required="false" text="Title" width="5rem"/>-->
+					<!--						<m:Text id="idAccAGnmntTxt2" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
+					<!--						<m:VBox width="100%">-->
+					<!--							<m:Input id="idRecordTitle" value="" width="100%" liveChange="itemFieldValidation" editable="true"/>-->
+					<!--						</m:VBox>-->
+					<!--					</m:HBox>-->
+					<!--					<m:Panel>-->
+					<!--						<m:FlexBox alignItems="Start" justifyContent="Center">-->
+					<!--							<m:items>-->
+					<!--<m:Button id="idAddItem" text="{i18n>Add}" visible="true" type="Ghost" press="onAddNewRecordToTable" class="sapUiTinyMarginEnd"/>-->
+					<!--<m:Button id="idUpdateItem" text="Update" visible="true" type="Ghost" press="onUpdateItem" class="sapUiTinyMarginEnd"/>-->
+					<!--<m:Button text="{i18n>Cancel}" type="Ghost" press="onAddItemCancel"/>-->
+					<!--							</m:items>-->
+					<!--						</m:FlexBox>-->
+					<!--					</m:Panel>-->
+					<!--					<m:VBox>-->
+					<!--						<m:MessageStrip class="sapUiTinyMarginBottom" visible="{=!${device>/browser/mobile}}" showIcon="true" type="Information"-->
+					<!--							text="To add files, you can also use drag &amp; drop on your desktop or tablet."/>-->
+					<!--						<m:UploadCollection id="UploadCollection" maximumFilenameLength="55" maximumFileSize="10" multiple="true" sameFilenameAllowed="true"-->
+					<!--							instantUpload="false" noDataDescription="Drop files or use the &quot;Add&quot; button to keep files ready for upload" change="onChange"-->
+					<!--							fileDeleted="onFileDeleted" filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"-->
+					<!--							uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts"/>-->
+					<!--						<m:Panel>-->
+					<!--							<m:FlexBox alignItems="Start" justifyContent="Center">-->
+					<!--								<m:items>-->
+					<!--									<m:Button id="idAddItem22" text="{i18n>Add}" visible="true" type="Ghost" press="onAddNewRecordToTable" class="sapUiTinyMarginEnd"/>-->
+					<!--<m:Button id="idUpdateItem" text="Update" visible="true" type="Ghost" press="onUpdateItem" class="sapUiTinyMarginEnd"/>-->
+					<!--									<m:Button text="{i18n>Cancel}" type="Ghost" press="onAddItemCancel"/>-->
+					<!--								</m:items>-->
+					<!--							</m:FlexBox>-->
+					<!--						</m:Panel>-->
+					<!--					</m:VBox>-->
+					<!--				</m:VBox>-->
+					<!--			</blocks>-->
+					<!--		</ObjectPageSubSection>-->
+					<!--	</subSections>-->
+					<!--</ObjectPageSection>-->
 				</sections>
 			</ObjectPageLayout>
 		</m:content>
