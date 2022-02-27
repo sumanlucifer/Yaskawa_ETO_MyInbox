@@ -215,14 +215,14 @@ sap.ui.define([
 			var sSalesOrderFilter = new sap.ui.model.Filter({
 				path: "SalesOrder",
 				operator: sap.ui.model.FilterOperator.EQ,
-				//	value1: SalesOrder
-				value1: "0000097046"
+				value1: SalesOrder
+
 			});
 			var sItemNoFilter = new sap.ui.model.Filter({
 				path: "ItemNo",
 				operator: sap.ui.model.FilterOperator.EQ,
-				//	value1: ItemNo
-				value1: "000010"
+				value1: ItemNo
+
 			});
 			var filter = [];
 			filter.push(sSalesOrderFilter, sItemNoFilter);
@@ -394,13 +394,125 @@ sap.ui.define([
 		handleSubmitPress: function (oEvent) {
 
 			var oSubmit = {
-				Vbeln: this.Vbeln,
-				Posnr: this.Posnr,
-				Message: ""
-
+				"SalesOrder": "0000097665",
+				"ItemNo": "000010",
+				"Action": "C",
+				"Quantity": "50",
+				"NetAmount": "5.00",
+				"WfStatus": "",
+				"OpOptionType": "",
+				"OpOption": "",
+				"AppMotorFull": "",
+				"AppPanelSscr": "",
+				"AppAmbTemp": "",
+				"AppEnclosure": "",
+				"AppCableEntry": "",
+				"AppVenitilation": "",
+				"AppAltitude": "",
+				"EnclUlType1": "",
+				"EnclUlType1Min": "",
+				"EnclUlType1NoHole": "",
+				"EnclUlType1Gasketed": "",
+				"EnclUlType1Type12": "",
+				"EnclUlType1Other": "",
+				"EnclUlType12": "",
+				"EnclUlType12AcUnit": "",
+				"EnclUlType12HeatAir": "",
+				"EnclUlType12HeatWater": "",
+				"EnclUlType12Other": "",
+				"EnclUlType3r": "",
+				"EnclUlType3rAcUnit": "",
+				"EnclUlType3rHeatWater": "",
+				"EnclUlType3rOther": "",
+				"EnclNemaType": "",
+				"EnclNemaTypeNema12": "",
+				"EnclNemaTypeNema4": "",
+				"EnclNemaTypeNema4x": "",
+				"EnclNemaTypeOther": "",
+				"EnclItemNotes": "",
+				"ProdType": "",
+				"ProdPlant": "",
+				"ProdUom": "",
+				"ProdOverheadGrp": "",
+				"ProdStrGrp": "",
+				"ProdMaterial": "",
+				"ProdHierarchy": "",
+				"ProdProcurementType": "",
+				"ProdValuationClass": "",
+				"ProdSerialNo": "",
+				"ProdDesc": "",
+				"ProdMatPrcGrp": "",
+				"ProdMatGrp1": "",
+				"ProdMrpType": "",
+				"MaterialGroup": "",
+				"MaterialLoadTime": "",
+				"MaterialGrTime": "",
+				"MaterialRequirementGrp": "",
+				"MaterialProdSupervisor": "",
+				"MaterialDelLead": "",
+				"MaterialTimeFence": "",
+				"MaterialLotSize": "",
+				"MaterialProdTime": "",
+				"MaterialProdProfile": "",
+				"MaterialMrpControl": "",
+				"MaterialFixedLotSize": "",
+				"HpsMaterial": "",
+				"HpsType": "",
+				"HpsSccr": "",
+				"HpsDrive": "",
+				"HpsSimilarModel": "",
+				"HpsPlanningMaterial": "",
+				"HpsDollar": "",
+				"HpsItemNotes": "",
+				"PaSubmittalType": "",
+				"PaSubmittalEmail": "",
+				"PaSubmittalDueDate": "",
+				"PaSubmittalContact": "",
+				"PaSubmittalName": "",
+				"PaSubmittalNumber": "",
+				"PaSubmittalDocType": "",
+				"PaSubmittalDrawings": "",
+				"PaSubmittalSubmitted": "",
+				"PaSubmittalSentToCustomer": "",
+				"OehpsPriority": "",
+				"OehpsDevtLevel": "",
+				"OehpsSchedEngHrs": "",
+				"OehpsActualEngHrs": "",
+				"OehpsMeDesign": "",
+				"OehpsEeDesign": "",
+				"OehpsSystAnalysis": "",
+				"OehpsAprvDrawing": "",
+				"OehpsXengAprvRcvd": "",
+				"OehpsZzkickoff": "",
+				"OehpsPreOrdBom": "",
+				"OehpsShpSplitBom": "",
+				"OehpsLineupBom": "",
+				"OehpsBomReview": "",
+				"OehpsFinalSapBom": "",
+				"OehpsRoutingsCreated": "",
+				"OehpsZ7StatusRemoved": "",
+				"OehpsZzprodKickoff": "",
+				"Message": "",
+				"WFSTEP": [{
+					"Vbeln": "0000097665",
+					"Posnr": "000010",
+					"SeqNo": "",
+					"Quantity": "50.00",
+					"Manufaturer": "NEILC",
+					"PartNumber": "CS-15342795A",
+					"Description": "CUST. SUPPLIED (TIME METER)"
+				}, {
+					"Vbeln": "0000097665",
+					"Posnr": "000010",
+					"SeqNo": "",
+					"Quantity": "55.00",
+					"Manufaturer": "NEILC",
+					"PartNumber": "CS-15342795B",
+					"Description": "CUST. SUPPLIED (CT'S)"
+				}]
 			};
 
-			this.getOwnerComponent().getModel().create("/SubmitDataSet", oSubmit, {
+			this.getOwnerComponent().getModel("UserAction").create("/ZWF_DETAILSSet", oSubmit, {
 
 				success: function (oData, oResponse) {
 					sap.m.MessageBox.success(oData.Message);
