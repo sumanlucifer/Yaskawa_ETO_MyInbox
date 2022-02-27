@@ -267,8 +267,13 @@ sap.ui.define([
 				operator: sap.ui.model.FilterOperator.EQ,
 				value1: sSaleOrderNo
 			});
+			var sattachFilter1 = new sap.ui.model.Filter({
+				path: "ItemNr",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: "000000"
+			});
 			var attachFilter = [];
-			attachFilter.push(sattachFilter);
+			attachFilter.push(sattachFilter, sattachFilter1);
 
 			var sLogFilter = new sap.ui.model.Filter({
 				path: "Vbeln",
