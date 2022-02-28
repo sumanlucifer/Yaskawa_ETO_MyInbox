@@ -162,7 +162,7 @@ sap.ui.define([
 			var ZPRE_ORD_ITEMSet = values[17].value.results;
 
 			// PA Submital Tab  item response
-			var aETOAttachmentSet = values[18].value.results;
+			var aETOAttachmentSet = values[18].status === "rejected" ? null : values[18].value.results;
 
 			this.getModel("TabDetailsModel").setSizeLimit(1000);
 
