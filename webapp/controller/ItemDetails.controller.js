@@ -440,8 +440,8 @@ sap.ui.define([
 				}, this);
 
 			var oSubmit = {
-				"SalesOrder": "0000097665",
-				"ItemNo": "000010",
+				"SalesOrder": this.Vbeln,
+				"ItemNo": this.Posnr,
 				"Action": "C",
 				"Quantity": "50",
 				"NetAmount": "5.00",
