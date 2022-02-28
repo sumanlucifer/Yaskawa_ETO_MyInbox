@@ -422,6 +422,23 @@ sap.ui.define([
 		},
 		handleSubmitPress: function (oEvent) {
 
+			// Pre-Order Items Data Payload
+			var aPreOrderItemData = this.getModel("TabDetailsModel").getProperty("/PreOrderItemTableData"),
+
+				aPreOrderItemData = aPreOrderItemData.map(function (item) {
+					return {
+
+						Vbeln: this.Vbeln,
+						Posnr: this.Posnr,
+						SeqNo: item.SeqNo,
+						Quantity: item.Quantity,
+						Manufaturer: item.Manufaturer,
+						PartNumber: item.PartNumber,
+						Description: item.Description
+
+					};
+				}, this);
+
 			var oSubmit = {
 				"SalesOrder": "0000097665",
 				"ItemNo": "000010",
@@ -522,30 +539,14 @@ sap.ui.define([
 				"OehpsZ7StatusRemoved": "",
 				"OehpsZzprodKickoff": "",
 				"Message": "",
-				"WFSTEP": [{
-					"Vbeln": "0000097665",
-					"Posnr": "000010",
-					"SeqNo": "",
-					"Quantity": "50.00",
-					"Manufaturer": "NEILC",
-					"PartNumber": "CS-15342795A",
-					"Description": "CUST. SUPPLIED (TIME METER)"
-				}, {
-					"Vbeln": "0000097665",
-					"Posnr": "000010",
-					"SeqNo": "",
-					"Quantity": "55.00",
-					"Manufaturer": "NEILC",
-					"PartNumber": "CS-15342795B",
-					"Description": "CUST. SUPPLIED (CT'S)"
-				}]
+				"WFSTEP": aPreOrderItemData
 			};
 
 			this.getOwnerComponent().getModel("UserAction").create("/ZWF_DETAILSSet", oSubmit, {
 
 				success: function (oData, oResponse) {
 					sap.m.MessageBox.success(oData.Message);
-					this.byId("idWorkFlowStatus").setValue(oData.workflowstatus);
+					// 	this.byId("idWorkFlowStatus").setValue(oData.workflowstatus);
 
 				}.bind(this),
 				error: function (oError) {
@@ -583,7 +584,7 @@ sap.ui.define([
 				this.getModel("objectViewModel").setProperty("/busy", false);
 				sap.m.MessageBox.success("The File has been uploaded successfully!");
 				this.getView().getModel().refresh();
-				this.onInit();
+				this.callItemDetailDropDownService();
 				this.byId("__FILEUPLOAD").setValue("");
 				this.getModel().refresh();
 
