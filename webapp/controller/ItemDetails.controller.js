@@ -107,7 +107,10 @@ sap.ui.define([
 
 				// Pre Order Item Tab
 
-				this.readChecklistEntity("/ZPRE_ORD_ITEMSet", Filter)
+				this.readChecklistEntity("/ZPRE_ORD_ITEMSet", Filter.Sofilter),
+
+				// PA Submital Tab 
+				this.readChecklistEntity("/ETOAttachmentSet", Filter.attachFilter)
 
 			]).then(this.buildChecklist.bind(this)).catch(function (error) {}.bind(this));
 
@@ -158,6 +161,9 @@ sap.ui.define([
 			// pre-order data item response
 			var ZPRE_ORD_ITEMSet = values[17].value.results;
 
+			// PA Submital Tab  item response
+			var aETOAttachmentSet = values[18].value.results;
+
 			this.getModel("TabDetailsModel").setSizeLimit(1000);
 
 			// Product type data model binding
@@ -188,6 +194,9 @@ sap.ui.define([
 			// pre-order item tab data model binding
 			this.getModel("TabDetailsModel").setProperty("/PreOrderItemTableData", ZPRE_ORD_ITEMSet);
 
+			// PA Submital Tab  data model binding
+			this.getModel("TabDetailsModel").setProperty("/ETOAttachmentSet", aETOAttachmentSet);
+
 			var sLoginID = new sap.ushell.services.UserInfo().getId();
 			this.byId("idAssignTo").setSelectedKey(sLoginID);
 
@@ -205,9 +214,29 @@ sap.ui.define([
 				operator: sap.ui.model.FilterOperator.EQ,
 				value1: sPosnumbr
 			});
-			var filter = [];
-			filter.push(sSaleOrderNoFilter, sPOSNR);
-			return filter;
+			var Sofilter = [];
+			Sofilter.push(sSaleOrderNoFilter, sPOSNR);
+
+			var sattachFilter = new sap.ui.model.Filter({
+				path: "Input",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: sSaleOrderNo
+			});
+			var sattachFilter1 = new sap.ui.model.Filter({
+				path: "ItemNr",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: sPosnumbr
+			});
+			var attachFilter = [];
+			attachFilter.push(sattachFilter, sattachFilter1);
+			var filerValue = {
+
+				attachFilter: attachFilter,
+				Sofilter: Sofilter
+
+			};
+
+			return filerValue;
 		},
 		getTabDetials: function (SalesOrder, ItemNo) {
 
@@ -527,6 +556,70 @@ sap.ui.define([
 		},
 		handleBackPress: function (oEvent) {
 			this.getRouter().navTo("worklist");
+		},
+		onUploadPress: function (oEvent) {
+			var that = this;
+			var sSaleOrderNo = this.Vbeln;
+
+			this.getModel("objectViewModel").setProperty("/busy", true);
+			var file = this.byId("__FILEUPLOAD").getFocusDomRef().files[0];
+
+			//Input = "458076",
+			var Filename = file.name,
+				Filetype = file.type,
+				Filesize = file.size;
+
+			//code for byte array 
+			// 			this._getImageData(URL.createObjectURL(file), function (Filecontent) {
+			// 				that._updateDocumentService(Filecontent, Filename, Filetype, Filesize, sSaleOrderNo);
+			// 			});
+
+			that._updateDocumentService(file, Filename, Filetype, Filesize, sSaleOrderNo);
+
+		},
+		onComplete: function (oEvent) {
+
+			if (oEvent.getParameter("status") === 500 || oEvent.getParameter("status") === 201) {
+				this.getModel("objectViewModel").setProperty("/busy", false);
+				sap.m.MessageBox.success("The File has been uploaded successfully!");
+				this.getView().getModel().refresh();
+				this.onInit();
+				this.byId("__FILEUPLOAD").setValue("");
+				this.getModel().refresh();
+
+			} else {
+				this.getModel("objectViewModel").setProperty("/busy", false);
+				sap.m.MessageBox.error("The File  upload failed!");
+				this.byId("__FILEUPLOAD").setValue("");
+			}
+		},
+		_updateDocumentService: function (Filecontent, Filename, Filetype, Filesize, Input) {
+
+			var oFileUploader = this.byId("__FILEUPLOAD");
+			Filecontent = null;
+			var itemNo = this.Posnr;
+			oFileUploader.removeAllHeaderParameters();
+			oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({
+				name: "slug",
+				value: Filecontent + "|" + Input + "|" + Filename + "|" + Filetype + "|" + Filesize + "|" + itemNo
+
+			}));
+			oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({
+				name: "x-csrf-token",
+				value: this.getModel().getSecurityToken()
+			}));
+			var sUrl = this.getModel().sServiceUrl + "/ETOAttachmentSet";
+			oFileUploader.setUploadUrl(sUrl);
+			oFileUploader.setSendXHR(true);
+			oFileUploader.setUseMultipart(true);
+			oFileUploader.upload();
+		},
+		onFileNameLengthExceed: function () {
+			MessageBox.error("File name length exceeded, Please upload file with name lenght upto 50 characters.");
+		},
+
+		onFileSizeExceed: function () {
+			MessageBox.error("File size exceeded, Please upload file with size upto 200KB.");
 		},
 		_getAttachmentDialog: function () {
 			var _self = this;
