@@ -107,60 +107,60 @@
 									<m:VBox class="sapUiSmallMarginBegin" width="100%">
 										<l:Grid containerQuery="true" defaultSpan="XL4 L5" class="sapUiSizeCompact">
 											<m:HBox>
-												<m:CheckBox text="UL Type 1" select="onParentClicked" width="100px" textAlign="Left"/>
+												<m:CheckBox id="idEnclUlType1" text="UL Type 1" select="onParentClicked" width="100px" textAlign="Left"/>
 												<!--<m:Panel/>-->
 												<m:VBox width="100%">
 													<m:Text text="Natural Air Convection(vents) or Fan/filters, as needed"/>
 													<!--<m:Panel/>-->
 													<core:HTML content="&lt;hr&gt;"/>
-													<m:CheckBox text="Minimum, Type 1-Forced Vent and Filtered Fans" enabled="{childItemsEnableDisableModelName>/enabled}"/>
-													<m:CheckBox text="No Hole back panel" enabled="{childItemsEnableDisableModelName>/enabled}"/>
-													<m:CheckBox text="Gasketed door" enabled="{childItemsEnableDisableModelName>/enabled}"/>
-													<m:CheckBox text="Type 12 fans" enabled="{childItemsEnableDisableModelName>/enabled}"/>
-													<m:CheckBox text="Other" enabled="{childItemsEnableDisableModelName>/enabled}"/>
+													<m:CheckBox id="idMinimum1" text="Minimum, Type 1-Forced Vent and Filtered Fans" enabled="{childItemsEnableDisableModelName>/enabled}"/>
+													<m:CheckBox id="idNoHolePanel" text="No Hole back panel" enabled="{childItemsEnableDisableModelName>/enabled}"/>
+													<m:CheckBox id="idGasketDoor" text="Gasketed door" enabled="{childItemsEnableDisableModelName>/enabled}"/>
+													<m:CheckBox id="idTypeFans" text="Type 12 fans" enabled="{childItemsEnableDisableModelName>/enabled}"/>
+													<m:CheckBox id="idULTypeOther" text="Other" enabled="{childItemsEnableDisableModelName>/enabled}"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox>
-												<m:CheckBox text="UL Type 12" select="onUL12Clicked" width="100px" textAlign="Left"/>
+												<m:CheckBox id="idULTYPE12" text="UL Type 12" select="onUL12Clicked" width="100px" textAlign="Left"/>
 												<!--<m:Panel/>-->
 												<m:VBox width="100%">
 													<m:Text text="Type 12 fans as needed"/>
 													<!--<m:Panel/>-->
 													<core:HTML content="&lt;hr&gt;"/>
-													<m:CheckBox text="AC unit(s)" selected="false" enabled="{childItemsEnableDisableModelName2>/enabled}"/>
-													<m:CheckBox text="Heat Exchanger air to air" enabled="{childItemsEnableDisableModelName2>/enabled}"/>
-													<m:CheckBox text="Heat Exchanger air to water" selected="false" enabled="{childItemsEnableDisableModelName2>/enabled}"/>
-													<m:CheckBox text="other" enabled="{childItemsEnableDisableModelName2>/enabled}"/>
+													<m:CheckBox id="idACUnits" text="AC unit(s)" selected="false" enabled="{childItemsEnableDisableModelName2>/enabled}"/>
+													<m:CheckBox id="idHeatexchanger" text="Heat Exchanger air to air" enabled="{childItemsEnableDisableModelName2>/enabled}"/>
+													<m:CheckBox id="idHeatairtoWater" text="Heat Exchanger air to water" selected="false" enabled="{childItemsEnableDisableModelName2>/enabled}"/>
+													<m:CheckBox id="idULTYPE12Other" text="other" enabled="{childItemsEnableDisableModelName2>/enabled}"/>
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
 										<l:Grid containerQuery="true" defaultSpan="XL4 L5" class="sapUiSizeCompact">
 											<m:HBox>
-												<m:CheckBox text="UL Type 3R" select="onUL3rClicked" width="100px" textAlign="Left"/>
+												<m:CheckBox id="idULType3R" text="UL Type 3R" select="onUL3rClicked" width="100px" textAlign="Left"/>
 												<!--<m:Panel/>-->
 												<m:VBox width="100%">
 													<m:Text text="Fan/Filters, as needed"/>
 													<!--<m:Panel/>-->
 													<core:HTML content="&lt;hr&gt;"/>
 													<m:VBox>
-														<m:CheckBox text="AC unit(s)" selected="false" enabled="{childItemsEnableDisableModelName3>/enabled}"/>
-														<m:CheckBox text="Heat Exchanger, air to water" enabled="{childItemsEnableDisableModelName3>/enabled}"/>
-														<m:CheckBox text="other" enabled="{childItemsEnableDisableModelName3>/enabled}"/>
+														<m:CheckBox id="idULTYPE3RacUnits" text="AC unit(s)" selected="false" enabled="{childItemsEnableDisableModelName3>/enabled}"/>
+														<m:CheckBox id="idHeatExchanger" text="Heat Exchanger, air to water" enabled="{childItemsEnableDisableModelName3>/enabled}"/>
+														<m:CheckBox id="idULTYp3ReOther" text="other" enabled="{childItemsEnableDisableModelName3>/enabled}"/>
 													</m:VBox>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox>
-												<m:CheckBox text="NEMA Type Rating" wrapping="true" select="onNEMAClicked" width="100px" textAlign="Left"/>
+												<m:CheckBox id="idNEMATypeRating" text="NEMA Type Rating" wrapping="true" select="onNEMAClicked" width="100px" textAlign="Left"/>
 												<!--<m:Panel/>-->
 												<m:VBox width="100%">
 													<m:Text text="Enclosures sourced from other manufacturers"/>
 													<!--<m:Panel/>-->
 													<core:HTML content="&lt;hr&gt;"/>
 													<m:VBox>
-														<m:CheckBox text="NEMA 12" selected="false" enabled="{childItemsEnableDisableModelName4>/enabled}"/>
-														<m:CheckBox text="NEMA 4" enabled="{childItemsEnableDisableModelName4>/enabled}"/>
-														<m:CheckBox text="NEMA 4X" selected="false" enabled="{childItemsEnableDisableModelName4>/enabled}"/>
-														<m:CheckBox text="other" enabled="{childItemsEnableDisableModelName4>/enabled}"/>
+														<m:CheckBox id="idNema12" text="NEMA 12" selected="false" enabled="{childItemsEnableDisableModelName4>/enabled}"/>
+														<m:CheckBox id="Nema4" text="NEMA 4" enabled="{childItemsEnableDisableModelName4>/enabled}"/>
+														<m:CheckBox id="idNema4x" text="NEMA 4X" selected="false" enabled="{childItemsEnableDisableModelName4>/enabled}"/>
+														<m:CheckBox id="idNemaOther" text="other" enabled="{childItemsEnableDisableModelName4>/enabled}"/>
 													</m:VBox>
 												</m:VBox>
 											</m:HBox>
