@@ -594,23 +594,23 @@
 										<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 												<m:Label width="10rem" text="Type"/>
-												<m:Text id="idreqstdBy33" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+												<m:Text id="idreq" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input/>
+													<m:Input id="idPASubmitalType"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 												<m:Label width="10rem" text="Email"/>
 												<m:Text id="idOrdrDate22" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input/>
+													<m:Input id="PASubmitalEmail"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 												<m:Label width="10rem" text="Due Date"/>
-												<m:Text id="idShipDate11" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+												<m:Text id="id11" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input/>
+													<m:Input id="idDueDate"/>
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
@@ -619,21 +619,21 @@
 												<m:Label width="10rem" text="Contact"/>
 												<m:Text id="idreqstdBy2221" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input/>
+													<m:Input id="idContact"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 												<m:Label width="10rem" text="Name"/>
 												<m:Text id="idOrdrDate212" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input/>
+													<m:Input id="idName"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 												<m:Label width="10rem" text="Number"/>
 												<m:Text id="idShipDate212" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input/>
+													<m:Input id="idNumber"/>
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
@@ -641,10 +641,10 @@
 											<m:Label design="Bold" text="Check List"/>
 											<m:VBox>
 												<!--<m:RadioButtonGroup id="GroupA">-->
-												<m:CheckBox text="Doc Types ID'd (AppENG)" selected="true"/>
-												<m:CheckBox text="Drawings Complete (OrderENG)"/>
-												<m:CheckBox text="Submitted? (Inside Sales?)"/>
-												<m:CheckBox text="Sent to the customer"/>
+												<m:CheckBox text="Doc Types ID'd (AppENG)" id="idDocTypeid" selected="true"/>
+												<m:CheckBox id="idDrawingComplete" text="Drawings Complete (OrderENG)"/>
+												<m:CheckBox id="idSubmitted" text="Submitted? (Inside Sales?)"/>
+												<m:CheckBox id="idSenttoCustomer" text="Sent to the customer"/>
 												<!--</m:RadioButtonGroup>-->
 											</m:VBox>
 										</m:VBox>
