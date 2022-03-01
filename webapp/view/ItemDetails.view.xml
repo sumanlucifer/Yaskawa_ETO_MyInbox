@@ -167,7 +167,7 @@
 										</l:Grid>
 										<m:VBox class="sapUiTinyMargin" renderType="Bare">
 											<m:Label text="Item Notes"/>
-											<m:TextArea cols="200" height="100px"/>
+											<m:TextArea id="idItemNotes" cols="200" height="100px"/>
 										</m:VBox>
 									</m:VBox>
 								</blocks>
