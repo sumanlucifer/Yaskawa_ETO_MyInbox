@@ -421,6 +421,7 @@ sap.ui.define([
 			oEvent.getSource().destroy();
 		},
 		handleSubmitPress: function (oEvent) {
+			this.getModel("objectViewModel").setProperty("/busy", true);
 
 			// Pre-Order Items Data Payload
 			var aPreOrderItemData = this.getModel("TabDetailsModel").getProperty("/PreOrderItemTableData"),
@@ -555,10 +556,11 @@ sap.ui.define([
 
 				success: function (oData, oResponse) {
 					sap.m.MessageBox.success(oData.Message);
-					// 	this.byId("idWorkFlowStatus").setValue(oData.workflowstatus);
+					this.getModel("objectViewModel").setProperty("/busy", false);
 
 				}.bind(this),
 				error: function (oError) {
+					this.getModel("objectViewModel").setProperty("/busy", false);
 
 				}.bind(this),
 			});
