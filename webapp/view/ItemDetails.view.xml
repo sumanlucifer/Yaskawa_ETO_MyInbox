@@ -348,14 +348,14 @@
 												<m:Label width="10rem" text="Production Supervisor"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input value="{TabDetailsModel>/TabData/MaterialProdSupervisor}" editable="false"/>
+													<m:Input id="idProdSupervisior" value="{TabDetailsModel>/TabData/MaterialProdSupervisor}" editable="false"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 												<m:Label width="10rem" text="In-House Prod Time"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input editable="false"/>
+													<m:Input id="idinHouseProdTime" editable="false"/>
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
@@ -371,7 +371,7 @@
 												<m:Label width="10rem" text="Planned Deliv. lead"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input value="{TabDetailsModel>/TabData/MaterialDelLead}"/>
+													<m:Input id="idPalnnedDelLead" value="{TabDetailsModel>/TabData/MaterialDelLead}"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
@@ -390,14 +390,14 @@
 												<m:Label width="10rem" text="GR Processing Time"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input value="{TabDetailsModel>/TabData/MaterialGrTime}"/>
+													<m:Input id="idGRProcessTime" value="{TabDetailsModel>/TabData/MaterialGrTime}"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 												<m:Label width="10rem" text="Planning Time Fence"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input value="{TabDetailsModel>/TabData/MaterialTimeFence}"/>
+													<m:Input id="idPlannTimeFence" value="{TabDetailsModel>/TabData/MaterialTimeFence}"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
@@ -426,19 +426,14 @@
 												<m:Label width="10rem" text="Lot Size"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<!--<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">-->
-													<!--	<core:ListItem key="" text=""/>-->
-													<!--</m:ComboBox>-->
-													<m:Input value="{TabDetailsModel>/TabData/MaterialLotSize}"/>
+													<m:Input id="idLotSize" value="{TabDetailsModel>/TabData/MaterialLotSize}"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 												<m:Label width="10rem" text="Fixed Lot Size"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">
-														<core:ListItem key="" text=""/>
-													</m:ComboBox>
+													<m:Input id="idFixedLotSize"/>
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
