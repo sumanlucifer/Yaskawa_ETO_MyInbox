@@ -705,14 +705,14 @@
 												<m:Label width="10rem" text="Priority"/>
 												<m:Text id="k" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input/>
+													<m:Input id="idPriority"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 												<m:Label width="10rem" text="Development Level"/>
 												<m:Text id="y" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input/>
+													<m:Input id="idDevLevel"/>
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
@@ -721,35 +721,34 @@
 												<m:Label width="10rem" text="Scheduled ENG Hours"/>
 												<m:Text id="idShipDa" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input/>
+													<m:Input id="idSchedleEngHrs"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 												<m:Label width="10rem" text="Actual ENG Hours"/>
 												<m:Text id="nj" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input/>
+													<m:Input id="idActEngHrs"/>
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
 										<m:VBox class="sapUiSmallMarginBegin">
 											<m:Label design="Bold" text="Check List"/>
 											<m:VBox>
-												<!--<m:RadioButtonGroup id="GroupA">-->
-												<m:CheckBox text="ME Design" selected="true"/>
-												<m:CheckBox text="EE Design"/>
-												<m:CheckBox text="System Analysis"/>
-												<m:CheckBox text="Approved Drawings Complete"/>
-												<m:CheckBox text="XXEngineering Approval Rcvd"/>
-												<m:CheckBox text="ZZKickoff Meeting"/>
-												<m:CheckBox text="Pre-Order SAP BOMs Created"/>
-												<m:CheckBox text="Shipping Split BOMs Created"/>
-												<m:CheckBox text="Lineup BOM Created"/>
-												<m:CheckBox text="BOM Review Complete"/>
-												<m:CheckBox text="Final SAP BOMs Loaded"/>
-												<m:CheckBox text="Routings Created"/>
-												<m:CheckBox text="Z7 Status Removed"/>
-												<m:CheckBox text="ZZProduction Kickoff Meeting"/>
+												<m:CheckBox id="idMEDesign" text="ME Design" selected="true"/>
+												<m:CheckBox id="idEEDesign" text="EE Design"/>
+												<m:CheckBox id="idSystemAnalysis" text="System Analysis"/>
+												<m:CheckBox id="idApprovedDrwnings" text="Approved Drawings Complete"/>
+												<m:CheckBox id="idApprvlRcvd" text="XXEngineering Approval Rcvd"/>
+												<m:CheckBox id="idKickoffMeeting" text="ZZKickoff Meeting"/>
+												<m:CheckBox id="idPreOrdrSAPBomCrtd" text="Pre-Order SAP BOMs Created"/>
+												<m:CheckBox id="idShippingSplitBOM" text="Shipping Split BOMs Created"/>
+												<m:CheckBox id="idLineBOMCreated" text="Lineup BOM Created"/>
+												<m:CheckBox id="BOMReviewComplete" text="BOM Review Complete"/>
+												<m:CheckBox id="idFinalSAPBOM" text="Final SAP BOMs Loaded"/>
+												<m:CheckBox id="idRoutingCreated" text="Routings Created"/>
+												<m:CheckBox id="idStatusRmoved" text="Z7 Status Removed"/>
+												<m:CheckBox id="idZZProdKickoff" text="ZZProduction Kickoff Meeting"/>
 												<!--</m:RadioButtonGroup>-->
 											</m:VBox>
 										</m:VBox>
