@@ -631,23 +631,47 @@ sap.ui.define([
 		onFileSizeExceed: function () {
 			MessageBox.error("File size exceeded, Please upload file with size upto 200KB.");
 		},
-		_getAttachmentDialog: function () {
-			var _self = this;
-			if (!_self._oDialogAttachment) {
-				_self._oDialogAttachment = sap.ui.xmlfragment("com.yaskawa.ETOWorkFlow.fragments.AttachmentSection",
-					_self);
-				_self.getView().addDependent(_self._oDialogAttachment);
-			}
-			return this._oDialogAttachment;
+		onAttachmentItemDelete: function (oEvent) {
+			var object = oEvent.getSource().getBindingContext("TabDetailsModel").getObject();
+			sap.m.MessageBox.warning("Are you sure to delete this attachment?", {
+				actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
+				styleClass: "messageBoxError",
+				onClose: function (oAction) {
+					if (oAction === sap.m.MessageBox.Action.YES) {
+						this.deleteServiceCall(object);
+
+					}
+
+				}.bind(this),
+			});
 		},
-		onAttchmentPress: function () {
-			this._getAttachmentDialog().open();
-		},
-		onAttachmentOk: function () {
-			this._getAttachmentDialog().close();
-		},
-		onAttachmentCancel: function () {
-			this._getAttachmentDialog().close();
+		deleteServiceCall: function (object) {
+			this.getModel("objectViewModel").setProperty("/busy", true);
+
+			var oPayload = {
+
+				"SONumber": this.Vbeln,
+				"Item": object.ItemNr,
+				"Index": object.Index,
+				"Message": ""
+
+			};
+			this.getOwnerComponent().getModel().create("/DeleteAttachmentSet", oPayload, {
+
+				success: function (oData, oResponse) {
+
+					this.getModel("objectViewModel").setProperty("/busy", false);
+					this.callItemDetailDropDownService();
+
+					sap.m.MessageBox.success(oData.Message);
+				}.bind(this),
+				error: function (oError) {
+
+					this.getModel("objectViewModel").setProperty("/busy", false);
+					sap.m.MessageBox.error("HTTP Request Failed");
+
+				}.bind(this),
+			});
 		}
 
 	});

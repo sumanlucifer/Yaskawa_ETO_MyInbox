@@ -648,8 +648,8 @@
 												<!--</m:RadioButtonGroup>-->
 											</m:VBox>
 										</m:VBox>
-										<m:Table id="idItemsTable233" inset="false" items="{TabDetailsModel>/ETOAttachmentSet}" mode="MultiSelect"
-											selectionChange="itemTableSelectionChange" class="sapUiSizeCompact" visible="true">
+										<m:Table id="idItemsTable233" inset="false" items="{TabDetailsModel>/ETOAttachmentSet}" selectionChange="itemTableSelectionChange"
+											class="sapUiSizeCompact" visible="true">
 											<m:headerToolbar class="zhdrTlbar">
 												<m:OverflowToolbar>
 													<m:content>
@@ -679,11 +679,7 @@
 														<m:Link text="{TabDetailsModel>Filename}" href="{TabDetailsModel>Url}" press="onViewDoc" target="_blank"/>
 														<m:Text text="{TabDetailsModel>User}"/>
 														<m:Text text="{TabDetailsModel>Date}-{TabDetailsModel>Time}"/>
-														<core:Icon src="sap-icon://sys-cancel" class="size1" color="xe1c7" press="onAttachmentItemDelete">
-															<core:layoutData>
-																<m:FlexItemData growFactor="1"/>
-															</core:layoutData>
-														</core:Icon>
+														<m:Button type="Reject" text="Delete" press="onAttachmentItemDelete"/>
 														<!--<m:Text text="{preOrderItemModelName>PartNo}"/>-->
 														<!--<m:Text text="{preOrderItemModelName>Description}"/>-->
 													</m:cells>
