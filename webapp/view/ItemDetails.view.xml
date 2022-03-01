@@ -12,23 +12,18 @@
 								<m:Label text="Item#" width="160px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>
 								<m:VBox width="100%">
 									<m:Input id="ss" width="100%" value="{TabDetailsModel>/TabData/ItemNo}" editable="false"></m:Input>
-									<!--<m:ComboBox id="idZbStdPoNonStock" valueState="None" width="100%" items="{ path: '/results'}" loadItems="handleLoadItems" selectedKey="1"-->
-									<!--	selectionChange="AccAssgnmntSelectionChange">-->
-									<!--	<core:ListItem key="{item}" text="{item}"/>-->
-									<!--</m:ComboBox>-->
-									<!--<m:Input id="idZbStdPoNonStock" width="100%" value="10" editable="false"></m:Input>-->
 								</m:VBox>
 							</m:HBox>
 							<m:HBox>
 								<m:Label required="false" text="Quantity" width="160px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>
 								<m:VBox width="100%">
-									<m:Input id="idZbStdPoNonStock22" width="100%" value="{TabDetailsModel>/TabData/Quantity}" editable="false"></m:Input>
+									<m:Input id="idorderItemDetailHeaderQty" width="100%" value="{TabDetailsModel>/TabData/Quantity}" editable="false"></m:Input>
 								</m:VBox>
 							</m:HBox>
 							<m:HBox alignItems="Center">
 								<m:Label text="Net $ each" width="160px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>
 								<m:VBox width="100%">
-									<m:Input width="100%" id="idApproverName4" type="Text" value="{TabDetailsModel>/TabData/NetAmount}" editable="false"></m:Input>
+									<m:Input width="100%" id="idorderItemDetailHeaderNetAmt" type="Text" value="{TabDetailsModel>/TabData/NetAmount}" editable="false"></m:Input>
 								</m:VBox>
 							</m:HBox>
 							<m:HBox alignItems="Center">
@@ -39,11 +34,8 @@
 							</m:HBox>
 							<m:HBox alignItems="Center">
 								<m:Label id="idCPSLdsbl" text="Workflow Status" width="150px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>
-								<!--<m:VBox width="100%">-->
-								<!--	<m:Input id="d" width="100%" type="Text" value="Some User" editable="false"></m:Input>-->
-								<!--</m:VBox>-->
 								<m:VBox width="100%">
-									<m:Input width="100%" value="{TabDetailsModel>/TabData/WfStatus}" type="Text" editable="false"></m:Input>
+									<m:Input width="100%" id="idorderItemDetailHeaderWFStatus" value="{TabDetailsModel>/TabData/WfStatus}" type="Text" editable="false"></m:Input>
 								</m:VBox>
 							</m:HBox>
 						</l:Grid>
@@ -69,9 +61,9 @@
 									<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">
 										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 											<m:Label width="10rem" text="Options"/>
-											<m:Text id="idreqstdBy2" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+											<m:Text id="ido" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 											<m:VBox width="100%">
-												<m:Input value="" id="nameT4"/>
+												<m:Input value="" id="idOption"/>
 											</m:VBox>
 										</m:HBox>
 									</l:Grid>
@@ -88,19 +80,19 @@
 										singleContainerFullSize="false">
 										<f:content>
 											<m:Label text="Motor Full Load Amps"/>
-											<m:Input value="{TabDetailsModel>/TabData/AppMotorFull}" id="nameText"/>
+											<m:Input value="{TabDetailsModel>/TabData/AppMotorFull}" id="idAppMotorFullLoad"/>
 											<m:Label text="Panel SCCR"/>
-											<m:Input value="{TabDetailsModel>/TabData/AppPanelSscr}" id="nameText2"/>
+											<m:Input value="{TabDetailsModel>/TabData/AppPanelSscr}" id="idAppPanelScr"/>
 											<m:Label text="Ambient temperature"/>
-											<m:Input value="{TabDetailsModel>/TabData/AppAmbTemp}" id="nameText3"/>
+											<m:Input value="{TabDetailsModel>/TabData/AppAmbTemp}" id="idAppAmbTemp"/>
 											<m:Label text="Enclosure size restriction"/>
-											<m:Input value="{TabDetailsModel>/TabData/AppEnclosure}" id="nameText4"/>
+											<m:Input value="{TabDetailsModel>/TabData/AppEnclosure}" id="idAppEnclosure"/>
 											<m:Label text="Cable entry locations"/>
-											<m:Input value="{TabDetailsModel>/TabData/AppCableEntry}" id="nameText5"/>
+											<m:Input value="{TabDetailsModel>/TabData/AppCableEntry}" id="idAppCableEntry"/>
 											<m:Label text="Ventilation location restrictions"/>
-											<m:Input value="{TabDetailsModel>/TabData/AppVenitilation}" id="nameText6"/>
+											<m:Input value="{TabDetailsModel>/TabData/AppVenitilation}" id="idAppVentilation"/>
 											<m:Label text="Altitude"/>
-											<m:Input value="{TabDetailsModel>/TabData/AppAltitude}" id="nameText7"/>
+											<m:Input value="{TabDetailsModel>/TabData/AppAltitude}" id="idAppAltitude"/>
 										</f:content>
 									</f:SimpleForm>
 									<!--</m:VBox>-->
@@ -173,15 +165,7 @@
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
-										<!--<m:VBox class="sapUiTinyMargin" renderType="Bare">-->
-										<!--<m:MessageStrip class="sapUiTinyMarginBottom" visible="{=!${device>/browser/mobile}}" showIcon="true" type="Information"-->
-										<!--	text="To add files, you can also use drag &amp; drop on your desktop or tablet."/>-->
-										<!--						<m:Label text="Notes"/>-->
-										<!--						<m:TextArea id="TextArea2" cols="200" height="100px"/>-->
-										<!--					</m:VBox>-->
 										<m:VBox class="sapUiTinyMargin" renderType="Bare">
-											<!--<m:MessageStrip class="sapUiTinyMarginBottom" visible="{=!${device>/browser/mobile}}" showIcon="true" type="Information"-->
-											<!--	text="To add files, you can also use drag &amp; drop on your desktop or tablet."/>-->
 											<m:Label text="Item Notes"/>
 											<m:TextArea cols="200" height="100px"/>
 										</m:VBox>
@@ -198,7 +182,7 @@
 										<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 												<m:Label width="10rem" text="Product Type"/>
-												<m:Text id="idreqstdBy22" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+												<m:Text id="idProdType" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
 													<m:ComboBox id="idProductType" width="100%" valueState="None" placeholder="Select Product Type" selectedKey="{HeaderDetailsModel>/DDTEXT}"
 														items="{TabDetailsModel>/ProductTypeSet}">
@@ -210,14 +194,14 @@
 												<m:Label width="10rem" text="Material Number"/>
 												<m:Text id="idOrdrDate222" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input value="{TabDetailsModel>/TabData/ProdMaterial}" editable="false"/>
+													<m:Input id="idMaterialNumber" value="{TabDetailsModel>/TabData/ProdMaterial}" editable="false"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 												<m:Label width="10rem" text="Description"/>
-												<m:Text id="idShipDate222" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input value="{TabDetailsModel>/TabData/ProdDesc}" editable="false"/>
+													<m:Input id="idDecription" value="{TabDetailsModel>/TabData/ProdDesc}" editable="false"/>
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
@@ -387,9 +371,6 @@
 												<m:Label width="10rem" text="Planned Deliv. lead"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<!--<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">-->
-													<!--	<core:ListItem key="" text=""/>-->
-													<!--</m:ComboBox>-->
 													<m:Input value="{TabDetailsModel>/TabData/MaterialDelLead}"/>
 												</m:VBox>
 											</m:HBox>
@@ -409,9 +390,6 @@
 												<m:Label width="10rem" text="GR Processing Time"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<!--<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">-->
-													<!--	<core:ListItem key="" text=""/>-->
-													<!--</m:ComboBox>-->
 													<m:Input value="{TabDetailsModel>/TabData/MaterialGrTime}"/>
 												</m:VBox>
 											</m:HBox>
@@ -419,9 +397,6 @@
 												<m:Label width="10rem" text="Planning Time Fence"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<!--<m:ComboBox valueState="None" width="100%" items="" loadItems="handleLoadItems" selectionChange="AccAssgnmntSelectionChange" placeholder="">-->
-													<!--	<core:ListItem key="" text=""/>-->
-													<!--</m:ComboBox>-->
 													<m:Input value="{TabDetailsModel>/TabData/MaterialTimeFence}"/>
 												</m:VBox>
 											</m:HBox>
@@ -788,62 +763,6 @@
 							</ObjectPageSubSection>
 						</subSections>
 					</ObjectPageSection>
-					<!--<ObjectPageSection>-->
-					<!--	<subSections>-->
-					<!--		<ObjectPageSubSection id="idAddNewRecord" title="Add New Record" visible="false" titleUppercase="false">-->
-					<!--			<blocks>-->
-					<!--				<m:VBox id="idFirstVBox2" class="vboxAlignment">-->
-					<!--<f:SimpleForm id="idAddNewItemForm" editable="true" maxContainerCols="2" layout="ResponsiveGridLayout" labelSpanL="3" emptySpanL="0"-->
-					<!--	emptySpanM="0" columnsL="2" columnsM="2" adjustLabelSpan="true">-->
-					<!--	<f:content>-->
-					<!--		<l:Grid defaultSpan="L12 M12 S12" width="auto">-->
-					<!--			<l:content>-->
-					<!--<m:VBox width="100%" visible="true">-->
-					<!--					<m:HBox width="100%" alignItems="Center">-->
-					<!--						<m:Label design="Bold" width="5rem" text="Type"/>-->
-					<!--						<m:Text id="idItemTxt2" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
-					<!--						<m:VBox width="100%">-->
-					<!--							<m:Input id="idRecordType" value="" width="100%" liveChange="itemFieldValidation" editable="true"/>-->
-					<!--						</m:VBox>-->
-					<!--					</m:HBox>-->
-					<!--					<m:HBox width="100%" alignItems="Center">-->
-					<!--						<m:Label design="Bold" required="false" text="Title" width="5rem"/>-->
-					<!--						<m:Text id="idAccAGnmntTxt2" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
-					<!--						<m:VBox width="100%">-->
-					<!--							<m:Input id="idRecordTitle" value="" width="100%" liveChange="itemFieldValidation" editable="true"/>-->
-					<!--						</m:VBox>-->
-					<!--					</m:HBox>-->
-					<!--					<m:Panel>-->
-					<!--						<m:FlexBox alignItems="Start" justifyContent="Center">-->
-					<!--							<m:items>-->
-					<!--<m:Button id="idAddItem" text="{i18n>Add}" visible="true" type="Ghost" press="onAddNewRecordToTable" class="sapUiTinyMarginEnd"/>-->
-					<!--<m:Button id="idUpdateItem" text="Update" visible="true" type="Ghost" press="onUpdateItem" class="sapUiTinyMarginEnd"/>-->
-					<!--<m:Button text="{i18n>Cancel}" type="Ghost" press="onAddItemCancel"/>-->
-					<!--							</m:items>-->
-					<!--						</m:FlexBox>-->
-					<!--					</m:Panel>-->
-					<!--					<m:VBox>-->
-					<!--						<m:MessageStrip class="sapUiTinyMarginBottom" visible="{=!${device>/browser/mobile}}" showIcon="true" type="Information"-->
-					<!--							text="To add files, you can also use drag &amp; drop on your desktop or tablet."/>-->
-					<!--						<m:UploadCollection id="UploadCollection" maximumFilenameLength="55" maximumFileSize="10" multiple="true" sameFilenameAllowed="true"-->
-					<!--							instantUpload="false" noDataDescription="Drop files or use the &quot;Add&quot; button to keep files ready for upload" change="onChange"-->
-					<!--							fileDeleted="onFileDeleted" filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"-->
-					<!--							uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts"/>-->
-					<!--						<m:Panel>-->
-					<!--							<m:FlexBox alignItems="Start" justifyContent="Center">-->
-					<!--								<m:items>-->
-					<!--									<m:Button id="idAddItem22" text="{i18n>Add}" visible="true" type="Ghost" press="onAddNewRecordToTable" class="sapUiTinyMarginEnd"/>-->
-					<!--<m:Button id="idUpdateItem" text="Update" visible="true" type="Ghost" press="onUpdateItem" class="sapUiTinyMarginEnd"/>-->
-					<!--									<m:Button text="{i18n>Cancel}" type="Ghost" press="onAddItemCancel"/>-->
-					<!--								</m:items>-->
-					<!--							</m:FlexBox>-->
-					<!--						</m:Panel>-->
-					<!--					</m:VBox>-->
-					<!--				</m:VBox>-->
-					<!--			</blocks>-->
-					<!--		</ObjectPageSubSection>-->
-					<!--	</subSections>-->
-					<!--</ObjectPageSection>-->
 				</sections>
 			</ObjectPageLayout>
 		</m:content>
