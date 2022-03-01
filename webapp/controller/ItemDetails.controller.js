@@ -444,7 +444,7 @@ sap.ui.define([
 				//  Header fields
 				"SalesOrder": this.Vbeln,
 				"ItemNo": this.Posnr,
-				"Action": "C",
+				"Action": "S",
 				"Quantity": this.byId("idorderItemDetailHeaderQty").getValue(),
 				"NetAmount": this.byId("idorderItemDetailHeaderNetAmt").getValue(),
 				"WfStatus": this.byId("idorderItemDetailHeaderWFStatus").getValue(),
