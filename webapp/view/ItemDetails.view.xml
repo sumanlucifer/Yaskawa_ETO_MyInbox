@@ -51,8 +51,8 @@
 											<m:Label width="10rem" text="Options Type"/>
 											<m:Text id="idreqstdBy" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 											<m:VBox width="100%">
-												<m:ComboBox id="idOptionType" width="100%" valueState="None" placeholder="Select Option Type" selectedKey="{TabDetailsModel>/OptionKey}"
-													items="{TabDetailsModel>/OptionTypeSet}">
+												<m:ComboBox id="idOptionType" width="100%" valueState="None" placeholder="Select Option Type"
+													selectedKey="{TabDetailsModel>/TabData/OpOptionType}" items="{TabDetailsModel>/OptionTypeSet}">
 													<core:Item key="{TabDetailsModel>OptionKey}" text="{TabDetailsModel>OptiontypeValue}"/>
 												</m:ComboBox>
 											</m:VBox>
@@ -63,7 +63,7 @@
 											<m:Label width="10rem" text="Options"/>
 											<m:Text id="ido" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 											<m:VBox width="100%">
-												<m:Input value="" id="idOption"/>
+												<m:Input value="{TabDetailsModel>/TabData/OpOption}" id="idOption"/>
 											</m:VBox>
 										</m:HBox>
 									</l:Grid>

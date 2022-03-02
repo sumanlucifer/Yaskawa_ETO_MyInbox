@@ -73,8 +73,6 @@ sap.ui.define([
 				this.getView().byId("idOrderEng").setVisible(true);
 			}
 
-			this.getTabDetials(this.Vbeln, this.Posnr);
-
 		},
 		callItemDetailDropDownService: function () {
 			this.getModel("objectViewModel").setProperty("/busy", true);
@@ -110,7 +108,8 @@ sap.ui.define([
 				this.readChecklistEntity("/ZPRE_ORD_ITEMSet", Filter.Sofilter),
 
 				// PA Submital Tab 
-				this.readChecklistEntity("/ETOAttachmentSet", Filter.attachFilter)
+				this.readChecklistEntity("/ETOAttachmentSet", Filter.attachFilter),
+				this.readChecklistEntity(`/ZWF_DETAILSSet(SalesOrder='${this.Vbeln}',ItemNo='${this.Posnr}')`)
 
 			]).then(this.buildChecklist.bind(this)).catch(function (error) {}.bind(this));
 
@@ -164,6 +163,9 @@ sap.ui.define([
 			// PA Submital Tab  item response
 			var aETOAttachmentSet = values[18].status === "rejected" ? null : values[18].value.results;
 
+			// All Tab Details Response
+			var aAlltabDetailsSet = values[19].status === "rejected" ? null : values[19].value;
+
 			this.getModel("TabDetailsModel").setSizeLimit(1000);
 
 			// Product type data model binding
@@ -197,6 +199,8 @@ sap.ui.define([
 			// PA Submital Tab  data model binding
 			this.getModel("TabDetailsModel").setProperty("/ETOAttachmentSet", aETOAttachmentSet);
 
+			// All Tab data model binding
+			this.getModel("TabDetailsModel").setProperty("/TabData", aAlltabDetailsSet);
 			var sLoginID = new sap.ushell.services.UserInfo().getId();
 			this.byId("idAssignTo").setSelectedKey(sLoginID);
 
@@ -229,47 +233,30 @@ sap.ui.define([
 			});
 			var attachFilter = [];
 			attachFilter.push(sattachFilter, sattachFilter1);
+
+			var sTabDetailsFilter = new sap.ui.model.Filter({
+				path: "SalesOrder",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: sSaleOrderNo
+			});
+			var sTabDetailsFilter1 = new sap.ui.model.Filter({
+				path: "ItemNr",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: sPosnumbr
+			});
+			var TabsFilter = [];
+			TabsFilter.push(sTabDetailsFilter, sTabDetailsFilter1);
 			var filerValue = {
 
 				attachFilter: attachFilter,
-				Sofilter: Sofilter
+				Sofilter: Sofilter,
+				TabsFilter: TabsFilter
 
 			};
 
 			return filerValue;
 		},
-		getTabDetials: function (SalesOrder, ItemNo) {
 
-			this.getModel("objectViewModel").setProperty("/busy", true);
-			var sSalesOrderFilter = new sap.ui.model.Filter({
-				path: "SalesOrder",
-				operator: sap.ui.model.FilterOperator.EQ,
-				value1: SalesOrder
-
-			});
-			var sItemNoFilter = new sap.ui.model.Filter({
-				path: "ItemNo",
-				operator: sap.ui.model.FilterOperator.EQ,
-				value1: ItemNo
-
-			});
-			var filter = [];
-			filter.push(sSalesOrderFilter, sItemNoFilter);
-
-			this.getOwnerComponent().getModel("UserAction").read(`/ZWF_DETAILSSet(SalesOrder='${SalesOrder}',ItemNo='${ItemNo}')`, {
-
-				success: function (oData, oResponse) {
-
-					this.getModel("objectViewModel").setProperty("/busy", false);
-					this.getModel("TabDetailsModel").setProperty("/TabData", oData);
-
-				}.bind(this),
-				error: function (oError) {
-					this.getModel("objectViewModel").setProperty("/busy", false);
-
-				}.bind(this),
-			});
-		},
 		_bindView: function (sObjectPath) {
 			var oViewModel = this.getModel("objectView"),
 				oDataModel = this.getModel();
@@ -342,7 +329,8 @@ sap.ui.define([
 
 		},
 		onDeletePreOrderItem: function (oEvent) {
-			var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext("TabDetailsModel").getPath().slice("/".length).slice(22, 23));
+			var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext("TabDetailsModel").getPath().slice("/".length).slice(22,
+				23));
 			var aTableData = this.getModel("TabDetailsModel").getProperty("/PreOrderItemTableData");
 			aTableData.splice(iRowNumberToDelete, 1);
 			this.getView().getModel("TabDetailsModel").refresh();
@@ -557,6 +545,7 @@ sap.ui.define([
 				success: function (oData, oResponse) {
 					sap.m.MessageBox.success(oData.Message);
 					this.getModel("objectViewModel").setProperty("/busy", false);
+					this.onNavBack();
 
 				}.bind(this),
 				error: function (oError) {
@@ -658,7 +647,7 @@ sap.ui.define([
 				"Message": ""
 
 			};
-			this.getOwnerComponent().getModel().create("/DeleteAttachmentSet", oPayload, {
+			this.getOwnerComponent().getModel("UserAction").create("/DeleteAttachmentSet", oPayload, {
 
 				success: function (oData, oResponse) {
 
