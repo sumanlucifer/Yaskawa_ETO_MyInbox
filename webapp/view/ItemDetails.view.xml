@@ -113,11 +113,13 @@
 													<m:Text text="Natural Air Convection(vents) or Fan/filters, as needed"/>
 													<!--<m:Panel/>-->
 													<core:HTML content="&lt;hr&gt;"/>
-													<m:CheckBox id="idMinimum1" text="Minimum, Type 1-Forced Vent and Filtered Fans" enabled="{childItemsEnableDisableModelName>/enabled}"/>
-													<m:CheckBox id="idNoHolePanel" text="No Hole back panel" enabled="{childItemsEnableDisableModelName>/enabled}"/>
-													<m:CheckBox id="idGasketDoor" text="Gasketed door" enabled="{childItemsEnableDisableModelName>/enabled}"/>
-													<m:CheckBox id="idTypeFans" text="Type 12 fans" enabled="{childItemsEnableDisableModelName>/enabled}"/>
-													<m:CheckBox id="idULTypeOther" text="Other" enabled="{childItemsEnableDisableModelName>/enabled}"/>
+													<m:CheckBox id="idMinimum1" text="Minimum, Type 1-Forced Vent and Filtered Fans"
+														selected="{= ${TabDetailsModel>/TabData/EnclUlType1Min} === 'X' ? true : false }"/>
+													<m:CheckBox id="idNoHolePanel" text="No Hole back panel"
+														selected="{= ${TabDetailsModel>/TabData/EnclUlType1NoHole} === 'X' ? true : false }"/>
+													<m:CheckBox id="idGasketDoor" text="Gasketed door" selected="{= ${TabDetailsModel>/TabData/EnclUlType1Gasketed} === 'X' ? true : false }"/>
+													<m:CheckBox id="idTypeFans" text="Type 12 fans" selected="{= ${TabDetailsModel>/TabData/EnclUlType1Type12} === 'X' ? true : false }"/>
+													<m:CheckBox id="idULTypeOther" text="Other" selected="{= ${TabDetailsModel>/TabData/EnclUlType1Other} === 'X' ? true : false }"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox>
@@ -127,10 +129,12 @@
 													<m:Text text="Type 12 fans as needed"/>
 													<!--<m:Panel/>-->
 													<core:HTML content="&lt;hr&gt;"/>
-													<m:CheckBox id="idACUnits" text="AC unit(s)" selected="false" enabled="{childItemsEnableDisableModelName2>/enabled}"/>
-													<m:CheckBox id="idHeatexchanger" text="Heat Exchanger air to air" enabled="{childItemsEnableDisableModelName2>/enabled}"/>
-													<m:CheckBox id="idHeatairtoWater" text="Heat Exchanger air to water" selected="false" enabled="{childItemsEnableDisableModelName2>/enabled}"/>
-													<m:CheckBox id="idULTYPE12Other" text="other" enabled="{childItemsEnableDisableModelName2>/enabled}"/>
+													<m:CheckBox id="idACUnits" text="AC unit(s)" selected="{= ${TabDetailsModel>/TabData/EnclUlType12AcUnit} === 'X' ? true : false }"/>
+													<m:CheckBox id="idHeatexchanger" text="Heat Exchanger air to air"
+														selected="{= ${TabDetailsModel>/TabData/EnclUlType12HeatAir} === 'X' ? true : false }"/>
+													<m:CheckBox id="idHeatairtoWater" text="Heat Exchanger air to water"
+														selected="{= ${TabDetailsModel>/TabData/EnclUlType12HeatWater} === 'X' ? true : false }"/>
+													<m:CheckBox id="idULTYPE12Other" text="other" selected="{= ${TabDetailsModel>/TabData/EnclUlType12Other} === 'X' ? true : false }"/>
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
