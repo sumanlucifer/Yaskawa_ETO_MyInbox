@@ -408,7 +408,11 @@ sap.ui.define([
 		clrifyClose: function (oEvent) {
 			oEvent.getSource().destroy();
 		},
-		handleSubmitPress: function (oEvent) {
+
+		// 		handleSubmitPress: function () {
+
+		// 		},
+		handleSubmitPress: function () {
 			this.getModel("objectViewModel").setProperty("/busy", true);
 
 			// Pre-Order Items Data Payload

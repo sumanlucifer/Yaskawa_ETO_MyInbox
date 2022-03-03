@@ -184,8 +184,8 @@
 												<m:Label width="10rem" text="Product Type"/>
 												<m:Text id="idProdType" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox id="idProductType" width="100%" valueState="None" placeholder="Select Product Type" selectedKey="{HeaderDetailsModel>/DDTEXT}"
-														items="{TabDetailsModel>/ProductTypeSet}">
+													<m:ComboBox id="idProductType" width="100%" valueState="None" placeholder="Select Product Type"
+														selectedKey="{TabDetailsModel>/TabData/ProdType}" items="{TabDetailsModel>/ProductTypeSet}">
 														<core:Item key="{TabDetailsModel>DDTEXT}" text="{TabDetailsModel>DDTEXT}"/>
 													</m:ComboBox>
 												</m:VBox>
@@ -210,8 +210,8 @@
 												<m:Label width="10rem" text="Primary Plant"/>
 												<m:Text id="idreqstdBy21" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox id="idPrimaryPlant" width="100%" valueState="None" placeholder="Select Primary Plant" selectedKey="{TabDetailsModel>/Werks}"
-														items="{TabDetailsModel>/PlantSet}">
+													<m:ComboBox id="idPrimaryPlant" width="100%" valueState="None" placeholder="Select Primary Plant"
+														selectedKey="{TabDetailsModel>/TabData/ProdPlant}" items="{TabDetailsModel>/PlantSet}">
 														<core:Item key="{TabDetailsModel>Werks}" text="{TabDetailsModel>Werks}"/>
 													</m:ComboBox>
 												</m:VBox>
@@ -220,8 +220,8 @@
 												<m:Label width="10rem" text="Product Hierarchy"/>
 												<m:Text id="idOrdrDate211" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox id="idProdHrchy" width="100%" valueState="None" placeholder="Select Material Pricing" selectedKey="{TabDetailsModel>/PRODH}"
-														items="{TabDetailsModel>/ProductHierarchySet}">
+													<m:ComboBox id="idProdHrchy" width="100%" valueState="None" placeholder="Select Material Pricing"
+														selectedKey="{TabDetailsModel>/TabData/ProdHierarchy}" items="{TabDetailsModel>/ProductHierarchySet}">
 														<core:Item key="{TabDetailsModel>PRODH}" text="{TabDetailsModel>PRODH}"/>
 													</m:ComboBox>
 												</m:VBox>
@@ -230,8 +230,8 @@
 												<m:Label width="10rem" text="Material Pricing Group"/>
 												<m:Text id="idShipDate2111" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox id="idMatrlPricing" width="100%" valueState="None" placeholder="Select Material Pricing" selectedKey="{TabDetailsModel>/KONDM}"
-														items="{TabDetailsModel>/MaterialPriceSet}">
+													<m:ComboBox id="idMatrlPricing" width="100%" valueState="None" placeholder="Select Material Pricing"
+														selectedKey="{TabDetailsModel>/TabData/ProdMatPrcGrp}" items="{TabDetailsModel>/MaterialPriceSet}">
 														<core:Item key="{TabDetailsModel>KONDM}" text="{TabDetailsModel>KONDM}"/>
 													</m:ComboBox>
 												</m:VBox>
@@ -242,7 +242,7 @@
 												<m:Label width="10rem" text="Base UOM"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox id="idBaseUOM" width="100%" valueState="None" placeholder="Select Base UOM" selectedKey="{TabDetailsModel>/MSEHI}"
+													<m:ComboBox id="idBaseUOM" width="100%" valueState="None" placeholder="Select Base UOM" selectedKey="{TabDetailsModel>/TabData/ProdUom}"
 														items="{TabDetailsModel>/UnitSet}">
 														<core:Item key="{TabDetailsModel>MSEHI}" text="{TabDetailsModel>MSEHI}"/>
 													</m:ComboBox>
@@ -253,7 +253,7 @@
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
 													<m:ComboBox id="idprocurementType" width="100%" valueState="None" placeholder="Select Procurement"
-														selectedKey="{TabDetailsModel>/DOMVALUE_L}" items="{TabDetailsModel>/ProcurementTypeSet}">
+														selectedKey="{TabDetailsModel>/TabData/ProdProcurementType}" items="{TabDetailsModel>/ProcurementTypeSet}">
 														<core:Item key="{TabDetailsModel>DOMVALUE_L}" text="{TabDetailsModel>DDTEXT}"/>
 													</m:ComboBox>
 												</m:VBox>
@@ -262,8 +262,8 @@
 												<m:Label width="10rem" text="Material Group1"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox id="idMatGrp1" width="100%" valueState="None" placeholder="Select Material Group1 Type" selectedKey="{TabDetailsModel>/MVGR1}"
-														items="{TabDetailsModel>/MaterialGroup1Set}">
+													<m:ComboBox id="idMatGrp1" width="100%" valueState="None" placeholder="Select Material Group1 Type"
+														selectedKey="{TabDetailsModel>/TabData/ProdMatGrp1}" items="{TabDetailsModel>/MaterialGroup1Set}">
 														<core:Item key="{TabDetailsModel>MVGR1}" text="{TabDetailsModel>MVGR1}"/>
 													</m:ComboBox>
 												</m:VBox>
@@ -274,8 +274,8 @@
 												<m:Label width="10rem" text="Overhead Group"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox id="idOvrHdGrp" width="100%" valueState="None" placeholder="Select OverHead" selectedKey="{TabDetailsModel>/KOSGR}"
-														items="{TabDetailsModel>/OverheadGroupSet}">
+													<m:ComboBox id="idOvrHdGrp" width="100%" valueState="None" placeholder="Select OverHead"
+														selectedKey="{TabDetailsModel>/TabData/ProdOverheadGrp}" items="{TabDetailsModel>/OverheadGroupSet}">
 														<core:Item key="{TabDetailsModel>KOSGR}" text="{TabDetailsModel>KOSGR}"/>
 													</m:ComboBox>
 												</m:VBox>
@@ -284,8 +284,8 @@
 												<m:Label width="10rem" text="Valuation Class"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox id="idValClass" width="100%" valueState="None" placeholder="Select Valuation" selectedKey="{TabDetailsModel>/BKLAS}"
-														items="{TabDetailsModel>/ValuationClassSet}">
+													<m:ComboBox id="idValClass" width="100%" valueState="None" placeholder="Select Valuation"
+														selectedKey="{TabDetailsModel>/TabData/ProdValuationClass}" items="{TabDetailsModel>/ValuationClassSet}">
 														<core:Item key="{TabDetailsModel>BKLAS}" text="{TabDetailsModel>BKLAS}"/>
 													</m:ComboBox>
 												</m:VBox>
@@ -294,7 +294,7 @@
 												<m:Label width="10rem" text="MRP Type"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox id="idMRPType" width="100%" valueState="None" placeholder="Select MRP" selectedKey="{TabDetailsModel>/DISMM}"
+													<m:ComboBox id="idMRPType" width="100%" valueState="None" placeholder="Select MRP" selectedKey="{TabDetailsModel>/TabData/ProdMrpType}"
 														items="{TabDetailsModel>/MRPTypeSet}">
 														<core:Item key="{TabDetailsModel>DISMM}" text="{TabDetailsModel>DISMM}"/>
 													</m:ComboBox>
@@ -306,8 +306,8 @@
 												<m:Label width="10rem" text="Strategy Group"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox id="idStrategyGrp" width="100%" valueState="None" placeholder="Select Strategy" selectedKey="{TabDetailsModel>/STRGR}"
-														items="{TabDetailsModel>/StrategyGroupSet}">
+													<m:ComboBox id="idStrategyGrp" width="100%" valueState="None" placeholder="Select Strategy"
+														selectedKey="{TabDetailsModel>/TabData/ProdStrGrp}" items="{TabDetailsModel>/StrategyGroupSet}">
 														<core:Item key="{TabDetailsModel>STRGR}" text="{TabDetailsModel>STRGR}"/>
 													</m:ComboBox>
 												</m:VBox>
@@ -316,8 +316,8 @@
 												<m:Label width="10rem" text="Serial Nbr Profile"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox id="idSerialNBR" width="100%" valueState="None" placeholder="Select Serial NBR" selectedKey="{TabDetailsModel>/SERAIL}"
-														items="{TabDetailsModel>/SerialNbrSet}">
+													<m:ComboBox id="idSerialNBR" width="100%" valueState="None" placeholder="Select Serial NBR"
+														selectedKey="{TabDetailsModel>/TabData/ProdSerialNo}" items="{TabDetailsModel>/SerialNbrSet}">
 														<core:Item key="{TabDetailsModel>SERAIL}" text="{TabDetailsModel>SERAIL}"/>
 													</m:ComboBox>
 												</m:VBox>
@@ -338,8 +338,8 @@
 												<m:Label width="10rem" text="Material Group"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox id="idMatGrp" width="100%" valueState="None" placeholder="Select Material Group" selectedKey="{TabDetailsModel>/MATKL}"
-														items="{TabDetailsModel>/MaterialGroupSet}">
+													<m:ComboBox id="idMatGrp" width="100%" valueState="None" placeholder="Select Material Group"
+														selectedKey="{TabDetailsModel>/TabData/MaterialGroup}" items="{TabDetailsModel>/MaterialGroupSet}">
 														<core:Item key="{TabDetailsModel>MATKL}" text="{TabDetailsModel>MATKL}"/>
 													</m:ComboBox>
 												</m:VBox>
@@ -355,7 +355,7 @@
 												<m:Label width="10rem" text="In-House Prod Time"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input id="idinHouseProdTime" editable="false"/>
+													<m:Input id="idinHouseProdTime" value="{TabDetailsModel>/TabData/MaterialProdTime}" editable="false"/>
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
@@ -364,7 +364,7 @@
 												<m:Label width="10rem" text="Total Repl. lead time"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input value=""/>
+													<m:Input value="{TabDetailsModel>/TabData/MaterialLoadTime}"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
@@ -378,8 +378,8 @@
 												<m:Label width="10rem" text="Prod Sche Profile"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox id="idProdSchePrfl" width="100%" valueState="None" placeholder="Select Profile" selectedKey="{TabDetailsModel>/CO_PRODPRF}"
-														items="{TabDetailsModel>/ProductScheProfileSet}">
+													<m:ComboBox id="idProdSchePrfl" width="100%" valueState="None" placeholder="Select Profile"
+														selectedKey="{TabDetailsModel>/TabData/MaterialProdProfile}" items="{TabDetailsModel>/ProductScheProfileSet}">
 														<core:Item key="{TabDetailsModel>CO_PRODPRF}" text="{TabDetailsModel>CO_PRODPRF}"/>
 													</m:ComboBox>
 												</m:VBox>
@@ -404,8 +404,8 @@
 												<m:Label width="10rem" text="MRP Controller"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox id="idMatCntrl" width="100%" valueState="None" placeholder="Select MRP Controller" selectedKey="{TabDetailsModel>/DISPO}"
-														items="{TabDetailsModel>/MRPControllerSet}">
+													<m:ComboBox id="idMatCntrl" width="100%" valueState="None" placeholder="Select MRP Controller"
+														selectedKey="{TabDetailsModel>/TabData/MaterialMrpControl}" items="{TabDetailsModel>/MRPControllerSet}">
 														<core:Item key="{TabDetailsModel>DISPO}" text="{TabDetailsModel>DISPO}"/>
 													</m:ComboBox>
 												</m:VBox>
@@ -416,8 +416,8 @@
 												<m:Label width="10rem" text="Requirements Grp"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:ComboBox id="idReqGrp" width="100%" valueState="None" placeholder="Select Req Group" selectedKey="{TabDetailsModel>/DOMVALUE_L}"
-														items="{TabDetailsModel>/RequirementsGroupSet}">
+													<m:ComboBox id="idReqGrp" width="100%" valueState="None" placeholder="Select Req Group"
+														selectedKey="{TabDetailsModel>/TabData/MaterialRequirementGrp}" items="{TabDetailsModel>/RequirementsGroupSet}">
 														<core:Item key="{TabDetailsModel>DOMVALUE_L}" text="{TabDetailsModel>DDTEXT}"/>
 													</m:ComboBox>
 												</m:VBox>
@@ -433,7 +433,7 @@
 												<m:Label width="10rem" text="Fixed Lot Size"/>
 												<m:Text text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input id="idFixedLotSize"/>
+													<m:Input value="{TabDetailsModel>/TabData/MaterialFixedLotSize}" id="idFixedLotSize"/>
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
@@ -680,8 +680,6 @@
 														<m:Text text="{TabDetailsModel>User}"/>
 														<m:Text text="{TabDetailsModel>Date}-{TabDetailsModel>Time}"/>
 														<m:Button type="Reject" text="Delete" press="onAttachmentItemDelete"/>
-														<!--<m:Text text="{preOrderItemModelName>PartNo}"/>-->
-														<!--<m:Text text="{preOrderItemModelName>Description}"/>-->
 													</m:cells>
 												</m:ColumnListItem>
 											</m:items>
@@ -701,14 +699,14 @@
 												<m:Label width="10rem" text="Priority"/>
 												<m:Text id="k" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input id="idPriority"/>
+													<m:Input value="{TabDetailsModel>/TabData/OehpsPriority}" id="idPriority"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 												<m:Label width="10rem" text="Development Level"/>
 												<m:Text id="y" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input id="idDevLevel"/>
+													<m:Input value="{TabDetailsModel>/TabData/OehpsDevtLevel}" id="idDevLevel"/>
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
@@ -717,34 +715,45 @@
 												<m:Label width="10rem" text="Scheduled ENG Hours"/>
 												<m:Text id="idShipDa" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input id="idSchedleEngHrs"/>
+													<m:Input value="{TabDetailsModel>/TabData/OehpsSchedEngHrs}" id="idSchedleEngHrs"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 												<m:Label width="10rem" text="Actual ENG Hours"/>
 												<m:Text id="nj" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input id="idActEngHrs"/>
+													<m:Input value="{TabDetailsModel>/TabData/OehpsActualEngHrs}" id="idActEngHrs"/>
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
 										<m:VBox class="sapUiSmallMarginBegin">
 											<m:Label design="Bold" text="Check List"/>
 											<m:VBox>
-												<m:CheckBox id="idMEDesign" text="ME Design" selected="true"/>
-												<m:CheckBox id="idEEDesign" text="EE Design"/>
-												<m:CheckBox id="idSystemAnalysis" text="System Analysis"/>
-												<m:CheckBox id="idApprovedDrwnings" text="Approved Drawings Complete"/>
-												<m:CheckBox id="idApprvlRcvd" text="XXEngineering Approval Rcvd"/>
-												<m:CheckBox id="idKickoffMeeting" text="ZZKickoff Meeting"/>
-												<m:CheckBox id="idPreOrdrSAPBomCrtd" text="Pre-Order SAP BOMs Created"/>
-												<m:CheckBox id="idShippingSplitBOM" text="Shipping Split BOMs Created"/>
-												<m:CheckBox id="idLineBOMCreated" text="Lineup BOM Created"/>
-												<m:CheckBox id="BOMReviewComplete" text="BOM Review Complete"/>
-												<m:CheckBox id="idFinalSAPBOM" text="Final SAP BOMs Loaded"/>
-												<m:CheckBox id="idRoutingCreated" text="Routings Created"/>
-												<m:CheckBox id="idStatusRmoved" text="Z7 Status Removed"/>
-												<m:CheckBox id="idZZProdKickoff" text="ZZProduction Kickoff Meeting"/>
+												<m:CheckBox id="idMEDesign" text="ME Design" selected="{= ${TabDetailsModel>/TabData/OehpsMeDesign} === 'X' ? true : false }"/>
+												<m:CheckBox id="idEEDesign" text="EE Design" selected="{= ${TabDetailsModel>/TabData/OehpsEeDesign} === 'X' ? true : false }"/>
+												<m:CheckBox id="idSystemAnalysis" text="System Analysis"
+													selected="{= ${TabDetailsModel>/TabData/OehpsSystAnalysis} === 'X' ? true : false }"/>
+												<m:CheckBox id="idApprovedDrwnings" text="Approved Drawings Complete"
+													selected="{= ${TabDetailsModel>/TabData/OehpsAprvDrawing} === 'X' ? true : false }"/>
+												<m:CheckBox id="idApprvlRcvd" text="XXEngineering Approval Rcvd"
+													selected="{= ${TabDetailsModel>/TabData/OehpsXengAprvRcvd} === 'X' ? true : false }"/>
+												<m:CheckBox id="idKickoffMeeting" text="ZZKickoff Meeting" selected="{= ${TabDetailsModel>/TabData/OehpsZzkickoff} === 'X' ? true : false }"/>
+												<m:CheckBox id="idPreOrdrSAPBomCrtd" text="Pre-Order SAP BOMs Created"
+													selected="{= ${TabDetailsModel>/TabData/OehpsPreOrdBom} === 'X' ? true : false }"/>
+												<m:CheckBox id="idShippingSplitBOM" text="Shipping Split BOMs Created"
+													selected="{= ${TabDetailsModel>/TabData/OehpsShpSplitBom} === 'X' ? true : false }"/>
+												<m:CheckBox id="idLineBOMCreated" text="Lineup BOM Created"
+													selected="{= ${TabDetailsModel>/TabData/OehpsLineupBom} === 'X' ? true : false }"/>
+												<m:CheckBox id="BOMReviewComplete" text="BOM Review Complete"
+													selected="{= ${TabDetailsModel>/TabData/OehpsBomReview} === 'X' ? true : false }"/>
+												<m:CheckBox id="idFinalSAPBOM" text="Final SAP BOMs Loaded"
+													selected="{= ${TabDetailsModel>/TabData/OehpsFinalSapBom} === 'X' ? true : false }"/>
+												<m:CheckBox id="idRoutingCreated" text="Routings Created"
+													selected="{= ${TabDetailsModel>/TabData/OehpsRoutingsCreated} === 'X' ? true : false }"/>
+												<m:CheckBox id="idStatusRmoved" text="Z7 Status Removed"
+													selected="{= ${TabDetailsModel>/TabData/OehpsZ7StatusRemoved} === 'X' ? true : false }"/>
+												<m:CheckBox id="idZZProdKickoff" text="ZZProduction Kickoff Meeting"
+													selected="{= ${TabDetailsModel>/TabData/OehpsZzprodKickoff} === 'X' ? true : false }"/>
 												<!--</m:RadioButtonGroup>-->
 											</m:VBox>
 										</m:VBox>
