@@ -147,9 +147,12 @@
 													<!--<m:Panel/>-->
 													<core:HTML content="&lt;hr&gt;"/>
 													<m:VBox>
-														<m:CheckBox id="idULTYPE3RacUnits" text="AC unit(s)" selected="false" enabled="{childItemsEnableDisableModelName3>/enabled}"/>
-														<m:CheckBox id="idHeatExchanger" text="Heat Exchanger, air to water" enabled="{childItemsEnableDisableModelName3>/enabled}"/>
-														<m:CheckBox id="idULTYp3ReOther" text="other" enabled="{childItemsEnableDisableModelName3>/enabled}"/>
+														<m:CheckBox id="idULTYPE3RacUnits" text="AC unit(s)" enabled="{childItemsEnableDisableModelName3>/enabled}"
+															selected="{= ${TabDetailsModel>/TabData/EnclUlType3rAcUnit} === 'X' ? true : false }"/>
+														<m:CheckBox id="idHeatExchanger" text="Heat Exchanger, air to water" enabled="{childItemsEnableDisableModelName3>/enabled}"
+															selected="{= ${TabDetailsModel>/TabData/EnclUlType3rHeatWater} === 'X' ? true : false }"/>
+														<m:CheckBox id="idULTYp3ReOther" text="other" enabled="{childItemsEnableDisableModelName3>/enabled}"
+															selected="{= ${TabDetailsModel>/TabData/EnclUlType3rOther} === 'X' ? true : false }"/>
 													</m:VBox>
 												</m:VBox>
 											</m:HBox>
@@ -161,17 +164,21 @@
 													<!--<m:Panel/>-->
 													<core:HTML content="&lt;hr&gt;"/>
 													<m:VBox>
-														<m:CheckBox id="idNema12" text="NEMA 12" selected="false" enabled="{childItemsEnableDisableModelName4>/enabled}"/>
-														<m:CheckBox id="Nema4" text="NEMA 4" enabled="{childItemsEnableDisableModelName4>/enabled}"/>
-														<m:CheckBox id="idNema4x" text="NEMA 4X" selected="false" enabled="{childItemsEnableDisableModelName4>/enabled}"/>
-														<m:CheckBox id="idNemaOther" text="other" enabled="{childItemsEnableDisableModelName4>/enabled}"/>
+														<m:CheckBox id="idNema12" text="NEMA 12" enabled="{childItemsEnableDisableModelName4>/enabled}"
+															selected="{= ${TabDetailsModel>/TabData/EnclNemaTypeNema12} === 'X' ? true : false }"/>
+														<m:CheckBox id="Nema4" text="NEMA 4" enabled="{childItemsEnableDisableModelName4>/enabled}"
+															selected="{= ${TabDetailsModel>/TabData/EnclNemaTypeNema4} === 'X' ? true : false }"/>
+														<m:CheckBox id="idNema4x" text="NEMA 4X" enabled="{childItemsEnableDisableModelName4>/enabled}"
+															selected="{= ${TabDetailsModel>/TabData/EnclNemaTypeNema4x} === 'X' ? true : false }"/>
+														<m:CheckBox id="idNemaOther" text="other" enabled="{childItemsEnableDisableModelName4>/enabled}"
+															selected="{= ${TabDetailsModel>/TabData/EnclNemaTypeOther} === 'X' ? true : false }"/>
 													</m:VBox>
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
 										<m:VBox class="sapUiTinyMargin" renderType="Bare">
 											<m:Label text="Item Notes"/>
-											<m:TextArea id="idItemNotes" cols="200" height="100px"/>
+											<m:TextArea value="{TabDetailsModel>/TabData/EnclItemNotes}" id="idItemNotes" cols="200" height="100px"/>
 										</m:VBox>
 									</m:VBox>
 								</blocks>
@@ -600,21 +607,21 @@
 												<m:Label width="10rem" text="Type"/>
 												<m:Text id="idreq" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input id="idPASubmitalType"/>
+													<m:Input value="{TabDetailsModel>/TabData/PaSubmittalType}" id="idPASubmitalType"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 												<m:Label width="10rem" text="Email"/>
 												<m:Text id="idOrdrDate22" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input id="PASubmitalEmail"/>
+													<m:Input value="{TabDetailsModel>/TabData/PaSubmittalEmail}" id="PASubmitalEmail"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 												<m:Label width="10rem" text="Due Date"/>
 												<m:Text id="id11" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input id="idDueDate"/>
+													<m:Input value="{TabDetailsModel>/TabData/PaSubmittalDueDate}" id="idDueDate"/>
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
@@ -623,21 +630,21 @@
 												<m:Label width="10rem" text="Contact"/>
 												<m:Text id="idreqstdBy2221" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input id="idContact"/>
+													<m:Input value="{TabDetailsModel>/TabData/PaSubmittalContact}" id="idContact"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 												<m:Label width="10rem" text="Name"/>
 												<m:Text id="idOrdrDate212" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input id="idName"/>
+													<m:Input value="{TabDetailsModel>/TabData/PaSubmittalName}" id="idName"/>
 												</m:VBox>
 											</m:HBox>
 											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 												<m:Label width="10rem" text="Number"/>
 												<m:Text id="idShipDate212" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input id="idNumber"/>
+													<m:Input value="{TabDetailsModel>/TabData/PaSubmittalNumber}" id="idNumber"/>
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
@@ -645,10 +652,14 @@
 											<m:Label design="Bold" text="Check List"/>
 											<m:VBox>
 												<!--<m:RadioButtonGroup id="GroupA">-->
-												<m:CheckBox text="Doc Types ID'd (AppENG)" id="idDocTypeid" selected="true"/>
-												<m:CheckBox id="idDrawingComplete" text="Drawings Complete (OrderENG)"/>
-												<m:CheckBox id="idSubmitted" text="Submitted? (Inside Sales?)"/>
-												<m:CheckBox id="idSenttoCustomer" text="Sent to the customer"/>
+												<m:CheckBox text="Doc Types ID'd (AppENG)" id="idDocTypeid"
+													selected="{= ${TabDetailsModel>/TabData/PaSubmittalDocType} === 'X' ? true : false }"/>
+												<m:CheckBox id="idDrawingComplete" text="Drawings Complete (OrderENG)"
+													selected="{= ${TabDetailsModel>/TabData/PaSubmittalDrawings} === 'X' ? true : false }"/>
+												<m:CheckBox id="idSubmitted" text="Submitted? (Inside Sales?)"
+													selected="{= ${TabDetailsModel>/TabData/PaSubmittalSubmitted} === 'X' ? true : false }"/>
+												<m:CheckBox id="idSenttoCustomer" text="Sent to the customer"
+													selected="{= ${TabDetailsModel>/TabData/PaSubmittalSentToCustomer} === 'X' ? true : false }"/>
 												<!--</m:RadioButtonGroup>-->
 											</m:VBox>
 										</m:VBox>
