@@ -564,34 +564,27 @@
 										singleContainerFullSize="false">
 										<f:content>
 											<m:Label text="Matl #"/>
-											<m:Input id="nameText32" value="HHP-L-000000001"/>
+											<m:Input id="idMatl" value="{TabDetailsModel>/TabData/HpsMaterial}"/>
 											<m:Label text="Type"/>
-											<m:ComboBox items="">
-												<core:Item key="" text="HHP"/>
-												<core:Item key="" text="MV"/>
-												<core:Item key="" text="Z1D"/>
-											</m:ComboBox>
+											<m:Input id="idHPSType" value="{TabDetailsModel>/TabData/HpsType}"/>
 											<m:Label text="SCCR"/>
-											<m:ComboBox items="">
-												<core:Item key="" text="10"/>
-												<core:Item key="" text="100"/>
-											</m:ComboBox>
+											<m:Input id="idHPSSCCR" value="{TabDetailsModel>/TabData/HpsSccr}"/>
 											<m:Label text="Drive#"/>
-											<m:Input id="nameText4w" value="GA80Uxxxxxx"/>
+											<m:Input id="idHPSDrive" value="{TabDetailsModel>/TabData/HpsDrive}"/>
 											<m:Label text="Similar Model"/>
-											<m:ComboBox items="">
-												<core:Item key="" text="Z1B3xxxxxx"/>
-												<core:Item key="" text="MVxxxxxxxxA"/>
+											<m:ComboBox id="idSimilarModel" width="100%" valueState="None" placeholder="Select Similar Model"
+												selectedKey="{TabDetailsModel>/TabData/HpsSimilarModel}" items="{TabDetailsModel>/aModelnoSetSet}">
+												<core:Item key="{TabDetailsModel>Matnr}" text="{TabDetailsModel>Matnr}"/>
 											</m:ComboBox>
 											<m:Label text="Planning Material"/>
-											<m:Input id="nameText6w" value="PM-Z1D1xxxxxx"/>
+											<m:Input id="idPlanningMaterial" value="{TabDetailsModel>/TabData/HpsPlanningMaterial}"/>
 											<m:Label text="$/ea"/>
-											<m:Input id="nameText7w" value="$5,000"/>
+											<m:Input id="idEA" value="{TabDetailsModel>/TabData/HpsDollar}"/>
 										</f:content>
 									</f:SimpleForm>
 									<m:VBox width="100%" class="sapUiSmallMarginTop">
 										<m:Text text="Item Notes"/>
-										<m:TextArea width="100%"/>
+										<m:TextArea value="{TabDetailsModel>/TabData/HpsItemNotes}" id="idHPSItemNotes" width="100%"/>
 									</m:VBox>
 								</m:VBox>
 							</ObjectPageSubSection>
@@ -787,8 +780,10 @@
 					<m:ToolbarSpacer/>
 					<m:Button id="idRequotteButtonn" type="Emphasized" enabled="true" press="onRequotePress" text="ReQuote"/>
 					<m:Button id="idClarifyButtonn" type="Emphasized" enabled="true" press="onClarifyPress" text="Clarify"/>
-					<m:Button id="idSaveAsDrftButtonn" type="Emphasized" enabled="true" press="onSADPress" text="Save as Draft"/>
-					<m:Button id="idSubmit" enabled="true" text="Submit" type="Emphasized" press="handleSubmitPress"/>
+					<m:Button id="idSaveAsDrftButtonn" enabled="{= ${TabDetailsModel>/TabData/WfStatus} === 'Complete' ? false : true }" type="Emphasized"
+						press="handleSaveasDraft" text="Save as Draft"/>
+					<m:Button id="idSubmit" enabled="{= ${TabDetailsModel>/TabData/WfStatus} === 'Complete' ? false : true }" text="Submit" type="Emphasized"
+						press="handleSubmitPress"/>
 				</m:content>
 			</m:OverflowToolbar>
 		</m:footer>

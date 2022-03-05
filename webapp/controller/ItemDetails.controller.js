@@ -109,7 +109,12 @@ sap.ui.define([
 
 				// PA Submital Tab 
 				this.readChecklistEntity("/ETOAttachmentSet", Filter.attachFilter),
-				this.readChecklistEntity(`/ZWF_DETAILSSet(SalesOrder='${this.Vbeln}',ItemNo='${this.Posnr}')`)
+
+				// All Tab Details Response
+				this.readChecklistEntity(`/ZWF_DETAILSSet(SalesOrder='${this.Vbeln}',ItemNo='${this.Posnr}')`),
+
+				// HPS tab
+				this.readChecklistEntity("/ModelnoSet")
 
 			]).then(this.buildChecklist.bind(this)).catch(function (error) {}.bind(this));
 
@@ -166,6 +171,9 @@ sap.ui.define([
 			// All Tab Details Response
 			var aAlltabDetailsSet = values[19].status === "rejected" ? null : values[19].value;
 
+			//HPS Tab data response
+			var aModelnoSetSet = values[20].status === "rejected" ? null : values[20].value.results;
+
 			this.getModel("TabDetailsModel").setSizeLimit(1000);
 
 			// Product type data model binding
@@ -198,6 +206,9 @@ sap.ui.define([
 
 			// PA Submital Tab  data model binding
 			this.getModel("TabDetailsModel").setProperty("/ETOAttachmentSet", aETOAttachmentSet);
+
+			// HPS Tab  data model binding
+			this.getModel("TabDetailsModel").setProperty("/aModelnoSetSet", aModelnoSetSet);
 
 			// All Tab data model binding
 			this.getModel("TabDetailsModel").setProperty("/TabData", aAlltabDetailsSet);
@@ -409,10 +420,40 @@ sap.ui.define([
 			oEvent.getSource().destroy();
 		},
 
-		// 		handleSubmitPress: function () {
+		handleSaveasDraft: function () {
 
-		// 		},
+			sap.m.MessageBox.warning("Are you sure to draft this details?", {
+				actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
+				styleClass: "messageBoxError",
+				onClose: function (oAction) {
+					if (oAction === sap.m.MessageBox.Action.YES) {
+						var Action = "D";
+						this.handleSubmitCall(Action);
+
+					}
+
+				}.bind(this),
+			});
+
+		},
+
 		handleSubmitPress: function () {
+
+			sap.m.MessageBox.warning("Are you sure to submit this details?", {
+				actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
+				styleClass: "messageBoxError",
+				onClose: function (oAction) {
+					if (oAction === sap.m.MessageBox.Action.YES) {
+						var Action = "S";
+						this.handleSubmitCall(Action);
+
+					}
+
+				}.bind(this),
+			});
+
+		},
+		handleSubmitCall: function (Action) {
 			this.getModel("objectViewModel").setProperty("/busy", true);
 
 			// Pre-Order Items Data Payload
@@ -437,7 +478,7 @@ sap.ui.define([
 				//  Header fields
 				"SalesOrder": this.Vbeln,
 				"ItemNo": this.Posnr,
-				"Action": "S",
+				"Action": Action,
 				"Quantity": this.byId("idorderItemDetailHeaderQty").getValue(),
 				"NetAmount": this.byId("idorderItemDetailHeaderNetAmt").getValue(),
 				"WfStatus": this.byId("idorderItemDetailHeaderWFStatus").getValue(),
@@ -502,14 +543,15 @@ sap.ui.define([
 				"MaterialProdProfile": this.byId("idProdSchePrfl").getSelectedKey(),
 				"MaterialMrpControl": this.byId("idMatCntrl").getSelectedKey(),
 				"MaterialFixedLotSize": this.byId("idFixedLotSize").getValue(),
-				"HpsMaterial": "",
-				"HpsType": "",
-				"HpsSccr": "",
-				"HpsDrive": "",
-				"HpsSimilarModel": "",
-				"HpsPlanningMaterial": "",
-				"HpsDollar": "",
-				"HpsItemNotes": "",
+				//HPS Tab Fields
+				"HpsMaterial": this.byId("idMatl").getValue(),
+				"HpsType": this.byId("idHPSType").getValue(),
+				"HpsSccr": this.byId("idHPSSCCR").getValue(),
+				"HpsDrive": this.byId("idHPSDrive").getValue(),
+				"HpsSimilarModel": this.byId("idSimilarModel").getSelectedKey(),
+				"HpsPlanningMaterial": this.byId("idPlanningMaterial").getValue(),
+				"HpsDollar": this.byId("idEA").getValue(),
+				"HpsItemNotes": this.byId("idHPSItemNotes").getValue(),
 				// PA/Submital Tab Fields
 				"PaSubmittalType": this.byId("idPASubmitalType").getValue(),
 				"PaSubmittalEmail": this.byId("PASubmitalEmail").getValue(),
@@ -646,7 +688,7 @@ sap.ui.define([
 			var oPayload = {
 
 				"SONumber": this.Vbeln,
-				"Item": object.ItemNr,
+				"Item": this.Posnr,
 				"Index": object.Index,
 				"Message": ""
 
