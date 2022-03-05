@@ -778,8 +778,8 @@
 				<m:content>
 					<m:Button id="idBack" enabled="true" text="Back to Order Page" type="Emphasized" press="handleBackPress"/>
 					<m:ToolbarSpacer/>
-					<m:Button id="idRequotteButtonn" type="Emphasized" enabled="true" press="onRequotePress" text="ReQuote"/>
-					<m:Button id="idClarifyButtonn" type="Emphasized" enabled="true" press="onClarifyPress" text="Clarify"/>
+					<m:Button id="Requote" type="Emphasized" enabled="true" press="onReqouteClarifyPress" text="ReQuote"/>
+					<m:Button id="Clarify" type="Emphasized" enabled="true" press="onReqouteClarifyPress" text="Clarify"/>
 					<m:Button id="idSaveAsDrftButtonn" enabled="{= ${TabDetailsModel>/TabData/WfStatus} === 'Complete' ? false : true }" type="Emphasized"
 						press="handleSaveasDraft" text="Save as Draft"/>
 					<m:Button id="idSubmit" enabled="{= ${TabDetailsModel>/TabData/WfStatus} === 'Complete' ? false : true }" text="Submit" type="Emphasized"

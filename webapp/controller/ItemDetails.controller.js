@@ -709,6 +709,51 @@ sap.ui.define([
 
 				}.bind(this),
 			});
+		},
+
+		onReqouteClarifyPress: function (oeve) {
+
+			this.Action = oeve.getParameters().id.split("-")[8] === "Requote" ? "R" : "C";
+
+			if (!this._oDialogRequoteClarifySection) {
+				this._oDialogRequoteClarifySection = sap.ui.xmlfragment("com.yaskawa.ETOMyInbox.view.fragments.RequoteClarify", this);
+				this.getView().addDependent(this._oDialogRequoteClarifySection);
+
+			}
+			this._oDialogRequoteClarifySection.open();
+		},
+		onPressReqClarifyOk: function () {
+			this.getModel("objectViewModel").setProperty("/busy", true);
+			var Note = sap.ui.getCore().byId("idRequoteClarify").getValue();
+			var oPayload = {
+				"Vbeln": this.Vbeln,
+				"Posnr": this.Posnr,
+				"Action": this.Action,
+				"Note": Note,
+				"Message": ""
+			};
+			this.getOwnerComponent().getModel("UserAction").create("/ClarifyRequoteSet", oPayload, {
+
+				success: function (oData, oResponse) {
+
+					this._oDialogRequoteClarifySection.close();
+
+					this.getModel("objectViewModel").setProperty("/busy", false);
+					sap.ui.getCore().byId("idRequoteClarify").setValue("");
+					sap.m.MessageBox.success("Notes Updated Successfully!");
+				}.bind(this),
+				error: function (oError) {
+					this._oDialogRequoteClarifySection.close();
+					sap.ui.getCore().byId("idRequoteClarify").setValue("");
+					this.getModel("objectViewModel").setProperty("/busy", false);
+					sap.m.MessageBox.error("HTTP Request Failed");
+
+				}.bind(this),
+			});
+		},
+		onPressReqClarifyCancel: function () {
+			sap.ui.getCore().byId("idRequoteClarify").setValue("");
+			this._oDialogRequoteClarifySection.close();
 		}
 
 	});
