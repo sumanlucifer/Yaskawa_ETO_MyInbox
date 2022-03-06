@@ -32,8 +32,7 @@
 				<Label text="Ship Date" textAlign="Left" design="Bold"/>
 				<Text text=":" class="sapUiTinyMarginBeginEnd"></Text>
 				<VBox width="100%">
-					<DatePicker id="idShipDate" placeholder="Enter Ship Date" displayFormat="MM/dd/YYYY" valueFormat="yyyyMMdd"
-						value="{path:'HeaderDetailsModel>/ShipDate', type: 'sap.ui.model.type.DateTime',formatOptions: { pattern: 'MM-dd-yyyy' } }"/>
+					<DatePicker id="idShipDate" placeholder="Enter Ship Date" displayFormat="MM/dd/YYYY" valueFormat="yyyyMMdd"/>
 				</VBox>
 			</HBox>
 			<HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
