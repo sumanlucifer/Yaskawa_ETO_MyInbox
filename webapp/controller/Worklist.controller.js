@@ -320,6 +320,11 @@ sap.ui.define([
 			this.byId("idAppType").setSelectedKey(null);
 			this.byId("idCustName").setSelectedKey(null);
 			this.byId("idCustNo").setSelectedKey(null);
+			this.byId("idOrderDate").setValue("");
+			this.byId("idShipDate").setValue("");
+			this.byId("idGRP").setSelectedKey(null);
+			this.byId("idSaleOrderNo").setValue("");
+			this.byId("idAssignTo").setSelectedKey(null);
 
 		},
 
