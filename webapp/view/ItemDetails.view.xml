@@ -663,7 +663,7 @@
 													<m:content>
 														<!--<m:Text text="Document Details"/>-->
 														<m:ToolbarSpacer/>
-														<m:HBox>
+														<m:HBox visible="{= ${TabDetailsModel>/TabData/WfStatus} === 'Complete' ? false : true }">
 															<u:FileUploader buttonOnly="true" multiple="true" icon="sap-icon://attachment" id="__FILEUPLOAD"
 																visible="{= ${TabDetailsModel>/TabData/WfStatus} === 'Complete' ? false : true }" sameFilenameAllowed="false" buttonText="Add Attachment"
 																fileType="XLS,CSV,PDF,PNG,DOCX,JPG,JPEG" change="onUploadPress" filenameLengthExceed="onFileNameLengthExceed"
