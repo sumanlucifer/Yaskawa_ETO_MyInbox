@@ -259,8 +259,13 @@ sap.ui.define([
 				operator: sap.ui.model.FilterOperator.EQ,
 				value1: sSaleOrderNo
 			});
+			var sIndicatorFilter = new sap.ui.model.Filter({
+				path: "Indicator",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: "M"
+			});
 			var SOfilterHDS = [];
-			SOfilterHDS.push(sSaleOrderNoFilterHDS);
+			SOfilterHDS.push(sSaleOrderNoFilterHDS, sIndicatorFilter);
 
 			var sattachFilter = new sap.ui.model.Filter({
 				path: "Input",
