@@ -34,13 +34,7 @@ sap.ui.define([
 		},
 
 		onNavBack: function () {
-			var sPreviousHash = History.getInstance().getPreviousHash();
-
-			if (sPreviousHash !== undefined) {
-				history.go(-1);
-			} else {
-				this.getRouter().navTo("worklist", {}, true);
-			}
+			history.go(-1);
 		},
 
 		_onObjectMatched: function (oEvent) {
