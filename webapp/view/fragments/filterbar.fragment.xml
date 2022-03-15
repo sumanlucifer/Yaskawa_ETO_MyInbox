@@ -51,7 +51,7 @@
 				<VBox width="100%">
 					<ComboBox id="idAssignTo" placeholder="Select Assigned to" valueState="None" width="100%"
 						selectedKey="{HeaderDetailsModel>/assignedUserKey}" items="{HeaderDetailsModel>/userAssignedSet}">
-						<core:Item key="{HeaderDetailsModel>User}" text="{HeaderDetailsModel>User}"/>
+						<core:Item key="{HeaderDetailsModel>User}" text="{HeaderDetailsModel>Name}"/>
 					</ComboBox>
 				</VBox>
 			</HBox>

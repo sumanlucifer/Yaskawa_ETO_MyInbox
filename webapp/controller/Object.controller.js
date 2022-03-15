@@ -227,7 +227,9 @@ sap.ui.define([
 				oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
 		},
 		onPressSynch: function () {
+			this.SyncAction = 90;
 			this.onGetSODetails();
+
 		},
 		onGetSODetails: function () {
 
@@ -237,7 +239,7 @@ sap.ui.define([
 			this.getModel("objectViewModel").setProperty("/busy", true);
 			Promise.allSettled([this.readChecklistEntity("/ETOHeaderDetailSet", Filter.SOfilterHDS),
 				this.readChecklistEntity("/ETO_ITEM_HEADERSet", Filter.SOfilter),
-				this.readChecklistEntity("/ETOItemListSet", Filter.SOfilter),
+				this.readChecklistEntity("/ETOItemListSet", Filter.aETOItemListSetFilter),
 				this.readChecklistEntity("/ETOAttachmentSet", Filter.attachFilter),
 				this.readChecklistEntity("/ETOLogDetailsSet", Filter.logFilter),
 				this.readChecklistEntity("/ETONotesSet", Filter.notesFilter)
@@ -253,6 +255,19 @@ sap.ui.define([
 			});
 			var SOfilter = [];
 			SOfilter.push(sSaleOrderNoFilter);
+
+			var sETOItemListSetFilter1 = new sap.ui.model.Filter({
+				path: "SONumber",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: sSaleOrderNo
+			});
+			var sETOItemListSetFilter2 = new sap.ui.model.Filter({
+				path: "Action",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: this.SyncAction
+			});
+			var aETOItemListSetFilter = [];
+			aETOItemListSetFilter.push(sETOItemListSetFilter1, sETOItemListSetFilter2);
 
 			var sSaleOrderNoFilterHDS = new sap.ui.model.Filter({
 				path: "Vbeln",
@@ -300,6 +315,7 @@ sap.ui.define([
 
 			var filerValue = {
 				SOfilter: SOfilter,
+				aETOItemListSetFilter: aETOItemListSetFilter,
 				SOfilterHDS: SOfilterHDS,
 				attachFilter: attachFilter,
 				logFilter: logFilter,
@@ -326,6 +342,7 @@ sap.ui.define([
 				}.bind(this));
 		},
 		buildChecklist: function (values) {
+			this.SyncAction = "";
 			this.getModel("objectViewModel").setProperty("/busy", false);
 			var aETOHeaderSet = values[0].status === "rejected" ? null : values[0].value.results;
 			var aETOItemHeaderSet = values[1].status === "rejected" ? null : values[1].value.results;

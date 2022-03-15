@@ -7,12 +7,6 @@
 		<Table id="idListServiceTab" mode="MultiSelect" selectionChange="onSelectionChange" sticky="ColumnHeaders,HeaderToolbar"
 			alternateRowColors="true" updateFinished="onListTableUpdateFinished">
 			<columns>
-				<!--<Column>-->
-				<!--	<customData>-->
-				<!--		<core:CustomData key="p13nData" value='\{"columnKey": "Action", "columnIndex": 0}'/>-->
-				<!--	</customData>-->
-				<!--	<Text text="{i18n>Select}"/>-->
-				<!--</Column>-->
 				<Column >
 					<customData>
 						<core:CustomData key="p13nData"
@@ -20,13 +14,6 @@
 					</customData>
 					<Text text="{i18n>SONumber}"/>
 				</Column>
-				<!--<Column >-->
-				<!--	<customData>-->
-				<!--		<core:CustomData key="p13nData"-->
-				<!--			value='\{"columnKey": "SOItem", "leadingProperty": "SOItem", "columnIndex": 2 ,"sortProperty": "SOItem","filterProperty": "SOItem"}'/>-->
-				<!--	</customData>-->
-				<!--	<Text text="{i18n>SOItem}"/>-->
-				<!--</Column>-->
 				<Column>
 					<customData>
 						<core:CustomData key="p13nData"
@@ -34,13 +21,6 @@
 					</customData>
 					<Text text="{i18n>SOValue}"/>
 				</Column>
-				<!--<Column demandPopin="true" minScreenWidth="Desktop">-->
-				<!--	<customData>-->
-				<!--		<core:CustomData key="p13nData"-->
-				<!--			value='\{"columnKey": "OrderType", "leadingProperty": "OrderType", "columnIndex": 4 ,"sortProperty": "OrderType","filterProperty": "Qty"}'/>-->
-				<!--	</customData>-->
-				<!--	<Text text="{i18n>OrderType}"/>-->
-				<!--</Column>-->
 				<Column demandPopin="true" minScreenWidth="Tablet">
 					<customData>
 						<core:CustomData key="p13nData"
@@ -55,13 +35,6 @@
 					</customData>
 					<Text text="{i18n>CustNumber}"/>
 				</Column>
-				<!--<Column>-->
-				<!--	<customData>-->
-				<!--		<core:CustomData key="p13nData"-->
-				<!--			value='\{"columnKey": "StatusDate", "leadingProperty": "StatusDate", "columnIndex": 4 ,"sortProperty": "StatusDate","filterProperty": "StatusDate"}'/>-->
-				<!--	</customData>-->
-				<!--	<Text text="{i18n>StatusDate}"/>-->
-				<!--</Column>-->
 				<Column>
 					<customData>
 						<core:CustomData key="p13nData"
@@ -76,13 +49,6 @@
 					</customData>
 					<Text text="{i18n>ShipDate}"/>
 				</Column>
-				<!--<Column>-->
-				<!--	<customData>-->
-				<!--		<core:CustomData key="p13nData"-->
-				<!--			value='\{"columnKey": "Vtweg", "leadingProperty": "Vtweg", "columnIndex": 9 ,"sortProperty": "Vtweg","filterProperty": "Vtweg"}'/>-->
-				<!--	</customData>-->
-				<!--	<Text text="{i18n>Vtweg}"/>-->
-				<!--</Column>-->
 				<Column>
 					<customData>
 						<core:CustomData key="p13nData"
@@ -97,26 +63,27 @@
 					</customData>
 					<Text text="{i18n>UserAssignment}"/>
 				</Column>
+				<Column>
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey": "GroupName", "leadingProperty": "GroupName", "columnIndex": 8 ,"sortProperty": "GroupName","filterProperty": "GroupName"}'/>
+					</customData>
+					<Text text="{i18n>GroupName}"/>
+				</Column>
 			</columns>
 			<items>
 				<ColumnListItem type="Navigation" press="onListTablePress">
 					<cells>
-						<!--<CheckBox select="onSelect"/>-->
 						<ObjectIdentifier title="{SONumber}"/>
-						<!--<Text text="{SOItem}"/>-->
 						<Text text="{SOValue}"/>
-						<!--<Text text="{OrderType}"/>-->
 						<Text text="{CustName}"/>
 						<Text text="{CustNumber}"/>
-						<!--<Text text="{StatusDate}"/>-->
 						<Text text="{OrderDate}"/>
 						<Text text="{ShipDate}"/>
-						<!--<Text text="{path:'StatusDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM dd, yyyy' } }"/>-->
-						<!--<Text text="{path:'OrderDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM dd, yyyy' } }"/>-->
 						<!--<Text text="{path:'ShipDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM dd, yyyy' } }"/>-->
-						<!--<Text text="{Vtweg}"/>-->
 						<Text text="{OrderStatus}"/>
 						<Text text="{UserAssignment}"/>
+						<Text text="{GroupName}"/>
 					</cells>
 				</ColumnListItem>
 			</items>

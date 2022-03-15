@@ -39,12 +39,6 @@
 								</m:VBox>
 							</m:HBox>
 							<m:HBox alignItems="Center">
-								<m:Label id="idCfsLbl" text="Clarification Status" width="150px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>
-								<m:VBox width="100%">
-									<m:Input id="idCfStatus" value="{HeaderDetailsModel>/ETOItemHeaderSet/ClarifyStatus}" width="100%" editable="false"/>
-								</m:VBox>
-							</m:HBox>
-							<m:HBox alignItems="Center">
 								<m:Label id="idCPSLbl" text="Assigned To" width="150px" textAlign="Left" design="Bold" class="sapUiTinyMarginEnd"/>
 								<m:VBox width="100%">
 									<m:Input id="idAsignTo" value="{HeaderDetailsModel>/ETOItemHeaderSet/AssignedTo}" width="100%" editable="false"/>
@@ -373,6 +367,8 @@
 												</m:OverflowToolbar>
 											</m:headerToolbar>
 											<m:columns>
+												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Source"/></m:Column>
+												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="User"/></m:Column>
 												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Notes"/></m:Column>
 												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Time stamp"/></m:Column>
 												<!--<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Time"/></m:Column>-->
@@ -380,6 +376,8 @@
 											<m:items>
 												<m:ColumnListItem>
 													<m:cells>
+														<m:Text text="{notesDetailsModel>Source}"/>
+														<m:Text text="{notesDetailsModel>User}"/>
 														<m:Text text="{notesDetailsModel>Note}"/>
 														<m:Text text="{notesDetailsModel>Date}-{notesDetailsModel>Time}"/>
 														<!--<m:Text text="{notesDetailsModel>Time}"/>-->
