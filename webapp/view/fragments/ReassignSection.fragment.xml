@@ -5,8 +5,8 @@
 			<VBox class="sapUiTinyMargin" renderType="Bare">
 				<VBox visible="{globalModel>/userGroupVisible}">
 					<Text text="Group Assignment"/>
-					<ComboBox width="100%" change="onSelectGroupAssignment" valueState="None" placeholder="" selectedKey="{globalModel>/groupAssignKey}"
-						items="{globalModel>/userGroupsSet}">
+					<ComboBox editable="false" width="100%" change="onSelectGroupAssignment" valueState="None" placeholder=""
+						selectedKey="{globalModel>/groupAssignKey}" items="{globalModel>/userGroupsSet}">
 						<core:Item key="{globalModel>DomValue}" text="{globalModel>Ddtext}"/>
 					</ComboBox>
 				</VBox>

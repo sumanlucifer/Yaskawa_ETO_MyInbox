@@ -1,8 +1,8 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:core="sap.ui.core">
-	<smartTable:SmartTable class="sapUiResponsiveContentPadding" enableAutoColumnWidth="true" id="idListServiceTable" editable="false"
-		placeToolbarInTable="true" enableAutoBinding="true" beforeRebindTable="onBeforeRebindSaleTable" entitySet="ETOItemDetailsSet"
-		showFullScreenButton="true" showRowCount="true" tableType="ResponsiveTable" demandPopin="false" useExportToExcel="true"
-		useTablePersonalisation="true" useVariantManagement="true" initialNoDataText="{i18n>NoData}">
+	<smartTable:SmartTable class="sapUiResponsiveContentPadding" requestAtLeastFields="Group" enableAutoColumnWidth="true"
+		id="idListServiceTable" editable="false" placeToolbarInTable="true" enableAutoBinding="true" beforeRebindTable="onBeforeRebindSaleTable"
+		entitySet="ETOItemDetailsSet" showFullScreenButton="true" showRowCount="true" tableType="ResponsiveTable" demandPopin="false"
+		useExportToExcel="true" useTablePersonalisation="true" useVariantManagement="true" initialNoDataText="{i18n>NoData}">
 		<!-- <smartTable:layoutData><FlexItemData growFactor="1" /></smartTable:layoutData> -->
 		<Table id="idListServiceTab" mode="MultiSelect" selectionChange="onSelectionChange" sticky="ColumnHeaders,HeaderToolbar"
 			alternateRowColors="true" updateFinished="onListTableUpdateFinished">

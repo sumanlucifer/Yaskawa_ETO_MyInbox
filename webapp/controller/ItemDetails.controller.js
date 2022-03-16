@@ -596,7 +596,19 @@ sap.ui.define([
 
 		},
 		handleBackPress: function (oEvent) {
-			this.getRouter().navTo("worklist");
+
+			sap.m.MessageBox.warning("Unsaved data will be lost! are you sure to exit?", {
+				actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
+				styleClass: "messageBoxError",
+				onClose: function (oAction) {
+					if (oAction === sap.m.MessageBox.Action.YES) {
+						this.getRouter().navTo("worklist");
+
+					}
+
+				}.bind(this),
+			});
+
 		},
 		onUploadPress: function (oEvent) {
 			var that = this;

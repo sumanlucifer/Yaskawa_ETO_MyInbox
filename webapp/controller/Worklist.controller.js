@@ -163,13 +163,14 @@ sap.ui.define([
 			});
 		},
 		onSelectGroupAssignment: function (oEvent) {
-			var sUser = oEvent.getSource().getSelectedKey();
+			//	var sUser = oEvent.getSource().getSelectedKey();
 
 			this.getModel("objectViewModel").setProperty("/busy", true);
 			var sUserFilter = new sap.ui.model.Filter({
 				path: "Group",
 				operator: sap.ui.model.FilterOperator.EQ,
-				value1: sUser
+				// value1: sUser
+				value1: this.Group
 			});
 			var filter = [];
 			filter.push(sUserFilter);
@@ -288,6 +289,9 @@ sap.ui.define([
 
 			var aSelectedLineItems = this.byId("idListServiceTab").getSelectedItems();
 			this.SONumber = [];
+			this.Group = aSelectedLineItems[0].getBindingContext().getObject().Group;
+			this.getModel("globalModel").setProperty("/groupAssignKey", this.Group);
+			this.onSelectGroupAssignment();
 
 			for (var i = 0; i < aSelectedLineItems.length; i++) {
 				this.SONumber.push(aSelectedLineItems[i].getBindingContext().getObject());
@@ -404,6 +408,7 @@ sap.ui.define([
 
 		onListTablePress: function (oEvent) {
 			var sObjectPath = oEvent.getSource().getBindingContext().getObject().SONumber;
+
 			this.getRouter().navTo("object", {
 				objectId: sObjectPath
 			});
@@ -446,7 +451,7 @@ sap.ui.define([
 			this.getModel("globalModel").setProperty("/userAssnVisible", true);
 			this.getModel("globalModel").setProperty("/userGroupVisible", true);
 			this.getModel("globalModel").setProperty("/userAssignKey", "");
-			this.getModel("globalModel").setProperty("/groupAssignKey", "");
+			//	this.getModel("globalModel").setProperty("/groupAssignKey", "");
 			var SONo = this.SONumber;
 			if (!SONo) {
 				sap.m.MessageBox.error("Please select at least one Sales Order!");
