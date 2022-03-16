@@ -425,7 +425,7 @@ sap.ui.define([
 		},
 		onPressAcceptButton: function (oeve) {
 			this.getModel("globalModel").setProperty("/userAssignKey", "");
-			this.getModel("globalModel").setProperty("/groupAssignKey", "null");
+			this.getModel("globalModel").setProperty("/groupAssignKey", "");
 			this.getModel("globalModel").setProperty("/userAssnVisible", false);
 			this.getModel("globalModel").setProperty("/userGroupVisible", true);
 			var SONo = this.SONumber;
@@ -438,12 +438,8 @@ sap.ui.define([
 				sap.m.MessageBox.error("Please select at least one Sales Order!");
 				return false;
 			}
-			if (!this._oDialogAcceptSection) {
-				this._oDialogAcceptSection = sap.ui.xmlfragment("com.yaskawa.ETOMyInbox.view.fragments.ReassignSection", this);
-				this.getView().addDependent(this._oDialogAcceptSection);
-
-			}
-			this._oDialogAcceptSection.open();
+			// 			
+			this.onAttachmentOk();
 
 		},
 		onReassignButtonPress: function () {
@@ -473,7 +469,7 @@ sap.ui.define([
 			var sBtn = this.button;
 			if (sBtn === "ACCEPT") {
 				var Status = "01";
-				this._oDialogAcceptSection.close();
+				//	this._oDialogAcceptSection.close();
 				this.getModel("globalModel").setProperty("/userAssnVisible", true);
 			} else {
 				this._oDialogReassignSection.close();
