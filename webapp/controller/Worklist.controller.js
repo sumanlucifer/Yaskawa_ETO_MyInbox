@@ -289,14 +289,32 @@ sap.ui.define([
 
 			var aSelectedLineItems = this.byId("idListServiceTab").getSelectedItems();
 			this.SONumber = [];
-			this.Group = aSelectedLineItems[0].getBindingContext().getObject().Group;
-			this.getModel("globalModel").setProperty("/groupAssignKey", this.Group);
-			this.onSelectGroupAssignment();
 
 			for (var i = 0; i < aSelectedLineItems.length; i++) {
 				this.SONumber.push(aSelectedLineItems[i].getBindingContext().getObject());
 
 			}
+			var aSelectedGroupName = this.SONumber;
+			var aGroupName = aSelectedGroupName.map(function (item) {
+				return {
+					GroupName: item.GroupName
+				}
+
+			});
+			aGroupName = aGroupName.map(function (item) {
+				return item.GroupName
+			});
+			var isDuplicate = aGroupName.some(function (item, idx) {
+				return aGroupName.indexOf(item) != idx
+			});
+			if (isDuplicate) {
+				sap.m.MessageBox.error("Please select differfent Line item with different group name!");
+				this.byId("idListServiceTab").removeSelections();
+				return false;
+			}
+			this.Group = aSelectedLineItems[0].getBindingContext().getObject().Group;
+			this.getModel("globalModel").setProperty("/groupAssignKey", this.Group);
+			this.onSelectGroupAssignment();
 
 			//this.byId("idListServiceTab").removeSelections();
 

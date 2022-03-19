@@ -17,56 +17,70 @@
 				<Column>
 					<customData>
 						<core:CustomData key="p13nData"
-							value='\{"columnKey": "SOValue", "leadingProperty": "SOValue", "columnIndex": 1 ,"sortProperty": "SOValue","filterProperty": "SOValue"}'/>
+							value='\{"columnKey": "SOItem", "leadingProperty": "SOItem", "columnIndex": 1 ,"sortProperty": "SOItem","filterProperty": "SOItem"}'/>
+					</customData>
+					<Text text="{i18n>SOItem}"/>
+				</Column>
+				<Column>
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey": "SOValue", "leadingProperty": "SOValue", "columnIndex": 2 ,"sortProperty": "SOValue","filterProperty": "SOValue"}'/>
 					</customData>
 					<Text text="{i18n>SOValue}"/>
 				</Column>
 				<Column demandPopin="true" minScreenWidth="Tablet">
 					<customData>
 						<core:CustomData key="p13nData"
-							value='\{"columnKey": "CustName", "leadingProperty": "CustName", "columnIndex": 2, "sortProperty": "CustName"}'/>
+							value='\{"columnKey": "CustName", "leadingProperty": "CustName", "columnIndex": 3, "sortProperty": "CustName"}'/>
 					</customData>
 					<Text text="{i18n>CustName}"/>
 				</Column>
 				<Column>
 					<customData>
 						<core:CustomData key="p13nData"
-							value='\{"columnKey": "CustNumber", "leadingProperty": "CustNumber", "columnIndex": 3 ,"sortProperty": "CustNumber","filterProperty": "CustNumber"}'/>
+							value='\{"columnKey": "CustNumber", "leadingProperty": "CustNumber", "columnIndex": 4 ,"sortProperty": "CustNumber","filterProperty": "CustNumber"}'/>
 					</customData>
 					<Text text="{i18n>CustNumber}"/>
 				</Column>
 				<Column>
 					<customData>
 						<core:CustomData key="p13nData"
-							value='\{"columnKey": "OrderDate", "leadingProperty": "OrderDate", "columnIndex": 4 ,"sortProperty": "OrderDate","filterProperty": "OrderDate"}'/>
+							value='\{"columnKey": "OrderDate", "leadingProperty": "OrderDate", "columnIndex": 5 ,"sortProperty": "OrderDate","filterProperty": "OrderDate"}'/>
 					</customData>
 					<Text text="{i18n>OrderDate}"/>
 				</Column>
 				<Column>
 					<customData>
 						<core:CustomData key="p13nData"
-							value='\{"columnKey": "ShipDate", "leadingProperty": "ShipDate", "columnIndex": 5 ,"sortProperty": "ShipDate","filterProperty": "ShipDate"}'/>
+							value='\{"columnKey": "ShipDate", "leadingProperty": "ShipDate", "columnIndex": 6 ,"sortProperty": "ShipDate","filterProperty": "ShipDate"}'/>
 					</customData>
 					<Text text="{i18n>ShipDate}"/>
 				</Column>
 				<Column>
 					<customData>
 						<core:CustomData key="p13nData"
-							value='\{"columnKey": "OrderStatus", "leadingProperty": "OrderStatus", "columnIndex": 6 ,"sortProperty": "OrderStatus","filterProperty": "OrderStatus"}'/>
+							value='\{"columnKey": "OrderStatus", "leadingProperty": "OrderStatus", "columnIndex": 7 ,"sortProperty": "OrderStatus","filterProperty": "OrderStatus"}'/>
 					</customData>
 					<Text text="{i18n>OrderStatus}"/>
 				</Column>
 				<Column>
 					<customData>
 						<core:CustomData key="p13nData"
-							value='\{"columnKey": "UserAssignment", "leadingProperty": "UserAssignment", "columnIndex": 7 ,"sortProperty": "UserAssignment","filterProperty": "UserAssignment"}'/>
+							value='\{"columnKey": "ItemStatus", "leadingProperty": "ItemStatus", "columnIndex": 8 ,"sortProperty": "ItemStatus","filterProperty": "ItemStatus"}'/>
+					</customData>
+					<Text text="{i18n>ItemStatus}"/>
+				</Column>
+				<Column>
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey": "UserAssignment", "leadingProperty": "UserAssignment", "columnIndex": 9 ,"sortProperty": "UserAssignment","filterProperty": "UserAssignment"}'/>
 					</customData>
 					<Text text="{i18n>UserAssignment}"/>
 				</Column>
 				<Column>
 					<customData>
 						<core:CustomData key="p13nData"
-							value='\{"columnKey": "GroupName", "leadingProperty": "GroupName", "columnIndex": 8 ,"sortProperty": "GroupName","filterProperty": "GroupName"}'/>
+							value='\{"columnKey": "GroupName", "leadingProperty": "GroupName", "columnIndex": 10 ,"sortProperty": "GroupName","filterProperty": "GroupName"}'/>
 					</customData>
 					<Text text="{i18n>GroupName}"/>
 				</Column>
@@ -75,6 +89,7 @@
 				<ColumnListItem type="Navigation" press="onListTablePress">
 					<cells>
 						<ObjectIdentifier title="{SONumber}"/>
+						<Text text="{SOItem}"/>
 						<Text text="{SOValue}"/>
 						<Text text="{CustName}"/>
 						<Text text="{CustNumber}"/>
@@ -82,6 +97,7 @@
 						<Text text="{ShipDate}"/>
 						<!--<Text text="{path:'ShipDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM dd, yyyy' } }"/>-->
 						<Text text="{OrderStatus}"/>
+						<Text text="{ItemStatus}"/>
 						<Text text="{UserAssignment}"/>
 						<Text text="{GroupName}"/>
 					</cells>

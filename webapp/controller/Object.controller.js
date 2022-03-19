@@ -352,6 +352,7 @@ sap.ui.define([
 			var aETONotesDetailsSet = values[5].status === "rejected" ? null : values[5].value.results;
 			this.getModel("HeaderDetailsModel").setSizeLimit(1000);
 			this.databuilding(aETOHeaderSet[0]);
+			aETOItemListSet[0].Message === "" ? null : sap.m.MessageBox.error(aETOItemListSet[0].Message);
 			this.getModel("HeaderDetailsModel").setProperty("/ETOItemHeaderSet", aETOItemHeaderSet[0]);
 			this.getModel("OrderDetailsModel").setProperty("/ETOItemListSet", aETOItemListSet);
 			this.getModel("AttachmentsModel").setProperty("/ETOAttachmentSet", aETOAttachmentSet);
@@ -484,7 +485,7 @@ sap.ui.define([
 			});
 		},
 		onSelectGroupAssignment: function (oEvent) {
-			var sUser = oEvent.getSource().getSelectedKey();
+			//	var sUser = oEvent.getSource().getSelectedKey();
 
 			this.getModel("objectViewModel").setProperty("/busy", true);
 			var sUserFilter = new sap.ui.model.Filter({
@@ -532,6 +533,9 @@ sap.ui.define([
 			var aListItems = oEvent.getParameter("listItems");
 
 			var aSelectedLineItems = this.byId("idItemsTable").getSelectedItems();
+			this.Group = aSelectedLineItems[0].getBindingContext().getObject().Group;
+			this.getModel("globalModel").setProperty("/groupAssignKey", this.Group);
+			this.onSelectGroupAssignment();
 			this.POSNO = [];
 
 			for (var i = 0; i < aSelectedLineItems.length; i++) {
