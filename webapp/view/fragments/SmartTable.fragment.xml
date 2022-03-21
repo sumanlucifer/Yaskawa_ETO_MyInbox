@@ -88,11 +88,11 @@
 			<items>
 				<ColumnListItem type="Navigation" press="onListTablePress">
 					<cells>
-						<ObjectIdentifier title="{SONumber}"/>
-						<Text text="{SOItem}"/>
+						<ObjectIdentifier title="{path:'SONumber',formatter:'.formatter.removeLeadZero'}"/>
+						<Text text="{path:'SOItem',formatter:'.formatter.removeLeadZero'}"/>
 						<Text text="{SOValue}"/>
 						<Text text="{CustName}"/>
-						<Text text="{CustNumber}"/>
+						<Text text="{path:'CustNumber',formatter:'.formatter.removeLeadZero'}"/>
 						<Text text="{OrderDate}"/>
 						<Text text="{ShipDate}"/>
 						<!--<Text text="{path:'ShipDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM dd, yyyy' } }"/>-->

@@ -304,14 +304,21 @@ sap.ui.define([
 			aGroupName = aGroupName.map(function (item) {
 				return item.GroupName
 			});
-			var isDuplicate = aGroupName.some(function (item, idx) {
-				return aGroupName.indexOf(item) != idx
-			});
-			if (isDuplicate) {
-				sap.m.MessageBox.error("Please select differfent Line item with different group name!");
-				this.byId("idListServiceTab").removeSelections();
-				return false;
+
+			if (aGroupName.length > 1)
+
+			{
+				var isDuplicate = aGroupName.some(function (item, idx) {
+					return aGroupName.indexOf(item) != idx
+				});
+
+				if (!isDuplicate) {
+					sap.m.MessageBox.error("Please select differfent Line item with different group name!");
+					this.byId("idListServiceTab").removeSelections();
+					return false;
+				}
 			}
+
 			this.Group = aSelectedLineItems[0].getBindingContext().getObject().Group;
 			this.getModel("globalModel").setProperty("/groupAssignKey", this.Group);
 			this.onSelectGroupAssignment();
