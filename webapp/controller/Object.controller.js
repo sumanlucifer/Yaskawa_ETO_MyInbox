@@ -491,7 +491,7 @@ sap.ui.define([
 			var sUserFilter = new sap.ui.model.Filter({
 				path: "Group",
 				operator: sap.ui.model.FilterOperator.EQ,
-				value1: sUser
+				value1: this.Group
 			});
 			var filter = [];
 			filter.push(sUserFilter);
@@ -533,7 +533,7 @@ sap.ui.define([
 			var aListItems = oEvent.getParameter("listItems");
 
 			var aSelectedLineItems = this.byId("idItemsTable").getSelectedItems();
-			this.Group = aSelectedLineItems[0].getBindingContext().getObject().Group;
+			this.Group = aSelectedLineItems[0].getBindingContext("OrderDetailsModel").getObject().GroupName;
 			this.getModel("globalModel").setProperty("/groupAssignKey", this.Group);
 			this.onSelectGroupAssignment();
 			this.POSNO = [];

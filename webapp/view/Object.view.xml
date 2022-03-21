@@ -228,8 +228,8 @@
 													<m:Text text="{OrderDetailsModel>MaterialNo}"/>
 													<m:Text text="{OrderDetailsModel>SONumber}"/>
 													<m:Text text="{OrderDetailsModel>Notes}"/>
-													<m:Text text="{OrderDetailsModel>GroupName}"/>
-													<m:Text text="{OrderDetailsModel>UserId}"/>
+													<m:Text text="{OrderDetailsModel>GroupDescr}"/>
+													<m:Text text="{OrderDetailsModel>UserName}"/>
 													<m:Text text="{OrderDetailsModel>DeleteInd}"/>
 													<m:Text text="{OrderDetailsModel>WorkflowStatus}"/>
 												</m:cells>
