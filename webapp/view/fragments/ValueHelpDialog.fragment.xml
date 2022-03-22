@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
 	<SelectDialog resizable="false" contentWidth="30%" id="selectDialog" title="Customer Name" growing="true" growingThreshold="15"
-		items="{/ETOCustomerNameSet}" search=".onValueHelpSearch" confirm=".onValueHelpClose" cancel=".onValueHelpClose">
+		items="{/ETOCustomerNameSet}" liveChange="onLiveChange1" search=".onValueHelpSearch" confirm=".onValueHelpClose" cancel=".onValueHelpClose">
 		<StandardListItem title="{CustomerName}" description=""/>
 	</SelectDialog>
 </core:FragmentDefinition>

@@ -513,7 +513,8 @@ sap.ui.define([
 		itemTableSelection: function (oEvent) {
 			var sObjectPath = oEvent.getSource().getBindingContext("OrderDetailsModel").getObject().SONumber,
 				sObjectPath1 = oEvent.getSource().getBindingContext("OrderDetailsModel").getObject().SOItem,
-				sObjectPath2 = oEvent.getSource().getBindingContext("OrderDetailsModel").getObject().TypeApp;
+				sObjectPath2 = oEvent.getSource().getBindingContext("OrderDetailsModel").getObject().TypeApp,
+				sObjectPath3 = oEvent.getSource().getBindingContext("OrderDetailsModel").getObject().NoDisplay;
 			// 			this.getRouter().navTo("itemView", {
 			// 				objectId: sObjectPath,
 			// 				objectId1: sObjectPath1,
@@ -525,6 +526,7 @@ sap.ui.define([
 			this.getModel("globalModel").setProperty("/objectId", sObjectPath);
 			this.getModel("globalModel").setProperty("/objectId1", sObjectPath1);
 			this.getModel("globalModel").setProperty("/objectId2", sObjectPath2);
+			this.getModel("globalModel").setProperty("/visibilityField", sObjectPath3);
 
 			// 			this.getRouter().navTo("itemView");
 

@@ -230,6 +230,23 @@ sap.ui.define([
 
 			oEvent.getSource().getBinding("items").filter([oFilter]);
 		},
+
+		onLiveChange: function (oEvent) {
+			var sValue = oEvent.getParameter("value");
+			var oFilter = new Filter(
+				[
+					new Filter({
+						path: "Kunnr",
+						operator: "EQ",
+						value1: sValue.trim()
+					})
+				],
+				false
+			);
+
+			oEvent.getSource().getBinding("items").filter([oFilter]);
+		},
+
 		onValueHelpClose: function (oEvent) {
 			var oSelectedItem = oEvent.getParameter("selectedItem");
 			oEvent.getSource().getBinding("items").filter([]);

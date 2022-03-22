@@ -463,8 +463,7 @@
 												<m:content>
 													<m:Text text="PRE-ORDER ITEMS"/>
 													<m:ToolbarSpacer/>
-													<m:Button visible="{= ${TabDetailsModel>/TabData/WfStatus} === 'Complete' ? false : true }" text="Add Item" type="Ghost"
-														press="addPreOrderItemPress"/>
+													<m:Button visible="{= ${globalModel>/visibilityField} === '' ? true : false }" text="Add Item" type="Ghost" press="addPreOrderItemPress"/>
 												</m:content>
 											</m:OverflowToolbar>
 										</m:headerToolbar>
@@ -505,8 +504,10 @@
 														value="{ path: 'TabDetailsModel>Description', type: 'sap.ui.model.type.String', constraints: { minLength: 1, maxLength: 30 } }"
 														editable="{= ${TabDetailsModel>EditMode} ? true : false}"/>
 													<m:HBox>
-														<m:Button class="sapUiTinyMarginBeginEnd" text="Edit" type="Emphasized" press="onEditPreOrderItem"/>
-														<m:Button class="sapUiTinyMarginBeginEnd" text="Delete" type="Reject" press="onDeletePreOrderItem"/>
+														<m:Button visible="{= ${globalModel>/visibilityField} === '' ? true : false }" class="sapUiTinyMarginBeginEnd" text="Edit" type="Emphasized"
+															press="onEditPreOrderItem"/>
+														<m:Button visible="{= ${globalModel>/visibilityField} === '' ? true : false }" class="sapUiTinyMarginBeginEnd" text="Delete" type="Reject"
+															press="onDeletePreOrderItem"/>
 													</m:HBox>
 												</m:cells>
 											</m:ColumnListItem>
@@ -544,9 +545,11 @@
 										<m:Panel>
 											<m:FlexBox alignItems="Start" justifyContent="Center">
 												<m:items>
-													<m:Button id="idAddItem" text="{i18n>Add}" visible="true" type="Ghost" press="onAddPreOrderItem" class="sapUiTinyMarginEnd"/>
+													<m:Button id="idAddItem" text="{i18n>Add}" visible="{= ${globalModel>/visibilityField} === '' ? true : false }" type="Ghost"
+														press="onAddPreOrderItem" class="sapUiTinyMarginEnd"/>
 													<!--<m:Button id="idUpdateItem" text="Update" visible="true" type="Ghost" press="onUpdateItem" class="sapUiTinyMarginEnd"/>-->
-													<m:Button text="{i18n>Cancel}" type="Ghost" press="onAddPreorderItemCancel"/>
+													<m:Button text="{i18n>Cancel}" type="Ghost" visible="{= ${globalModel>/visibilityField} === '' ? true : false }"
+														press="onAddPreorderItemCancel"/>
 												</m:items>
 											</m:FlexBox>
 										</m:Panel>
@@ -737,9 +740,9 @@
 													<m:content>
 														<!--<m:Text text="Document Details"/>-->
 														<m:ToolbarSpacer/>
-														<m:HBox visible="{= ${TabDetailsModel>/TabData/WfStatus} === 'Complete' ? false : true }">
+														<m:HBox visible="{= ${globalModel>/visibilityField} === '' ? true : false }">
 															<u:FileUploader buttonOnly="true" multiple="true" icon="sap-icon://attachment" id="__FILEUPLOAD"
-																visible="{= ${TabDetailsModel>/TabData/WfStatus} === 'Complete' ? false : true }" sameFilenameAllowed="false" buttonText="Add Attachment"
+																visible="{= ${globalModel>/visibilityField} === '' ? true : false }" sameFilenameAllowed="false" buttonText="Add Attachment"
 																fileType="XLS,CSV,PDF,PNG,DOCX,JPG,JPEG" change="onUploadPress" filenameLengthExceed="onFileNameLengthExceed"
 																fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onComplete" typeMissmatch="handleMissmatch"
 																placeholder="Choose a file" style="Emphasized"/>
@@ -762,7 +765,7 @@
 														<m:Link text="{TabDetailsModel>Filename}" href="{TabDetailsModel>Url}" press="onViewDoc" target="_blank"/>
 														<m:Text text="{TabDetailsModel>User}"/>
 														<m:Text text="{TabDetailsModel>Date}-{TabDetailsModel>Time}"/>
-														<m:Button type="Reject" text="Delete" press="onAttachmentItemDelete"/>
+														<m:Button type="Reject" visible="{= ${globalModel>/visibilityField} === '' ? true : false }" text="Delete" press="onAttachmentItemDelete"/>
 													</m:cells>
 												</m:ColumnListItem>
 											</m:items>
@@ -780,13 +783,13 @@
 				<m:content>
 					<m:Button id="idBack" enabled="true" text="Back to Order Page" type="Emphasized" press="handleBackPress"/>
 					<m:ToolbarSpacer/>
-					<m:Button id="Requote" type="Emphasized" enabled="{= ${TabDetailsModel>/TabData/WfStatus} === 'Complete' ? false : true }"
-						press="onReqouteClarifyPress" text="ReQuote"/>
-					<m:Button id="Clarify" type="Emphasized" enabled="{= ${TabDetailsModel>/TabData/WfStatus} === 'Complete' ? false : true }"
-						press="onReqouteClarifyPress" text="Clarify"/>
-					<m:Button id="idSaveAsDrftButtonn" enabled="{= ${TabDetailsModel>/TabData/WfStatus} === 'Complete' ? false : true }" type="Emphasized"
+					<m:Button id="Requote" type="Emphasized" visible="{= ${globalModel>/visibilityField} === '' ? true : false }" press="onReqouteClarifyPress"
+						text="ReQuote"/>
+					<m:Button id="Clarify" type="Emphasized" visible="{= ${globalModel>/visibilityField} === '' ? true : false }" press="onReqouteClarifyPress"
+						text="Clarify"/>
+					<m:Button id="idSaveAsDrftButtonn" visible="{= ${globalModel>/visibilityField} === '' ? true : false }" type="Emphasized"
 						press="handleSaveasDraft" text="Save as Draft"/>
-					<m:Button id="idSubmit" enabled="{= ${TabDetailsModel>/TabData/WfStatus} === 'Complete' ? false : true }" text="Submit" type="Emphasized"
+					<m:Button id="idSubmit" visible="{= ${globalModel>/visibilityField} === '' ? true : false }" text="Submit" type="Emphasized"
 						press="handleSubmitPress"/>
 				</m:content>
 			</m:OverflowToolbar>
