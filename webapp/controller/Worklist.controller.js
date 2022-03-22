@@ -301,22 +301,26 @@ sap.ui.define([
 				}
 
 			});
-			aGroupName = aGroupName.map(function (item) {
-				return item.GroupName
-			});
 
-			if (aGroupName.length > 1)
-
-			{
-				var isDuplicate = aGroupName.some(function (item, idx) {
-					return aGroupName.indexOf(item) != idx
-				});
-
-				if (!isDuplicate) {
-					sap.m.MessageBox.error("Please select differfent Line item with different group name!");
-					this.byId("idListServiceTab").removeSelections();
-					return false;
+			if (aGroupName.length > 1) {
+				for (var i = 0; i < aGroupName.length; i++) {
+					var itemfirst = aGroupName[i].GroupName;
+					var itemnext = aGroupName[i + 1].GroupName;
+					if (itemfirst !== itemnext) {
+						sap.m.MessageBox.error("Please select differfent Line item with same group name!");
+						this.byId("idListServiceTab").removeSelections();
+						return false;
+					}
 				}
+				// var isDuplicate = aGroupName.some(function (item, idx) {
+				// 	return aGroupName.indexOf(item) != idx
+				// });
+
+				// if (!isDuplicate) {
+				// 	sap.m.MessageBox.error("Please select differfent Line item with different group name!");
+				// 	this.byId("idListServiceTab").removeSelections();
+				// 	return false;
+				// }
 			}
 
 			this.Group = aSelectedLineItems[0].getBindingContext().getObject().Group;

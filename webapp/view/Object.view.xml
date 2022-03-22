@@ -138,7 +138,7 @@
 											<m:Label text="Order Status" width="10rem"/>
 											<m:Text id="idGlAccTxt" text=":" class="sapUiTinyMarginBegin"></m:Text>
 											<m:VBox width="100%">
-												<m:Input enabled="false" id="idwGlAcc2" placeholder="" value="{HeaderDetailsModel>/orderStatusSetKey}" class="sapUiTinyMarginBegin"
+												<m:Input editable="false" id="idwGlAcc2" placeholder="" value="{HeaderDetailsModel>/orderStatusSetKey}" class="sapUiTinyMarginBegin"
 													width="100%"/>
 											</m:VBox>
 										</m:HBox>
@@ -184,9 +184,10 @@
 												<m:content>
 													<!--<m:Text text="rder"/>-->
 													<m:ToolbarSpacer/>
-													<m:Button text="Reassign" type="Emphasized" id="btn-02" press="onReassignButtonPress"/>
-													<m:Button type="Ghost" text="Sync" press="onPressSynch"/>
-													<m:Button type="Ghost" text="Reject" press="onReject"/>
+													<m:Button text="Reassign" visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" type="Emphasized" id="btn-02"
+														press="onReassignButtonPress"/>
+													<m:Button type="Ghost" visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" text="Sync" press="onPressSynch"/>
+													<m:Button type="Ghost" visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" text="Reject" press="onReject"/>
 													<!--<m:Button type="Ghost" text="Refresh Item" press="onDeleteItem"/>-->
 												</m:content>
 											</m:OverflowToolbar>
@@ -294,9 +295,10 @@
 										<m:Panel>
 											<m:FlexBox alignItems="Start" justifyContent="Center">
 												<m:items>
-													<m:Button id="idAddItem" text="{i18n>Add}" visible="true" type="Ghost" press="onAddNewItemToTable" class="sapUiTinyMarginEnd"/>
+													<m:Button id="idAddItem" text="{i18n>Add}" visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" type="Ghost"
+														press="onAddNewItemToTable" class="sapUiTinyMarginEnd"/>
 													<!--<m:Button id="idUpdateItem" text="Update" visible="true" type="Ghost" press="onUpdateItem" class="sapUiTinyMarginEnd"/>-->
-													<m:Button text="{i18n>Cancel}" type="Ghost" press="onAddItemCancel"/>
+													<m:Button text="{i18n>Cancel}" visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" type="Ghost" press="onAddItemCancel"/>
 												</m:items>
 											</m:FlexBox>
 										</m:Panel>
@@ -316,7 +318,7 @@
 													<m:content>
 														<!--<m:Text text="Document Details"/>-->
 														<m:ToolbarSpacer/>
-														<m:HBox>
+														<m:HBox visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }">
 															<u:FileUploader buttonOnly="true" multiple="true" icon="sap-icon://attachment" id="__FILEUPLOAD" visible="true" sameFilenameAllowed="false"
 																buttonText="Add Attachment" fileType="XLS,CSV,PDF,PNG,DOCX,JPG,JPEG" change="onUploadPress" filenameLengthExceed="onFileNameLengthExceed"
 																fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onComplete" typeMissmatch="handleMissmatch"
@@ -340,7 +342,7 @@
 														<m:Link text="{AttachmentsModel>Filename}" href="{AttachmentsModel>Url}" press="onViewDoc" target="_blank"/>
 														<m:Text text="{AttachmentsModel>User}"/>
 														<m:Text text="{AttachmentsModel>Date}-{AttachmentsModel>Time}"/>
-														<m:Button type="Reject" text="Delete" press="onPressDeleteAttchmnt"/>
+														<m:Button type="Reject" visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" text="Delete" press="onPressDeleteAttchmnt"/>
 														<!--<m:Text text="{path: 'AttachmentsModel>User', type: 'sap.ui.model.type.DateTime', formatOptions: {UTC:true} }"/>-->
 													</m:cells>
 												</m:ColumnListItem>
@@ -362,7 +364,8 @@
 													<m:content>
 														<!--<m:Text text="Document Details"/>-->
 														<m:ToolbarSpacer/>
-														<m:Button id="idAddNotes" type="Emphasized" icon="sap-icon://attachment" enabled="true" press="onNotesPress" text="Add Notes"/>
+														<m:Button id="idAddNotes" visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" type="Emphasized"
+															icon="sap-icon://attachment" enabled="true" press="onNotesPress" text="Add Notes"/>
 													</m:content>
 												</m:OverflowToolbar>
 											</m:headerToolbar>
@@ -424,7 +427,8 @@
 		<m:footer>
 			<m:OverflowToolbar>
 				<m:content>
-					<m:Button id="idSubmit2" enabled="true" text="Back" type="Emphasized" press="handleSubmitPress2"/>
+					<m:Button visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" id="idSubmit2" enabled="true" text="Back" type="Emphasized"
+						press="handleSubmitPress2"/>
 					<m:ToolbarSpacer/>
 					<!--<m:Button text="Accept" type="Emphasized" id="btn-01" press="onPressAccptButton"/>-->
 					<!--<m:Button id="idCreateFGMatrl" type="Ghost" enabled="true" press="onFGMatPress" text="Create FG Material"/>-->

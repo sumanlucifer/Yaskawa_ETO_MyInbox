@@ -353,6 +353,8 @@ sap.ui.define([
 			this.getModel("HeaderDetailsModel").setSizeLimit(1000);
 			this.databuilding(aETOHeaderSet[0]);
 			aETOItemListSet[0].Message === "" ? null : sap.m.MessageBox.error(aETOItemListSet[0].Message);
+			aETOItemHeaderSet[0].NoDisplay === "" ? this.getModel("HeaderDetailsModel").setProperty("/VisibilityFields", true) : this.getModel(
+				"HeaderDetailsModel").setProperty("/VisibilityFields", false);
 			this.getModel("HeaderDetailsModel").setProperty("/ETOItemHeaderSet", aETOItemHeaderSet[0]);
 			this.getModel("OrderDetailsModel").setProperty("/ETOItemListSet", aETOItemListSet);
 			this.getModel("AttachmentsModel").setProperty("/ETOAttachmentSet", aETOAttachmentSet);
@@ -543,6 +545,34 @@ sap.ui.define([
 
 			}
 
+			var aSelectedGroupName = this.POSNO;
+			var aGroupName = aSelectedGroupName.map(function (item) {
+				return {
+					GroupName: item.GroupDescr
+				}
+
+			});
+			if (aGroupName.length > 1) {
+				for (var i = 0; i < aGroupName.length; i++) {
+					var itemfirst = aGroupName[i].GroupName;
+					var itemnext = aGroupName[i + 1].GroupName;
+					if (itemfirst !== itemnext) {
+						sap.m.MessageBox.error("Please select differfent Line item with same group name!");
+						this.byId("idItemsTable").removeSelections();
+						return false;
+					}
+				}
+				// var isDuplicate = aGroupName.some(function (item, idx) {
+				// 	return aGroupName.indexOf(item) != idx
+				// });
+
+				// if (!isDuplicate) {
+				// 	sap.m.MessageBox.error("Please select differfent Line item with different group name!");
+				// 	this.byId("idListServiceTab").removeSelections();
+				// 	return false;
+				// }
+			}
+
 			//this.byId("idItemsTable").removeSelections();
 
 			//	this.setSaveButtonEnabledDisable();
@@ -659,7 +689,7 @@ sap.ui.define([
 		},
 		onReassignButtonPress: function () {
 			this.getModel("globalModel").setProperty("/userAssignKey", "");
-			this.getModel("globalModel").setProperty("/groupAssignKey", "");
+			//this.getModel("globalModel").setProperty("/groupAssignKey", "");
 			//this.getModel("globalModel").setProperty("/userGroupVisible", false);
 			var POSNo = this.POSNO;
 			if (!POSNo) {
@@ -710,6 +740,9 @@ sap.ui.define([
 				}
 			});
 
+		},
+		onBack: function () {
+			console.log("dwed");
 		}
 
 	});
