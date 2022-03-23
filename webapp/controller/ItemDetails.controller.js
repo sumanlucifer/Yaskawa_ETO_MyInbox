@@ -583,9 +583,23 @@ sap.ui.define([
 			this.getOwnerComponent().getModel("UserAction").create("/ZWF_DETAILSSet", oSubmit, {
 
 				success: function (oData, oResponse) {
-					sap.m.MessageBox.success(oData.Message);
+
+					sap.m.MessageBox.success(oData.Message, {
+						actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
+						styleClass: "messageBoxError",
+						onClose: function (oAction) {
+							if (oAction === sap.m.MessageBox.Action.YES) {
+								this.onNavBack();
+
+							}
+
+						}.bind(this),
+					});
 					this.getModel("objectViewModel").setProperty("/busy", false);
-					this.onNavBack();
+
+					// 	sap.m.MessageBox.success(oData.Message);
+					// 	this.getModel("objectViewModel").setProperty("/busy", false);
+					// 	this.onNavBack();
 
 				}.bind(this),
 				error: function (oError) {
