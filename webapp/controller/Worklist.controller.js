@@ -394,7 +394,7 @@ sap.ui.define([
 				function (item) {
 					return {
 						Vbeln: item.SONumber,
-						Posnr: "",
+						Posnr: item.SOItem,
 					};
 				}
 			);

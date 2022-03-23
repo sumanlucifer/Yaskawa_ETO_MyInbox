@@ -445,6 +445,7 @@ sap.ui.define([
 				success: function (oData, oResponse) {
 					this.POSNO = [];
 					this.byId("idItemsTable").removeSelections();
+					this.onGetSODetails();
 					this.getModel("objectViewModel").setProperty("/busy", false);
 					if (Status === "01") {
 						sap.m.MessageBox.success(oData.Message);
