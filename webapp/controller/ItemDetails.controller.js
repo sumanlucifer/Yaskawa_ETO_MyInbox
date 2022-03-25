@@ -585,10 +585,10 @@ sap.ui.define([
 				success: function (oData, oResponse) {
 
 					sap.m.MessageBox.success(oData.Message, {
-						actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
+						actions: [sap.m.MessageBox.Action.OK],
 						styleClass: "messageBoxError",
 						onClose: function (oAction) {
-							if (oAction === sap.m.MessageBox.Action.YES) {
+							if (oAction === sap.m.MessageBox.Action.OK) {
 								this.onNavBack();
 
 							}

@@ -29,6 +29,14 @@ sap.ui.define([], function () {
 			var sString = sValue;
 			var sparsed = sString.replace(/^0+/, "");
 			return sparsed;
+		},
+		dateFormater: function (sValue) {
+			var sString = sValue;
+			var syear = sString.slice(0, 4),
+				sMonth = sString.slice(4, 6),
+				sDate = sString.slice(6, 8);
+			var sparsedDate = `${sMonth}-${sDate}-${syear}`
+			return sparsedDate;
 		}
 
 	};
