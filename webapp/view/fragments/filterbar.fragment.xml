@@ -11,16 +11,16 @@
 					</ComboBox>
 				</VBox>
 			</HBox>
-			<HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
-				<Label text="Order Type" textAlign="Left" design="Bold"/>
-				<Text text=":" class="sapUiTinyMarginBeginEnd"></Text>
-				<VBox width="100%">
-					<ComboBox id="idOrderType" width="100%" valueState="None" placeholder="Select Order Type"
-						selectedKey="{HeaderDetailsModel>/orderTypeSetKey}" items="{HeaderDetailsModel>/ETOOrderTypeSet}">
-						<core:Item key="{HeaderDetailsModel>DomValue}" text="{HeaderDetailsModel>Ddtext}"/>
-					</ComboBox>
-				</VBox>
-			</HBox>
+			<!--<HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">-->
+			<!--	<Label text="Order Type" textAlign="Left" design="Bold"/>-->
+			<!--	<Text text=":" class="sapUiTinyMarginBeginEnd"></Text>-->
+			<!--	<VBox width="100%">-->
+			<!--		<ComboBox id="idOrderType" width="100%" valueState="None" placeholder="Select Order Type"-->
+			<!--			selectedKey="{HeaderDetailsModel>/orderTypeSetKey}" items="{HeaderDetailsModel>/ETOOrderTypeSet}">-->
+			<!--			<core:Item key="{HeaderDetailsModel>DomValue}" text="{HeaderDetailsModel>Ddtext}"/>-->
+			<!--		</ComboBox>-->
+			<!--	</VBox>-->
+			<!--</HBox>-->
 			<HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
 				<Label text="Order Date" textAlign="Left" design="Bold"/>
 				<Text text=":" class="sapUiTinyMarginBeginEnd"></Text>

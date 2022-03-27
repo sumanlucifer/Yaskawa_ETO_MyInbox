@@ -263,7 +263,7 @@ sap.ui.define([
 
 		onSearch: function () {
 			var OrderStatus = this.byId("idOrderStatus").getSelectedKey();
-			var OrderType = this.byId("idOrderType").getSelectedKey();
+			//	var OrderType = this.byId("idOrderType").getSelectedKey();
 			var distChannel = this.byId("idDistChannel").getSelectedKey();
 			var appType = this.byId("idAppType").getSelectedKey();
 			var customerName = this.byId("idCustName").getValue();
@@ -278,7 +278,7 @@ sap.ui.define([
 			this.byId("idListServiceTable").rebindTable();
 			var andFilters = [];
 			andFilters.push(new Filter("OrderStatus", FilterOperator.EQ, OrderStatus));
-			andFilters.push(new Filter("OrderType", FilterOperator.EQ, OrderType));
+			//	andFilters.push(new Filter("OrderType", FilterOperator.EQ, OrderType));
 			andFilters.push(new Filter("Vtweg", FilterOperator.EQ, distChannel));
 			andFilters.push(new Filter("TypeApp", FilterOperator.EQ, appType));
 			andFilters.push(new Filter("CustName", FilterOperator.EQ, customerName));
@@ -365,7 +365,7 @@ sap.ui.define([
 		},
 		onReset: function () {
 			this.byId("idOrderStatus").setSelectedKey(null);
-			this.byId("idOrderType").setSelectedKey(null);
+			//	this.byId("idOrderType").setSelectedKey(null);
 			this.byId("idDistChannel").setSelectedKey(null);
 			this.byId("idAppType").setSelectedKey(null);
 			this.byId("idCustName").setSelectedKey(null);
