@@ -454,6 +454,7 @@ sap.ui.define([
 
 		onListTablePress: function (oEvent) {
 			var sObjectPath = oEvent.getSource().getBindingContext().getObject().SONumber;
+			this.getModel("globalModel").setProperty("/objectID", sObjectPath);
 
 			this.getRouter().navTo("object", {
 				objectId: sObjectPath

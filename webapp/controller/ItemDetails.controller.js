@@ -34,7 +34,12 @@ sap.ui.define([
 		},
 
 		onNavBack: function () {
-			history.go(-1);
+			// 			history.go(-1);
+			var sObj = this.getModel("globalModel").getProperty("/objectID");
+			this.getRouter().navTo("object", {
+				objectId: sObj
+			});
+
 		},
 
 		_onObjectMatched: function (oEvent) {
