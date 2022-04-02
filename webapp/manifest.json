@@ -64,6 +64,11 @@
 				"sap.ui.core": {}
 			}
 		},
+		"services": {
+			"ShellUIService": {
+				"factoryName": "sap.ushell.ui5service.ShellUIService"
+			}
+		},
 		"contentDensities": {
 			"compact": true,
 			"cozy": true

@@ -73,7 +73,7 @@
 					<!--	selectedKey="{HeaderDetailsModel>/distributionChannelKey}" items="{HeaderDetailsModel>/ETOCustomerNameSet}">-->
 					<!--	<core:Item key="{HeaderDetailsModel>CustomerName}" text="{HeaderDetailsModel>CustomerName}"/>-->
 					<!--</ComboBox>-->
-					<Input id="idCustName" required="true" width="100%" placeholder="Select Customer Name" valueHelpOnly="false" showValueHelp="true"
+					<Input id="idCustName" required="true" width="100%" placeholder="Select Customer Name" valueHelpOnly="true" showValueHelp="true"
 						valueHelpRequest="onValueHelpRequest" value="{HeaderDetailsModel>/CustomerName}"/>
 				</VBox>
 			</HBox>

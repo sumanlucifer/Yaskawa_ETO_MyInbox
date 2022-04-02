@@ -15,6 +15,11 @@ sap.ui.define([
 			this._createTabDetailsModel();
 			this.createInitialModel();
 			this.getRouter().getRoute("itemView").attachPatternMatched(this._onObjectMatched, this);
+			this.getOwnerComponent().getService("ShellUIService").then(function (oShellService) {
+				oShellService.setBackNavigation(function () {
+					this.handleBackPress();
+				}.bind(this));
+			}.bind(this));
 
 		},
 		createInitialModel: function () {

@@ -22,6 +22,11 @@ sap.ui.define([
 			this.logDetailsModel();
 			this.notesDetailsModel();
 			this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
+			this.getOwnerComponent().getService("ShellUIService").then(function (oShellService) {
+				oShellService.setBackNavigation(function () {
+					this.onNavBack();
+				}.bind(this));
+			}.bind(this));
 
 		},
 		createInitialModel: function () {
@@ -746,6 +751,10 @@ sap.ui.define([
 		},
 		onBack: function () {
 			console.log("dwed");
+		},
+		onExit: function () {
+			console.log("onExit() of controller called...");
+			alert("onExit function called");
 		}
 
 	});

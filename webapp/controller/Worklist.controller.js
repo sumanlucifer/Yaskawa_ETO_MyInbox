@@ -220,8 +220,8 @@ sap.ui.define([
 			var oFilter = new Filter(
 				[
 					new Filter({
-						path: "Kunnr",
-						operator: "EQ",
+						path: "CustomerName",
+						operator: "Contains",
 						value1: sValue.trim()
 					})
 				],
