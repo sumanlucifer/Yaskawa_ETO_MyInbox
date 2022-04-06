@@ -237,7 +237,7 @@ sap.ui.define([
 				[
 					new Filter({
 						path: "Kunnr",
-						operator: "EQ",
+						operator: "Contains",
 						value1: sValue.trim()
 					})
 				],
