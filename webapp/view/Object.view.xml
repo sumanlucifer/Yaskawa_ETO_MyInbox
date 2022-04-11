@@ -50,6 +50,85 @@
 				<sections>
 					<ObjectPageSection>
 						<subSections>
+							<ObjectPageSubSection id="idItemSubSection" title="Order Details" visible="true" titleUppercase="false" class="tabAlignLeft">
+								<m:VBox id="idFirstVBox" class="vboxAlignment">
+									<m:Table mode="MultiSelect" id="idItemsTable" inset="false" items="{OrderDetailsModel>/ETOItemListSet}" selectionChange="onItemSelect"
+										class="sapUiSizeCompact">
+										<m:headerToolbar>
+											<m:OverflowToolbar class="custButtonClass">
+												<m:content>
+													<!--<m:Text text="rder"/>-->
+													<m:ToolbarSpacer/>
+													<m:Button text="Reassign" visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" type="Emphasized" id="btn-02"
+														press="onReassignButtonPress"/>
+													<m:Button type="Ghost" visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" text="Sync" press="onPressSynch"/>
+													<m:Button type="Ghost" visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" text="Reject" press="onReject"/>
+													<!--<m:Button type="Ghost" text="Refresh Item" press="onDeleteItem"/>-->
+												</m:content>
+											</m:OverflowToolbar>
+										</m:headerToolbar>
+										<m:columns>
+											<!--<m:Column >-->
+											<!--	<m:Text text="{i18n>Select}"/>-->
+											<!--</m:Column>-->
+											<m:Column>
+												<m:Label text="Item #" design="Bold"/>
+											</m:Column>
+											<m:Column>
+												<m:Label text="Mat #" design="Bold" wrapping="true"/>
+											</m:Column>
+											<m:Column>
+												<m:Label text="Panel" design="Bold" wrapping="true"/>
+											</m:Column>
+											<m:Column>
+												<m:Label text="Item Notes" design="Bold" wrapping="true"/>
+											</m:Column>
+											<m:Column>
+												<m:Label text="Group Name" design="Bold" wrapping="true"/>
+											</m:Column>
+											<m:Column>
+												<m:Label text="User ID" design="Bold" wrapping="true"/>
+											</m:Column>
+											<m:Column>
+												<m:Label text="Delete Indicator" design="Bold" wrapping="true"/>
+											</m:Column>
+											<m:Column>
+												<m:Label text="Workflow Status" design="Bold" wrapping="true"/>
+											</m:Column>
+										</m:columns>
+										<m:items>
+											<m:ColumnListItem type="Navigation" press="itemTableSelection">
+												<m:cells>
+													<!--<m:CheckBox select="onSelect" textAlign="Center"/>-->
+													<m:Text text="{OrderDetailsModel>SOItem}"/>
+													<m:Text text="{OrderDetailsModel>MaterialNo}"/>
+													<m:Text text="{OrderDetailsModel>SONumber}"/>
+													<m:Text text="{OrderDetailsModel>Notes}"/>
+													<m:Text text="{OrderDetailsModel>GroupDescr}"/>
+													<m:Text text="{OrderDetailsModel>UserName}"/>
+													<m:Text text="{OrderDetailsModel>DeleteInd}"/>
+													<m:Text text="{OrderDetailsModel>WorkflowStatus}"/>
+												</m:cells>
+											</m:ColumnListItem>
+										</m:items>
+									</m:Table>
+									<m:Panel>
+										<m:FlexBox alignItems="Start" justifyContent="End" class="zhdrTlbar">
+											<m:items>
+												<m:Button text="Re Quote" id="idRequoteButton" visible="false" type="Ghost" press="onRequotePress" class="sapUiTinyMarginEnd"/>
+												<!--<m:Button text="Clarify Order" id="idClarifyButton" type="Ghost" visible="false" press="onClarifyPress" class="sapUiTinyMarginEnd"/>-->
+											</m:items>
+										</m:FlexBox>
+									</m:Panel>
+									<m:VBox id="idcreatefgmat" class="sapUiSmallMarginTop" visible="false">
+										<m:Label text="Create FG materials" class="zclrifyOrder"/>
+									</m:VBox>
+								</m:VBox>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					<ObjectPageSection>
+						<subSections>
 							<ObjectPageSubSection id="HeaderDetailsSection" title="Header Details" visible="true" titleUppercase="false" class="tabAlignLeft">
 								<m:VBox>
 									<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">
@@ -169,85 +248,6 @@
 											</m:VBox>
 										</m:VBox>
 									</l:Grid>
-								</m:VBox>
-							</ObjectPageSubSection>
-						</subSections>
-					</ObjectPageSection>
-					<ObjectPageSection>
-						<subSections>
-							<ObjectPageSubSection id="idItemSubSection" title="Order Details" visible="true" titleUppercase="false" class="tabAlignLeft">
-								<m:VBox id="idFirstVBox" class="vboxAlignment">
-									<m:Table mode="MultiSelect" id="idItemsTable" inset="false" items="{OrderDetailsModel>/ETOItemListSet}" selectionChange="onItemSelect"
-										class="sapUiSizeCompact">
-										<m:headerToolbar>
-											<m:OverflowToolbar class="custButtonClass">
-												<m:content>
-													<!--<m:Text text="rder"/>-->
-													<m:ToolbarSpacer/>
-													<m:Button text="Reassign" visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" type="Emphasized" id="btn-02"
-														press="onReassignButtonPress"/>
-													<m:Button type="Ghost" visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" text="Sync" press="onPressSynch"/>
-													<m:Button type="Ghost" visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" text="Reject" press="onReject"/>
-													<!--<m:Button type="Ghost" text="Refresh Item" press="onDeleteItem"/>-->
-												</m:content>
-											</m:OverflowToolbar>
-										</m:headerToolbar>
-										<m:columns>
-											<!--<m:Column >-->
-											<!--	<m:Text text="{i18n>Select}"/>-->
-											<!--</m:Column>-->
-											<m:Column>
-												<m:Label text="Item #" design="Bold"/>
-											</m:Column>
-											<m:Column>
-												<m:Label text="Mat #" design="Bold" wrapping="true"/>
-											</m:Column>
-											<m:Column>
-												<m:Label text="Panel" design="Bold" wrapping="true"/>
-											</m:Column>
-											<m:Column>
-												<m:Label text="Item Notes" design="Bold" wrapping="true"/>
-											</m:Column>
-											<m:Column>
-												<m:Label text="Group Name" design="Bold" wrapping="true"/>
-											</m:Column>
-											<m:Column>
-												<m:Label text="User ID" design="Bold" wrapping="true"/>
-											</m:Column>
-											<m:Column>
-												<m:Label text="Delete Indicator" design="Bold" wrapping="true"/>
-											</m:Column>
-											<m:Column>
-												<m:Label text="Workflow Status" design="Bold" wrapping="true"/>
-											</m:Column>
-										</m:columns>
-										<m:items>
-											<m:ColumnListItem type="Navigation" press="itemTableSelection">
-												<m:cells>
-													<!--<m:CheckBox select="onSelect" textAlign="Center"/>-->
-													<m:Text text="{OrderDetailsModel>SOItem}"/>
-													<m:Text text="{OrderDetailsModel>MaterialNo}"/>
-													<m:Text text="{OrderDetailsModel>SONumber}"/>
-													<m:Text text="{OrderDetailsModel>Notes}"/>
-													<m:Text text="{OrderDetailsModel>GroupDescr}"/>
-													<m:Text text="{OrderDetailsModel>UserName}"/>
-													<m:Text text="{OrderDetailsModel>DeleteInd}"/>
-													<m:Text text="{OrderDetailsModel>WorkflowStatus}"/>
-												</m:cells>
-											</m:ColumnListItem>
-										</m:items>
-									</m:Table>
-									<m:Panel>
-										<m:FlexBox alignItems="Start" justifyContent="End" class="zhdrTlbar">
-											<m:items>
-												<m:Button text="Re Quote" id="idRequoteButton" visible="false" type="Ghost" press="onRequotePress" class="sapUiTinyMarginEnd"/>
-												<!--<m:Button text="Clarify Order" id="idClarifyButton" type="Ghost" visible="false" press="onClarifyPress" class="sapUiTinyMarginEnd"/>-->
-											</m:items>
-										</m:FlexBox>
-									</m:Panel>
-									<m:VBox id="idcreatefgmat" class="sapUiSmallMarginTop" visible="false">
-										<m:Label text="Create FG materials" class="zclrifyOrder"/>
-									</m:VBox>
 								</m:VBox>
 							</ObjectPageSubSection>
 						</subSections>

@@ -182,7 +182,7 @@ sap.ui.define([
 		_onObjectMatched: function (oEvent) {
 			var sObjectId = oEvent.getParameter("arguments").objectId;
 			this.sSaleOrderNo = sObjectId;
-			this.byId("ObjectPageLayout").setSelectedSection(this.byId("HeaderDetailsSection"));
+			this.byId("ObjectPageLayout").setSelectedSection(this.byId("idItemSubSection"));
 			this.onGetSODetails();
 
 		},

@@ -626,7 +626,7 @@ sap.ui.define([
 				styleClass: "messageBoxError",
 				onClose: function (oAction) {
 					if (oAction === sap.m.MessageBox.Action.YES) {
-						this.getRouter().navTo("worklist");
+						this.onNavBack();
 
 					}
 
