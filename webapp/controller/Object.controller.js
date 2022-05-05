@@ -696,6 +696,30 @@ sap.ui.define([
 
 		},
 		onReassignButtonPress: function () {
+			this.Status = "02";
+			this.getModel("globalModel").setProperty("/userAssignKey", "");
+			//this.getModel("globalModel").setProperty("/groupAssignKey", "");
+			//this.getModel("globalModel").setProperty("/userGroupVisible", false);
+			var POSNo = this.POSNO;
+			if (!POSNo) {
+				sap.m.MessageBox.error("Please select at least one item!");
+				return false;
+			}
+			if (POSNo.length === 0) {
+				sap.m.MessageBox.error("Please select at least one item!");
+				return false;
+			}
+			if (!this._oDialogReassignSection1) {
+				this._oDialogReassignSection1 = sap.ui.xmlfragment("com.yaskawa.ETOMyInbox.view.fragments.ReassignSection", this);
+				this.getView().addDependent(this._oDialogReassignSection1);
+
+			}
+			this._oDialogReassignSection1.open();
+
+		},
+
+		onReject: function () {
+			this.Status = "03";
 			this.getModel("globalModel").setProperty("/userAssignKey", "");
 			//this.getModel("globalModel").setProperty("/groupAssignKey", "");
 			//this.getModel("globalModel").setProperty("/userGroupVisible", false);
@@ -717,11 +741,12 @@ sap.ui.define([
 
 		},
 		onAttachmentOk: function () {
-			var Status = "02",
-				userName = this.getModel("globalModel").getProperty("/userAssignKey"),
-				groupName = this.getModel("globalModel").getProperty("/groupAssignKey");
-			this.userActionServiceCall(Status, userName, groupName);
+
+			userName = this.getModel("globalModel").getProperty("/userAssignKey"),
+			groupName = this.getModel("globalModel").getProperty("/groupAssignKey");
+			this.userActionServiceCall(this.Status, userName, groupName);
 			this._oDialogReassignSection1.close();
+			this.Status = "";
 		},
 		onAttachmentCancel: function () {
 			this.getModel("globalModel").setProperty("/userAssignKey", "");
