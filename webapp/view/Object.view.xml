@@ -100,7 +100,8 @@
 											<m:ColumnListItem type="Navigation" press="itemTableSelection">
 												<m:cells>
 													<!--<m:CheckBox select="onSelect" textAlign="Center"/>-->
-													<m:Text text="{OrderDetailsModel>SOItem}"/>
+													<!--<m:Text text="{OrderDetailsModel>SOItem}"/>-->
+													<m:Text text="{path:'OrderDetailsModel>SOItem',formatter:'.formatter.removeLeadZero'}"/>
 													<m:Text text="{OrderDetailsModel>MaterialNo}"/>
 													<m:Text text="{OrderDetailsModel>SONumber}"/>
 													<m:Text text="{OrderDetailsModel>Notes}"/>
