@@ -815,7 +815,7 @@ sap.ui.define([
 		},
 		onAttachmentOk: function () {
 
-			userName = this.getModel("globalModel").getProperty("/userAssignKey"),
+			var userName = this.getModel("globalModel").getProperty("/userAssignKey"),
 				groupName = this.getModel("globalModel").getProperty("/groupAssignKey");
 			this.userActionServiceCall(this.Status, userName, groupName);
 			this._oDialogReassignSection1.close();
