@@ -1,0 +1,54 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="Item Details" id="materialFragment" class="sapUiSmallMargin">
+		<content>
+			<!-- <FlexBox wrap="Wrap" renderType="Bare" alignItems="Center" justifyContent="Center" class="sapUiSmallMargin"> -->
+			<VBox class="sapUiSmallMargin">
+				<Table alternateRowColors="true" width="auto" id="idGetBOQLineItemsTable" items="{HeaderDetailsModel>/POPItemDataModel}" fixedLayout="false">
+					<columns>
+						<Column>
+							<CheckBox id="idSelectAllBoq" select="onSelectAllItems"/>
+						</Column>
+						<Column>
+							<Text text="Item No" wrapping="true" wrappingType="Hyphenated"/>
+						</Column>
+						<Column>
+							<Text text="Material Description" wrapping="true"/>
+						</Column>
+						<Column demandPopin="true" minScreenWidth="Tablet" hAlign="Center">
+							<Text text="Material"/>
+						</Column>
+						<Column demandPopin="true" minScreenWidth="Tablet" hAlign="Center">
+							<Text text="Plant"/>
+						</Column>
+						<Column demandPopin="true" minScreenWidth="Tablet">
+							<Text text="Quantity"/>
+						</Column>
+						<Column demandPopin="true" minScreenWidth="Tablet" hAlign="Center">
+							<Text text="Vbeln"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<CheckBox selected="{HeaderDetailsModel>Selected}"/>
+								<ObjectIdentifier title="{HeaderDetailsModel>ItemNo}"/>
+								<Text text="{HeaderDetailsModel>MatDesc}"/>
+								<Text text="{HeaderDetailsModel>Material}"/>
+								<Text text="{HeaderDetailsModel>Plant}"/>
+								<Text text="{path: 'HeaderDetailsModel>Quantity'}"/>
+								<Text text="{HeaderDetailsModel>Vbeln}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<!-- </FlexBox> -->
+			</VBox>
+		</content>
+		<beginButton>
+			<Button text="{i18n>Confirm}" press="onPressConfirmPopupItems" type="Emphasized" enabled="{boqCreationModel>/isConfirmButtonEnabled}"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>Cancel}" press="onCancelItemPopup"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

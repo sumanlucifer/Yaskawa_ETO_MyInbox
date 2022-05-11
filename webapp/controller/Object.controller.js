@@ -236,6 +236,82 @@ sap.ui.define([
 			this.onGetSODetails();
 
 		},
+
+		callItemPopupService: function (sSaleOrderNo) {
+
+			var sETOItemListSetFilter1 = new sap.ui.model.Filter({
+				path: "SONumber",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: sSaleOrderNo
+			});
+			var sETOItemListSetFilter2 = new sap.ui.model.Filter({
+				path: "Action",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: this.SyncAction
+			});
+			var sETOItemListSetFilter3 = new sap.ui.model.Filter({
+				path: "Items",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: ""
+			});
+			var aETOItemListSetFilter = [];
+			aETOItemListSetFilter.push(sETOItemListSetFilter1, sETOItemListSetFilter2, sETOItemListSetFilter3);
+			this.getOwnerComponent().getModel().read("/ETOItemListSet", {
+				filters: [aETOItemListSetFilter],
+				success: function (oData, oResponse) {
+
+					this.openPopFragment(oData.results);
+
+				}.bind(this),
+				error: function (oError) {
+					this.getModel("objectViewModel").setProperty("/busy", false);
+
+				}.bind(this),
+			});
+		},
+
+		openPopFragment: function (response) {
+
+			this.getModel("HeaderDetailsModel").setProperty("/POPItemDataModel", response);
+			if (!this._oItemPopupDialog) {
+				this._oItemPopupDialog = sap.ui.xmlfragment(
+					"com.yaskawa.ETOMyInbox.view.fragments.ItemPopup", this);
+				this.getView().addDependent(this._oItemPopupDialog);
+			}
+			if (Device.system.desktop) {
+				this._oItemPopupDialog.addStyleClass("sapUiSizeCompact");
+			}
+			this._oItemPopupDialog.open();
+		},
+
+		onSelectAllItems: function (oEvent) {
+			var bState = oEvent.getSource().getSelected();
+
+			var ItemData = this.getModel("HeaderDetailsModel").getProperty("/POPItemDataModel");
+			ItemData.forEach(item => {
+				item.Selected = bState;
+
+			});
+
+			this.getModel("HeaderDetailsModel").refresh();
+		},
+		onPressConfirmPopupItems: function (oEvent) {
+			var aItemData = this.getModel("HeaderDetailsModel").getProperty("/POPItemDataModel");
+			for (var i = 0; i < aItemData.length; i++) {
+				if (!aItemData[i].Selected) {
+					aItemData.splice(i, 1);
+					i--;
+				}
+			}
+
+			this.SelectedPOPupItemNo = Array.prototype.map.call(aItemData, function (item) {
+				return item.ItemNo;
+			}).join(",");
+			this._oItemPopupDialog.close();
+		},
+		onCancelItemPopup: function () {
+			this._oItemPopupDialog.close();
+		},
 		onGetSODetails: function () {
 
 			this.getModel("objectViewModel").setProperty("/busy", true);
@@ -732,18 +808,19 @@ sap.ui.define([
 				sap.m.MessageBox.error("Please select at least one item!");
 				return false;
 			}
-			if (!this._oDialogReassignSection1) {
-				this._oDialogReassignSection1 = sap.ui.xmlfragment("com.yaskawa.ETOMyInbox.view.fragments.ReassignSection", this);
-				this.getView().addDependent(this._oDialogReassignSection1);
+			// 			if (!this._oDialogReassignSection1) {
+			// 				this._oDialogReassignSection1 = sap.ui.xmlfragment("com.yaskawa.ETOMyInbox.view.fragments.ReassignSection", this);
+			// 				this.getView().addDependent(this._oDialogReassignSection1);
 
-			}
-			this._oDialogReassignSection1.open();
+			// 			}
+			// 			this._oDialogReassignSection1.open();
+			this.userActionServiceCall(this.Status, "", "");
 
 		},
 		onAttachmentOk: function () {
 
 			userName = this.getModel("globalModel").getProperty("/userAssignKey"),
-			groupName = this.getModel("globalModel").getProperty("/groupAssignKey");
+				groupName = this.getModel("globalModel").getProperty("/groupAssignKey");
 			this.userActionServiceCall(this.Status, userName, groupName);
 			this._oDialogReassignSection1.close();
 			this.Status = "";
