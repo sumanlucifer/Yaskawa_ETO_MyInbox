@@ -233,31 +233,21 @@ sap.ui.define([
 		},
 		onPressSynch: function () {
 			this.SyncAction = 90;
-			this.onGetSODetails();
+
+			this.callItemPopupService(this.sSaleOrderNo);
 
 		},
 
 		callItemPopupService: function (sSaleOrderNo) {
-
-			var sETOItemListSetFilter1 = new sap.ui.model.Filter({
-				path: "SONumber",
+			var sVBlenFilter = new sap.ui.model.Filter({
+				path: "Vbeln",
 				operator: sap.ui.model.FilterOperator.EQ,
 				value1: sSaleOrderNo
 			});
-			var sETOItemListSetFilter2 = new sap.ui.model.Filter({
-				path: "Action",
-				operator: sap.ui.model.FilterOperator.EQ,
-				value1: this.SyncAction
-			});
-			var sETOItemListSetFilter3 = new sap.ui.model.Filter({
-				path: "Items",
-				operator: sap.ui.model.FilterOperator.EQ,
-				value1: ""
-			});
-			var aETOItemListSetFilter = [];
-			aETOItemListSetFilter.push(sETOItemListSetFilter1, sETOItemListSetFilter2, sETOItemListSetFilter3);
-			this.getOwnerComponent().getModel().read("/ETOItemListSet", {
-				filters: [aETOItemListSetFilter],
+			var filter = [];
+			filter.push(sVBlenFilter);
+			this.getOwnerComponent().getModel().read("/ETOLineItemSOSet", {
+				filters: [filter],
 				success: function (oData, oResponse) {
 
 					this.openPopFragment(oData.results);
@@ -307,6 +297,7 @@ sap.ui.define([
 			this.SelectedPOPupItemNo = Array.prototype.map.call(aItemData, function (item) {
 				return item.ItemNo;
 			}).join(",");
+			this.onGetSODetails();
 			this._oItemPopupDialog.close();
 		},
 		onCancelItemPopup: function () {
@@ -347,8 +338,13 @@ sap.ui.define([
 				operator: sap.ui.model.FilterOperator.EQ,
 				value1: this.SyncAction
 			});
+			var sETOItemListSetFilter3 = new sap.ui.model.Filter({
+				path: "Items",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: this.SelectedPOPupItemNo
+			});
 			var aETOItemListSetFilter = [];
-			aETOItemListSetFilter.push(sETOItemListSetFilter1, sETOItemListSetFilter2);
+			aETOItemListSetFilter.push(sETOItemListSetFilter1, sETOItemListSetFilter2, sETOItemListSetFilter3);
 
 			var sSaleOrderNoFilterHDS = new sap.ui.model.Filter({
 				path: "Vbeln",
