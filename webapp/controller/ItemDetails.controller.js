@@ -80,7 +80,7 @@ sap.ui.define([
 		},
 		callItemDetailDropDownService: function () {
 			this.getModel("objectViewModel").setProperty("/busy", true);
-			var Filter = this.getFilters(this.Vbeln, this.Posnr);
+			var Filter = this.getFilters(this.Vbeln, this.Posnr, this.AppType);
 			Promise.allSettled([
 
 				//   Product type drop down data
@@ -105,7 +105,7 @@ sap.ui.define([
 				this.readChecklistEntity("/RequirementsGroupSet"),
 
 				// option type Drop down
-				this.readChecklistEntity("/OptionTypeSet"),
+				this.readChecklistEntity("/OptionTypeSet", Filter.AppFilter),
 
 				// Pre Order Item Tab
 
@@ -221,7 +221,7 @@ sap.ui.define([
 
 		},
 
-		getFilters: function (sSaleOrderNo, sPosnumbr) {
+		getFilters: function (sSaleOrderNo, sPosnumbr, sAppType) {
 			var sSaleOrderNoFilter = new sap.ui.model.Filter({
 				path: "Vbeln",
 				operator: sap.ui.model.FilterOperator.EQ,
@@ -261,11 +261,21 @@ sap.ui.define([
 			});
 			var TabsFilter = [];
 			TabsFilter.push(sTabDetailsFilter, sTabDetailsFilter1);
+
+			var sAppTypeFilter = new sap.ui.model.Filter({
+				path: "AppType",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: sAppType
+			});
+
+			var AppFilter = [];
+			AppFilter.push(sAppTypeFilter);
 			var filerValue = {
 
 				attachFilter: attachFilter,
 				Sofilter: Sofilter,
-				TabsFilter: TabsFilter
+				TabsFilter: TabsFilter,
+				AppFilter: AppFilter
 
 			};
 
@@ -487,7 +497,7 @@ sap.ui.define([
 				"NetAmount": this.byId("idorderItemDetailHeaderNetAmt").getValue(),
 				"WfStatus": this.byId("idorderItemDetailHeaderWFStatus").getValue(),
 				//	Options Tab fields
-				"OpOptionType": this.byId("idOptionType").getSelectedKey(),
+				"OpOptionType": this.byId("idOptionType").getSelectedKeys(),
 				"OpOption": this.byId("idOption").getValue(),
 				// Application Data Tab Fields
 				"AppMotorFull": this.byId("idAppMotorFullLoad").getValue(),

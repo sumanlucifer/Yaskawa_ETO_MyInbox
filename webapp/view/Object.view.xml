@@ -45,6 +45,10 @@
 								</m:VBox>
 							</m:HBox>
 						</l:Grid>
+						<m:HBox justifyContent="End" alignItems="Center">
+							<m:Button class="sapUiSmallMarginBegin" text="Accept" type="Emphasized" press="onPress"/>
+							<m:Button class="sapUiSmallMarginBegin" type="Reject" text="Reject" press="onS"/>
+						</m:HBox>
 					</m:VBox>
 				</headerContent>
 				<sections>
@@ -62,7 +66,7 @@
 													<m:Button text="Reassign" visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" type="Emphasized" id="btn-02"
 														press="onReassignButtonPress"/>
 													<m:Button type="Ghost" visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" text="Sync" press="onPressSynch"/>
-													<m:Button type="Ghost" visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" text="Reject" press="onReject"/>
+													<m:Button type="Reject" visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" text="Reject" press="onReject"/>
 													<!--<m:Button type="Ghost" text="Refresh Item" press="onDeleteItem"/>-->
 												</m:content>
 											</m:OverflowToolbar>

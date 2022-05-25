@@ -51,10 +51,10 @@
 											<m:Label width="10rem" text="Options Type"/>
 											<m:Text id="idreqstdBy" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 											<m:VBox width="100%">
-												<m:ComboBox id="idOptionType" width="100%" valueState="None" placeholder="Select Option Type"
-													selectedKey="{TabDetailsModel>/TabData/OpOptionType}" items="{TabDetailsModel>/OptionTypeSet}">
-													<core:Item key="{TabDetailsModel>OptionKey}" text="{TabDetailsModel>OptiontypeValue}"/>
-												</m:ComboBox>
+												<m:MultiComboBox id="idOptionType" width="100%" valueState="None" placeholder="Select Option Type"
+													selectedKeys="{TabDetailsModel>/TabData/OpOptionType}" items="{TabDetailsModel>/OptionTypeSet}">
+													<core:Item key="{TabDetailsModel>OptionCode}" text="{TabDetailsModel>OptionCode}-{TabDetailsModel>OptionCodeDesc}"/>
+												</m:MultiComboBox>
 											</m:VBox>
 										</m:HBox>
 									</l:Grid>
