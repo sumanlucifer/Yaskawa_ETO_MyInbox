@@ -475,30 +475,37 @@ sap.ui.define([
 		// 			var Status = "01";
 		// 			this.userActionServiceCall(Status);
 		// 		},
+
+		onPressHeaderAccept: function () {
+			this.userActionServiceCall("09", "", "");
+
+		},
+
+		onPressHeaderReject: function () {
+			this.userActionServiceCall("06", "", "");
+		},
 		userActionServiceCall: function (Status, userName, groupName) {
 			var SONo = this.sSaleOrderNo;
+			var HeadeItem;
 
 			var POSNo = this.POSNO;
-			if (!POSNo) {
-				sap.m.MessageBox.error("Please select at least one item!");
-				return false;
 
-			}
-			if (POSNo.length === 0) {
-				sap.m.MessageBox.error("Please select at least one item!");
-				return false;
-			}
 			var ItemData = this.getModel("OrderDetailsModel").getProperty("/ETOItemListSet");
 			this.getModel("objectViewModel").setProperty("/busy", true);
+			if (!POSNo) {
 
-			var HeadeItem = POSNo.map(
-				function (item) {
-					return {
-						Vbeln: SONo,
-						Posnr: item.SOItem,
-					};
-				}
-			);
+				HeadeItem = "";
+			} else {
+				HeadeItem = POSNo.map(
+					function (item) {
+						return {
+							Vbeln: SONo,
+							Posnr: item.SOItem,
+						};
+					}
+				);
+			}
+
 			if (Status === "01") {
 				var oPayload = {
 					"Vbeln": SONo,
