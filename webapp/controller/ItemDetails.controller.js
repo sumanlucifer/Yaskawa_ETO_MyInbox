@@ -467,6 +467,12 @@ sap.ui.define([
 			});
 
 		},
+
+		onSelectionFinish: function (oEvent) {
+			const aSelectedItems = oEvent.getParameter("selectedItems");
+			const aSelectedTexts = aSelectedItems.map(oItem => oItem.getKey());
+			this.aSelectedOptionsType = aSelectedTexts.toString().replace(/,/g, '');
+		},
 		handleSubmitCall: function (Action) {
 			this.getModel("objectViewModel").setProperty("/busy", true);
 
@@ -486,6 +492,7 @@ sap.ui.define([
 
 					};
 				}, this);
+			var oOptionType = this.byId("idOptionType").getSelectedKeys();
 
 			var oSubmit = {
 
@@ -497,7 +504,7 @@ sap.ui.define([
 				"NetAmount": this.byId("idorderItemDetailHeaderNetAmt").getValue(),
 				"WfStatus": this.byId("idorderItemDetailHeaderWFStatus").getValue(),
 				//	Options Tab fields
-				"OpOptionType": this.byId("idOptionType").getSelectedKeys(),
+				"OpOptionType": this.aSelectedOptionsType,
 				"OpOption": this.byId("idOption").getValue(),
 				// Application Data Tab Fields
 				"AppMotorFull": this.byId("idAppMotorFullLoad").getValue(),
