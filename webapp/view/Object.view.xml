@@ -432,8 +432,7 @@
 		<m:footer>
 			<m:OverflowToolbar>
 				<m:content>
-					<m:Button visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" id="idSubmit2" enabled="true" text="Back" type="Emphasized"
-						press="handleSubmitPress2"/>
+					<m:Button id="idSubmit2" enabled="true" text="Back" type="Emphasized" press="handleSubmitPress2"/>
 					<m:ToolbarSpacer/>
 					<!--<m:Button text="Accept" type="Emphasized" id="btn-01" press="onPressAccptButton"/>-->
 					<!--<m:Button id="idCreateFGMatrl" type="Ghost" enabled="true" press="onFGMatPress" text="Create FG Material"/>-->

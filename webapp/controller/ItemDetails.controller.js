@@ -216,6 +216,9 @@ sap.ui.define([
 
 			// All Tab data model binding
 			this.getModel("TabDetailsModel").setProperty("/TabData", aAlltabDetailsSet);
+
+			var aOptionData = aAlltabDetailsSet.OpOptionType.split(",");
+			this.getModel("TabDetailsModel").setProperty("/aSelectedOptionTypeSet", aOptionData);
 			var sLoginID = new sap.ushell.services.UserInfo().getId();
 			this.byId("idAssignTo").setSelectedKey(sLoginID);
 
