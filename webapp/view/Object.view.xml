@@ -46,7 +46,7 @@
 							</m:HBox>
 						</l:Grid>
 						<m:HBox justifyContent="End" alignItems="Center">
-							<m:Button visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" class="sapUiSmallMarginBegin" text="Accept"
+							<m:Button visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" class="sapUiSmallMarginBegin" text="Approve"
 								type="Emphasized" press="onPressHeaderAccept"/>
 							<m:Button visible="{= ${HeaderDetailsModel>/VisibilityFields} ? true : false }" class="sapUiSmallMarginBegin" type="Reject" text="Reject"
 								press="onPressHeaderReject"/>

@@ -3,9 +3,15 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/routing/History",
 	"../model/formatter",
-	"sap/m/MessageBox"
-], function (BaseController, JSONModel, History, formatter, MessageBox) {
+	"sap/m/MessageBox",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator",
+], function (BaseController, JSONModel, History, formatter, MessageBox, Filter, FilterOperator) {
 	"use strict";
+	var partNumbers = [];
+	var selOptnsTabObject = {
+		results: []
+	};
 
 	return BaseController.extend("com.yaskawa.ETOMyInbox.controller.ItemDetails", {
 
@@ -20,7 +26,6 @@ sap.ui.define([
 					this.handleBackPress();
 				}.bind(this));
 			}.bind(this));
-
 		},
 		createInitialModel: function () {
 			var oViewModel = new JSONModel({
@@ -48,7 +53,7 @@ sap.ui.define([
 		},
 
 		_onObjectMatched: function (oEvent) {
-
+			var _self = this;
 			this.Vbeln = this.getModel("globalModel").getProperty("/objectId");
 			this.Posnr = this.getModel("globalModel").getProperty("/objectId1");
 			this.AppType = this.getModel("globalModel").getProperty("/objectId2");
@@ -72,19 +77,16 @@ sap.ui.define([
 				this.getView().byId("idProductTab").setVisible(true);
 				this.getView().byId("idMaterialDetailsTab").setVisible(true);
 				this.getView().byId("idPreOrderItem").setVisible(true);
-				this.getView().byId("idHPS").setVisible(false);
 				this.getView().byId("idPaSubmittal").setVisible(true);
+				this.getView().byId("idHPS").setVisible(false);
 				this.getView().byId("idOrderEng").setVisible(true);
 			}
-
 		},
 		callItemDetailDropDownService: function () {
 			this.getModel("objectViewModel").setProperty("/busy", true);
 			var Filter = this.getFilters(this.Vbeln, this.Posnr, this.AppType);
 			Promise.allSettled([
-
 				//   Product type drop down data
-
 				this.readChecklistEntity("/MRPTypeSet"),
 				this.readChecklistEntity("/MaterialGroup1Set"),
 				this.readChecklistEntity("/MaterialPriceSet"),
@@ -178,7 +180,7 @@ sap.ui.define([
 			//HPS Tab data response
 			var aModelnoSetSet = values[20].status === "rejected" ? null : values[20].value.results;
 
-			this.getModel("TabDetailsModel").setSizeLimit(1000);
+			this.getModel("TabDetailsModel").setSizeLimit(5000);
 
 			// Product type data model binding
 
@@ -333,6 +335,7 @@ sap.ui.define([
 				oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
 		},
 		addPreOrderItemPress: function () {
+			partNumbers = [];
 			var oModel = this.getModel("TabDetailsModel").getProperty("/PreOrderItemTableData");
 			var oItems = oModel.map(function (oItem) {
 				return Object.assign({}, oItem);
@@ -439,7 +442,7 @@ sap.ui.define([
 
 		handleSaveasDraft: function () {
 
-			sap.m.MessageBox.warning("Are you sure to draft this details?", {
+			sap.m.MessageBox.warning("Are you sure you want to save as a draft?", {
 				actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
 				styleClass: "messageBoxError",
 				onClose: function (oAction) {
@@ -546,7 +549,8 @@ sap.ui.define([
 				"ProdOverheadGrp": this.byId("idOvrHdGrp").getSelectedKey(),
 				"ProdStrGrp": this.byId("idStrategyGrp").getSelectedKey(),
 				"ProdMaterial": this.byId("idMaterialNumber").getValue(),
-				"ProdHierarchy": this.byId("idProdHrchy").getSelectedKey(),
+				// "ProdHierarchy": this.byId("idProdHrchy").getSelectedKey(),
+				"ProdHierarchy": this.byId("idProdHrchy").getValue().split("-")[0],
 				"ProdProcurementType": this.byId("idprocurementType").getSelectedKey(),
 				"ProdValuationClass": this.byId("idValClass").getSelectedKey(),
 				"ProdSerialNo": this.byId("idSerialNBR").getSelectedKey(),
@@ -804,8 +808,100 @@ sap.ui.define([
 		onPressReqClarifyCancel: function () {
 			sap.ui.getCore().byId("idRequoteClarify").setValue("");
 			this._oDialogRequoteClarifySection.close();
+		},
+		partNumberSelectionChange: function (oEvent) {
+			var _that = this;
+			var resourceBundle = this.getResourceBundle();
+			var sQuery = "";
+			sQuery = oEvent.getSource().getValue();
+			// 			if (sQuery.length > 2) {
+			var oFilter = new Filter({
+				filters: [
+					new Filter({
+						path: 'PartNo',
+						operator: sap.ui.model.FilterOperator.EQ,
+						value1: sQuery
+					})
+				],
+				and: false
+			});
+			this.getOwnerComponent().getModel("UserAction").read("/PartNumberSet", {
+				filters: [oFilter],
+				success: function (data, response) {
+					var partNumberModel = new JSONModel(data);
+					partNumbers = [];
+					partNumbers = jQuery.extend(true, {}, data);
+					_that.setModel(partNumberModel, "partNumberModelName");
+				},
+				error: function (response) {}
+			});
+			// 			}
+		},
+		onpartNumberValueHelpRequest: function (oEvent) {
+			var oView = this.getView();
+			var pnTableModel = oView.getModel("TabDetailsModel").getData().PreOrderItemTableData;
+			for (var pnLcv = 0; pnLcv < partNumbers.results.length; pnLcv++) {
+				if (partNumbers.results[pnLcv].PartNo.includes(oEvent.getSource().getSelectedText())) {
+					for (var pnLcv2 = 0; pnLcv2 < pnTableModel.length; pnLcv2++) {
+						pnTableModel[(pnTableModel.length) - 1].Description = partNumbers.results[pnLcv].PartDesc;
+					}
+				}
+			}
+			oView.byId("idItemsTable2").getModel("TabDetailsModel").refresh();
+		},
+		ProdHrchySelectionChange: function (oEvent) {
+			var _that = this;
+			var resourceBundle = this.getResourceBundle();
+			var sQuery = "";
+			sQuery = oEvent.getSource().getValue();
+			// 			if (sQuery.length > 2) {
+			var oFilter = new Filter({
+				filters: [
+					new Filter({
+						path: 'PRODH',
+						operator: sap.ui.model.FilterOperator.EQ,
+						value1: sQuery
+					})
+				],
+				and: false
+			});
+			this.getOwnerComponent().getModel("UserAction").read("/ProductHierarchySet", {
+				filters: [oFilter],
+				success: function (data, response) {
+					var productHierarchyModel = new JSONModel(data);
+					// 	partNumbers = [];
+					// 	partNumbers = jQuery.extend(true, {}, data);
+					_that.setModel(productHierarchyModel, "productHierarchyModelName");
+				},
+				error: function (response) {}
+			});
+			// 			}
+		},
+		optionsCheck: function (oEvent) {
+			var oView = this.getView();
+			var tabRowCheck = oEvent.getSource().getSelected();
+			var resourceModel = this.getResourceBundle();
+			// 			var oModel = this.getOwnerComponent().getModel();
+			if (tabRowCheck) {
+				var tabColText = oEvent.getSource().getParent().getCells()[1].getText();
+				var selOptn = {};
+				selOptn.slOptn = tabColText;
+				selOptnsTabObject.results.push(selOptn);
+				// selOptn.push(selOptnsTabObject);
+				var selOptnsTabModel = new JSONModel(selOptnsTabObject);
+				this.setModel(selOptnsTabModel, "selOptnsTabModelName");
+				var optinTableRecords = oView.byId("idOptions").getModel("TabDetailsModel").getData().OptionTypeSet;
+				for (var optnLcv = 0; optnLcv < optinTableRecords.length; optnLcv++) {
+					if (tabColText.split("-")[0] === optinTableRecords[optnLcv].OptionCode) {
+						optinTableRecords.splice(optnLcv, 1);
+					}
+				}
+				oView.byId("idOptions").getModel("TabDetailsModel").refresh();
+				oEvent.getSource().setSelected(false);
+				// selOptn = [];
+				// selOptnsTabObject = {};
+			}
 		}
-
 	});
 
 });

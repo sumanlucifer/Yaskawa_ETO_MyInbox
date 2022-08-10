@@ -37,6 +37,10 @@ sap.ui.define([], function () {
 				sDate = sString.slice(6, 8);
 			var sparsedDate = `${sMonth}-${sDate}-${syear}`
 			return sparsedDate;
+		},
+		partNoFormatter: function (pnValue) {
+			var fnlPnValue = pnValue.split("-");
+			return fnlPnValue[0];
 		}
 
 	};
