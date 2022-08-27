@@ -541,6 +541,246 @@ sap.ui.define([
 				this._oDialogReassignSection.close();
 
 			}
+		},
+		_getVal: function (evt) {
+			return evt.getSource().getValue();
+		},
+		onWinshuttlePress: function () {
+			var _that = this;
+			var itemsFilter = [];
+			var ordrValues = '0015216682';
+			var items = new sap.ui.model.Filter({
+				path: "ORDERS",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: ordrValues
+			});
+			// 			itemsFilter.push(items);
+			this.getOwnerComponent().getModel().read("/ETO_WINSHUTTLESet", {
+				filters: [items],
+				success: function (wsData, response) {
+					_that.winshuttleFormat(wsData)
+				},
+				error: function (response) {}
+			});
+
+		},
+		winshuttleFormat: function (wsData) {
+			var data = {
+				results: []
+			};
+			for (var wsLcv = 0; wsLcv < wsData.results.length; wsLcv++) {
+				data.results.push({
+					"1 = Material Number(2)": wsData.results[wsLcv].ASS_SCRAP,
+					"2 = Material Type(4)": wsData.results[wsLcv].AUTO_SPEC_ASSIGN,
+					"3 = Desc1(1)": wsData.results[wsLcv].AVAILABILITY_CHECK,
+					"4 = Plant(5)": wsData.results[wsLcv].AVAILABILITY_CHECK1,
+					"5 = Storage Location1(6)": wsData.results[wsLcv].AVG_INSPECT_DUR,
+					"6 = Sales Organization(12)": wsData.results[wsLcv].BACKFLUSH,
+					"7 = Distribution Channel(13)": wsData.results[wsLcv].BACKWARD_CONSUMPTION,
+					"8 = Uom Code(37)": wsData.results[wsLcv].BASIC_MATERIAL,
+					"9 = Material Group(39)": wsData.results[wsLcv].BOM_USAGE,
+					"10 = Old Mat#(36)": wsData.results[wsLcv].BULK_MATERIAL_IND,
+					"11 - Office/ Lab(102)": wsData.results[wsLcv].CC_PHYSICAL_INV,
+					"12 = Product Hierarchy(46)": wsData.results[wsLcv].CONSUMPTION_MODE,
+					"13 = GICG(38)": wsData.results[wsLcv].CONTROL_KEY_QM,
+					"14 = Gross Weight(87)": wsData.results[wsLcv].CONVERSION_FACTOR,
+					"15 = Weight Unit(89)": wsData.results[wsLcv].COSTING_LOT_SIZE,
+					"16 = Net Weight(88)": wsData.results[wsLcv].COUNTRY_OF_ORIGIN,
+					"17 Industry Std Desc": wsData.results[wsLcv].COVERAGE_PROFILE,
+					"18 Basic Material": wsData.results[wsLcv].CRIT_PART_IND,
+					"19 Document Nbr": wsData.results[wsLcv].CTL_INSPECT_CREATION,
+					"20 Document Version": wsData.results[wsLcv].DELIVERING_PLANT,
+					"21 = X Dist Chain Status(43)": wsData.results[wsLcv].DEN_BASE_UNIT,
+					"22 X Dist Chain Date": wsData.results[wsLcv].DESC1,
+					"23 - Delivering Plant": wsData.results[wsLcv].DISTRIBUTION_CHANNEL,
+					"24 = Mat.Statistics Grp(47)": wsData.results[wsLcv].DISTRIB_PROFILE,
+					"25 = Mat.Pricing Group(48)": wsData.results[wsLcv].DIST_CHAIN_DATE,
+					"26 - Item Cat Grp": wsData.results[wsLcv].DIST_CHAIN_STATUS,
+					"27 = Product Hierarchy(46)": wsData.results[wsLcv].DOCUMENT_NBR,
+					"28 = Material Group1(49)": wsData.results[wsLcv].DOCUMENT_VERSION,
+					"29 = Material Group2": wsData.results[wsLcv].EXPORT_CTL_CLASS,
+					"30 = Material Group3": wsData.results[wsLcv].FISC_YR_VARIANT,
+					"31 = Material Group4": wsData.results[wsLcv].FIXED_IND,
+					"32 = Material Group5": wsData.results[wsLcv].FIXED_LOT_SIZE,
+					"33 - Mat Freight Group": wsData.results[wsLcv].FORWARD_CONSUMPTION,
+					"34 = Availability Check(75)": wsData.results[wsLcv].GICG,
+					"35 - Loading Group": wsData.results[wsLcv].GOODS_REC_PROC_TIME,
+					"36 = Profit Center(50)": wsData.results[wsLcv].GROSS_WEIGHT,
+					"37 = Serial Nbr Profile(51)": wsData.results[wsLcv].GROUP_COUNTER,
+					"38 - Purch Ord UOM": wsData.results[wsLcv].GRP_LEGAL_CTL,
+					"39 = Purchasing Grp(52)": wsData.results[wsLcv].INDUSTRY_STD_DESC,
+					"40 = Purchasing Value Key(53)": wsData.results[wsLcv].IND_COLL_IND,
+					"41 - Mfg Part Nbr(136)": wsData.results[wsLcv].IND_MAINT_LEG_CTL,
+					"42 - Mfg(137)": wsData.results[wsLcv].INSPECT,
+					"43 - Den Base Unit": wsData.results[wsLcv].INSPECT_CHARACTERISTICS,
+					"44 - Num Base Unit": wsData.results[wsLcv].INSPECT_INTERVAL,
+					"45 - Country of Origin": wsData.results[wsLcv].INSPECT_MAT_SPEC,
+					"46- Export ctl Class": wsData.results[wsLcv].INSPECT_TASK_LIST,
+					"47 - Grp Legal ctl": wsData.results[wsLcv].INSPECT_TYPE,
+					"48 - Ind. Maint. Leg ctl": wsData.results[wsLcv].INSPECT_TYPE_ACT_MAT_COMBO,
+					"49 = MRP Profile": wsData.results[wsLcv].IN_HOUSE_PROD_TIME,
+					"50 = MRP Group(55)": wsData.results[wsLcv].ISSUE_LOCATION,
+					"51 - Plant Spec Mat Stat(139)": wsData.results[wsLcv].ITEM_CAT_GRP,
+					"52 - PSMS Valid from date": wsData.results[wsLcv].LOADING_GROUP,
+					"53 = MRP Type(56)": wsData.results[wsLcv].LOT_SIZE_KEY,
+					"54 = Reorder Point(57)": wsData.results[wsLcv].MATERIAL_GROUP,
+					"55 = Plan Time Fence(60)": wsData.results[wsLcv].MATERIAL_GROUP1,
+					"56 = MRP Controller(70)": wsData.results[wsLcv].MATERIAL_GROUP2,
+					"57 = Lot Size key(76)": wsData.results[wsLcv].MATERIAL_GROUP3,
+					"58 = Min Lot Size(58)": wsData.results[wsLcv].MATERIAL_GROUP4,
+					"59 = Max Lot Size(59)": wsData.results[wsLcv].MATERIAL_GROUP5,
+					"60 = Fixed Lot Size(79)": wsData.results[wsLcv].MATERIAL_NUMBER,
+					"61 - Max Stk Lvl": wsData.results[wsLcv].MATERIAL_TYPE,
+					"62 - Ass.scrap %": wsData.results[wsLcv].MAT_FREIGHT_GROUP,
+					"63 PO Round Val": wsData.results[wsLcv].MAT_PRICING_GROUP,
+					"64 = Procurement Type(61)": wsData.results[wsLcv].MAT_STATISTICS_GRP,
+					"65 = Special Procurement Type(62)": wsData.results[wsLcv].MAX_LOT_SIZE,
+					"66 = Issue Location(63)": wsData.results[wsLcv].MAX_STK_LVL,
+					"67 = Backflush": wsData.results[wsLcv].MFG,
+					"68 = Storage Location for EP(64)": wsData.results[wsLcv].MFG_PART_NBR,
+					"69 - Bulk Material Ind(140)": wsData.results[wsLcv].MIN_LOT_SIZE,
+					"70 = In-house prod time(65)": wsData.results[wsLcv].MIN_SAFETY_STK,
+					"71 = Planned DelivyTime(66)": wsData.results[wsLcv].MRP_CONTROLLER,
+					"72 - PPC Plan Cal": wsData.results[wsLcv].MRP_GROUP,
+					"73 = Sched Margin Key(67)": wsData.results[wsLcv].MRP_MIXED_IND,
+					"74 = Safety Stock(68)": wsData.results[wsLcv].MRP_PROFILE,
+					"75 - Service Level": wsData.results[wsLcv].MRP_TYPE,
+					"76 - Min Safety Stk": wsData.results[wsLcv].NET_WEIGHT,
+					"77- Coverage Profile": wsData.results[wsLcv].NUM_BASE_UNIT,
+					"78 - Safety Time Ind": wsData.results[wsLcv].OFFICE_LAB,
+					"79 - Safety Time": wsData.results[wsLcv].OLD_MAT,
+					"80 - Period Ind": wsData.results[wsLcv].ORDERS,
+					"81 - Fisc Yr Variant": wsData.results[wsLcv].OVERHEAD_GROUP,
+					"82 - Splitting Indicator": wsData.results[wsLcv].PERIOD_IND,
+					"83 = Strategy Group(71)": wsData.results[wsLcv].PLANNED_DELIVYTIME,
+					"84 = Consumption Mode(72)": wsData.results[wsLcv].PLANNING_MATERIAL,
+					"85 = Backward Consumption(73)": wsData.results[wsLcv].PLANNING_PLANT,
+					"86 = Forward Consumption(74)": wsData.results[wsLcv].PLANT,
+					"87 - MRP Mixed Ind(141)": wsData.results[wsLcv].PLANT_SPEC_MAT_STAT,
+					"88 - Planning Material": wsData.results[wsLcv].PLAN_TIME_FENCE,
+					"89 - Planning Plant": wsData.results[wsLcv].POST_INSP_STOCK,
+					"90 = Conversion Factor": wsData.results[wsLcv].PO_ROUND_VAL,
+					"91 = Availability Check": wsData.results[wsLcv].PPC_PLAN_CAL,
+					"92 = Total Replendish Leadtime(69)": wsData.results[wsLcv].PREFERRED_INSPECT_TYPE,
+					"93 = Ind. coll ind(77)": wsData.results[wsLcv].PRICE_CONTROL,
+					"94 = Reqmts Grp(78)": wsData.results[wsLcv].PRICE_UNIT,
+					"95 = Prod Schedule(80)": wsData.results[wsLcv].PROCUREMENT_TYPE,
+					"96 = Prod Sched Profile": wsData.results[wsLcv].PRODUCT_HIERARCHY,
+					"97 = Crit Part Ind": wsData.results[wsLcv].PRODUCT_HIERARCHY1,
+					"98 = Storage Bin (82)": wsData.results[wsLcv].PROD_SCHEDULE,
+					"99 = CC Physical INV(81)": wsData.results[wsLcv].PROD_SCHED_PROFILE,
+					"100 - Fixed Ind": wsData.results[wsLcv].PROFIT_CENTER,
+					"101 = Distrib Profile": wsData.results[wsLcv].PSMS_VALID_FROM_DATE,
+					"102 = Warehouse Nbr": wsData.results[wsLcv].PURCHASING_GRP,
+					"103 = Storage Type(15)": wsData.results[wsLcv].PURCHASING_VALUE_KEY,
+					"104 = Stor Type Removal": wsData.results[wsLcv].PURCH_ORD_UOM,
+					"105 = Stor Type Placement": wsData.results[wsLcv].REORDER_POINT,
+					"106 = Storage Section Ind.": wsData.results[wsLcv].REQMTS_GRP,
+					"107 = Special Mov MGMT": wsData.results[wsLcv].SAFETY_STOCK,
+					"108 - Post Insp Stock(103)": wsData.results[wsLcv].SAFETY_TIME,
+					"109 = Goods rec proc time": wsData.results[wsLcv].SAFETY_TIME_IND,
+					"110 = Inspect Interval": wsData.results[wsLcv].SALES_ORGANIZATION,
+					"111 = Control Key QM": wsData.results[wsLcv].SCHED_MARGIN_KEY,
+					"112 = Inspect Type": wsData.results[wsLcv].SERIAL_NBR_PROFILE,
+					"113 = 100% Inspect": wsData.results[wsLcv].SERVICE_LEVEL,
+					"114 = Avg Inspect Dur": wsData.results[wsLcv].SPECIAL_MOV_MGMT,
+					"115 = Inspect Mat spec": wsData.results[wsLcv].SPECIAL_PROCUREMENT_TYPE,
+					"116 = Inspect Task List": wsData.results[wsLcv].SPLITTING_INDICATOR,
+					"117 = Ctl Inspect Creation": wsData.results[wsLcv].STANDARD_PRICE,
+					"118 = Auto Spec Assign": wsData.results[wsLcv].STORAGE_BIN,
+					"119 = Inspect Characteristics": wsData.results[wsLcv].STORAGE_LOCATION1,
+					"120 = Preferred Inspect Type": wsData.results[wsLcv].STORAGE_LOCATION_FOR_EP,
+					"121 = Inspect Type Act Mat combo": wsData.results[wsLcv].STORAGE_SECTION_IND,
+					"122 = Value Class(93)": wsData.results[wsLcv].STORAGE_TYPE,
+					"123 = Price Control(94)": wsData.results[wsLcv].STOR_TYPE_PLACEMENT,
+					"124 = Price Unit(95)": wsData.results[wsLcv].STOR_TYPE_REMOVAL,
+					"125 = Standard Price(96)": wsData.results[wsLcv].STRATEGY_GROUP,
+					"126 = w/Qty Structure(97)": wsData.results[wsLcv].TOTAL_REPLENDISH_LEADTIME,
+					"127 = Overhead Group(98)": wsData.results[wsLcv].UOM_CODE,
+					"128 = Variance Key(99)": wsData.results[wsLcv].VALUE_CLASS,
+					"129 = BOM Usage(100)": wsData.results[wsLcv].VARIANCE_KEY,
+					"130 = Group Counter": wsData.results[wsLcv].WAREHOUSE_NBR,
+					"131 = Costing Lot Size(101)": wsData.results[wsLcv].WEIGHT_UNIT
+				});
+			}
+			//here we are crating a vertual html page using JavaScript whih can not be show in the body of our page.
+			var html = document.createElement('html');
+			var head = document.createElement('head');
+			html.appendChild(head);
+			var body = document.createElement('body');
+			html.appendChild(body);
+			var div = document.createElement('div');
+			body.appendChild(div);
+			var table = document.createElement('table');
+			table.id = "excelDataTable";
+			table.border = "1";
+			table.cellSpacing = "0"
+			div.appendChild(table);
+			//Styling the Table 
+			var style = document.createElement('style');
+			head.appendChild(style);
+
+			style.type = "text/css";
+			//you can change the style of the excel header and body rows here.
+			//var styleText =
+			//	'.innerTableData { background-color:rgb(91,155,213);color:rgb(255,255,255);font-weight: bold;  mso-number-format:"\@"; } td { background-color:rgb(221,235,247); }';
+			var styleText =
+				"table{color:Black;background-color:White;border-color:#CCCCCC;border-width:1px;border-style:None;width:100%;border-collapse:collapse;font-size:8pt;text-align:left;} .innerTableData { background-color:rgb(91,155,213);color:rgb(255,255,255);font-weight: bold; } td { background-color:rgb(221,235,247); width:auto;border-collapse:collapse;font-size:10pt;text-align:left; }";
+			style.innerHTML = styleText;
+			document.body.appendChild(html);
+			//this for loop will create the header data for the html table from the given json data key.
+			var columns = [];
+			var headerTr$ = $('<tr/>');
+			for (var i = 0; i < data.results.length; i++) {
+				var rowHash = data.results[i];
+				for (var key in rowHash) {
+					if ($.inArray(key, columns) == -1) {
+						columns.push(key);
+						headerTr$.append($('<td class = "innerTableData"/>').html(key));
+					}
+				}
+			}
+			$("#excelDataTable").append(headerTr$);
+			//this for loop will create the row data for the html table from the given json data.
+			for (var i = 0; i < data.results.length; i++) {
+				var row$ = $('<tr/>');
+				for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+					var cellValue = data.results[i][columns[colIndex]];
+					if (cellValue == null) {
+						cellValue = "";
+					}
+					row$.append($('<td/>').html(cellValue));
+				}
+				$("#excelDataTable").append(row$);
+			}
+			//here we are adding the html file of the table and get the values then convert it to ms-excel formate.
+			let file = new Blob([html.outerHTML], {
+				type: "application/vnd.ms-excel"
+			});
+			let url = URL.createObjectURL(file);
+			//this is the file name after downloading the excel file.
+			//you can change the text which is here "downloadedfile" 
+			//Note one thing dont remove the second part of this string ".xls" 
+			//other wise the file downloaded can not work.
+			var filename = "Winshuttle" + ".xls"
+				//here we are creating HTML <a> Tag which can be trigger to download the excel file.
+			var a = document.createElement('a');
+			a.id = "export";
+			document.body.appendChild(a);
+			//here we are checking if the bwoswer is IE or not if IE then we use window.navigator.msSaveBlob function otherwise 
+			//Go with Simple Blob file.
+			if (window.navigator && window.navigator.msSaveBlob) {
+				window.navigator.msSaveBlob(file, filename);
+				a.click();
+				document.body.removeChild(a);
+				document.body.removeChild(html);
+			} else {
+				a.download = filename;
+				a.href = url;
+				a.click();
+				document.body.removeChild(a);
+				document.body.removeChild(html);
+			}
 		}
 
 	});

@@ -64,33 +64,39 @@
 												<!--</m:HBox>-->
 												<m:VBox width="500px" alignContent="Center" class="sapUiSizeCompact">
 													<m:Label text="Selected Options" design="Bold" class="custom_header"/>
-													<t:Table id="id_OperationAddNewRec2" rows="{selOptnsTabModelName>/results}" class="SapUiResponsiveMargin" selectionMode="None"
-														rowActionCount="1" rowSelectionChange="onSelectionAddNewOperationChange" visibleRowCount="5">
-														<t:columns>
-															<t:Column>
-																<!--<m:Label text="{i18n>SelectAll}" design="Bold" textAlign="Center"/>-->
-																<t:template>
-																	<m:Text text="{selOptnsTabModelName>slOptn}"/>
-																</t:template>
-															</t:Column>
-															<!--<t:Column>-->
-															<!--<m:Label text="{i18n>SelectAll}" design="Bold" textAlign="Center"/>-->
-															<!--<t:template>-->
-															<!--<m:Text text="{selOptnsTabModelName>slOptn}"/>-->
-															<!--<core:Icon src="sap-icon://sys-cancel" class="size1" color="#031E48">-->
-															<!--			<core:layoutData>-->
-															<!--				<FlexItemData growFactor="1"/>-->
-															<!--			</core:layoutData>-->
-															<!--		</core:Icon>-->
-															<!--	</t:template>-->
-															<!--</t:Column>-->
-														</t:columns>
-													</t:Table>
+													<!--<m:ScrollContainer height="80%" width="100%" vertical="true" focusable="true">-->
+													<m:List id="idSeltdOptnslist" mode="Delete" delete="handleSelectedOptionDelete" enableBusyIndicator="true" growing="true"
+														items="{selOptnsTabModelName>/results}">
+														<m:StandardListItem title="{selOptnsTabModelName>slOptn}"/>
+													</m:List>
+													<!--</m:ScrollContainer>-->
+													<!--<t:Table id="id_OperationAddNewRec2" rows="{selOptnsTabModelName>/results}" class="SapUiResponsiveMargin" selectionMode="None"-->
+													<!--	rowActionCount="1" rowSelectionChange="onSelectionAddNewOperationChange" visibleRowCount="5">-->
+													<!--	<t:columns>-->
+													<!--		<t:Column>-->
+													<!--<m:Label text="{i18n>SelectAll}" design="Bold" textAlign="Center"/>-->
+													<!--			<t:template>-->
+													<!--				<m:Text text="{selOptnsTabModelName>slOptn}"/>-->
+													<!--			</t:template>-->
+													<!--		</t:Column>-->
+													<!--		<t:Column>-->
+													<!--<m:Label text="{i18n>SelectAll}" design="Bold" textAlign="Center"/>-->
+													<!--			<t:template>-->
+													<!--<m:Text text="{selOptnsTabModelName>slOptn}"/>-->
+													<!--				<core:Icon src="sap-icon://sys-cancel" class="size1" color="#031E48">-->
+													<!--					<core:layoutData>-->
+													<!--						<m:FlexItemData growFactor="1"/>-->
+													<!--					</core:layoutData>-->
+													<!--				</core:Icon>-->
+													<!--			</t:template>-->
+													<!--		</t:Column>-->
+													<!--	</t:columns>-->
+													<!--</t:Table>-->
 												</m:VBox>
-												<m:VBox width="500px" alignContent="Center" class="sapUiSizeCompact sapUiLargeMarginBegin">
+												<m:VBox alignContent="Inherit" class="sapUiSizeCompact sapUiMediumMarginBegin">
 													<m:Label text="Available Options" design="Bold" class="custom_header"/>
 													<t:Table id="idOptions" rows="{TabDetailsModel>/OptionTypeSet}" class="SapUiResponsiveMargin" selectionMode="None" rowActionCount="1"
-														rowSelectionChange="onSelectionAddNewOperationChange" visibleRowCount="5">
+														rowSelectionChange="onSelectionAddNewOperationChange" visibleRowCount="{= ${TabDetailsModel>/OptionTypeSet}.length}">
 														<t:columns>
 															<t:Column width="55px">
 																<m:CheckBox id="idFirstCol" selected="false" select="selectAll" textAlign="Center"/>
@@ -107,20 +113,28 @@
 														</t:columns>
 													</t:Table>
 												</m:VBox>
+												<m:VBox width="100%" alignItems="Start" class="sapUiSizeCompact sapUiMediumMarginBegin">
+													<m:Label width="100%" design="Bold" text="Options"/>
+													<!--<m:Text id="ido" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
+													<!--<m:VBox>-->
+													<!--<m:Input value="{TabDetailsModel>/TabData/OpOption}" id="idOption"/>-->
+													<m:TextArea id="idOption" value="{TabDetailsModel>/TabData/OpOption}" growing="true" growingMaxLines="50" width="400px"/>
+													<!--</m:VBox>-->
+												</m:VBox>
 											</m:HBox>
 										</l:content>
 									</l:Grid>
 									<!--</l:Splitter>-->
-									<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">
-										<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
-											<m:Label width="10rem" text="Options"/>
-											<m:Text id="ido" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
-											<m:VBox width="1000rem">
-												<!--<m:Input value="{TabDetailsModel>/TabData/OpOption}" id="idOption"/>-->
-												<m:TextArea id="idOption" value="{TabDetailsModel>/TabData/OpOption}" growing="true" growingMaxLines="7" width="500px"/>
-											</m:VBox>
-										</m:HBox>
-									</l:Grid>
+									<!--<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">-->
+									<!--	<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">-->
+									<!--		<m:Label width="10rem" text="Options"/>-->
+									<!--		<m:Text id="ido" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
+									<!--		<m:VBox width="1000rem">-->
+									<!--<m:Input value="{TabDetailsModel>/TabData/OpOption}" id="idOption"/>-->
+									<!--			<m:TextArea id="idOption" value="{TabDetailsModel>/TabData/OpOption}" growing="true" growingMaxLines="7" width="500px"/>-->
+									<!--		</m:VBox>-->
+									<!--	</m:HBox>-->
+									<!--</l:Grid>-->
 								</m:VBox>
 							</ObjectPageSubSection>
 						</subSections>
@@ -802,21 +816,72 @@
 												<!--</m:RadioButtonGroup>-->
 											</m:VBox>
 										</m:VBox>
+										<!--<m:Table id="idItemsTable233" inset="false" items="{TabDetailsModel>/ETOAttachmentSet}" selectionChange="itemTableSelectionChange"-->
+										<!--	class="sapUiSizeCompact" visible="true">-->
+										<!--	<m:headerToolbar class="zhdrTlbar">-->
+										<!--		<m:OverflowToolbar>-->
+										<!--			<m:content>-->
+										<!--				<m:Text text="Document Details"/>-->
+										<!--				<m:ToolbarSpacer/>-->
+										<!--				<m:HBox visible="{= ${globalModel>/visibilityField} === '' ? true : false }">-->
+										<!--					<u:FileUploader buttonOnly="true" multiple="true" icon="sap-icon://attachment" id="__FILEUPLOAD"-->
+										<!--						visible="{= ${globalModel>/visibilityField} === '' ? true : false }" sameFilenameAllowed="false" buttonText="Add Attachment"-->
+										<!--						fileType="XLS,CSV,PDF,PNG,DOCX,JPG,JPEG" change="onUploadPress" filenameLengthExceed="onFileNameLengthExceed"-->
+										<!--						fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onComplete" typeMissmatch="handleMissmatch"-->
+										<!--						placeholder="Choose a file" style="Emphasized"/>-->
+										<!--				</m:HBox>-->
+										<!--				<m:Button type="Ghost" text="Add Notes" icon="sap-icon://notes" press="onNotesPress"/>-->
+										<!--			</m:content>-->
+										<!--		</m:OverflowToolbar>-->
+										<!--	</m:headerToolbar>-->
+										<!--	<m:columns>-->
+										<!--		<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Source"/></m:Column>-->
+										<!--		<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="File Name"/></m:Column>-->
+										<!--		<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="From"/></m:Column>-->
+										<!--		<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="TimeStamp"/></m:Column>-->
+										<!--		<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text=""/></m:Column>-->
+										<!--	</m:columns>-->
+										<!--	<m:items>-->
+										<!--		<m:ColumnListItem>-->
+										<!--			<m:cells>-->
+										<!--				<m:Text text="{TabDetailsModel>Source}"/>-->
+										<!--				<m:Link text="{TabDetailsModel>Filename}" href="{TabDetailsModel>Url}" press="onViewDoc" target="_blank"/>-->
+										<!--				<m:Text text="{TabDetailsModel>User}"/>-->
+										<!--				<m:Text text="{TabDetailsModel>Date}-{TabDetailsModel>Time}"/>-->
+										<!--				<m:Button type="Reject" visible="{= ${globalModel>/visibilityField} === '' ? true : false }" text="Delete" press="onAttachmentItemDelete"/>-->
+										<!--			</m:cells>-->
+										<!--		</m:ColumnListItem>-->
+										<!--	</m:items>-->
+										<!--</m:Table>-->
+										<!--<m:UploadCollection id="UploadCollection" maximumFilenameLength="55" maximumFileSize="10" multiple="true" sameFilenameAllowed="true"-->
+										<!--	instantUpload="false" noDataDescription="Drop files or use the &quot;Add&quot; button to keep files ready for upload" change="onChange"-->
+										<!--	fileDeleted="onFileDeleted" filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"-->
+										<!--	uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts"/>-->
+										<!--<m:Button id="Button" text="Upload Now" press="onStartUpload"/>-->
+										<!--<m:UploadCollection id="idFileUploadCollection" multiple="true" sameFilenameAllowed="false" instantUpload="false" showSeparators="All"-->
+										<!--	change="onChange" fileDeleted="onFileDeleted" filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed"-->
+										<!--	typeMissmatch="onTypeMissmatch" uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts" uploadUrl="" fileType=""></m:UploadCollection>-->
+										<!--<m:UploadCollection id="idFileUploadCollection" maximumFilenameLength="55" maximumFileSize="10" multiple="true" sameFilenameAllowed="true"-->
+										<!--	instantUpload="false" noDataDescription="Drop files or use the &quot;Add&quot; button to keep files ready for upload" change="onChange"-->
+										<!--	fileDeleted="onFileDeleted" filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"-->
+										<!--	uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts"/>-->
+										<!--<m:Button id="Button" text="Upload Now" press="onStartUpload"/>-->
 										<m:Table id="idItemsTable233" inset="false" items="{TabDetailsModel>/ETOAttachmentSet}" selectionChange="itemTableSelectionChange"
 											class="sapUiSizeCompact" visible="true">
 											<m:headerToolbar class="zhdrTlbar">
 												<m:OverflowToolbar>
 													<m:content>
-														<!--<m:Text text="Document Details"/>-->
+														<m:Text text="Document Details"/>
 														<m:ToolbarSpacer/>
-														<m:HBox visible="{= ${globalModel>/visibilityField} === '' ? true : false }">
-															<u:FileUploader buttonOnly="true" multiple="true" icon="sap-icon://attachment" id="__FILEUPLOAD"
-																visible="{= ${globalModel>/visibilityField} === '' ? true : false }" sameFilenameAllowed="false" buttonText="Add Attachment"
-																fileType="XLS,CSV,PDF,PNG,DOCX,JPG,JPEG" change="onUploadPress" filenameLengthExceed="onFileNameLengthExceed"
-																fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onComplete" typeMissmatch="handleMissmatch"
-																placeholder="Choose a file" style="Emphasized"/>
-														</m:HBox>
+														<!--<m:HBox visible="{= ${globalModel>/visibilityField} === '' ? true : false }">-->
+														<!--	<u:FileUploader buttonOnly="true" multiple="true" icon="sap-icon://attachment" id="__FILEUPLOAD"-->
+														<!--		visible="{= ${globalModel>/visibilityField} === '' ? true : false }" sameFilenameAllowed="false" buttonText="Add Attachment"-->
+														<!--		fileType="XLS,CSV,PDF,PNG,DOCX,JPG,JPEG" change="onUploadPress" filenameLengthExceed="onFileNameLengthExceed"-->
+														<!--		fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onComplete" typeMissmatch="handleMissmatch"-->
+														<!--		placeholder="Choose a file" style="Emphasized"/>-->
+														<!--</m:HBox>-->
 														<!--<m:Button type="Ghost" text="Add Notes" icon="sap-icon://notes" press="onNotesPress"/>-->
+														<m:Button type="Ghost" text="Add Attachments" icon="sap-icon://attachment" press="onAttachmentsPess"/>
 													</m:content>
 												</m:OverflowToolbar>
 											</m:headerToolbar>

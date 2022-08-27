@@ -33,6 +33,7 @@
 				<Button text="Accept" type="Emphasized" id="btn-01" press="onPressAcceptButton"/>
 				<Button text="Reassign" type="Emphasized" id="btn-02" press="onReassignButtonPress"/>
 				<Button text="Refresh" type="Emphasized" id="onListGetData3" press="onRefresh"/>
+				<Button text="Winshuttle" type="Emphasized" id="onListGetData4" press="onWinshuttlePress"/>
 			</OverflowToolbar>
 		</f:footer>
 	</f:DynamicPage>
