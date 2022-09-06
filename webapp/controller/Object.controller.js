@@ -28,6 +28,18 @@ sap.ui.define([
 				}.bind(this));
 			}.bind(this));
 
+			var oModel = new sap.ui.model.json.JSONModel();
+
+			oModel.setData({
+
+				dateValue: new Date()
+
+			});
+
+			this.getView().setModel(oModel);
+
+			this.getView().byId("idScheduledOutDate").setDateValue(new Date());
+
 		},
 		createInitialModel: function () {
 			var oViewModel = new JSONModel({
@@ -860,7 +872,57 @@ sap.ui.define([
 		onExit: function () {
 			console.log("onExit() of controller called...");
 			alert("onExit function called");
-		}
+		},
+		appEngSecHdrSubmitPresss: function (oEvent) {
+			var oView = this.getView();
+			var payLoadToSubmit = {
+				"ORDER": this.sSaleOrderNo,
+				// "SCHD_OUT_DATE": this.formatDate(oView.byId("idScheduledOutDate").getValue()),
+				"SCHD_OUT_DATE": oView.byId("idScheduledOutDate").getValue(),
+				"SCHD_HOURS": oView.byId("idScheduledHours").getValue(),
+				"ACT_ENG_HOURS": oView.byId("idActualEngHours").getValue(),
+				// "ACT_OUT_DATE": this.formatDate(oView.byId("idScheduledOutDate").getProperty("dateValue")),
+				"ACT_OUT_DATE": oView.byId("idScheduledOutDate").getValue(),
+				"ORDER_ENGINEER": oView.byId("idDevLevel").getValue(),
+				"OEHPS_ME_DESIGN": oView.byId("idMEDesign").getSelected(),
+				"OEHPS_EE_DESIGN": oView.byId("idEEDesign").getSelected(),
+				"OEHPS_SYST_ANALYSIS": oView.byId("idSystemAnalysis").getSelected(),
+				"OEHPS_APRV_DRAWING": oView.byId("idApprovedDrwnings").getSelected(),
+				"OEHPS_XENG_APRV_RCVD": oView.byId("idApprvlRcvd").getSelected(),
+				"OEHPS_ZZKICKOFF": oView.byId("idKickoffMeeting").getSelected(),
+				"OEHPS_PRE_ORD_BOM": oView.byId("idPreOrdrSAPBomCrtd").getSelected(),
+				"OEHPS_SHP_SPLIT_BOM": oView.byId("idShippingSplitBOM").getSelected(),
+				"OEHPS_LINEUP_BOM": oView.byId("idLineBOMCreated").getSelected(),
+				"OEHPS_BOM_REVIEW": oView.byId("BOMReviewComplete").getSelected(),
+				"OEHPS_FINAL_SAP_BOM": oView.byId("idFinalSAPBOM").getSelected(),
+				"OEHPS_ROUTINGS_CREATED": oView.byId("idRoutingCreated").getSelected(),
+				"OEHPS_ZZPROD_KICKOFF": oView.byId("idZZProdKickoff").getSelected(),
+				"B1_STATUS": oView.byId("idB1hasbeenremoved").getSelected(),
+				"MESSAGE": ""
+			};
+			this.getOwnerComponent().getModel().create("/ETOOrderEngineeringSet", payLoadToSubmit, {
+				success: function (oData, oResponse) {
+					sap.m.MessageBox.success(oData.Message);
+				},
+				error: function (oError) {
+					sap.m.MessageBox.error("HTTP Request Failed");
+				}
+			});
+		},
+// 		formatDate: function (dVal) {
+
+// 			var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+// 				pattern: "MM/DD/YYYY"
+// 			});
+// 			var dateFormatted = dateFormat.format(new Date(dVal));
+// 			return dateFormatted;
+// 		},
+		// 		handleChange: function (oEvent) {
+		// 			var date = this.formatDate(oEvent.getSource()._oDateRange.mProperties.startDate);
+		// 		},
+		// 		handleInput: function (oEvent) {
+
+		// 		}
 
 	});
 

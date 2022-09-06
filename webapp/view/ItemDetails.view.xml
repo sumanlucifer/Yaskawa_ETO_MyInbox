@@ -677,79 +677,79 @@
 							</ObjectPageSubSection>
 						</subSections>
 					</ObjectPageSection>
-					<ObjectPageSection>
-						<subSections>
-							<ObjectPageSubSection id="idOrderEng" title="Order Engineering" mode="Expanded">
-								<blocks>
-									<m:VBox width="100%">
-										<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">
-											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
-												<m:Label width="10rem" text="Priority"/>
-												<m:Text id="k" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
-												<m:VBox width="100%">
-													<m:Input value="{TabDetailsModel>/TabData/OehpsPriority}" id="idPriority"/>
-												</m:VBox>
-											</m:HBox>
-											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
-												<m:Label width="10rem" text="Development Level"/>
-												<m:Text id="y" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
-												<m:VBox width="100%">
-													<m:Input value="{TabDetailsModel>/TabData/OehpsDevtLevel}" id="idDevLevel"/>
-												</m:VBox>
-											</m:HBox>
-										</l:Grid>
-										<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">
-											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
-												<m:Label width="10rem" text="Scheduled ENG Hours"/>
-												<m:Text id="idShipDa" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
-												<m:VBox width="100%">
-													<m:Input value="{TabDetailsModel>/TabData/OehpsSchedEngHrs}" id="idSchedleEngHrs"/>
-												</m:VBox>
-											</m:HBox>
-											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
-												<m:Label width="10rem" text="Actual ENG Hours"/>
-												<m:Text id="nj" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
-												<m:VBox width="100%">
-													<m:Input value="{TabDetailsModel>/TabData/OehpsActualEngHrs}" id="idActEngHrs"/>
-												</m:VBox>
-											</m:HBox>
-										</l:Grid>
-										<m:VBox class="sapUiSmallMarginBegin">
-											<m:Label design="Bold" text="Check List"/>
-											<m:VBox>
-												<m:CheckBox id="idMEDesign" text="ME Design" selected="{= ${TabDetailsModel>/TabData/OehpsMeDesign} === 'X' ? true : false }"/>
-												<m:CheckBox id="idEEDesign" text="EE Design" selected="{= ${TabDetailsModel>/TabData/OehpsEeDesign} === 'X' ? true : false }"/>
-												<m:CheckBox id="idSystemAnalysis" text="System Analysis"
-													selected="{= ${TabDetailsModel>/TabData/OehpsSystAnalysis} === 'X' ? true : false }"/>
-												<m:CheckBox id="idApprovedDrwnings" text="Approved Drawings Complete"
-													selected="{= ${TabDetailsModel>/TabData/OehpsAprvDrawing} === 'X' ? true : false }"/>
-												<m:CheckBox id="idApprvlRcvd" text="XXEngineering Approval Rcvd"
-													selected="{= ${TabDetailsModel>/TabData/OehpsXengAprvRcvd} === 'X' ? true : false }"/>
-												<m:CheckBox id="idKickoffMeeting" text="ZZKickoff Meeting" selected="{= ${TabDetailsModel>/TabData/OehpsZzkickoff} === 'X' ? true : false }"/>
-												<m:CheckBox id="idPreOrdrSAPBomCrtd" text="Pre-Order SAP BOMs Created"
-													selected="{= ${TabDetailsModel>/TabData/OehpsPreOrdBom} === 'X' ? true : false }"/>
-												<m:CheckBox id="idShippingSplitBOM" text="Shipping Split BOMs Created"
-													selected="{= ${TabDetailsModel>/TabData/OehpsShpSplitBom} === 'X' ? true : false }"/>
-												<m:CheckBox id="idLineBOMCreated" text="Lineup BOM Created"
-													selected="{= ${TabDetailsModel>/TabData/OehpsLineupBom} === 'X' ? true : false }"/>
-												<m:CheckBox id="BOMReviewComplete" text="BOM Review Complete"
-													selected="{= ${TabDetailsModel>/TabData/OehpsBomReview} === 'X' ? true : false }"/>
-												<m:CheckBox id="idFinalSAPBOM" text="Final SAP BOMs Loaded"
-													selected="{= ${TabDetailsModel>/TabData/OehpsFinalSapBom} === 'X' ? true : false }"/>
-												<m:CheckBox id="idRoutingCreated" text="Routings Created"
-													selected="{= ${TabDetailsModel>/TabData/OehpsRoutingsCreated} === 'X' ? true : false }"/>
-												<m:CheckBox id="idStatusRmoved" text="Z7 Status Removed"
-													selected="{= ${TabDetailsModel>/TabData/OehpsZ7StatusRemoved} === 'X' ? true : false }"/>
-												<m:CheckBox id="idZZProdKickoff" text="ZZProduction Kickoff Meeting"
-													selected="{= ${TabDetailsModel>/TabData/OehpsZzprodKickoff} === 'X' ? true : false }"/>
-												<!--</m:RadioButtonGroup>-->
-											</m:VBox>
-										</m:VBox>
-									</m:VBox>
-								</blocks>
-							</ObjectPageSubSection>
-						</subSections>
-					</ObjectPageSection>
+					<!--<ObjectPageSection>-->
+					<!--	<subSections>-->
+					<!--		<ObjectPageSubSection id="idOrderEng" title="Order Engineering" mode="Expanded">-->
+					<!--			<blocks>-->
+					<!--				<m:VBox width="100%">-->
+					<!--					<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">-->
+					<!--						<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">-->
+					<!--							<m:Label width="10rem" text="Priority"/>-->
+					<!--							<m:Text id="k" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
+					<!--							<m:VBox width="100%">-->
+					<!--								<m:Input value="{TabDetailsModel>/TabData/OehpsPriority}" id="idPriority"/>-->
+					<!--							</m:VBox>-->
+					<!--						</m:HBox>-->
+					<!--						<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">-->
+					<!--							<m:Label width="10rem" text="Development Level"/>-->
+					<!--							<m:Text id="y" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
+					<!--							<m:VBox width="100%">-->
+					<!--								<m:Input value="{TabDetailsModel>/TabData/OehpsDevtLevel}" id="idDevLevel"/>-->
+					<!--							</m:VBox>-->
+					<!--						</m:HBox>-->
+					<!--					</l:Grid>-->
+					<!--					<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">-->
+					<!--						<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">-->
+					<!--							<m:Label width="10rem" text="Scheduled ENG Hours"/>-->
+					<!--							<m:Text id="idShipDa" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
+					<!--							<m:VBox width="100%">-->
+					<!--								<m:Input value="{TabDetailsModel>/TabData/OehpsSchedEngHrs}" id="idSchedleEngHrs"/>-->
+					<!--							</m:VBox>-->
+					<!--						</m:HBox>-->
+					<!--						<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">-->
+					<!--							<m:Label width="10rem" text="Actual ENG Hours"/>-->
+					<!--							<m:Text id="nj" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>-->
+					<!--							<m:VBox width="100%">-->
+					<!--								<m:Input value="{TabDetailsModel>/TabData/OehpsActualEngHrs}" id="idActEngHrs"/>-->
+					<!--							</m:VBox>-->
+					<!--						</m:HBox>-->
+					<!--					</l:Grid>-->
+					<!--					<m:VBox class="sapUiSmallMarginBegin">-->
+					<!--						<m:Label design="Bold" text="Check List"/>-->
+					<!--						<m:VBox>-->
+					<!--							<m:CheckBox id="idMEDesign" text="ME Design" selected="{= ${TabDetailsModel>/TabData/OehpsMeDesign} === 'X' ? true : false }"/>-->
+					<!--							<m:CheckBox id="idEEDesign" text="EE Design" selected="{= ${TabDetailsModel>/TabData/OehpsEeDesign} === 'X' ? true : false }"/>-->
+					<!--							<m:CheckBox id="idSystemAnalysis" text="System Analysis"-->
+					<!--								selected="{= ${TabDetailsModel>/TabData/OehpsSystAnalysis} === 'X' ? true : false }"/>-->
+					<!--							<m:CheckBox id="idApprovedDrwnings" text="Approved Drawings Complete"-->
+					<!--								selected="{= ${TabDetailsModel>/TabData/OehpsAprvDrawing} === 'X' ? true : false }"/>-->
+					<!--							<m:CheckBox id="idApprvlRcvd" text="XXEngineering Approval Rcvd"-->
+					<!--								selected="{= ${TabDetailsModel>/TabData/OehpsXengAprvRcvd} === 'X' ? true : false }"/>-->
+					<!--							<m:CheckBox id="idKickoffMeeting" text="ZZKickoff Meeting" selected="{= ${TabDetailsModel>/TabData/OehpsZzkickoff} === 'X' ? true : false }"/>-->
+					<!--							<m:CheckBox id="idPreOrdrSAPBomCrtd" text="Pre-Order SAP BOMs Created"-->
+					<!--								selected="{= ${TabDetailsModel>/TabData/OehpsPreOrdBom} === 'X' ? true : false }"/>-->
+					<!--							<m:CheckBox id="idShippingSplitBOM" text="Shipping Split BOMs Created"-->
+					<!--								selected="{= ${TabDetailsModel>/TabData/OehpsShpSplitBom} === 'X' ? true : false }"/>-->
+					<!--							<m:CheckBox id="idLineBOMCreated" text="Lineup BOM Created"-->
+					<!--								selected="{= ${TabDetailsModel>/TabData/OehpsLineupBom} === 'X' ? true : false }"/>-->
+					<!--							<m:CheckBox id="BOMReviewComplete" text="BOM Review Complete"-->
+					<!--								selected="{= ${TabDetailsModel>/TabData/OehpsBomReview} === 'X' ? true : false }"/>-->
+					<!--							<m:CheckBox id="idFinalSAPBOM" text="Final SAP BOMs Loaded"-->
+					<!--								selected="{= ${TabDetailsModel>/TabData/OehpsFinalSapBom} === 'X' ? true : false }"/>-->
+					<!--							<m:CheckBox id="idRoutingCreated" text="Routings Created"-->
+					<!--								selected="{= ${TabDetailsModel>/TabData/OehpsRoutingsCreated} === 'X' ? true : false }"/>-->
+					<!--							<m:CheckBox id="idStatusRmoved" text="Z7 Status Removed"-->
+					<!--								selected="{= ${TabDetailsModel>/TabData/OehpsZ7StatusRemoved} === 'X' ? true : false }"/>-->
+					<!--							<m:CheckBox id="idZZProdKickoff" text="ZZProduction Kickoff Meeting"-->
+					<!--								selected="{= ${TabDetailsModel>/TabData/OehpsZzprodKickoff} === 'X' ? true : false }"/>-->
+					<!--</m:RadioButtonGroup>-->
+					<!--						</m:VBox>-->
+					<!--					</m:VBox>-->
+					<!--				</m:VBox>-->
+					<!--			</blocks>-->
+					<!--		</ObjectPageSubSection>-->
+					<!--	</subSections>-->
+					<!--</ObjectPageSection>-->
 					<ObjectPageSection>
 						<subSections>
 							<ObjectPageSubSection id="idPaSubmittal" title="PA/Submittal" mode="Expanded">
