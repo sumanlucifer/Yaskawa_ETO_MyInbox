@@ -26,6 +26,7 @@ sap.ui.define([
 					this.handleBackPress();
 				}.bind(this));
 			}.bind(this));
+			// 			this.getView().byId("__FILEUPLOAD").setVisible(false);
 		},
 		createInitialModel: function () {
 			var oViewModel = new JSONModel({
@@ -81,8 +82,10 @@ sap.ui.define([
 				this.getView().byId("idPreOrderItem").setVisible(true);
 				this.getView().byId("idPaSubmittal").setVisible(true);
 				this.getView().byId("idHPS").setVisible(false);
-				this.getView().byId("idOrderEng").setVisible(true);
+				// this.getView().byId("idOrderEng").setVisible(true);
 			}
+			this.checkMVHPSflagValue();
+			this.drawingTypeGet();
 		},
 		callItemDetailDropDownService: function () {
 			this.getModel("objectViewModel").setProperty("/busy", true);
@@ -593,29 +596,30 @@ sap.ui.define([
 				"PaSubmittalContact": this.byId("idContact").getValue(),
 				"PaSubmittalName": this.byId("idName").getValue(),
 				"PaSubmittalNumber": this.byId("idNumber").getValue(),
-				"PaSubmittalDocType": this.byId("idDocTypeid").getSelected() ? "X" : "",
-				"PaSubmittalDrawings": this.byId("idDrawingComplete").getSelected() ? "X" : "",
-				"PaSubmittalSubmitted": this.byId("idSubmitted").getSelected() ? "X" : "",
-				"PaSubmittalSentToCustomer": this.byId("idSenttoCustomer").getSelected() ? "X" : "",
+				// "PaSubmittalDocType": this.byId("idDocTypeid").getSelected() ? "X" : "",
+				// "PaSubmittalDrawings": this.byId("idDrawingComplete").getSelected() ? "X" : "",
+				// "PaSubmittalSubmitted": this.byId("idSubmitted").getSelected() ? "X" : "",
+				// "PaSubmittalSentToCustomer": this.byId("idSenttoCustomer").getSelected() ? "X" : "",
+				"PASubmitalDrawingDate": this.byId("idDrwigCmpltnDte").getValue(),
 				// Order Engineering Tab Fields
-				"OehpsPriority": this.byId("idPriority").getValue(),
-				"OehpsDevtLevel": this.byId("idDevLevel").getValue(),
-				"OehpsSchedEngHrs": this.byId("idSchedleEngHrs").getValue(),
-				"OehpsActualEngHrs": this.byId("idActEngHrs").getValue(),
-				"OehpsMeDesign": this.byId("idMEDesign").getSelected() ? "X" : "",
-				"OehpsEeDesign": this.byId("idEEDesign").getSelected() ? "X" : "",
-				"OehpsSystAnalysis": this.byId("idSystemAnalysis").getSelected() ? "X" : "",
-				"OehpsAprvDrawing": this.byId("idApprovedDrwnings").getSelected() ? "X" : "",
-				"OehpsXengAprvRcvd": this.byId("idApprvlRcvd").getSelected() ? "X" : "",
-				"OehpsZzkickoff": this.byId("idKickoffMeeting").getSelected() ? "X" : "",
-				"OehpsPreOrdBom": this.byId("idPreOrdrSAPBomCrtd").getSelected() ? "X" : "",
-				"OehpsShpSplitBom": this.byId("idShippingSplitBOM").getSelected() ? "X" : "",
-				"OehpsLineupBom": this.byId("idLineBOMCreated").getSelected() ? "X" : "",
-				"OehpsBomReview": this.byId("BOMReviewComplete").getSelected() ? "X" : "",
-				"OehpsFinalSapBom": this.byId("idFinalSAPBOM").getSelected() ? "X" : "",
-				"OehpsRoutingsCreated": this.byId("idRoutingCreated").getSelected() ? "X" : "",
-				"OehpsZ7StatusRemoved": this.byId("idStatusRmoved").getSelected() ? "X" : "",
-				"OehpsZzprodKickoff": this.byId("idZZProdKickoff").getSelected() ? "X" : "",
+				// "OehpsPriority": this.byId("idPriority").getValue(),
+				// "OehpsDevtLevel": this.byId("idDevLevel").getValue(),
+				// "OehpsSchedEngHrs": this.byId("idSchedleEngHrs").getValue(),
+				// "OehpsActualEngHrs": this.byId("idActEngHrs").getValue(),
+				// "OehpsMeDesign": this.byId("idMEDesign").getSelected() ? "X" : "",
+				// "OehpsEeDesign": this.byId("idEEDesign").getSelected() ? "X" : "",
+				// "OehpsSystAnalysis": this.byId("idSystemAnalysis").getSelected() ? "X" : "",
+				// "OehpsAprvDrawing": this.byId("idApprovedDrwnings").getSelected() ? "X" : "",
+				// "OehpsXengAprvRcvd": this.byId("idApprvlRcvd").getSelected() ? "X" : "",
+				// "OehpsZzkickoff": this.byId("idKickoffMeeting").getSelected() ? "X" : "",
+				// "OehpsPreOrdBom": this.byId("idPreOrdrSAPBomCrtd").getSelected() ? "X" : "",
+				// "OehpsShpSplitBom": this.byId("idShippingSplitBOM").getSelected() ? "X" : "",
+				// "OehpsLineupBom": this.byId("idLineBOMCreated").getSelected() ? "X" : "",
+				// "OehpsBomReview": this.byId("BOMReviewComplete").getSelected() ? "X" : "",
+				// "OehpsFinalSapBom": this.byId("idFinalSAPBOM").getSelected() ? "X" : "",
+				// "OehpsRoutingsCreated": this.byId("idRoutingCreated").getSelected() ? "X" : "",
+				// "OehpsZ7StatusRemoved": this.byId("idStatusRmoved").getSelected() ? "X" : "",
+				// "OehpsZzprodKickoff": this.byId("idZZProdKickoff").getSelected() ? "X" : "",
 				"Message": "",
 				"WFSTEP": aPreOrderItemData
 			};
@@ -694,7 +698,7 @@ sap.ui.define([
 				this.callItemDetailDropDownService();
 				this.byId("__FILEUPLOAD").setValue("");
 				this.getModel().refresh();
-
+                this.byId("idUpload").setVisible(false);
 			} else {
 				this.getModel("objectViewModel").setProperty("/busy", false);
 				sap.m.MessageBox.error("The File  upload failed!");
@@ -709,8 +713,8 @@ sap.ui.define([
 			oFileUploader.removeAllHeaderParameters();
 			oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({
 				name: "slug",
-				value: Filecontent + "|" + Input + "|" + Filename + "|" + Filetype + "|" + Filesize + "|" + itemNo
-
+				// value: Filecontent + "|" + Input + "|" + Filename + "|" + Filetype + "|" + Filesize + "|" + itemNo + "|" + this.drawingTypeValue
+				value: Filecontent + "|" + Input + "|" + Filename + "|" + Filetype + "|" + Filesize + "|" + itemNo + "|" + this.drawingTypeValue
 			}));
 			oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({
 				name: "x-csrf-token",
@@ -965,41 +969,41 @@ sap.ui.define([
 		},
 
 		// File upload event handelers //		
-		onChange: function (oEvent) {
-			var _ofileUpload = sap.ui.getCore().byId("idFileUploadCollection");
-			var _oFileUploderLength = _ofileUpload.getItems().length;
-			this.fileContent = oEvent.getParameters().files[0];
-			this.fileName = oEvent.getParameters().files[0].name;
-			this.fileType = oEvent.getParameters().files[0].type;
-			this.fileSize = oEvent.getParameters().files[0].size;
+		// 		onChange: function (oEvent) {
+		// 			var _ofileUpload = sap.ui.getCore().byId("idFileUploadCollection");
+		// 			var _oFileUploderLength = _ofileUpload.getItems().length;
+		// 			this.fileContent = oEvent.getParameters().files[0];
+		// 			this.fileName = oEvent.getParameters().files[0].name;
+		// 			this.fileType = oEvent.getParameters().files[0].type;
+		// 			this.fileSize = oEvent.getParameters().files[0].size;
 
-			if (_oFileUploderLength > 9) {
-				sap.m.MessageBox.alert(
-					"You can not upload more than 10 files. ", {
-						actions: [sap.m.MessageBox.Action.OK],
-						onClose: function (oAction) {
-							if (oAction === "OK") {}
-						}
+		// 			if (_oFileUploderLength > 9) {
+		// 				sap.m.MessageBox.alert(
+		// 					"You can not upload more than 10 files. ", {
+		// 						actions: [sap.m.MessageBox.Action.OK],
+		// 						onClose: function (oAction) {
+		// 							if (oAction === "OK") {}
+		// 						}
 
-					});
+		// 					});
 
-				jQuery.sap.delayedCall(0, this, function () {
+		// 				jQuery.sap.delayedCall(0, this, function () {
 
-					_ofileUpload.removeItem(_ofileUpload.getItems()[0]);
+		// 					_ofileUpload.removeItem(_ofileUpload.getItems()[0]);
 
-				});
-			} else {
-				var oModel = this.getOwnerComponent().getModel();
-				var oUploadCollection = oEvent.getSource();
-				var sectoken = oModel.getSecurityToken();
-				var oCustomerHeaderToken = new sap.m.UploadCollectionParameter({
-					name: "x-csrf-token",
-					value: sectoken
-				});
-				oUploadCollection.addHeaderParameter(oCustomerHeaderToken);
-			}
+		// 				});
+		// 			} else {
+		// 				var oModel = this.getOwnerComponent().getModel();
+		// 				var oUploadCollection = oEvent.getSource();
+		// 				var sectoken = oModel.getSecurityToken();
+		// 				var oCustomerHeaderToken = new sap.m.UploadCollectionParameter({
+		// 					name: "x-csrf-token",
+		// 					value: sectoken
+		// 				});
+		// 				oUploadCollection.addHeaderParameter(oCustomerHeaderToken);
+		// 			}
 
-		},
+		// 		},
 		// 		onTypeMissmatch: function (oEvent) {
 		// 			var _oFileTypeExt = oEvent.getParameters().files[0].fileType;
 		// 			sap.m.MessageBox.alert(
@@ -1031,97 +1035,174 @@ sap.ui.define([
 
 		// 		},
 
-		onStartUpload: function (oEvent) {
-			var oUploadCollection = sap.ui.getCore().byId("idFileUploadCollection");
-			var cFiles = oUploadCollection.getItems().length;
-			this._allItems = oUploadCollection.getItems();
-			this._responseReceivedCnt = 0;
-			if (cFiles > 10) {
-				sap.ui.core.BusyIndicator.hide();
-				sap.m.MessageBox.error("Maximum file count per interaction is 10");
-			} else {
-				var uploadInfo = "";
-				oUploadCollection.upload();
-				uploadInfo = cFiles + " file(s)";
-			}
-		},
+		// 		onStartUpload: function (oEvent) {
+		// 			var oUploadCollection = sap.ui.getCore().byId("idFileUploadCollection");
+		// 			var cFiles = oUploadCollection.getItems().length;
+		// 			this._allItems = oUploadCollection.getItems();
+		// 			this._responseReceivedCnt = 0;
+		// 			if (cFiles > 10) {
+		// 				sap.ui.core.BusyIndicator.hide();
+		// 				sap.m.MessageBox.error("Maximum file count per interaction is 10");
+		// 			} else {
+		// 				var uploadInfo = "";
+		// 				oUploadCollection.upload();
+		// 				uploadInfo = cFiles + " file(s)";
+		// 			}
+		// 		},
 
-		onFilenameLengthExceed: function (oEvent) {
-			/*	var fileNameLengthExceedErrorMsg = this.getView().getModel("i18n").getResourceBundle().getText("fileNameLengthExceedErrorMsg");
+		// 		onFilenameLengthExceed: function (oEvent) {
+		// 			/*	var fileNameLengthExceedErrorMsg = this.getView().getModel("i18n").getResourceBundle().getText("fileNameLengthExceedErrorMsg");
 
-				sap.m.MessageToast.show(fileNameLengthExceedErrorMsg);*/
+		// 				sap.m.MessageToast.show(fileNameLengthExceedErrorMsg);*/
 
-			sap.m.MessageBox.alert(
-				"File name can't be exceed 55 characters.", {
-					actions: [sap.m.MessageBox.Action.OK],
-					onClose: function (oAction) {
-						if (oAction === "OK") {}
-					}
+		// 			sap.m.MessageBox.alert(
+		// 				"File name can't be exceed 55 characters.", {
+		// 					actions: [sap.m.MessageBox.Action.OK],
+		// 					onClose: function (oAction) {
+		// 						if (oAction === "OK") {}
+		// 					}
 
-				});
-		},
+		// 				});
+		// 		},
 
-		onBeforeUploadStarts: function (oEvent) {
+		// 		onBeforeUploadStarts: function (oEvent) {
+		// 			var _self = this;
+		// 			var fileContent = "";
+		// 			var oCustomerHeaderSlug = new sap.m.UploadCollectionParameter({
+		// 				name: "slug",
+		// 				// value: oEvent.getParameter("fileName") + "|" + _self._oMessageId
+		// 				value: this.fileContent + "|" + this.Vbeln + "|" + this.fileName + "|" + this.fileType + "|" + this.fileSize
+		// 			});
+
+		// 			oEvent.getParameters().addHeaderParameter(oCustomerHeaderSlug);
+		// 			setTimeout(function () {}, 40000);
+		// 		},
+		// 		onUploadComplete: function (oEvent) {
+		// 			var _that = this;
+		// 			var oUploadCollection;
+		// 			oUploadCollection = sap.ui.getCore().byId("idFileUploadCollection");
+		// 			var sUploadedFileName = "";
+		// 			var uploadError = "";
+		// 			var _responseReceivedlen = "";
+		// 			for (var j = 0; j < oEvent.getParameter("files").length; j++) {
+		// 				sUploadedFileName = oEvent.getParameter("files")[j].fileName;
+		// 				for (var i = 0; i < this._allItems.length; i++) {
+		// 					if (this._allItems[i].getFileName() === sUploadedFileName) {
+		// 						_responseReceivedlen = oEvent.getParameter("files").length;
+		// 						this._responseReceivedCnt = 0 + this._responseReceivedCnt + _responseReceivedlen;
+		// 						if (oEvent.getParameter("files")[j].status === 201) {
+		// 							oUploadCollection.removeItem(this._allItems[i]);
+		// 							_that.getView().byId("idItemsTable233").getModel("TabDetailsModel").refresh();
+		// 						} else {
+		// 							// 			var responceFile = oEvent.getParameter("files")[j].reponse;
+		// 							// 			var slpliteString = responceFile.split("/");
+		// 							// 			uploadError = slpliteString[1].slice(3);
+		// 							// 			this._uploadErrorOccured = true;
+		// 							// 			sap.m.MessageBox.show(uploadError, sap.m.MessageBox.Icon.ERROR);
+		// 							sap.ui.core.BusyIndicator.hide();
+		// 							break;
+		// 						}
+		// 					}
+
+		// 				}
+
+		// 			}
+
+		// 			if (this._responseReceivedCnt === this._allItems.length) {
+		// 				var _self = this;
+		// 			}
+
+		// 		},
+		// 		onAttachmentsPess: function () {
+		// 			this._getAddAttachments().open();
+		// 		},
+		// 		_getAddAttachments: function () {
+		// 			var _self = this;
+		// 			if (!_self._oDialogSelection2) {
+		// 				_self._oDialogSelection2 = sap.ui.xmlfragment("com.yaskawa.ETOMyInbox.view.fragments.AddAttachments", _self);
+		// 				_self.getView().addDependent(_self._oDialogSelection2);
+		// 			}
+		// 			return _self._oDialogSelection2;
+		// 		},
+		// 		onCloseAddAttachDialog: function () {
+		// 			this._getAddAttachments().close();
+		// 		},
+		checkMVHPSflagValue: function (oEvent) {
+			// 			var selItemDtls = this.getModel("OrderDetailsModel").getProperty("/ETOItemListSet");
 			var _self = this;
-			var fileContent = "";
-			var oCustomerHeaderSlug = new sap.m.UploadCollectionParameter({
-				name: "slug",
-				// value: oEvent.getParameter("fileName") + "|" + _self._oMessageId
-				value: this.fileContent + "|" + this.Vbeln + "|" + this.fileName + "|" + this.fileType + "|" + this.fileSize
+			var filterBySONumber = new sap.ui.model.Filter({
+				path: "SONumber",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: this.Vbeln
 			});
+			var filterByAction = new sap.ui.model.Filter({
+				path: "Action",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: ""
+			});
+			var filterByItems = new sap.ui.model.Filter({
+				path: "Items",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: this.Posnr
+			});
+			var filterBySONumberActionItems = [];
+			filterBySONumberActionItems.push(filterBySONumber, filterByAction, filterByItems);
 
-			oEvent.getParameters().addHeaderParameter(oCustomerHeaderSlug);
-			setTimeout(function () {}, 40000);
-		},
-		onUploadComplete: function (oEvent) {
-			var _that = this;
-			var oUploadCollection;
-			oUploadCollection = sap.ui.getCore().byId("idFileUploadCollection");
-			var sUploadedFileName = "";
-			var uploadError = "";
-			var _responseReceivedlen = "";
-			for (var j = 0; j < oEvent.getParameter("files").length; j++) {
-				sUploadedFileName = oEvent.getParameter("files")[j].fileName;
-				for (var i = 0; i < this._allItems.length; i++) {
-					if (this._allItems[i].getFileName() === sUploadedFileName) {
-						_responseReceivedlen = oEvent.getParameter("files").length;
-						this._responseReceivedCnt = 0 + this._responseReceivedCnt + _responseReceivedlen;
-						if (oEvent.getParameter("files")[j].status === 201) {
-							oUploadCollection.removeItem(this._allItems[i]);
-							_that.getView().byId("idItemsTable233").getModel("TabDetailsModel").refresh();
-						} else {
-							// 			var responceFile = oEvent.getParameter("files")[j].reponse;
-							// 			var slpliteString = responceFile.split("/");
-							// 			uploadError = slpliteString[1].slice(3);
-							// 			this._uploadErrorOccured = true;
-							// 			sap.m.MessageBox.show(uploadError, sap.m.MessageBox.Icon.ERROR);
-							sap.ui.core.BusyIndicator.hide();
-							break;
-						}
+			this.getOwnerComponent().getModel().read("/ETOItemListSet", {
+				filters: [filterBySONumberActionItems],
+				success: function (oData, response) {
+					if (oData.results[0].MVHPS === "X") {
+						_self.getView().byId("idPaSubmittal").setVisible(true);
+					} else {
+						_self.getView().byId("idPaSubmittal").setVisible(false);
 					}
-
-				}
-
-			}
-
-			if (this._responseReceivedCnt === this._allItems.length) {
-				var _self = this;
-			}
+				},
+				error: function (response) {}
+			})
 
 		},
-		onAttachmentsPess: function () {
-			this._getAddAttachments().open();
+		formatDate: function (dValue) {
+			var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+				pattern: "YYYY/MM/DD"
+			});
+			var dateFormatted = dateFormat.format(dValue);
+			return dateFormatted;
 		},
-		_getAddAttachments: function () {
+		addPASubmittalDocumentPress: function () {
+			this.getView().byId("idUpload").setVisible(true);
+			this.getModel("TabDetailsModel").getData().ETOAttachmentSet.push({
+				"Source": "",
+				"Filename": "",
+				"Url": "",
+				"User": "",
+				"Date": "",
+				"Time": ""
+			});
+			this.getModel("TabDetailsModel").refresh();
+		},
+		drawingTypeGet: function (oEvent) {
 			var _self = this;
-			if (!_self._oDialogSelection2) {
-				_self._oDialogSelection2 = sap.ui.xmlfragment("com.yaskawa.ETOMyInbox.view.fragments.AddAttachments", _self);
-				_self.getView().addDependent(_self._oDialogSelection2);
-			}
-			return _self._oDialogSelection2;
+			var oView = this.getView();
+			var oDTModel = this.getOwnerComponent().getModel("UserAction");
+			var sUrl = "/DrawingTypeSet";
+			var filterByTypeApp = new sap.ui.model.Filter({
+				path: "Type",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: this.AppType
+			});
+			var oDFltrValue = [];
+			oDFltrValue.push(filterByTypeApp);
+			oDTModel.read(sUrl, {
+				filters: [oDFltrValue],
+				success: function (oData, response) {
+					var drawingTypeModel = new JSONModel(oData);
+					_self.setModel(drawingTypeModel, "drawingTypeModelName");
+				},
+				error: function (response) {}
+			})
 		},
-		onCloseAddAttachDialog: function () {
-			this._getAddAttachments().close();
+		drawingTypeSelectionChange: function (oEvent) {
+			this.drawingTypeValue = oEvent.getSource().getSelectedKey();
 		}
 
 	});

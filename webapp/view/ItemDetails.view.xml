@@ -752,7 +752,7 @@
 					<!--</ObjectPageSection>-->
 					<ObjectPageSection>
 						<subSections>
-							<ObjectPageSubSection id="idPaSubmittal" title="PA/Submittal" mode="Expanded">
+							<ObjectPageSubSection id="idPaSubmittal" title="PA/Submittal" mode="Expanded" visible="true">
 								<blocks>
 									<m:VBox width="100%">
 										<l:Grid containerQuery="true" defaultSpan="XL2 L4" class="sapUiSizeCompact">
@@ -800,22 +800,31 @@
 													<m:Input value="{TabDetailsModel>/TabData/PaSubmittalNumber}" id="idNumber"/>
 												</m:VBox>
 											</m:HBox>
+											<m:HBox width="100%" alignItems="Center" class="sapUiSmallMarginBegin">
+												<m:Label width="10rem" text="Drawing Completion Date"/>
+												<m:Text id="idDrawingCompletionDate" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
+												<m:VBox width="100%">
+													<!--<m:Input value="{TabDetailsModel>/TabData/PaSubmittalNumber}" id="idDrwigCmpltnDte"/>-->
+													<m:DatePicker id="idDrwigCmpltnDte" placeholder="Enter Date" change="handleChange" class="sapUiSmallMarginBottom" displayFormat="MM/dd/yyyy"
+														valueFormat="MM/dd/yyyy" value="{TabDetailsModel>/TabData/PASubmitalDrawingDate}"/>
+												</m:VBox>
+											</m:HBox>
 										</l:Grid>
-										<m:VBox class="sapUiSmallMarginBegin">
-											<m:Label design="Bold" text="Check List"/>
-											<m:VBox>
-												<!--<m:RadioButtonGroup id="GroupA">-->
-												<m:CheckBox text="Doc Types ID'd (AppENG)" id="idDocTypeid"
-													selected="{= ${TabDetailsModel>/TabData/PaSubmittalDocType} === 'X' ? true : false }"/>
-												<m:CheckBox id="idDrawingComplete" text="Drawings Complete (OrderENG)"
-													selected="{= ${TabDetailsModel>/TabData/PaSubmittalDrawings} === 'X' ? true : false }"/>
-												<m:CheckBox id="idSubmitted" text="Submitted? (Inside Sales?)"
-													selected="{= ${TabDetailsModel>/TabData/PaSubmittalSubmitted} === 'X' ? true : false }"/>
-												<m:CheckBox id="idSenttoCustomer" text="Sent to the customer"
-													selected="{= ${TabDetailsModel>/TabData/PaSubmittalSentToCustomer} === 'X' ? true : false }"/>
-												<!--</m:RadioButtonGroup>-->
-											</m:VBox>
-										</m:VBox>
+										<!--<m:VBox class="sapUiSmallMarginBegin">-->
+										<!--	<m:Label design="Bold" text="Check List"/>-->
+										<!--	<m:VBox>-->
+										<!--<m:RadioButtonGroup id="GroupA">-->
+										<!--		<m:CheckBox text="Doc Types ID'd (AppENG)" id="idDocTypeid"-->
+										<!--			selected="{= ${TabDetailsModel>/TabData/PaSubmittalDocType} === 'X' ? true : false }"/>-->
+										<!--		<m:CheckBox id="idDrawingComplete" text="Drawings Complete (OrderENG)"-->
+										<!--			selected="{= ${TabDetailsModel>/TabData/PaSubmittalDrawings} === 'X' ? true : false }"/>-->
+										<!--		<m:CheckBox id="idSubmitted" text="Submitted? (Inside Sales?)"-->
+										<!--			selected="{= ${TabDetailsModel>/TabData/PaSubmittalSubmitted} === 'X' ? true : false }"/>-->
+										<!--		<m:CheckBox id="idSenttoCustomer" text="Sent to the customer"-->
+										<!--			selected="{= ${TabDetailsModel>/TabData/PaSubmittalSentToCustomer} === 'X' ? true : false }"/>-->
+										<!--</m:RadioButtonGroup>-->
+										<!--	</m:VBox>-->
+										<!--</m:VBox>-->
 										<!--<m:Table id="idItemsTable233" inset="false" items="{TabDetailsModel>/ETOAttachmentSet}" selectionChange="itemTableSelectionChange"-->
 										<!--	class="sapUiSizeCompact" visible="true">-->
 										<!--	<m:headerToolbar class="zhdrTlbar">-->
@@ -866,6 +875,56 @@
 										<!--	fileDeleted="onFileDeleted" filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"-->
 										<!--	uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts"/>-->
 										<!--<m:Button id="Button" text="Upload Now" press="onStartUpload"/>-->
+										<!--<m:Table id="idItemsTable233" inset="false" items="{TabDetailsModel>/ETOAttachmentSet}" selectionChange="itemTableSelectionChange"-->
+										<!--	class="sapUiSizeCompact" visible="true">-->
+										<!--	<m:headerToolbar class="zhdrTlbar">-->
+										<!--		<m:OverflowToolbar>-->
+										<!--			<m:content>-->
+										<!--				<m:Text text="Document Details"/>-->
+										<!--				<m:ToolbarSpacer/>-->
+										<!--<m:HBox visible="{= ${globalModel>/visibilityField} === '' ? true : false }">-->
+										<!--	<u:FileUploader buttonOnly="true" multiple="true" icon="sap-icon://attachment" id="__FILEUPLOAD"-->
+										<!--		visible="{= ${globalModel>/visibilityField} === '' ? true : false }" sameFilenameAllowed="false" buttonText="Add Attachment"-->
+										<!--		fileType="XLS,CSV,PDF,PNG,DOCX,JPG,JPEG" change="onUploadPress" filenameLengthExceed="onFileNameLengthExceed"-->
+										<!--		fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onComplete" typeMissmatch="handleMissmatch"-->
+										<!--		placeholder="Choose a file" style="Emphasized"/>-->
+										<!--</m:HBox>-->
+										<!--<m:Button type="Ghost" text="Add Notes" icon="sap-icon://notes" press="onNotesPress"/>-->
+										<!--<m:Button type="Ghost" text="Add Attachments" icon="sap-icon://attachment" press="onAttachmentsPess"/>-->
+										<!--				<m:Button type="Ghost" text="Add Document" icon="sap-icon://add" press="addPASubmittalDocumentPress"/>-->
+										<!--			</m:content>-->
+										<!--		</m:OverflowToolbar>-->
+										<!--	</m:headerToolbar>-->
+										<!--	<m:columns>-->
+										<!--		<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Source"/></m:Column>-->
+										<!--		<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="File Name"/></m:Column>-->
+										<!--		<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="From"/></m:Column>-->
+										<!--		<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="TimeStamp"/></m:Column>-->
+										<!--		<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Drawing Type"/></m:Column>-->
+										<!--		<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text=""/></m:Column>-->
+										<!--		<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text=""/></m:Column>-->
+										<!--	</m:columns>-->
+										<!--	<m:items>-->
+										<!--		<m:ColumnListItem>-->
+										<!--			<m:cells>-->
+										<!--				<m:Text text="{TabDetailsModel>Source}"/>-->
+										<!--				<m:Link text="{TabDetailsModel>Filename}" href="{TabDetailsModel>Url}" press="onViewDoc" target="_blank"/>-->
+										<!--				<m:Text text="{TabDetailsModel>User}"/>-->
+										<!--				<m:Text text="{TabDetailsModel>Date}-{TabDetailsModel>Time}"/>-->
+										<!--<m:Text text="{TabDetailsModel>Date}-{TabDetailsModel>Time}"/>-->
+										<!--				<m:ComboBox items="{userTypeModelName>/results}">-->
+										<!--					<core:Item key="{userTypeModelName>Type}" text="{userTypeModelName>Desc}"/>-->
+										<!--				</m:ComboBox>-->
+										<!--				<m:Button type="Reject" visible="{= ${globalModel>/visibilityField} === '' ? true : false }" text="Delete" press="onAttachmentItemDelete"/>-->
+										<!--				<u:FileUploader buttonOnly="true" multiple="true" icon="sap-icon://attachment" id="__FILEUPLOAD"-->
+										<!--					visible="{= ${globalModel>/visibilityField} === '' ? true : false }" sameFilenameAllowed="false" buttonText="Add Attachment"-->
+										<!--					fileType="XLS,CSV,PDF,PNG,DOCX,JPG,JPEG" change="onUploadPress" filenameLengthExceed="onFileNameLengthExceed"-->
+										<!--					fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onComplete" typeMissmatch="handleMissmatch"-->
+										<!--					placeholder="Choose a file" style="Emphasized"/>-->
+										<!--			</m:cells>-->
+										<!--		</m:ColumnListItem>-->
+										<!--	</m:items>-->
+										<!--</m:Table>-->
 										<m:Table id="idItemsTable233" inset="false" items="{TabDetailsModel>/ETOAttachmentSet}" selectionChange="itemTableSelectionChange"
 											class="sapUiSizeCompact" visible="true">
 											<m:headerToolbar class="zhdrTlbar">
@@ -873,15 +932,18 @@
 													<m:content>
 														<m:Text text="Document Details"/>
 														<m:ToolbarSpacer/>
-														<!--<m:HBox visible="{= ${globalModel>/visibilityField} === '' ? true : false }">-->
-														<!--	<u:FileUploader buttonOnly="true" multiple="true" icon="sap-icon://attachment" id="__FILEUPLOAD"-->
-														<!--		visible="{= ${globalModel>/visibilityField} === '' ? true : false }" sameFilenameAllowed="false" buttonText="Add Attachment"-->
-														<!--		fileType="XLS,CSV,PDF,PNG,DOCX,JPG,JPEG" change="onUploadPress" filenameLengthExceed="onFileNameLengthExceed"-->
-														<!--		fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onComplete" typeMissmatch="handleMissmatch"-->
-														<!--		placeholder="Choose a file" style="Emphasized"/>-->
-														<!--</m:HBox>-->
+														<m:HBox visible="{= ${globalModel>/visibilityField} === '' ? true : false }">
+															<m:HBox id="idUpload" visible="false">
+																<u:FileUploader buttonOnly="true" multiple="true" icon="sap-icon://attachment" id="__FILEUPLOAD"
+																	visible="{= ${globalModel>/visibilityField} === '' ? true : false }" sameFilenameAllowed="false" buttonText="Add Attachment"
+																	fileType="XLS,CSV,PDF,PNG,DOCX,JPG,JPEG" change="onUploadPress" filenameLengthExceed="onFileNameLengthExceed"
+																	fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onComplete" typeMissmatch="handleMissmatch"
+																	placeholder="Choose a file" style="Emphasized"/>
+															</m:HBox>
+														</m:HBox>
 														<!--<m:Button type="Ghost" text="Add Notes" icon="sap-icon://notes" press="onNotesPress"/>-->
-														<m:Button type="Ghost" text="Add Attachments" icon="sap-icon://attachment" press="onAttachmentsPess"/>
+														<!--<m:Button type="Ghost" text="Add Attachments" icon="sap-icon://attachment" press="onAttachmentsPess"/>-->
+														<m:Button type="Emphasized" text="Add Document" icon="sap-icon://add" press="addPASubmittalDocumentPress"/>
 													</m:content>
 												</m:OverflowToolbar>
 											</m:headerToolbar>
@@ -890,7 +952,9 @@
 												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="File Name"/></m:Column>
 												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="From"/></m:Column>
 												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="TimeStamp"/></m:Column>
+												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text="Drawing Type"/></m:Column>
 												<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text=""/></m:Column>
+												<!--<m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left"><m:Text text=""/></m:Column>-->
 											</m:columns>
 											<m:items>
 												<m:ColumnListItem>
@@ -899,7 +963,16 @@
 														<m:Link text="{TabDetailsModel>Filename}" href="{TabDetailsModel>Url}" press="onViewDoc" target="_blank"/>
 														<m:Text text="{TabDetailsModel>User}"/>
 														<m:Text text="{TabDetailsModel>Date}-{TabDetailsModel>Time}"/>
+														<!--<m:Text text="{TabDetailsModel>Date}-{TabDetailsModel>Time}"/>-->
+														<m:ComboBox items="{drawingTypeModelName>/results}" selectionChange="drawingTypeSelectionChange" value="{TabDetailsModel>DrawingType}">
+															<core:Item key="{drawingTypeModelName>Type}" text="{drawingTypeModelName>Desc}"/>
+														</m:ComboBox>
 														<m:Button type="Reject" visible="{= ${globalModel>/visibilityField} === '' ? true : false }" text="Delete" press="onAttachmentItemDelete"/>
+														<!--<u:FileUploader buttonOnly="true" multiple="true" icon="sap-icon://attachment" id="__FILEUPLOAD"-->
+														<!--	visible="{= ${globalModel>/visibilityField} === '' ? true : false }" sameFilenameAllowed="false" buttonText="Add Attachment"-->
+														<!--	fileType="XLS,CSV,PDF,PNG,DOCX,JPG,JPEG" change="onUploadPress" filenameLengthExceed="onFileNameLengthExceed"-->
+														<!--	fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onComplete" typeMissmatch="handleMissmatch"-->
+														<!--	placeholder="Choose a file" style="Emphasized"/>-->
 													</m:cells>
 												</m:ColumnListItem>
 											</m:items>

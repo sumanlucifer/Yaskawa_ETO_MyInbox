@@ -28,18 +28,6 @@ sap.ui.define([
 				}.bind(this));
 			}.bind(this));
 
-			var oModel = new sap.ui.model.json.JSONModel();
-
-			oModel.setData({
-
-				dateValue: new Date()
-
-			});
-
-			this.getView().setModel(oModel);
-
-			this.getView().byId("idScheduledOutDate").setDateValue(new Date());
-
 		},
 		createInitialModel: function () {
 			var oViewModel = new JSONModel({
@@ -196,7 +184,8 @@ sap.ui.define([
 			this.sSaleOrderNo = sObjectId;
 			this.byId("ObjectPageLayout").setSelectedSection(this.byId("idItemSubSection"));
 			this.onGetSODetails();
-
+			this.ordEnggChkBoxesShowHide();
+			this.orderEngDetailsGet(sObjectId);
 		},
 
 		_bindView: function (sObjectPath) {
@@ -900,29 +889,147 @@ sap.ui.define([
 				"B1_STATUS": oView.byId("idB1hasbeenremoved").getSelected(),
 				"MESSAGE": ""
 			};
+			if (payLoadToSubmit.OEHPS_ME_DESIGN) {
+				payLoadToSubmit.OEHPS_ME_DESIGN = "X";
+			} else {
+				payLoadToSubmit.OEHPS_ME_DESIGN = " ";
+			}
+			if (payLoadToSubmit.OEHPS_EE_DESIGN) {
+				payLoadToSubmit.OEHPS_EE_DESIGN = "X";
+			} else {
+				payLoadToSubmit.OEHPS_EE_DESIGN = " ";
+			}
+			if (payLoadToSubmit.OEHPS_SYST_ANALYSIS) {
+				payLoadToSubmit.OEHPS_SYST_ANALYSIS = "X";
+			} else {
+				payLoadToSubmit.OEHPS_SYST_ANALYSIS = " ";
+			}
+			if (payLoadToSubmit.OEHPS_APRV_DRAWING) {
+				payLoadToSubmit.OEHPS_APRV_DRAWING = "X";
+			} else {
+				payLoadToSubmit.OEHPS_APRV_DRAWING = " ";
+			}
+			if (payLoadToSubmit.OEHPS_XENG_APRV_RCVD) {
+				payLoadToSubmit.OEHPS_XENG_APRV_RCVD = "X";
+			} else {
+				payLoadToSubmit.OEHPS_XENG_APRV_RCVD = " ";
+			}
+			if (payLoadToSubmit.OEHPS_ZZKICKOFF) {
+				payLoadToSubmit.OEHPS_ZZKICKOFF = "X";
+			} else {
+				payLoadToSubmit.OEHPS_ZZKICKOFF = " ";
+			}
+			if (payLoadToSubmit.OEHPS_PRE_ORD_BOM) {
+				payLoadToSubmit.OEHPS_PRE_ORD_BOM = "X";
+			} else {
+				payLoadToSubmit.OEHPS_PRE_ORD_BOM = " ";
+			}
+			if (payLoadToSubmit.OEHPS_SHP_SPLIT_BOM) {
+				payLoadToSubmit.OEHPS_SHP_SPLIT_BOM = "X";
+			} else {
+				payLoadToSubmit.OEHPS_SHP_SPLIT_BOM = " ";
+			}
+			if (payLoadToSubmit.OEHPS_LINEUP_BOM) {
+				payLoadToSubmit.OEHPS_LINEUP_BOM = "X";
+			} else {
+				payLoadToSubmit.OEHPS_LINEUP_BOM = " ";
+			}
+			if (payLoadToSubmit.OEHPS_BOM_REVIEW) {
+				payLoadToSubmit.OEHPS_BOM_REVIEW = "X";
+			} else {
+				payLoadToSubmit.OEHPS_BOM_REVIEW = " ";
+			}
+			if (payLoadToSubmit.OEHPS_FINAL_SAP_BOM) {
+				payLoadToSubmit.OEHPS_FINAL_SAP_BOM = "X";
+			} else {
+				payLoadToSubmit.OEHPS_FINAL_SAP_BOM = " ";
+			}
+			if (payLoadToSubmit.OEHPS_ROUTINGS_CREATED) {
+				payLoadToSubmit.OEHPS_ROUTINGS_CREATED = "X";
+			} else {
+				payLoadToSubmit.OEHPS_ROUTINGS_CREATED = " ";
+			}
+			if (payLoadToSubmit.OEHPS_ZZPROD_KICKOFF) {
+				payLoadToSubmit.OEHPS_ZZPROD_KICKOFF = "X";
+			} else {
+				payLoadToSubmit.OEHPS_ZZPROD_KICKOFF = " ";
+			}
+			if (payLoadToSubmit.B1_STATUS) {
+				payLoadToSubmit.B1_STATUS = "X";
+			} else {
+				payLoadToSubmit.B1_STATUS = " ";
+			}
 			this.getOwnerComponent().getModel().create("/ETOOrderEngineeringSet", payLoadToSubmit, {
 				success: function (oData, oResponse) {
-					sap.m.MessageBox.success(oData.Message);
+					sap.m.MessageBox.success(oData.MESSAGE);
 				},
 				error: function (oError) {
-					sap.m.MessageBox.error("HTTP Request Failed");
+					sap.m.MessageBox.error(oError.message);
 				}
 			});
 		},
-// 		formatDate: function (dVal) {
+		ordEnggChkBoxesShowHide: function (oEvent) {
+			// 			var selItemDtls = this.getModel("OrderDetailsModel").getProperty("/ETOItemListSet");
+			var _self = this;
+			var filterBySONumber = new sap.ui.model.Filter({
+				path: "SONumber",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: this.sSaleOrderNo
+			});
+			var filterByAction = new sap.ui.model.Filter({
+				path: "Action",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: this.SyncAction
+			});
+			var filterByItems = new sap.ui.model.Filter({
+				path: "Items",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: this.SelectedPOPupItemNo
+			});
+			var filterBySONumberActionItems = [];
+			filterBySONumberActionItems.push(filterBySONumber, filterByAction, filterByItems);
 
-// 			var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({
-// 				pattern: "MM/DD/YYYY"
-// 			});
-// 			var dateFormatted = dateFormat.format(new Date(dVal));
-// 			return dateFormatted;
-// 		},
-		// 		handleChange: function (oEvent) {
-		// 			var date = this.formatDate(oEvent.getSource()._oDateRange.mProperties.startDate);
-		// 		},
-		// 		handleInput: function (oEvent) {
+			this.getOwnerComponent().getModel().read("/ETOItemListSet", {
+				filters: [filterBySONumberActionItems],
+				success: function (oData, response) {
+					if (oData.results[0].MVHPS === "X") {
+						_self.getView().byId("idOrdEnggChkBoxes").setVisible(true);
+					} else {
+						_self.getView().byId("idOrdEnggChkBoxes").setVisible(false);
+					}
+				},
+				error: function (response) {}
+			})
+		},
+		orderEngDetailsGet: function (selOrdVal) {
+			var _self = this;
+			var oView = this.getView();
+			var ordEngMdl = this.getOwnerComponent().getModel();
+			var sUrl = "/ETOOrderEngineeringSet";
+			var filterByORDER = new sap.ui.model.Filter({
+				path: "ORDER",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: selOrdVal
+			});
+			var ordFltrValue = [];
+			ordFltrValue.push(filterByORDER);
+			ordEngMdl.read(sUrl, {
+				filters: [ordFltrValue],
+				success: function (oData, response) {
+					var ordEnggMdl = new JSONModel(oData);
+					if (oData.results[0].B1_STATUS === "X") {
+						oData.results[0].B1_STATUS = true;
+					} else {
+						oData.results[0].B1_STATUS = false;
+					}
+					_self.setModel(ordEnggMdl, "ordEnggMdlName");
 
-		// 		}
+				},
+				error: function (response) {
+
+				}
+			})
+		}
 
 	});
 

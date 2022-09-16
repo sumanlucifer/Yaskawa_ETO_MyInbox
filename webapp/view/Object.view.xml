@@ -439,7 +439,7 @@
 												<m:Text id="k" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
 													<m:DatePicker id="idScheduledOutDate" placeholder="Enter Date" change="handleChange" class="sapUiSmallMarginBottom"
-														displayFormat="MM/dd/yyyy" valueFormat="MM/dd/yyyy"/>
+														displayFormat="MM/dd/yyyy" valueFormat="MM/dd/yyyy" value="{ordEnggMdlName>/results/0/SCHD_OUT_DATE}"/>
 													<!--<m:Input value="{TabDetailsModel>/TabData/OehpsPriority}" id="idPriority"/>-->
 												</m:VBox>
 											</m:HBox>
@@ -447,7 +447,7 @@
 												<m:Label width="10rem" text="Order Engineer"/>
 												<m:Text id="y" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:Input value="{TabDetailsModel>/TabData/OehpsDevtLevel}" placeholder="Enter Order" id="idDevLevel"/>
+													<m:Input value="{ordEnggMdlName>/results/0/ORDER_ENGINEER}" placeholder="Enter Order" id="idDevLevel"/>
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
@@ -456,7 +456,7 @@
 												<m:Label width="10rem" text="Scheduled Hours"/>
 												<m:Text id="idShipDa2" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:TimePicker id="idScheduledHours" change="handleChange"></m:TimePicker>
+													<m:TimePicker id="idScheduledHours" change="handleChange" value="{ordEnggMdlName>/results/0/SCHD_HOURS}"></m:TimePicker>
 													<!--<m:Input value="{TabDetailsModel>/TabData/OehpsSchedEngHrs}" id="idSchedleEngHrs"/>-->
 												</m:VBox>
 											</m:HBox>
@@ -466,7 +466,7 @@
 												<m:VBox width="100%">
 													<!--<m:Input value="{TabDetailsModel>/TabData/OehpsActualEngHrs}" id="idActEngHrs"/>-->
 													<m:DatePicker id="idActualOutDate" placeholder="Enter Date" change="handleChange" class="sapUiSmallMarginBottom" displayFormat="MM/dd/yyyy"
-														valueFormat="MM/dd/yyyy"/>
+														valueFormat="MM/dd/yyyy" value="{ordEnggMdlName>/results/0/ACT_OUT_DATE}"/>
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
@@ -475,7 +475,7 @@
 												<m:Label width="10rem" text="Actual Eng Hours"/>
 												<m:Text id="idShipDa3" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:TimePicker id="idActualEngHours" change="handleChange" input="handleInput" formatPattern="HH:mm:ss"></m:TimePicker>
+													<m:TimePicker id="idActualEngHours" change="handleChange" input="handleInput" formatPattern="HH:mm:ss" value="{ordEnggMdlName>/results/0/ACT_ENG_HOURS}"></m:TimePicker>
 													<!--<m:Input value="{TabDetailsModel>/TabData/OehpsSchedEngHrs}" id="idSchedleEngHrs2"/>-->
 												</m:VBox>
 											</m:HBox>
@@ -483,12 +483,12 @@
 												<m:Label width="10rem" text="B1 has been removed"/>
 												<m:Text id="nj3" text=":" class="sapUiTinyMarginBeginEnd"></m:Text>
 												<m:VBox width="100%">
-													<m:CheckBox id="idB1hasbeenremoved" selected="false"/>
+													<m:CheckBox id="idB1hasbeenremoved" selected="{ordEnggMdlName>/results/0/B1_STATUS}"/>
 													<!--<m:Input value="{TabDetailsModel>/TabData/OehpsActualEngHrs}" id="idActEngHrs2"/>-->
 												</m:VBox>
 											</m:HBox>
 										</l:Grid>
-										<m:VBox class="sapUiSmallMarginBegin">
+										<m:VBox id="idOrdEnggChkBoxes" class="sapUiSmallMarginBegin" visible="true">
 											<m:Label design="Bold" text="Check List"/>
 											<m:VBox>
 												<m:CheckBox id="idMEDesign" text="ME Design" selected="{= ${TabDetailsModel>/TabData/OehpsMeDesign} === 'X' ? true : false }"/>
