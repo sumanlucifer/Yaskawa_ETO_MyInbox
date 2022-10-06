@@ -933,7 +933,7 @@
 														<m:Text text="Document Details"/>
 														<m:ToolbarSpacer/>
 														<m:HBox visible="{= ${globalModel>/visibilityField} === '' ? true : false }">
-															<m:HBox id="idUpload" visible="false">
+															<m:HBox id="idUpload" visible="true">
 																<u:FileUploader buttonOnly="true" multiple="true" icon="sap-icon://attachment" id="__FILEUPLOAD"
 																	visible="{= ${globalModel>/visibilityField} === '' ? true : false }" sameFilenameAllowed="false" buttonText="Add Attachment"
 																	fileType="XLS,CSV,PDF,PNG,DOCX,JPG,JPEG" change="onUploadPress" filenameLengthExceed="onFileNameLengthExceed"
@@ -943,7 +943,7 @@
 														</m:HBox>
 														<!--<m:Button type="Ghost" text="Add Notes" icon="sap-icon://notes" press="onNotesPress"/>-->
 														<!--<m:Button type="Ghost" text="Add Attachments" icon="sap-icon://attachment" press="onAttachmentsPess"/>-->
-														<m:Button type="Emphasized" text="Add Document" icon="sap-icon://add" press="addPASubmittalDocumentPress"/>
+														<!--<m:Button type="Emphasized" text="Add Document" icon="sap-icon://add" press="addPASubmittalDocumentPress"/>-->
 													</m:content>
 												</m:OverflowToolbar>
 											</m:headerToolbar>

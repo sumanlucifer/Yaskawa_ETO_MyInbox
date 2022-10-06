@@ -8,7 +8,8 @@ sap.ui.define([
 	"sap/ui/Device"
 ], function (BaseController, JSONModel, History, formatter, MessageBox, Fragment, Device) {
 	"use strict";
-
+	var drawingTypes = [];
+	var lineItems = [];
 	return BaseController.extend("com.yaskawa.ETOMyInbox.controller.Object", {
 
 		formatter: formatter,
@@ -186,6 +187,11 @@ sap.ui.define([
 			this.onGetSODetails();
 			this.ordEnggChkBoxesShowHide();
 			this.orderEngDetailsGet(sObjectId);
+			this.paSubmittalDetailsGet(sObjectId);
+			this.getAttachmentDetails();
+			this.getETOItemDetails();
+			// 			this.drawingTypeGet();
+			// 			this.SOItemsGet(sObjectId);
 		},
 
 		_bindView: function (sObjectPath) {
@@ -864,106 +870,261 @@ sap.ui.define([
 		},
 		appEngSecHdrSubmitPresss: function (oEvent) {
 			var oView = this.getView();
+			// 			var payLoadToSubmit = {
+			// 				"ORDER": this.sSaleOrderNo,
+			// 				// "SCHD_OUT_DATE": this.formatDate(oView.byId("idScheduledOutDate").getValue()),
+			// 				"SCHD_OUT_DATE": oView.byId("idScheduledOutDate").getValue(),
+			// 				"SCHD_HOURS": oView.byId("idScheduledHours").getValue(),
+			// 				"ACT_ENG_HOURS": oView.byId("idActualEngHours").getValue(),
+			// 				// "ACT_OUT_DATE": this.formatDate(oView.byId("idScheduledOutDate").getProperty("dateValue")),
+			// 				"ACT_OUT_DATE": oView.byId("idScheduledOutDate").getValue(),
+			// 				"ORDER_ENGINEER": oView.byId("idDevLevel").getValue(),
+			// 				"OEHPS_ME_DESIGN": oView.byId("idMEDesign").getSelected(),
+			// 				"OEHPS_EE_DESIGN": oView.byId("idEEDesign").getSelected(),
+			// 				"OEHPS_SYST_ANALYSIS": oView.byId("idSystemAnalysis").getSelected(),
+			// 				"OEHPS_APRV_DRAWING": oView.byId("idApprovedDrwnings").getSelected(),
+			// 				"OEHPS_XENG_APRV_RCVD": oView.byId("idApprvlRcvd").getSelected(),
+			// 				"OEHPS_ZZKICKOFF": oView.byId("idKickoffMeeting").getSelected(),
+			// 				"OEHPS_PRE_ORD_BOM": oView.byId("idPreOrdrSAPBomCrtd").getSelected(),
+			// 				"OEHPS_SHP_SPLIT_BOM": oView.byId("idShippingSplitBOM").getSelected(),
+			// 				"OEHPS_LINEUP_BOM": oView.byId("idLineBOMCreated").getSelected(),
+			// 				"OEHPS_BOM_REVIEW": oView.byId("BOMReviewComplete").getSelected(),
+			// 				"OEHPS_FINAL_SAP_BOM": oView.byId("idFinalSAPBOM").getSelected(),
+			// 				"OEHPS_ROUTINGS_CREATED": oView.byId("idRoutingCreated").getSelected(),
+			// 				"OEHPS_ZZPROD_KICKOFF": oView.byId("idZZProdKickoff").getSelected(),
+			// 				"B1_STATUS": oView.byId("idB1hasbeenremoved").getSelected(),
+			// 				// PA/Submital Tab Fields
+			// 				"PaSubmittalType": this.byId("idPASubmitalType").getValue(),
+			// 				"PaSubmittalEmail": this.byId("PASubmitalEmail").getValue(),
+			// 				"PaSubmittalDueDate": this.byId("idDueDate").getValue(),
+			// 				"PaSubmittalContact": this.byId("idContact").getValue(),
+			// 				"PaSubmittalName": this.byId("idName").getValue(),
+			// 				"PaSubmittalNumber": this.byId("idNumber").getValue(),
+			// 				"MESSAGE": "",
+			// 				"WFATTACH": attachmentDetails
+			// 			};
+			// PA/ Submittal Attachments
+			var attachmentDetails = this.getModel("etoAttachmentModel").getData().results
+			attachmentDetails = attachmentDetails.map(function (item2) {
+				return {
+
+					Vbeln: this.sSaleOrderNo,
+					Posnr: "000000",
+					SeqNo: "",
+					AttaType: "",
+					Title: "",
+					Attachment: "",
+					FileName: item2.Filename,
+					DrawingType: "",
+					LineItems: ""
+
+				};
+			}, this);
+			for (var atLcvv2 = 0; atLcvv2 < attachmentDetails.length; atLcvv2++) {
+				drawingTypes.push(this.getView().byId("idItemsTable233").mAggregations.items[atLcvv2].mAggregations.cells[4].getProperty(
+					"selectedKey"));
+				lineItems.push(this.getView().byId("idItemsTable233").mAggregations.items[atLcvv2].mAggregations.cells[5].getProperty(
+					"selectedKeys").toString());
+			}
+			for (var atLcvv = 0; atLcvv < attachmentDetails.length; atLcvv++) {
+				attachmentDetails[atLcvv].DrawingType = drawingTypes[atLcvv];
+				attachmentDetails[atLcvv].LineItems = lineItems[atLcvv];
+			}
 			var payLoadToSubmit = {
-				"ORDER": this.sSaleOrderNo,
-				// "SCHD_OUT_DATE": this.formatDate(oView.byId("idScheduledOutDate").getValue()),
-				"SCHD_OUT_DATE": oView.byId("idScheduledOutDate").getValue(),
-				"SCHD_HOURS": oView.byId("idScheduledHours").getValue(),
-				"ACT_ENG_HOURS": oView.byId("idActualEngHours").getValue(),
-				// "ACT_OUT_DATE": this.formatDate(oView.byId("idScheduledOutDate").getProperty("dateValue")),
-				"ACT_OUT_DATE": oView.byId("idScheduledOutDate").getValue(),
-				"ORDER_ENGINEER": oView.byId("idDevLevel").getValue(),
-				"OEHPS_ME_DESIGN": oView.byId("idMEDesign").getSelected(),
-				"OEHPS_EE_DESIGN": oView.byId("idEEDesign").getSelected(),
-				"OEHPS_SYST_ANALYSIS": oView.byId("idSystemAnalysis").getSelected(),
-				"OEHPS_APRV_DRAWING": oView.byId("idApprovedDrwnings").getSelected(),
-				"OEHPS_XENG_APRV_RCVD": oView.byId("idApprvlRcvd").getSelected(),
-				"OEHPS_ZZKICKOFF": oView.byId("idKickoffMeeting").getSelected(),
-				"OEHPS_PRE_ORD_BOM": oView.byId("idPreOrdrSAPBomCrtd").getSelected(),
-				"OEHPS_SHP_SPLIT_BOM": oView.byId("idShippingSplitBOM").getSelected(),
-				"OEHPS_LINEUP_BOM": oView.byId("idLineBOMCreated").getSelected(),
-				"OEHPS_BOM_REVIEW": oView.byId("BOMReviewComplete").getSelected(),
-				"OEHPS_FINAL_SAP_BOM": oView.byId("idFinalSAPBOM").getSelected(),
-				"OEHPS_ROUTINGS_CREATED": oView.byId("idRoutingCreated").getSelected(),
-				"OEHPS_ZZPROD_KICKOFF": oView.byId("idZZProdKickoff").getSelected(),
-				"B1_STATUS": oView.byId("idB1hasbeenremoved").getSelected(),
-				"MESSAGE": ""
+				//  Header fields
+				"SalesOrder": this.sSaleOrderNo,
+				// "ItemNo": this.Posnr,
+				"Action": "S",
+				"Quantity": "0.000",
+				"NetAmount": "0.000",
+				"WfStatus": "",
+				//	Options Tab fields
+				// "OpOptionType": this.aSelectedOptionsType,
+				"OpOptionType": "",
+				"OpOption": "",
+				// Application Data Tab Fields
+				"AppMotorFull": "",
+				"AppPanelSscr": "",
+				"AppAmbTemp": "",
+				"AppEnclosure": "",
+				"AppCableEntry": "",
+				"AppVenitilation": "",
+				"AppAltitude": "",
+				// Enclosure Tab Fields
+				"EnclUlType1": "",
+				"EnclUlType1Min": "",
+				"EnclUlType1NoHole": "",
+				"EnclUlType1Gasketed": "",
+				"EnclUlType1Type12": "",
+				"EnclUlType1Other": "",
+				"EnclUlType12": "",
+				"EnclUlType12AcUnit": "",
+				"EnclUlType12HeatAir": "",
+				"EnclUlType12HeatWater": "",
+				"EnclUlType12Other": "",
+				"EnclUlType3r": "",
+				"EnclUlType3rAcUnit": "",
+				"EnclUlType3rHeatWater": "",
+				"EnclUlType3rOther": "",
+				"EnclNemaType": "",
+				"EnclNemaTypeNema12": "",
+				"EnclNemaTypeNema4": "",
+				"EnclNemaTypeNema4x": "",
+				"EnclNemaTypeOther": "",
+				"EnclItemNotes": "",
+				// Product Type Tab Fields
+				"ProdType": "",
+				"ProdPlant": "",
+				"ProdUom": "",
+				"ProdOverheadGrp": "",
+				"ProdStrGrp": "",
+				"ProdMaterial": "",
+				// "ProdHierarchy": this.byId("idProdHrchy").getSelectedKey(),
+				"ProdHierarchy": "",
+				"ProdProcurementType": "",
+				"ProdValuationClass": "",
+				"ProdSerialNo": "",
+				"ProdDesc": "",
+				"ProdMatPrcGrp": "",
+				"ProdMatGrp1": "",
+				"ProdMrpType": "",
+				// Materials Details Tab Fields
+				"MaterialGroup": "",
+				"MaterialLoadTime": "",
+				"MaterialGrTime": "",
+				"MaterialRequirementGrp": "",
+				"MaterialProdSupervisor": "",
+				"MaterialDelLead": "",
+				"MaterialTimeFence": "",
+				"MaterialLotSize": "",
+				"MaterialProdTime": "",
+				"MaterialProdProfile": "",
+				"MaterialMrpControl": "",
+				"MaterialFixedLotSize": "",
+				//HPS Tab Fields
+				"HpsMaterial": "",
+				"HpsType": "",
+				"HpsSccr": "",
+				"HpsDrive": "",
+				"HpsSimilarModel": "",
+				"HpsPlanningMaterial": "",
+				"HpsDollar": "",
+				"HpsItemNotes": "",
+				// PA/Submital Tab Fields
+				"PaSubmittalType": this.byId("idPASubmitalType").getValue(),
+				"PaSubmittalEmail": this.byId("PASubmitalEmail").getValue(),
+				"PaSubmittalDueDate": this.byId("idDueDate").getValue(),
+				"PaSubmittalContact": this.byId("idContact").getValue(),
+				"PaSubmittalName": this.byId("idName").getValue(),
+				"PaSubmittalNumber": this.byId("idNumber").getValue(),
+				// "PaSubmittalDocType": this.byId("idDocTypeid").getSelected() ? "X" : "",
+				// "PaSubmittalDrawings": this.byId("idDrawingComplete").getSelected() ? "X" : "",
+				// "PaSubmittalSubmitted": this.byId("idSubmitted").getSelected() ? "X" : "",
+				// "PaSubmittalSentToCustomer": this.byId("idSenttoCustomer").getSelected() ? "X" : "",
+				"PASubmitalDrawingDate": this.formatDate(this.byId("idDrwigCmpltnDte").getValue()),
+				// Order Engineering Tab Fields
+				// "OehpsPriority": this.byId("idPriority").getValue(),
+				// "OehpsDevtLevel": this.byId("idDevLevel").getValue(),
+				// "OehpsSchedEngHrs": this.byId("idSchedleEngHrs").getValue(),
+				// "OehpsActualEngHrs": this.byId("idActEngHrs").getValue(),
+				// "OehpsMeDesign": this.byId("idMEDesign").getSelected() ? "X" : "",
+				// "OehpsEeDesign": this.byId("idEEDesign").getSelected() ? "X" : "",
+				// "OehpsSystAnalysis": this.byId("idSystemAnalysis").getSelected() ? "X" : "",
+				// "OehpsAprvDrawing": this.byId("idApprovedDrwnings").getSelected() ? "X" : "",
+				// "OehpsXengAprvRcvd": this.byId("idApprvlRcvd").getSelected() ? "X" : "",
+				// "OehpsZzkickoff": this.byId("idKickoffMeeting").getSelected() ? "X" : "",
+				// "OehpsPreOrdBom": this.byId("idPreOrdrSAPBomCrtd").getSelected() ? "X" : "",
+				// "OehpsShpSplitBom": this.byId("idShippingSplitBOM").getSelected() ? "X" : "",
+				// "OehpsLineupBom": this.byId("idLineBOMCreated").getSelected() ? "X" : "",
+				// "OehpsBomReview": this.byId("BOMReviewComplete").getSelected() ? "X" : "",
+				// "OehpsFinalSapBom": this.byId("idFinalSAPBOM").getSelected() ? "X" : "",
+				// "OehpsRoutingsCreated": this.byId("idRoutingCreated").getSelected() ? "X" : "",
+				// "OehpsZ7StatusRemoved": this.byId("idStatusRmoved").getSelected() ? "X" : "",
+				// "OehpsZzprodKickoff": this.byId("idZZProdKickoff").getSelected() ? "X" : "",
+				"Message": "",
+				"WFSTEP": [],
+				"WFATTACH": attachmentDetails
 			};
-			if (payLoadToSubmit.OEHPS_ME_DESIGN) {
-				payLoadToSubmit.OEHPS_ME_DESIGN = "X";
-			} else {
-				payLoadToSubmit.OEHPS_ME_DESIGN = " ";
-			}
-			if (payLoadToSubmit.OEHPS_EE_DESIGN) {
-				payLoadToSubmit.OEHPS_EE_DESIGN = "X";
-			} else {
-				payLoadToSubmit.OEHPS_EE_DESIGN = " ";
-			}
-			if (payLoadToSubmit.OEHPS_SYST_ANALYSIS) {
-				payLoadToSubmit.OEHPS_SYST_ANALYSIS = "X";
-			} else {
-				payLoadToSubmit.OEHPS_SYST_ANALYSIS = " ";
-			}
-			if (payLoadToSubmit.OEHPS_APRV_DRAWING) {
-				payLoadToSubmit.OEHPS_APRV_DRAWING = "X";
-			} else {
-				payLoadToSubmit.OEHPS_APRV_DRAWING = " ";
-			}
-			if (payLoadToSubmit.OEHPS_XENG_APRV_RCVD) {
-				payLoadToSubmit.OEHPS_XENG_APRV_RCVD = "X";
-			} else {
-				payLoadToSubmit.OEHPS_XENG_APRV_RCVD = " ";
-			}
-			if (payLoadToSubmit.OEHPS_ZZKICKOFF) {
-				payLoadToSubmit.OEHPS_ZZKICKOFF = "X";
-			} else {
-				payLoadToSubmit.OEHPS_ZZKICKOFF = " ";
-			}
-			if (payLoadToSubmit.OEHPS_PRE_ORD_BOM) {
-				payLoadToSubmit.OEHPS_PRE_ORD_BOM = "X";
-			} else {
-				payLoadToSubmit.OEHPS_PRE_ORD_BOM = " ";
-			}
-			if (payLoadToSubmit.OEHPS_SHP_SPLIT_BOM) {
-				payLoadToSubmit.OEHPS_SHP_SPLIT_BOM = "X";
-			} else {
-				payLoadToSubmit.OEHPS_SHP_SPLIT_BOM = " ";
-			}
-			if (payLoadToSubmit.OEHPS_LINEUP_BOM) {
-				payLoadToSubmit.OEHPS_LINEUP_BOM = "X";
-			} else {
-				payLoadToSubmit.OEHPS_LINEUP_BOM = " ";
-			}
-			if (payLoadToSubmit.OEHPS_BOM_REVIEW) {
-				payLoadToSubmit.OEHPS_BOM_REVIEW = "X";
-			} else {
-				payLoadToSubmit.OEHPS_BOM_REVIEW = " ";
-			}
-			if (payLoadToSubmit.OEHPS_FINAL_SAP_BOM) {
-				payLoadToSubmit.OEHPS_FINAL_SAP_BOM = "X";
-			} else {
-				payLoadToSubmit.OEHPS_FINAL_SAP_BOM = " ";
-			}
-			if (payLoadToSubmit.OEHPS_ROUTINGS_CREATED) {
-				payLoadToSubmit.OEHPS_ROUTINGS_CREATED = "X";
-			} else {
-				payLoadToSubmit.OEHPS_ROUTINGS_CREATED = " ";
-			}
-			if (payLoadToSubmit.OEHPS_ZZPROD_KICKOFF) {
-				payLoadToSubmit.OEHPS_ZZPROD_KICKOFF = "X";
-			} else {
-				payLoadToSubmit.OEHPS_ZZPROD_KICKOFF = " ";
-			}
-			if (payLoadToSubmit.B1_STATUS) {
-				payLoadToSubmit.B1_STATUS = "X";
-			} else {
-				payLoadToSubmit.B1_STATUS = " ";
-			}
-			this.getOwnerComponent().getModel().create("/ETOOrderEngineeringSet", payLoadToSubmit, {
+
+			// 			if (payLoadToSubmit.OEHPS_ME_DESIGN) {
+			// 				payLoadToSubmit.OEHPS_ME_DESIGN = "X";
+			// 			} else {
+			// 				payLoadToSubmit.OEHPS_ME_DESIGN = " ";
+			// 			}
+			// 			if (payLoadToSubmit.OEHPS_EE_DESIGN) {
+			// 				payLoadToSubmit.OEHPS_EE_DESIGN = "X";
+			// 			} else {
+			// 				payLoadToSubmit.OEHPS_EE_DESIGN = " ";
+			// 			}
+			// 			if (payLoadToSubmit.OEHPS_SYST_ANALYSIS) {
+			// 				payLoadToSubmit.OEHPS_SYST_ANALYSIS = "X";
+			// 			} else {
+			// 				payLoadToSubmit.OEHPS_SYST_ANALYSIS = " ";
+			// 			}
+			// 			if (payLoadToSubmit.OEHPS_APRV_DRAWING) {
+			// 				payLoadToSubmit.OEHPS_APRV_DRAWING = "X";
+			// 			} else {
+			// 				payLoadToSubmit.OEHPS_APRV_DRAWING = " ";
+			// 			}
+			// 			if (payLoadToSubmit.OEHPS_XENG_APRV_RCVD) {
+			// 				payLoadToSubmit.OEHPS_XENG_APRV_RCVD = "X";
+			// 			} else {
+			// 				payLoadToSubmit.OEHPS_XENG_APRV_RCVD = " ";
+			// 			}
+			// 			if (payLoadToSubmit.OEHPS_ZZKICKOFF) {
+			// 				payLoadToSubmit.OEHPS_ZZKICKOFF = "X";
+			// 			} else {
+			// 				payLoadToSubmit.OEHPS_ZZKICKOFF = " ";
+			// 			}
+			// 			if (payLoadToSubmit.OEHPS_PRE_ORD_BOM) {
+			// 				payLoadToSubmit.OEHPS_PRE_ORD_BOM = "X";
+			// 			} else {
+			// 				payLoadToSubmit.OEHPS_PRE_ORD_BOM = " ";
+			// 			}
+			// 			if (payLoadToSubmit.OEHPS_SHP_SPLIT_BOM) {
+			// 				payLoadToSubmit.OEHPS_SHP_SPLIT_BOM = "X";
+			// 			} else {
+			// 				payLoadToSubmit.OEHPS_SHP_SPLIT_BOM = " ";
+			// 			}
+			// 			if (payLoadToSubmit.OEHPS_LINEUP_BOM) {
+			// 				payLoadToSubmit.OEHPS_LINEUP_BOM = "X";
+			// 			} else {
+			// 				payLoadToSubmit.OEHPS_LINEUP_BOM = " ";
+			// 			}
+			// 			if (payLoadToSubmit.OEHPS_BOM_REVIEW) {
+			// 				payLoadToSubmit.OEHPS_BOM_REVIEW = "X";
+			// 			} else {
+			// 				payLoadToSubmit.OEHPS_BOM_REVIEW = " ";
+			// 			}
+			// 			if (payLoadToSubmit.OEHPS_FINAL_SAP_BOM) {
+			// 				payLoadToSubmit.OEHPS_FINAL_SAP_BOM = "X";
+			// 			} else {
+			// 				payLoadToSubmit.OEHPS_FINAL_SAP_BOM = " ";
+			// 			}
+			// 			if (payLoadToSubmit.OEHPS_ROUTINGS_CREATED) {
+			// 				payLoadToSubmit.OEHPS_ROUTINGS_CREATED = "X";
+			// 			} else {
+			// 				payLoadToSubmit.OEHPS_ROUTINGS_CREATED = " ";
+			// 			}
+			// 			if (payLoadToSubmit.OEHPS_ZZPROD_KICKOFF) {
+			// 				payLoadToSubmit.OEHPS_ZZPROD_KICKOFF = "X";
+			// 			} else {
+			// 				payLoadToSubmit.OEHPS_ZZPROD_KICKOFF = " ";
+			// 			}
+			// 			if (payLoadToSubmit.B1_STATUS) {
+			// 				payLoadToSubmit.B1_STATUS = "X";
+			// 			} else {
+			// 				payLoadToSubmit.B1_STATUS = " ";
+			// 			}
+			this.getOwnerComponent().getModel("UserAction").create("/ZWF_DETAILSSet", payLoadToSubmit, {
 				success: function (oData, oResponse) {
-					sap.m.MessageBox.success(oData.MESSAGE);
+					drawingTypes = [];
+					lineItems = [];
+					sap.m.MessageBox.success(oData.Message);
 				},
 				error: function (oError) {
+					drawingTypes = [];
+					lineItems = [];
 					sap.m.MessageBox.error(oError.message);
 				}
 			});
@@ -1029,8 +1190,254 @@ sap.ui.define([
 
 				}
 			})
-		}
+		},
+		paSubmittalDetailsGet: function (slOrdrNo) {
+			var sself = this;
+			var oView = this.getView();
+			var sModel = this.getOwnerComponent().getModel("UserAction");
+			var sPath = `/ZWF_DETAILSSet(SalesOrder='${slOrdrNo}',ItemNo='0000')`;
 
+			sModel.read(sPath, {
+				success: function (data, response) {
+					var paSbmttlMdl = new JSONModel(data);
+					sself.setModel(paSbmttlMdl, "paSbmttlMdlName");
+				},
+				error: function (error) {}
+			})
+
+		},
+		// 		Start of File upload functionality for PA/Submittal Tab.
+		onUploadPressPASbmttl: function (oEvent) {
+			var that = this;
+			var sSaleOrderNo = this.Vbeln;
+			this.getModel("objectViewModel").setProperty("/busy", true);
+			var file = oEvent.getParameters().files[0];
+			var Filename = file.name,
+				Filetype = file.type,
+				Filesize = file.size;
+			that._updateDocumentServicePASubmttl(file, Filename, Filetype, Filesize, this.sSaleOrderNo);
+		},
+		onCompletePASubmttl: function (oEvent) {
+			if (oEvent.getParameter("status") === 500 || oEvent.getParameter("status") === 201) {
+				this.getModel("objectViewModel").setProperty("/busy", false);
+				sap.m.MessageBox.success("The File has been uploaded successfully!");
+				this.getAttachmentDetails();
+				this.getView().getModel().refresh();
+				// this.callItemDetailDropDownService();
+				this.byId("__FILEUPLOAD2").setValue("");
+				this.getModel().refresh();
+				// this.byId("idUpload").setVisible(false);
+			} else {
+				this.getModel("objectViewModel").setProperty("/busy", false);
+				sap.m.MessageBox.error("The File  upload failed!");
+				this.byId("__FILEUPLOAD2").setValue("");
+			}
+		},
+		_updateDocumentServicePASubmttl: function (Filecontent, Filename, Filetype, Filesize, Input) {
+			var oFileUploader = this.byId("__FILEUPLOAD2");
+			Filecontent = null;
+			var itemNo = this.Posnr;
+			oFileUploader.removeAllHeaderParameters();
+			oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({
+				name: "slug",
+				// value: Filecontent + "|" + Input + "|" + Filename + "|" + Filetype + "|" + Filesize + "|" + itemNo + "|" + this.drawingTypeValue
+				value: Filecontent + "|" + Input + "|" + Filename + "|" + Filetype + "|" + Filesize + "|" + itemNo + "|" + this.drawingTypeValue
+			}));
+			oFileUploader.addHeaderParameter(new sap.ui.unified.FileUploaderParameter({
+				name: "x-csrf-token",
+				value: this.getModel().getSecurityToken()
+			}));
+			var sUrl = this.getModel().sServiceUrl + "/ETOAttachmentSet";
+			oFileUploader.setUploadUrl(sUrl);
+			oFileUploader.setSendXHR(true);
+			oFileUploader.setUseMultipart(true);
+			oFileUploader.upload();
+		},
+		onFileNameLengthExceedPASubmttl: function () {
+			MessageBox.error("File name length exceeded, Please upload file with name lenght upto 50 characters.");
+		},
+		onFileSizeExceedPASubmttl: function () {
+			MessageBox.error("File size exceeded, Please upload file with size upto 200KB.");
+		},
+		onAttachmentItemDeletePASubmttl: function (oEvent) {
+			var object = oEvent.getSource().getBindingContext("etoAttachmentModel").getObject();
+			var selIndex = oEvent.getSource().getBindingContext("etoAttachmentModel").getPath().split("/")[2];
+			sap.m.MessageBox.warning("Are you sure to delete this attachment?", {
+				actions: [sap.m.MessageBox.Action.YES, sap.m.MessageBox.Action.NO],
+				styleClass: "messageBoxError",
+				onClose: function (oAction) {
+					if (oAction === sap.m.MessageBox.Action.YES) {
+						this.deleteServiceCallPASubmttl(object, selIndex);
+					}
+				}.bind(this),
+			});
+		},
+		deleteServiceCallPASubmttl: function (object, selIndex) {
+			this.getModel("objectViewModel").setProperty("/busy", true);
+			var oPayload = {
+				"SONumber": this.getView().byId("idSONo").getValue(),
+				"Item": "",
+				"Index": selIndex,
+				"FileName": object.Filename + "." + object.Filetype,
+				"Message": ""
+			};
+			this.getOwnerComponent().getModel("UserAction").create("/DeleteAttachmentSet", oPayload, {
+				success: function (oData, oResponse) {
+					this.getModel("objectViewModel").setProperty("/busy", false);
+					// 	this.callItemDetailDropDownService();
+					this.getAttachmentDetails();
+					this.getView().getModel("etoAttachmentModel").refresh();
+					sap.m.MessageBox.success(oData.Message);
+				}.bind(this),
+				error: function (oError) {
+					this.getModel("objectViewModel").setProperty("/busy", false);
+					sap.m.MessageBox.error("HTTP Request Failed");
+				}.bind(this),
+			});
+		},
+		// 		End of File upload functionality for PA/Submittal Tab.
+		getAttachmentDetails: function () {
+			var slf = this;
+			var filterBySONo = new sap.ui.model.Filter({
+				path: "Input",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: this.sSaleOrderNo
+			});
+			var filterByITmNo = new sap.ui.model.Filter({
+				path: "ItemNr",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: ""
+			});
+			this.getOwnerComponent().getModel("UserAction").read("/ETOAttachmentSet", {
+				filters: [filterBySONo, filterByITmNo],
+				success: function (oData) {
+					var etoAttachmentModel = new JSONModel(oData);
+					slf.setModel(etoAttachmentModel, "etoAttachmentModel");
+				},
+				error: function (oError) {}
+			});
+		},
+		drawingTypeGet: function (appTyp) {
+			var _self = this;
+			var oView = this.getView();
+			var oDTModel = this.getOwnerComponent().getModel("UserAction");
+			var sUrl = "/DrawingTypeSet";
+			var filterByTypeApp = new sap.ui.model.Filter({
+				path: "Type",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: appTyp
+			});
+			var oDFltrValue = [];
+			oDFltrValue.push(filterByTypeApp);
+			oDTModel.read(sUrl, {
+				filters: [oDFltrValue],
+				success: function (oData, response) {
+					var drawingTypeModel = new JSONModel(oData);
+					_self.setModel(drawingTypeModel, "drawingTypeModelName");
+				},
+				error: function (response) {}
+			})
+		},
+		SOItemsGet: function (slOrdrNmbr) {
+			var _selff = this;
+			var oView = this.getView();
+			var SOItemsModel = this.getOwnerComponent().getModel("UserAction");
+			var sUrl = "/SOItemsSet";
+			var filterByVbeln = new sap.ui.model.Filter({
+				path: "VBELN",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: slOrdrNmbr
+			});
+			var SOItemFltrValue = [];
+			SOItemFltrValue.push(filterByVbeln);
+			SOItemsModel.read(sUrl, {
+				filters: [SOItemFltrValue],
+				success: function (oData, response) {
+					var SOItemModel = new JSONModel(oData);
+					_selff.setModel(SOItemModel, "SOItemModelName");
+				},
+				error: function (response) {}
+			})
+		},
+		getETOItemDetails: function (oEvent) {
+			var _seelff = this;
+			var appType = "";
+			var slOrdr = "";
+			var oView = this.getView();
+			var ETOItemDetailsModel = this.getOwnerComponent().getModel();
+			var sUrl = "/ETOItemDetailsSet";
+			ETOItemDetailsModel.read(sUrl, {
+				success: function (oData, response) {
+					// 	for (var etLcv = 0; etLcv < oData.results.length; etLcv++) {
+					// 		if (_seelff.sSaleOrderNo === oData.results[etLcv].SONumber) {
+					// 			appType = oData.results[etLcv].TypeApp;
+					// 			slOrdr = oData.results[etLcv].SONumber
+					// 			break;
+					// 		}
+					// 	}
+					// 	appType = _seelff.getView().getModel("OrderDetailsModel").getData().ETOItemListSet[0].TypeApp;
+					// 	slOrdr = _seelff.getView().getModel("OrderDetailsModel").getData().ETOItemListSet[0].SONumber
+					// 	_seelff.checkMVHPSflagValue(slOrdr, appType);
+					_seelff.checkMVHPSflagValue();
+				},
+				error: function (response) {
+
+				}
+			})
+		},
+		checkMVHPSflagValue: function (slsOrdr, appType) {
+			// 			var selItemDtls = this.getModel("OrderDetailsModel").getProperty("/ETOItemListSet");
+			var _self = this;
+			var filterBySONumber = new sap.ui.model.Filter({
+				path: "SONumber",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: this.sSaleOrderNo
+			});
+			var filterByAction = new sap.ui.model.Filter({
+				path: "Action",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: ""
+			});
+			var filterByItems = new sap.ui.model.Filter({
+				path: "Items",
+				operator: sap.ui.model.FilterOperator.EQ,
+				value1: ""
+			});
+			var filterBySONumberActionItems = [];
+			filterBySONumberActionItems.push(filterBySONumber, filterByAction, filterByItems);
+
+			this.getOwnerComponent().getModel().read("/ETOItemListSet", {
+				filters: [filterBySONumberActionItems],
+				success: function (oData, response) {
+					if (oData.results[0].MVHPS === "X") {
+						_self.getView().byId("idPaSubmittal").setVisible(false);
+						// 		_self.drawingTypeGet(appType);
+						// 		_self.SOItemsGet(slsOrdr);
+					} else {
+						_self.getView().byId("idPaSubmittal").setVisible(true);
+						// 		_self.drawingTypeGet(appType);
+						// 		_self.SOItemsGet(slsOrdr);
+					}
+
+					_self.drawingTypeGet(oData.results[0].TypeApp);
+					_self.SOItemsGet(oData.results[0].SONumber);
+				},
+				error: function (response) {}
+			})
+
+		},
+		formatDate: function (dValue) {
+			// 			var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+			// 				pattern: "YYYY-MM-DD"
+			// 			});
+			// 			var dateFormatted = dateFormat.format(dValue);
+			var dateFormatted = "";
+			if (dValue.includes("/")) {
+				dateFormatted = dValue.split("/")[2] + "-" + dValue.split("/")[0] + "-" + dValue.split("/")[1];
+			} else {
+				dateFormatted = dValue;
+			}
+			return dateFormatted;
+		},
 	});
-
 });

@@ -319,26 +319,26 @@ sap.ui.define([
 
 			});
 
-			if (aGroupName.length > 1) {
-				for (var i = 0; i < aGroupName.length; i++) {
-					var itemfirst = aGroupName[i].GroupName;
-					var itemnext = aGroupName[i + 1].GroupName;
-					if (itemfirst !== itemnext) {
-						sap.m.MessageBox.error("Please select differfent Line item with same group name!");
-						this.byId("idListServiceTab").removeSelections();
-						return false;
-					}
-				}
-				// var isDuplicate = aGroupName.some(function (item, idx) {
-				// 	return aGroupName.indexOf(item) != idx
-				// });
+			// 			if (aGroupName.length > 1) {
+			// for (var i = 0; i < aGroupName.length; i++) {
+			// 	var itemfirst = aGroupName[i].GroupName;
+			// 	var itemnext = aGroupName[i + 1].GroupName;
+			// 	if (itemfirst !== itemnext) {
+			// 		sap.m.MessageBox.error("Please select differfent Line item with same group name!");
+			// 		this.byId("idListServiceTab").removeSelections();
+			// 		return false;
+			// 	}
+			// }
+			// var isDuplicate = aGroupName.some(function (item, idx) {
+			// 	return aGroupName.indexOf(item) != idx
+			// });
 
-				// if (!isDuplicate) {
-				// 	sap.m.MessageBox.error("Please select differfent Line item with different group name!");
-				// 	this.byId("idListServiceTab").removeSelections();
-				// 	return false;
-				// }
-			}
+			// if (!isDuplicate) {
+			// 	sap.m.MessageBox.error("Please select differfent Line item with different group name!");
+			// 	this.byId("idListServiceTab").removeSelections();
+			// 	return false;
+			// }
+			// 			}
 
 			this.Group = aSelectedLineItems[0].getBindingContext().getObject().Group;
 			this.getModel("globalModel").setProperty("/groupAssignKey", this.Group);
